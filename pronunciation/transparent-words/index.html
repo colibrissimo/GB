@@ -1,0 +1,345 @@
+<div id="tw-mod">
+  <style>
+    #tw-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #tw-mod *{box-sizing:border-box;}
+    #tw-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #tw-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #tw-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #tw-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #tw-mod .rule{font-size:16px;}
+    #tw-mod .rule b{color:var(--petrol);}
+    #tw-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #tw-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #tw-mod .key .y{color:var(--saffron2);}
+    #tw-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #tw-mod .accent{background:var(--saffron);color:var(--ink);}
+    #tw-mod .accent:hover{background:var(--saffron2);}
+    #tw-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #tw-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #tw-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #tw-mod .fb.ok{color:var(--ok);} #tw-mod .fb.no{color:var(--no);}
+    #tw-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #tw-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #tw-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #tw-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #tw-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #tw-mod td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;}
+    #tw-mod td:first-child{color:#6a7a7d;white-space:nowrap;} #tw-mod td b{color:var(--petrol);}
+    #tw-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #tw-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #tw-mod .hidden{display:none !important;}
+    #tw-mod .center{text-align:center;}
+    #tw-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #tw-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #tw-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+    #tw-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+    #tw-mod .resp{font-weight:bold;color:var(--petrol);letter-spacing:1px;}
+    #tw-mod .mouths{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:14px 0 6px;}
+    #tw-mod .mouths button{font-size:21px;font-weight:bold;padding:16px 22px;background:#eef1f0;
+      border:2px solid var(--line);color:var(--ink);letter-spacing:1px;min-width:180px;}
+    #tw-mod .mouths button:hover{border-color:var(--saffron);background:#fff7e6;}
+    #tw-mod .mouths button.good{background:#e6f4ec;border-color:var(--ok);color:var(--ok);}
+    #tw-mod .mouths button.bad{background:#fbeaea;border-color:var(--no);color:var(--no);}
+    #tw-mod .target{font-size:30px;font-weight:bold;text-align:center;color:var(--ink);margin:6px 0 2px;letter-spacing:1px;}
+    #tw-mod .fault{text-align:center;font-size:14px;color:var(--petrol);font-weight:bold;min-height:20px;}
+    #tw-mod .cross{display:inline-block;background:var(--petrol);color:#fff;border-radius:6px;padding:1px 7px;font-size:12px;font-weight:bold;margin-left:6px;}
+    /* the countable / uncountable pair */
+    #tw-mod .pair{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0;}
+    #tw-mod .pair > div{flex:1 1 240px;background:#f2f7f8;border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+    #tw-mod .pair h3{margin:0 0 6px;font-size:16px;color:var(--petrol);}
+    #tw-mod .pair p{margin:4px 0;font-size:15px;}
+  </style>
+
+  <h1>Transparent words</h1>
+  <p class="sub">Food culture, coffee culture. Session 1.</p>
+
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <p>A <b>transparent word</b> is the same word in French and in English. Same spelling, or nearly, and the same meaning: <i>culture, tradition, festival, salad, sauce, dessert, chocolate</i>.</p>
+    <p>They are the easiest words to read and the hardest to say, because you already believe you know them.</p>
+
+    <div class="key">
+      <div class="big">Put the accent on the tonic syllable</div>
+      <div class="y">Watch the vowel reduction</div>
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <div class="panel">
+    <h2>1 &middot; Which one is English?</h2>
+    <div class="prog" id="tw-prog">Word 1 of 0</div>
+    <div class="bar"><i id="tw-fill"></i></div>
+    <div class="target" id="tw-word">&middot;</div>
+    <div class="center" style="margin-bottom:2px;"><button class="listen" id="tw-say">&#128266; Listen</button></div>
+    <div class="mouths" id="tw-mouths"><button type="button" id="tw-a">&middot;</button> <button type="button" id="tw-b">&middot;</button></div>
+    <div class="fault" id="tw-fault"></div>
+    <div class="fb" id="tw-fb"></div>
+    <div class="why" id="tw-why"></div>
+    <div class="center"><button class="accent hidden" id="tw-next">Next word &rarr;</button> <button class="ghost hidden" id="tw-again">Play again</button></div>
+    <div class="score" id="tw-score"></div>
+    <p class="note" id="tw-ttsnote"></p>
+  </div>
+
+  <!-- 2 -->
+  <div class="panel">
+    <h2>2 &middot; The coffee menu</h2>
+    <p class="sub" style="margin-bottom:8px;">Five words, five different traps. Tap any of them to hear it.</p>
+    <table>
+      <tr><td><b class="chip" data-w="espresso">espresso</b></td><td>There is no <i>x</i>. Not <i>expresso</i>, whatever the menu says at home. <span class="resp">es-PRESS-oh</span></td></tr>
+      <tr><td><b class="chip" data-w="latte">latte</b></td><td>The accent is at the front, and the ending is <i>ay</i>. <span class="resp">LAH-tay</span></td></tr>
+      <tr><td><b class="chip" data-w="cappuccino">cappuccino</b></td><td>The <i>cc</i> is a <i>ch</i> sound, and the <i>u</i> is oo. <span class="resp">cap-oo-CHEE-noh</span></td></tr>
+      <tr><td><b class="chip" data-w="americano">americano</b></td><td>Five syllables, one of them said. <span class="resp">uh-mer-i-CAH-noh</span></td></tr>
+      <tr><td><b class="chip" data-w="mocha">mocha</b></td><td>The <i>ch</i> is a <i>k</i>. <span class="resp">MOH-kuh</span></td></tr>
+    </table>
+    <div class="flag">All five of these are Italian. French borrowed them and so did English, and the two languages did it differently. Nobody is saying them wrong in their own language. You are learning a second set of habits for the same five words.</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="panel">
+    <h2>3 &middot; Un caf&eacute;, deux caf&eacute;s</h2>
+    <p class="sub" style="margin-bottom:8px;">This is the grammar point and the pronunciation point at the same time, on the same word.</p>
+    <div class="pair">
+      <div>
+        <h3>coffee, uncountable</h3>
+        <p>The substance. <i>Some coffee. A lot of coffee. How much coffee?</i></p>
+        <p><i>Coffee is made from the roasted seeds of the Coffea plant.</i></p>
+      </div>
+      <div>
+        <h3>a coffee, countable</h3>
+        <p>The cup. <i>A coffee. Two coffees. How many coffees?</i></p>
+        <p><i>How many coffees have you had today?</i></p>
+      </div>
+    </div>
+    <p>So the plural exists, and you will need it on your first morning abroad:</p>
+    <table>
+      <tr><td>one</td><td><span class="resp">es-PRESS-oh</span></td></tr>
+      <tr><td>two</td><td><span class="resp">es-PRESS-ohz</span>, with a <i>z</i> sound, because the word ends in a vowel</td></tr>
+    </table>
+    <p class="note">The same split runs through the whole worksheet: <i>fruit</i> and <i>fruits</i>, <i>cheese</i> and <i>cheeses</i>, <i>tea</i> and <i>teas</i>. One is the stuff, the other is the kinds or the servings.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="panel">
+    <h2>4 &middot; The -ture family</h2>
+    <p class="sub" style="margin-bottom:8px;">One ending, one rule, and it will follow you all semester. Tap to hear.</p>
+    <div class="key" style="font-size:20px;">
+      <div class="big">-ture is said <span class="resp">chuh</span></div>
+      <div class="y">and it is never the syllable you lean on</div>
+    </div>
+    <p class="center" style="font-size:16px;line-height:2;">
+      <span class="chip" data-w="culture">culture</span>
+      <span class="chip" data-w="texture">texture</span>
+      <span class="chip" data-w="mixture">mixture</span>
+      <span class="chip" data-w="temperature">temperature</span>
+      <span class="chip" data-w="agriculture">agriculture</span>
+    </p>
+    <table>
+      <tr><td>culture</td><td><span class="resp">KUL-chuh</span>. No <i>r</i> sound at the end.</td></tr>
+      <tr><td>texture</td><td><span class="resp">TEKS-chuh</span>. You will need this one to describe food.</td></tr>
+      <tr><td>mixture</td><td><span class="resp">MIKS-chuh</span>.</td></tr>
+      <tr><td>temperature</td><td><span class="resp">TEM-pruh-chuh</span>. Four syllables written, three said: the <i>-pe-</i> vanishes.</td></tr>
+      <tr><td>agriculture</td><td><span class="resp">AG-ri-kul-chuh</span>. The accent is on the very first syllable.</td></tr>
+    </table>
+    <p class="note">The family is bigger than this: <i>nature, future, manufacture, structure, moisture</i>. Same ending, same rule, every time.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="panel">
+    <h2>5 &middot; Four that break on a sound</h2>
+    <p class="sub" style="margin-bottom:8px;">The rest of this lesson is about where the accent falls. These four go wrong on a <b>sound</b> instead, or on a syllable that is simply not there.</p>
+    <table>
+      <tr><td><b class="chip" data-w="chocolate">chocolate</b></td><td>Three syllables in French, two in English. The middle <i>o</i> is not said at all. <span class="resp">CHOK-lut</span></td></tr>
+      <tr><td><b class="chip" data-w="vegetable">vegetable</b></td><td>Four syllables written, three said. <span class="resp">VEJ-tuh-bul</span></td></tr>
+      <tr><td><b class="chip" data-w="sugar">sugar</b></td><td>The <i>s</i> is a <i>sh</i>. <span class="resp">SHOOG-uh</span> <span class="cross">session 3</span></td></tr>
+      <tr><td><b class="chip" data-w="dessert">dessert</b></td><td>Two <i>s</i> letters, one <i>z</i> sound, accent at the back. <span class="resp">di-ZURT</span></td></tr>
+    </table>
+    <div class="flag">Careful with <i>dessert</i> and <i>desert</i>. One <i>s</i> is <span class="resp">DEZ-ut</span>, which is sand. Two is <span class="resp">di-ZURT</span>, which is pudding. The spelling is the only warning you get.</div>
+    <p class="note">The syllable that disappears in <i>chocolate</i>, <i>vegetable</i> and <i>temperature</i> has a name, and it is the whole of next session.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="panel">
+    <h2>6 &middot; Where coffee comes from</h2>
+    <p class="sub" style="margin-bottom:8px;">Place names are transparent words too, and these are printed on the bag. Tap to hear, then say each one with the English beat.</p>
+    <p class="center" style="font-size:16px;line-height:2;">
+      <span class="chip" data-w="Colombia">Colombia</span>
+      <span class="chip" data-w="Brazil">Brazil</span>
+      <span class="chip" data-w="Ethiopia">Ethiopia</span>
+      <span class="chip" data-w="Kenya">Kenya</span>
+      <span class="chip" data-w="Java">Java</span>
+      <span class="chip" data-w="Sumatra">Sumatra</span>
+      <span class="chip" data-w="Vietnam">Vietnam</span>
+    </p>
+    <table>
+      <tr><td>Colombia</td><td><span class="resp">kuh-LOM-bee-uh</span>. Accent in the middle, and both ends collapse.</td></tr>
+      <tr><td>Brazil</td><td><span class="resp">bruh-ZIL</span>. Accent at the back, and the first syllable is nothing at all.</td></tr>
+      <tr><td>Ethiopia</td><td><span class="resp">ee-thee-OH-pee-uh</span>. Five syllables, and the quiet <i>th</i>.</td></tr>
+      <tr><td>Kenya</td><td><span class="resp">KEN-yuh</span>. Front accent, and not <i>-ee-a</i>.</td></tr>
+      <tr><td>Sumatra</td><td><span class="resp">soo-MAH-truh</span>.</td></tr>
+    </table>
+    <p class="note">Same for the shops: <b>Starbucks</b> is <span class="resp">STAR-buks</span> and <b>Costa</b> is <span class="resp">KOSS-tuh</span>, both with the accent at the front.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="panel">
+    <h2>7 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;">Straight from the worksheet, so the reading and the saying are the same text.</p>
+    <div class="tw">Coffee is an important part of social and cultural traditions in many societies. <span class="chip" data-w="Coffee is an important part of social and cultural traditions in many societies.">&#128266; Listen</span></div>
+    <div class="tw">I love how coffee is used here as an excuse to meet up. <span class="chip" data-w="I love how coffee is used here as an excuse to meet up.">&#128266; Listen</span></div>
+    <div class="tw">Hummus is a spread made from chickpeas, olive oil, lemon juice, garlic and spices. <span class="chip" data-w="Hummus is a spread made from chickpeas, olive oil, lemon juice, garlic and spices.">&#128266; Listen</span></div>
+    <div class="tw">Good food has the power to bring people together and create memorable experiences. <span class="chip" data-w="Good food has the power to bring people together and create memorable experiences.">&#128266; Listen</span></div>
+    <p><b>And one for the menu</b>, with everything from section 2 in it:</p>
+    <div class="tw">Two espressos, a cappuccino and an Americano, please. <span class="chip" data-w="Two espressos, a cappuccino and an Americano, please.">&#128266; Listen</span></div>
+  </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];}};
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then in the older geii collection, then the
+       browser voice. The cascade means no list of filenames has to be kept in step
+       with the folder: record a word, drop the mp3 in, and it starts playing on the
+       next page load. Delete one and the page quietly degrades instead of going
+       silent.
+
+       Both paths are lowercase and GitHub Pages is case-sensitive: a folder named
+       "Pronunciation" with a capital P is a different URL and will 404. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/transparent-words/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/transparent-words/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      /* Remembers which base answered for a given key, so the second click on a word
+         goes straight to the right host instead of walking the cascade again. */
+      var found={};
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=function(){ attempt(i+1); };
+          a.onplaying=function(){ found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](function(){ attempt(i+1); });
+        })(0);
+      }};
+    })();
+
+    R('tw-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where one exists, and the browser voice otherwise. If it is the browser voice, check it is a British one: an American voice will pronounce every final r.'
+      : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
+
+    /* all chips anywhere on the page */
+    Array.prototype.forEach.call(document.querySelectorAll('#tw-mod .chip[data-w]'), function(c){
+      c.addEventListener('click', function(){ TTS.say(c.getAttribute('data-w'), 0.75); });
+    });
+
+    /* ---------- the two mouths ---------- */
+    /* word, the English mouth, the French mouth, what the decoy gets wrong, why */
+    var ITEMS=[
+      ["espresso","es-PRESS-oh","ex-press-OH","an extra letter and the stress","There is no x in espresso. It is Italian, and Italian has no x here. The accent sits on PRESS."],
+      ["latte","LAH-tay","la-TAY","the stress","Front accent. The French habit of leaning on the last syllable is exactly what to undo."],
+      ["cappuccino","cap-oo-CHEE-noh","ka-pu-see-NO","a consonant and the stress","The cc before an i is a ch sound. The u is oo, not the French u."],
+      ["americano","uh-mer-i-CAH-noh","a-may-ree-ka-NO","the stress and the vowels","Five syllables and one of them is really said. The first three collapse towards nothing."],
+      ["mocha","MOH-kuh","mo-KA","a consonant sound","The ch is a k, not a sh. Front accent, and the last syllable is a schwa."],
+      ["culture","KUL-chuh","kul-TYUR","the ending and the stress","-ture is chuh, and there is no r sound at the end."],
+      ["texture","TEKS-chuh","teks-TYUR","the ending and the stress","Same family as culture. Front accent, chuh at the end."],
+      ["mixture","MIKS-chuh","miks-TYUR","the ending and the stress","Same family again. The ending is never the syllable you lean on."],
+      ["temperature","TEM-pruh-chuh","tom-pay-ra-TYUR","a lost syllable and the ending","Four syllables written, three said. The -pe- disappears entirely."],
+      ["agriculture","AG-ri-kul-chuh","a-gree-kul-TYUR","the stress and the ending","The accent is on the very first syllable, three from the end."],
+      ["chocolate","CHOK-lut","sho-ko-LAT","a lost syllable","Three syllables in French, two in English. The middle o is not said."],
+      ["vegetable","VEJ-tuh-bul","vay-zhay-TABL","a lost syllable","Four syllables written, three said. The g is a j, not the French zh."],
+      ["sugar","SHOOG-uh","su-GAR","a consonant sound","The s is a sh, which is session 3. Front accent, and the -ar is a schwa with no r."],
+      ["dessert","di-ZURT","day-SAIR","a consonant sound","Two s letters but a z sound, and the accent is at the back. Mind desert with one s: DEZ-ut, which is sand."]
+    ];
+    function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} }
+    shuffle(ITEMS);
+    var idx=0, right=0, answered=false, enFirst=true;
+
+    function render(){
+      answered=false;
+      var it=ITEMS[idx];
+      enFirst=(Math.random()<0.5);
+      var a=enFirst?it[1]:it[2], b=enFirst?it[2]:it[1];
+      R('tw-word').textContent=it[0];
+      R('tw-a').textContent=a; R('tw-a').className='';
+      R('tw-b').textContent=b; R('tw-b').className='';
+      R('tw-fault').textContent='';
+      R('tw-fb').textContent=''; R('tw-fb').className='fb';
+      R('tw-why').textContent='';
+      R('tw-next').classList.add('hidden');
+      R('tw-again').classList.add('hidden');
+      R('tw-prog').textContent='Word '+(idx+1)+' of '+ITEMS.length;
+      R('tw-fill').style.width=Math.round(idx/ITEMS.length*100)+'%';
+    }
+
+    function answer(side){
+      if(answered) return;
+      answered=true;
+      var it=ITEMS[idx], correct=(enFirst?'a':'b');
+      var fb=R('tw-fb');
+      R('tw-a').className=(correct==='a')?'good':((side==='a')?'bad':'');
+      R('tw-b').className=(correct==='b')?'good':((side==='b')?'bad':'');
+      if(side===correct){ right++; fb.textContent='Yes. '+it[1]+'.'; fb.className='fb ok'; }
+      else{ fb.textContent='No. It is '+it[1]+', not '+it[2]+'.'; fb.className='fb no'; }
+      R('tw-fault').textContent='The other one gets '+it[3]+' wrong.';
+      R('tw-why').textContent=it[4];
+      R('tw-score').textContent=right+' right out of '+(idx+1);
+      if(idx<ITEMS.length-1) R('tw-next').classList.remove('hidden');
+      else{
+        R('tw-again').classList.remove('hidden');
+        R('tw-fill').style.width='100%';
+        R('tw-score').textContent='Finished: '+right+' right out of '+ITEMS.length+'.';
+      }
+    }
+
+    R('tw-a').addEventListener('click',function(){ answer('a'); });
+    R('tw-b').addEventListener('click',function(){ answer('b'); });
+    R('tw-next').addEventListener('click',function(){ idx++; render(); });
+    R('tw-again').addEventListener('click',function(){
+      idx=0; right=0; shuffle(ITEMS); R('tw-score').textContent=''; render();
+    });
+    R('tw-say').addEventListener('click',function(){ TTS.say(ITEMS[idx][0], 0.8); });
+    render();
+    if(MISS.length && window.console && console.warn) console.warn('tw-mod: elements missing from the page: '+MISS.join(', '));
+  })();
+  </script>
+</div>

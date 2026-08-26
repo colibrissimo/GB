@@ -1,0 +1,28 @@
+Transparent words: clips not yet recorded.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into assets/audio/ and it plays on the next load. Nothing to register.
+
+colombia.mp3
+    Colombia
+brazil.mp3
+    Brazil
+ethiopia.mp3
+    Ethiopia
+kenya.mp3
+    Kenya
+java.mp3
+    Java
+sumatra.mp3
+    Sumatra
+vietnam.mp3
+    Vietnam
+coffee-is-an-important-part-of-social-and-cultural-traditions-in-many-societies.mp3
+    Coffee is an important part of social and cultural traditions in many societies.
+i-love-how-coffee-is-used-here-as-an-excuse-to-meet-up.mp3
+    I love how coffee is used here as an excuse to meet up.
+hummus-is-a-spread-made-from-chickpeas-olive-oil-lemon-juice-garlic-and-spices.mp3
+    Hummus is a spread made from chickpeas, olive oil, lemon juice, garlic and spices.
+good-food-has-the-power-to-bring-people-together-and-create-memorable-experiences.mp3
+    Good food has the power to bring people together and create memorable experiences.
+two-espressos-a-cappuccino-and-an-americano-please.mp3
+    Two espressos, a cappuccino and an Americano, please.
