@@ -238,12 +238,18 @@
       return NUL;
     };
 
-    /* Audio lives with the other schwa clips on the geii Pages site. Only the keys
-       listed in HAVE are actually recorded; anything else falls through to the
-       browser voice, so a word added here works the day it is added and improves
-       the day it is voiced. */
-    var CLIPS="https://colibrissimo.github.io/geii/pronunciation/schwa/assets/audio/";
-    var HAVE={"again":1,"amazing":1,"analysis":1,"august":1,"bottom":1,"canada":1,"carrot":1,"circus":1,"confirm":1,"difficult":1,"duplicate":1,"family":1,"father":1,"madness":1,"measure":1,"pennsylvania":1,"president":1,"problem":1,"pyjamas":1,"soda":1,"summer":1,"support":1,"system":1,"tomorrow":1};
+    /* Audio is looked for in GB first, then in the older geii collection, then the
+       browser voice. The cascade means no list of filenames has to be kept in step
+       with the folder: record a word, drop the mp3 in, and it starts playing on the
+       next page load. Delete one and the page quietly degrades instead of going
+       silent.
+
+       Both paths are lowercase and GitHub Pages is case-sensitive: a folder named
+       "Pronunciation" with a capital P is a different URL and will 404. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/schwa/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/schwa/assets/audio/"
+    ];
 
     var TTS=(function(){
       var ok=('speechSynthesis' in window), voice=null;
@@ -267,20 +273,28 @@
         return String(t).toLowerCase().replace(/['’]/g,'')
                  .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
       }
+      /* Remembers which base answered for a given key, so the second click on a word
+         goes straight to the right host instead of walking the cascade again. */
+      var found={};
       return {ok:ok, say:function(t,r){
         var k=key(t);
-        if(!HAVE[k]){ tts(t,r); return; }
         try{window.speechSynthesis.cancel();}catch(e){}
         if(player){ try{ player.pause(); }catch(e){} }
-        player=new Audio(CLIPS+encodeURIComponent(k)+".mp3");
-        player.onerror=function(){ tts(t,r); };
-        var pr=player.play();
-        if(pr&&pr["catch"]) pr["catch"](function(){ tts(t,r); });
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=function(){ attempt(i+1); };
+          a.onplaying=function(){ found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](function(){ attempt(i+1); });
+        })(0);
       }};
     })();
 
     R('swf-ttsnote').textContent = TTS.ok
-      ? 'The Listen button uses your browser voice for the newer words. Check it is a British voice: an American one will pronounce every final r.'
+      ? 'The Listen buttons play a recorded voice where one exists, and the browser voice otherwise. If it is the browser voice, check it is a British one: an American voice will pronounce every final r.'
       : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
 
     /* all chips anywhere on the page */

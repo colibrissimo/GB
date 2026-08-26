@@ -10,6 +10,7 @@ Files here are self-contained: one HTML file, CSS and JavaScript inline, no exte
 |---|---|
 | `index.html` | Beer Brewing Process — an interactive scene. Click an area of the brewery to get the term, its pronunciation, and where it sits in the process. |
 | `brewery.png` | The scene image used by `index.html`. |
+| `pronunciation/schwa/` | The schwa module, with a Food science bank and a Brewing bank on a switch. Serves SAB2 S3 session 2 and SAB3 S5 session 1. |
 
 ## Where it's used
 
@@ -24,3 +25,16 @@ Both years carry a pronunciation strand running underneath the topics. Material 
 - **British English in the prose, American English in the CSS.** `colour` in what students read; `color` in the stylesheet. CSS silently discards British spellings — `text-align: centre` doesn't fail loudly, it just doesn't centre anything.
 - **Keep files self-contained.** Inline the CSS and JS; embed images as files in the repo rather than hotlinking.
 - **Assume Moodle.** Anything added here should survive being embedded in an iframe.
+- **Lowercase paths.** GitHub Pages is case-sensitive, so `Pronunciation/` and `pronunciation/` are different URLs and the wrong one 404s with no error anyone will notice. Everything web-facing stays lowercase.
+
+## Audio
+
+Pronunciation clips live beside their module, as `<module>/assets/audio/<key>.mp3`.
+The key is generated from the button's own text: lowercase, apostrophes dropped,
+every other run of non-alphanumerics collapsed to one hyphen. So `stumble across`
+becomes `stumble-across.mp3`.
+
+Modules look for a clip in GB first, then in the older `geii` collection, then fall
+back to the browser's own voice. Nothing needs registering: drop an mp3 into the
+folder and it plays on the next load. Each module's `AUDIO_TODO.txt` lists what is
+still unrecorded, and is generated from that module's own buttons.
