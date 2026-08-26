@@ -1,0 +1,423 @@
+<div id="swf-mod">
+  <style>
+    #swf-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #swf-mod *{box-sizing:border-box;}
+    #swf-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #swf-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #swf-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #swf-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #swf-mod .rule{font-size:16px;}
+    #swf-mod .rule b{color:var(--petrol);}
+    #swf-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #swf-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #swf-mod .key .y{color:var(--saffron2);}
+    #swf-mod .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    #swf-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #swf-mod .accent{background:var(--saffron);color:var(--ink);}
+    #swf-mod .accent:hover{background:var(--saffron2);}
+    #swf-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #swf-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #swf-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #swf-mod .fb.ok{color:var(--ok);} #swf-mod .fb.no{color:var(--no);}
+    #swf-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #swf-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #swf-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #swf-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #swf-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #swf-mod td{border:1px solid var(--line);padding:8px 10px;}
+    #swf-mod td:first-child{color:#6a7a7d;font-weight:bold;} #swf-mod td b{color:var(--petrol);}
+    #swf-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #swf-mod .tw .s{color:var(--saffron2);font-weight:bold;}
+    #swf-mod .tw .st{color:var(--petrol);font-weight:bold;text-transform:uppercase;}
+    #swf-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #swf-mod .hidden{display:none !important;}
+    #swf-mod .center{text-align:center;}
+    #swf-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #swf-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #swf-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+    #swf-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+    #swf-mod .syls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0 4px;}
+    #swf-mod .syl{font-size:26px;font-weight:bold;background:#eef1f0;border:2px solid var(--line);border-radius:10px;padding:10px 16px;cursor:pointer;color:var(--ink);font-family:inherit;}
+    #swf-mod .syl:hover{border-color:var(--saffron);background:#fff7e6;}
+    #swf-mod .syl.good{background:#e6f4ec;border-color:var(--ok);color:var(--ok);}
+    #swf-mod .syl.bad{background:#fbeaea;border-color:var(--no);color:var(--no);}
+    #swf-mod .syl.reveal{border-color:var(--ok);color:var(--ok);}
+    #swf-mod .nothing{font-size:52px;text-align:center;color:var(--saffron2);margin:4px 0 0;letter-spacing:6px;}
+    #swf-mod .nothing + p{text-align:center;margin-top:0;}
+    /* the bank switch */
+    #swf-mod .picker{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:4px 0 2px;}
+    #swf-mod .picker button{background:#eef1f0;color:var(--petrol);border:2px solid var(--line);}
+    #swf-mod .picker button:hover{border-color:var(--saffron);background:#fff7e6;}
+    #swf-mod .picker button[aria-pressed="true"]{background:var(--petrol);border-color:var(--petrol);color:#fff;}
+    #swf-mod .showpiece{text-align:center;font-size:26px;font-weight:bold;color:var(--petrol);letter-spacing:1px;margin:6px 0 2px;}
+    #swf-mod .showpiece .s{color:var(--saffron2);}
+  </style>
+
+  <h1>The sound Schwa</h1>
+  <p class="sub">The most common vowel in English has no name of its own, no letter of its own, and no sound you would call a sound.</p>
+
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <div class="nothing">&#601;</div>
+    <p class="center"><b>schwa</b>, from Hebrew <i>sva</i>: <b>the void, the nothing</b>.</p>
+
+    <p>The most frequent vowel sound in the English language is <b>named after emptiness</b>, because that is what it is: the sound a vowel collapses into when nobody is leaning on it.</p>
+
+    <p><b>Two facts and you have the whole thing:</b></p>
+    <p>&#9312; The schwa appears <b>only in syllables that are not stressed</b>. Never in a stressed one. So it is not really a vowel you learn, it is what is left when the stress goes elsewhere.</p>
+    <p>&#9313; In French it is roughly the <b>e of <i>demain</i></b>.</p>
+
+    <div class="key">
+      <div class="big">Where the stress is NOT, the vowel goes to nothing.</div>
+    </div>
+  </div>
+
+  <!-- BANK PICKER -->
+  <div class="panel">
+    <h2>Your words</h2>
+    <p class="sub" style="margin-bottom:8px;">The sound is the same for everyone. The words are yours. Pick your course.</p>
+    <div class="picker">
+      <button type="button" data-bank="food" aria-pressed="false">Food science</button>
+      <button type="button" data-bank="brew" aria-pressed="false">Brewing</button>
+    </div>
+    <p class="note center" id="swf-banknote" style="text-align:center;"></p>
+  </div>
+
+  <!-- 1. six spellings -->
+  <div class="panel">
+    <h2>1 &middot; Any vowel can hide it</h2>
+    <p class="sub" style="margin-bottom:8px;">This is the part that makes it hard. The schwa is not a letter. <b>All six vowel letters</b> spell it, and the spelling tells you nothing. Tap any word to hear it.</p>
+    <table>
+      <tr><td>a</td><td><b><span class="chip" data-w="again">again</span> <span class="chip" data-w="soda">soda</span> <span class="chip" data-w="Canada">Canada</span></b></td></tr>
+      <tr><td>e</td><td><b><span class="chip" data-w="father">father</span> <span class="chip" data-w="problem">problem</span> <span class="chip" data-w="madness">madness</span></b></td></tr>
+      <tr><td>i</td><td><b><span class="chip" data-w="president">president</span> <span class="chip" data-w="family">family</span> <span class="chip" data-w="duplicate">duplicate</span></b></td></tr>
+      <tr><td>o</td><td><b><span class="chip" data-w="carrot">carrot</span> <span class="chip" data-w="bottom">bottom</span> <span class="chip" data-w="confirm">confirm</span></b></td></tr>
+      <tr><td>u</td><td><b><span class="chip" data-w="support">support</span> <span class="chip" data-w="circus">circus</span> <span class="chip" data-w="August">August</span></b></td></tr>
+      <tr><td>y</td><td><b><span class="chip" data-w="analysis">analysis</span> <span class="chip" data-w="pyjamas">pyjamas</span> <span class="chip" data-w="Pennsylvania">Pennsylvania</span></b></td></tr>
+    </table>
+  </div>
+
+  <!-- 2. find the schwa -->
+  <div class="panel">
+    <h2>2 &middot; Find the nothing</h2>
+    <p class="sub" style="margin-bottom:8px;">Say the word out loud. Then click the syllable you <b>threw away</b>.</p>
+    <div class="prog" id="swf-prog">Word 1 of 0</div>
+    <div class="bar"><i id="swf-fill"></i></div>
+    <div class="center" style="margin-bottom:4px;"><button class="listen" id="swf-say">&#128266; Listen</button></div>
+    <div class="syls" id="swf-syls"></div>
+    <div class="fb" id="swf-fb"></div>
+    <div class="why" id="swf-why"></div>
+    <div class="center"><button class="accent hidden" id="swf-next">Next word &rarr;</button> <button class="ghost hidden" id="swf-again">Play again</button></div>
+    <div class="score" id="swf-score"></div>
+    <p class="note" id="swf-ttsnote"></p>
+  </div>
+
+  <!-- 3. the free win -->
+  <div class="panel">
+    <h2>3 &middot; One rule does most of the work</h2>
+
+    <div class="key">
+      <div class="big">In British English, <b>-er</b>, <b>-or</b> and <b>-our</b> endings are /&#601;/</div>
+      <div class="y">No r sound. No stress. Nothing.</div>
+    </div>
+
+    <p>Learn it once and you have already done half the vocabulary of the semester:</p>
+
+    <div data-bank="brew">
+      <p class="center" style="font-size:17px;line-height:2;">
+        <span class="chip" data-w="beer">beer</span> <span class="chip" data-w="brewer">brewer</span>
+        <span class="chip" data-w="water">water</span> <span class="chip" data-w="barley">barley</span>
+        <span class="chip" data-w="lager">lager</span> <span class="chip" data-w="cellar">cellar</span>
+        <span class="chip" data-w="porter">porter</span> <span class="chip" data-w="cooper">cooper</span>
+        <span class="chip" data-w="filtered">filtered</span> <span class="chip" data-w="beverage">beverage</span>
+      </p>
+    </div>
+
+    <div data-bank="food">
+      <p class="center" style="font-size:17px;line-height:2;">
+        <span class="chip" data-w="consumer">consumer</span> <span class="chip" data-w="flavour">flavour</span>
+        <span class="chip" data-w="factory">factory</span> <span class="chip" data-w="grocery">grocery</span>
+        <span class="chip" data-w="container">container</span> <span class="chip" data-w="preservative">preservative</span>
+        <span class="chip" data-w="colour">colour</span> <span class="chip" data-w="sugar">sugar</span>
+        <span class="chip" data-w="butter">butter</span> <span class="chip" data-w="water">water</span>
+      </p>
+      <p class="note center" style="text-align:center;"><b>flavour</b> and <b>colour</b>: the British <i>-our</i> is the same nothing as <i>-er</i>. The u is not doing anything.</p>
+    </div>
+  </div>
+
+  <!-- 4. THE AMERICAN BOX -->
+  <div class="panel">
+    <h2>4 &middot; But that is not what I hear</h2>
+    <p class="sub" style="margin-bottom:8px;">Read this before you decide the rule is wrong.</p>
+    <div class="flag">
+      <p style="margin-top:0;">You have heard <i>water</i>, <i>butter</i> and <i>consumer</i> a thousand times in series and YouTube videos, with a clear, strong <b>r</b> at the end. So this page looks wrong to you.</p>
+      <p><b>It is not wrong. You have been listening to Americans.</b></p>
+      <p>British English uses /&#601;/ in words ending -er, -or and -our, <b>while in American English the r is pronounced</b>. American is a <i>rhotic</i> accent: every written r gets said, with the tongue curled back.</p>
+      <p><b>Nobody is making a mistake.</b> There are two accents, and your ears have been trained on one of them by everything you watch. That is not a problem, it is an advantage, as long as you know which one you are doing.</p>
+      <p style="margin-bottom:0;">What actually sounds odd is switching between the two inside one sentence.</p>
+    </div>
+  </div>
+
+  <!-- 5. the bank -->
+  <div class="panel">
+    <h2>5 &middot; This week's words</h2>
+
+    <div data-bank="brew">
+      <p class="sub" style="margin-bottom:8px;">From the History of Beer vocabulary. Tap to hear. The <span style="color:#e0a52a;font-weight:bold;">yellow</span> is where the vowel goes to nothing.</p>
+      <table>
+        <tr><td><span class="chip" data-w="beverage">beverage</span></td><td><b>BEV</b>&middot;<span style="color:#e0a52a;font-weight:bold;">er</span>&middot;<span style="color:#e0a52a;font-weight:bold;">age</span> &mdash; three syllables, one said.</td></tr>
+        <tr><td><span class="chip" data-w="consume">consume</span></td><td><span style="color:#e0a52a;font-weight:bold;">con</span>&middot;<b>SUME</b> &mdash; the stress is at the back, so the front collapses.</td></tr>
+        <tr><td><span class="chip" data-w="survival">survival</span></td><td><span style="color:#e0a52a;font-weight:bold;">sur</span>&middot;<b>VIV</b>&middot;<span style="color:#e0a52a;font-weight:bold;">al</span> &mdash; one leaned on, two thrown away.</td></tr>
+        <tr><td><span class="chip" data-w="organism">organism</span></td><td><b>OR</b>&middot;<span style="color:#e0a52a;font-weight:bold;">gan</span>&middot;<span style="color:#e0a52a;font-weight:bold;">ism</span> &mdash; and no r sound in <i>or</i>.</td></tr>
+        <tr><td><span class="chip" data-w="evidence">evidence</span></td><td><b>EV</b>&middot;i&middot;<span style="color:#e0a52a;font-weight:bold;">dence</span></td></tr>
+        <tr><td><span class="chip" data-w="vessel">vessel</span></td><td><b>VESS</b>&middot;<span style="color:#e0a52a;font-weight:bold;">el</span></td></tr>
+        <tr><td><span class="chip" data-w="alien">alien</span></td><td><b>AY</b>&middot;li&middot;<span style="color:#e0a52a;font-weight:bold;">en</span></td></tr>
+        <tr><td><span class="chip" data-w="drunkenness">drunkenness</span></td><td><b>DRUNK</b>&middot;<span style="color:#e0a52a;font-weight:bold;">en</span>&middot;<span style="color:#e0a52a;font-weight:bold;">ness</span> &mdash; two in a row.</td></tr>
+        <tr><td><span class="chip" data-w="stumble across">stumble across</span></td><td>STUM&middot;<span style="color:#e0a52a;font-weight:bold;">ble</span> <span style="color:#e0a52a;font-weight:bold;">a</span>&middot;CROSS &mdash; the little <i>a</i> is a whole schwa on its own.</td></tr>
+      </table>
+    </div>
+
+    <div data-bank="food">
+      <p class="sub" style="margin-bottom:8px;">From the What is food science vocabulary. Tap to hear. The <span style="color:#e0a52a;font-weight:bold;">yellow</span> is where the vowel goes to nothing.</p>
+      <table>
+        <tr><td><span class="chip" data-w="consumer">consumer</span></td><td><span style="color:#e0a52a;font-weight:bold;">con</span>&middot;<b>SUME</b>&middot;<span style="color:#e0a52a;font-weight:bold;">er</span> &mdash; one syllable said, two thrown away.</td></tr>
+        <tr><td><span class="chip" data-w="material">material</span></td><td><span style="color:#e0a52a;font-weight:bold;">ma</span>&middot;<b>TEER</b>&middot;i&middot;<span style="color:#e0a52a;font-weight:bold;">al</span></td></tr>
+        <tr><td><span class="chip" data-w="caramelise">caramelise</span></td><td><b>CARR</b>&middot;<span style="color:#e0a52a;font-weight:bold;">a</span>&middot;<span style="color:#e0a52a;font-weight:bold;">mel</span>&middot;ise</td></tr>
+        <tr><td><span class="chip" data-w="microbiology">microbiology</span></td><td>my&middot;cro&middot;by&middot;<b>OL</b>&middot;<span style="color:#e0a52a;font-weight:bold;">o</span>&middot;gy</td></tr>
+        <tr><td><span class="chip" data-w="efficient">efficient</span></td><td>e&middot;<b>FISH</b>&middot;<span style="color:#e0a52a;font-weight:bold;">ent</span></td></tr>
+        <tr><td><span class="chip" data-w="decompose">decompose</span></td><td>dee&middot;<span style="color:#e0a52a;font-weight:bold;">com</span>&middot;<b>POSE</b></td></tr>
+        <tr><td><span class="chip" data-w="chemistry">chemistry</span></td><td><b>KEM</b>&middot;<span style="color:#e0a52a;font-weight:bold;">is</span>&middot;try &mdash; and the ch is a k.</td></tr>
+        <tr><td><span class="chip" data-w="innovate">innovate</span></td><td><b>INN</b>&middot;<span style="color:#e0a52a;font-weight:bold;">o</span>&middot;vate</td></tr>
+        <tr><td><span class="chip" data-w="factory">factory</span></td><td><b>FAC</b>&middot;<span style="color:#e0a52a;font-weight:bold;">to</span>&middot;ry &mdash; so reduced that most people say two syllables.</td></tr>
+      </table>
+    </div>
+
+    <div class="key" style="margin-top:14px;">
+      <div class="y" style="font-size:15px;">The showpiece. Six syllables, one stress, three nothings.</div>
+      <div class="showpiece">s<span class="s">u</span>&middot;STAIN&middot;<span class="s">a</span>&middot;BIL&middot;<span class="s">i</span>&middot;ty</div>
+      <div class="center"><span class="chip" data-w="sustainability">&#128266; Listen</span></div>
+    </div>
+  </div>
+
+  <!-- 6. say it -->
+  <div class="panel">
+    <h2>6 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;"><span class="st" style="color:#13525C;font-weight:bold;text-transform:uppercase;">Capital letters</span> are stressed: lean on them. Everything in <span class="s" style="color:#e0a52a;font-weight:bold;">yellow</span> is nothing.</p>
+
+    <div data-bank="brew">
+      <div class="tw">Th<span class="s">e</span> <span class="st">brew</span><span class="s">er</span> <span class="st">fil</span>t<span class="s">ered</span> th<span class="s">e</span> <span class="st">wa</span>t<span class="s">er</span> <span class="s">in</span>t<span class="s">o</span> <span class="s">a</span> <span class="st">lar</span>g<span class="s">er</span> <span class="st">vess</span><span class="s">el</span>. <span class="chip" data-w="The brewer filtered the water into a larger vessel.">&#128266; Listen</span></div>
+      <div class="tw"><span class="s">A</span> <span class="st">ti</span>ny <span class="st">or</span>g<span class="s">an</span><span class="s">ism</span> <span class="st">turns</span> <span class="st">su</span>g<span class="s">ar</span> <span class="s">in</span>t<span class="s">o</span> <span class="s">a</span> <span class="st">bev</span><span class="s">er</span><span class="s">age</span>. <span class="chip" data-w="A tiny organism turns sugar into a beverage.">&#128266; Listen</span></div>
+    </div>
+
+    <div data-bank="food">
+      <div class="tw">Th<span class="s">e</span> c<span class="s">on</span><span class="st">sum</span><span class="s">er</span> <span class="st">wants</span> <span class="st">bett</span><span class="s">er</span> <span class="st">fla</span>v<span class="s">our</span> <span class="s">and</span> <span class="st">long</span><span class="s">er</span> <span class="st">shelf</span> <span class="st">life</span>. <span class="chip" data-w="The consumer wants better flavour and longer shelf life.">&#128266; Listen</span></div>
+      <div class="tw">Th<span class="s">e</span> <span class="st">fac</span>t<span class="s">o</span>ry <span class="st">stores</span> th<span class="s">e</span> <span class="st">raw</span> m<span class="s">a</span><span class="st">ter</span>i<span class="s">al</span> <span class="s">in</span> <span class="s">a</span> <span class="st">cold</span> c<span class="s">on</span><span class="st">tain</span><span class="s">er</span>. <span class="chip" data-w="The factory stores the raw material in a cold container.">&#128266; Listen</span></div>
+    </div>
+
+    <table style="margin-top:12px;">
+      <tr><td>-er / -or / -our</td><td><b>water &middot; brewer &middot; consumer &middot; flavour &middot; colour &middot; container</b></td></tr>
+      <tr><td>the front that collapses</td><td><b>consume &middot; survival &middot; decompose &middot; material &middot; across &middot; about</b></td></tr>
+      <tr><td>small words</td><td><b>a &middot; the &middot; to &middot; of &middot; than &middot; and &middot; was &middot; for</b> (all schwa, all thrown away)</td></tr>
+      <tr><td>never a schwa</td><td>any syllable you are <b>leaning on</b>. Stress and schwa cannot share a syllable.</td></tr>
+    </table>
+  </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];}};
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio lives with the other schwa clips on the geii Pages site. Only the keys
+       listed in HAVE are actually recorded; anything else falls through to the
+       browser voice, so a word added here works the day it is added and improves
+       the day it is voiced. */
+    var CLIPS="https://colibrissimo.github.io/geii/pronunciation/schwa/assets/audio/";
+    var HAVE={"again":1,"amazing":1,"analysis":1,"august":1,"bottom":1,"canada":1,"carrot":1,"circus":1,"confirm":1,"difficult":1,"duplicate":1,"family":1,"father":1,"madness":1,"measure":1,"pennsylvania":1,"president":1,"problem":1,"pyjamas":1,"soda":1,"summer":1,"support":1,"system":1,"tomorrow":1};
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        if(!HAVE[k]){ tts(t,r); return; }
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        player=new Audio(CLIPS+encodeURIComponent(k)+".mp3");
+        player.onerror=function(){ tts(t,r); };
+        var pr=player.play();
+        if(pr&&pr["catch"]) pr["catch"](function(){ tts(t,r); });
+      }};
+    })();
+
+    R('swf-ttsnote').textContent = TTS.ok
+      ? 'The Listen button uses your browser voice for the newer words. Check it is a British voice: an American one will pronounce every final r.'
+      : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
+
+    /* all chips anywhere on the page */
+    Array.prototype.forEach.call(document.querySelectorAll('#swf-mod .chip[data-w]'), function(c){
+      c.addEventListener('click', function(){ TTS.say(c.getAttribute('data-w'), 0.75); });
+    });
+
+    /* ---------- the bank switch ---------- */
+    /* Core items are shared. Each bank adds its own on top, so the exercise a class
+       sees is the shared rule plus that class's own vocabulary. */
+    var CORE=[
+      [["sum","mer"],1,"The -er ending. The commonest schwa in the language."],
+      [["car","rot"],1,"Spelled with an o, said as a schwa."],
+      [["prob","lem"],1,"Spelled with an e, said as a schwa."],
+      [["sup","port"],0,"Spelled with a u. The stress is on port, so sup goes to nothing."],
+      [["a","gain"],0,"Spelled with an a, and it is the whole first syllable."],
+      [["to","mor","row"],0,"The stress is in the middle, so the first syllable collapses."],
+      [["meas","ure"],1,"Spelled with u-r-e, said as a schwa."],
+      [["sys","tem"],1,"Spelled with an e."],
+      [["a","maz","ing"],0,"Stress on maz. The a in front is nothing."],
+      [["con","firm"],0,"Spelled with an o. Stress is on firm."],
+      [["Au","gust"],1,"Spelled with a u. Not the French auguste."],
+      [["bot","tom"],1,"Spelled with an o."],
+      [["fa","ther"],1,"Spelled with an e, and no r sound either."],
+      [["dif","fi","cult"],2,"Spelled with a u. Three syllables and you lean on the first."]
+    ];
+    var BANKS={
+      brew:[
+        [["brew","er"],1,"The -er ending, on the word the whole semester is about."],
+        [["wa","ter"],1,"The -er again. No r sound in British English."],
+        [["la","ger"],1,"And again. Every one of these is the same nothing."],
+        [["cell","ar"],1,"Spelled -ar this time. Still nothing."],
+        [["bev","er","age"],1,"The -er hiding in the middle of a longer word."],
+        [["con","sume"],0,"Stress on SUME, so the whole first syllable collapses."],
+        [["vess","el"],1,"Spelled with an e."],
+        [["ev","i","dence"],2,"Lean on EV. The i stays a short i; the last syllable is the nothing."],
+        [["al","i","en"],2,"Spelled with an e."],
+        [["fil","tered"],1,"The -ered ending. Two letters, no sound worth the name."],
+        [["a","cross"],0,"A whole syllable that is nothing but a schwa."]
+      ],
+      food:[
+        [["con","sum","er"],2,"The -er ending. There is a second schwa in con, so this word has two."],
+        [["fac","to","ry"],1,"So reduced that most speakers say FAC-try."],
+        [["groc","er","y"],1,"The -er in the middle. GROSE-ree."],
+        [["fla","vour"],1,"The British -our is the same nothing as -er. The u does nothing."],
+        [["ef","fic","ient"],2,"Lean on FISH. The last syllable collapses."],
+        [["de","com","pose"],1,"Stress at the back on POSE, so the middle goes."],
+        [["car","a","mel","ise"],1,"Lean on CARR. There is a second schwa in mel."],
+        [["ma","ter","i","al"],0,"Stress on TEER, so the ma in front is nothing."],
+        [["chem","is","try"],1,"Spelled with an i. And the ch is a k."],
+        [["inn","o","vate"],1,"Spelled with an o, said as nothing."]
+      ]
+    };
+    var NOTES={
+      brew:'Brewing selected. The words below come from the History of Beer vocabulary.',
+      food:'Food science selected. The words below come from the What is food science vocabulary.'
+    };
+
+    var ITEMS=[], idx=0, right=0, answered=false, bank=null;
+
+    function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} }
+
+    function setBank(b){
+      bank=b;
+      Array.prototype.forEach.call(document.querySelectorAll('#swf-mod .picker button'), function(x){
+        x.setAttribute('aria-pressed', x.getAttribute('data-bank')===b ? 'true' : 'false');
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('#swf-mod div[data-bank]'), function(x){
+        if(x.getAttribute('data-bank')===b) x.classList.remove('hidden');
+        else x.classList.add('hidden');
+      });
+      R('swf-banknote').textContent = NOTES[b] || '';
+      ITEMS = CORE.concat(BANKS[b] || []);
+      shuffle(ITEMS);
+      idx=0; right=0; R('swf-score').textContent='';
+      render();
+    }
+
+    function word(){ return ITEMS[idx][0].join(''); }
+
+    function render(){
+      answered=false;
+      var syls=ITEMS[idx][0], box=R('swf-syls'), html='';
+      for(var i=0;i<syls.length;i++) html+='<button class="syl" data-i="'+i+'">'+syls[i]+'</button>';
+      box.innerHTML=html;
+      R('swf-fb').textContent=''; R('swf-fb').className='fb';
+      R('swf-why').textContent='';
+      R('swf-next').classList.add('hidden');
+      R('swf-again').classList.add('hidden');
+      R('swf-prog').textContent='Word '+(idx+1)+' of '+ITEMS.length;
+      R('swf-fill').style.width=Math.round(idx/ITEMS.length*100)+'%';
+    }
+
+    function answer(i){
+      if(answered) return;
+      answered=true;
+      var truth=ITEMS[idx][1], btns=R('swf-syls').querySelectorAll('.syl'), fb=R('swf-fb');
+      if(i===truth){ right++; btns[i].className='syl good'; fb.textContent='Yes. That one is nothing.'; fb.className='fb ok'; }
+      else{
+        btns[i].className='syl bad';
+        btns[truth].className='syl reveal';
+        fb.textContent='No. The schwa is "'+ITEMS[idx][0][truth]+'".';
+        fb.className='fb no';
+      }
+      R('swf-why').textContent=ITEMS[idx][2];
+      R('swf-score').textContent=right+' right out of '+(idx+1);
+      if(idx<ITEMS.length-1) R('swf-next').classList.remove('hidden');
+      else{
+        R('swf-again').classList.remove('hidden');
+        R('swf-fill').style.width='100%';
+        R('swf-score').textContent='Finished: '+right+' right out of '+ITEMS.length+'.';
+      }
+    }
+
+    R('swf-syls').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('.syl') : null;
+      if(b) answer(parseInt(b.getAttribute('data-i'),10));
+    });
+    R('swf-next').addEventListener('click',function(){ idx++; render(); });
+    R('swf-again').addEventListener('click',function(){
+      idx=0; right=0; shuffle(ITEMS); R('swf-score').textContent=''; render();
+    });
+    R('swf-say').addEventListener('click',function(){ TTS.say(word(), 0.8); });
+
+    /* Remembers the class's choice on this browser, so a student reopening the page
+       lands back on their own bank. Falls back to Food science on anything unusual. */
+    Array.prototype.forEach.call(document.querySelectorAll('#swf-mod .picker button'), function(x){
+      x.addEventListener('click', function(){
+        var b=x.getAttribute('data-bank');
+        try{ localStorage.setItem('swf_bank', b); }catch(e){}
+        setBank(b);
+      });
+    });
+    var saved=null; try{ saved=localStorage.getItem('swf_bank'); }catch(e){}
+    setBank(BANKS[saved] ? saved : 'food');
+
+    if(MISS.length && window.console && console.warn) console.warn('swf-mod: elements missing from the page: '+MISS.join(', '));
+  })();
+  </script>
+</div>
