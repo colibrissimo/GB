@@ -1,0 +1,66 @@
+Silent R: clips not yet recorded.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into assets/audio/ and it plays on the next load. Nothing to register.
+
+darker.mp3
+    darker
+brewer.mp3
+    brewer
+water-hardness-affects-the-flavour.mp3
+    Water hardness affects the flavour.
+the-darker-porter-tastes-bitter.mp3
+    The darker porter tastes bitter.
+the-brewer-roasts-the-rye-and-the-barley.mp3
+    The brewer roasts the rye and the barley.
+brewery.mp3
+    brewery
+barley.mp3
+    barley
+bitter.mp3
+    bitter
+lager.mp3
+    lager
+cellar.mp3
+    cellar
+porter.mp3
+    porter
+flavour.mp3
+    flavour
+hardness.mp3
+    hardness
+wort.mp3
+    wort
+fermentation.mp3
+    fermentation
+roast.mp3
+    roast
+grain.mp3
+    grain
+brew.mp3
+    brew
+grist.mp3
+    grist
+rye.mp3
+    rye
+dry.mp3
+    dry
+barrel.mp3
+    barrel
+driver.mp3
+    driver
+refinery.mp3
+    refinery
+why.mp3
+    why
+red.mp3
+    red
+wed.mp3
+    wed
+round.mp3
+    round
+wound.mp3
+    wound
+rest.mp3
+    rest
+west.mp3
+    west

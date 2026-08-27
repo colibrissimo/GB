@@ -1,0 +1,378 @@
+<div id="sr-mod">
+  <style>
+    #sr-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #sr-mod *{box-sizing:border-box;}
+    #sr-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #sr-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #sr-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #sr-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #sr-mod .rule{font-size:16px;}
+    #sr-mod .rule b{color:var(--petrol);}
+    #sr-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #sr-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #sr-mod .key .y{color:var(--saffron2);}
+    #sr-mod .word{font-size:30px;font-weight:bold;text-align:center;color:var(--ink);margin:6px 0 14px;}
+    #sr-mod .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    #sr-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #sr-mod .cat{background:var(--petrol);color:#fff;flex:1;min-width:120px;}
+    #sr-mod .cat:hover{background:var(--petrol2);}
+    #sr-mod .accent{background:var(--saffron);color:var(--ink);}
+    #sr-mod .accent:hover{background:var(--saffron2);}
+    #sr-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #sr-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #sr-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #sr-mod .fb.ok{color:var(--ok);} #sr-mod .fb.no{color:var(--no);}
+    #sr-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #sr-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #sr-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #sr-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #sr-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #sr-mod td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;}
+    #sr-mod td:first-child{color:#6a7a7d;} #sr-mod td b{color:var(--petrol);}
+    #sr-mod .pairrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+    #sr-mod .pairrow .pair{font-size:18px;font-weight:bold;}
+    #sr-mod .pairrow a{color:var(--petrol);text-decoration:none;border-bottom:1px dotted var(--line);}
+    #sr-mod .pairrow a:hover{border-bottom-color:var(--saffron);}
+    #sr-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #sr-mod .tw .v{color:var(--petrol);font-weight:bold;text-decoration:underline;}
+    #sr-mod .tw .x{color:#9aa7ab;text-decoration:line-through;}
+    #sr-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #sr-mod .hidden{display:none !important;}
+    #sr-mod .center{text-align:center;}
+    #sr-mod .steps{margin:0;padding-left:20px;}
+    #sr-mod .steps li{margin-bottom:7px;}
+    #sr-mod .anchor{background:linear-gradient(180deg,#fff,#f2f7f8);border:2px solid var(--petrol);border-radius:12px;padding:14px 16px;margin:12px 0;}
+    #sr-mod .anchor .aw{font-size:34px;font-weight:bold;color:var(--petrol);text-align:center;letter-spacing:2px;margin-bottom:4px;}
+    #sr-mod .anchor .aw em{color:var(--saffron2);font-style:normal;}
+    #sr-mod .anchor .aw s{color:#9aa7ab;}
+    #sr-mod .anchor p{margin:6px 0;font-size:16px;}
+    #sr-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #sr-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #sr-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+    #sr-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+  </style>
+
+  <h1>The silent R</h1>
+  <p class="sub">How beer is made. Session 3.</p>
+
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <p><b>My tailor is rich.</b> <i>Rich</i> has a real /r/. <i>Tailor</i> has none at all: it ends /&#712;te&#618;l&#601;/, which is the schwa from session 1.</p>
+
+    <p><b>The /r/ sound</b> is one of the hardest sounds in English, and one of the last that English children master. It is <b>not</b> the French r. The French r is made in the throat. The English one is not.</p>
+    <ol class="steps">
+      <li>Your lips form a slight <b>o</b> shape.</li>
+      <li>Your tongue curls up <b>at the sides</b>.</li>
+      <li>You tighten the pharynx.</li>
+    </ol>
+
+    <p>And in British English a written r is <b>very often not pronounced at all</b>. Instead it <b>stretches the vowel in front of it</b>.</p>
+    <div class="key">
+      <div class="big">bat /&#230;/ &nbsp;&rarr;&nbsp; barley /&#593;&#720;/ &nbsp;&nbsp;&middot;&nbsp;&nbsp; bar /&#593;&#720;/</div>
+      <div class="y">The r did not disappear. It turned into length.</div>
+    </div>
+    <p>Two places this happens: <b>before a consonant</b> (<i>barley, wort, hardness, fermentation</i>) and <b>at the end of a word</b> (<i>lager, bitter, flavour</i>).</p>
+    <p class="note">Session 1 asked what vowel is in that syllable. This session asks whether there is an r there at all. They go wrong separately: you can get the schwa right and still roll an r onto the end of it.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="panel">
+    <h2>1 &middot; The two words that prove it</h2>
+
+    <div class="anchor">
+      <div class="aw">DA<s>R</s>KE<s>R</s></div>
+      <p class="center">Two written r's. <b>Neither one is pronounced.</b></p>
+      <p class="center">/&#712;d&#593;&#720;k&#601;/ &nbsp; The first r stretches the vowel. The second is a schwa.</p>
+      <div class="center"><button class="listen" data-w="darker">&#128266; Listen</button></div>
+    </div>
+
+    <div class="anchor">
+      <div class="aw">B<em>R</em>EWE<s>R</s></div>
+      <p class="center">Two written r's. <b>Exactly one is pronounced.</b></p>
+      <p class="center">/&#712;bru&#720;&#601;/ &nbsp; The first r starts a syllable, so it is real. The second ends one, so it is not.</p>
+      <div class="center"><button class="listen" data-w="brewer">&#128266; Listen</button></div>
+    </div>
+
+    <div class="key" style="font-size:17px;">
+      <div class="big">An r at the START of a syllable is real</div>
+      <div class="y">An r at the END of one, or before a consonant, is not</div>
+    </div>
+    <p class="note">That is the whole lesson, and those two words hold it. <i>Darker</i> shows you the silence. <i>Brewer</i> shows you the border.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="panel">
+    <h2>2 &middot; The water test</h2>
+    <ol class="steps">
+      <li>Take a mouthful of water. Do not swallow it.</li>
+      <li>Say <b>"ah"</b>. Still do not swallow.</li>
+      <li>What you just did to stop the water going down is <b>tightening the pharynx</b>. That is the position.</li>
+      <li>Now spit the water out and say <b>roast, rye, brew</b> from that same position, with the lips in a slight o.</li>
+    </ol>
+    <p class="note">No water to hand: start to yawn, then stop halfway and hold it.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="panel">
+    <h2>3 &middot; /w/ or /r/?</h2>
+    <p class="sub" style="margin-bottom:8px;">The English /r/ is close to the /w/ of <i>weekend</i>, but it is not the same sound. Here is how to feel the difference. Tap any word to hear it.</p>
+    <ol class="steps">
+      <li>Hand on your vocal cords. Hold a long <b>wwwww</b>, then a long <b>rrrrr</b>.</li>
+      <li>There is <b>more vibration on /r/</b> than on /w/. That is the difference, and you can feel it before you can hear it.</li>
+    </ol>
+    <div id="sr-pairs"></div>
+  </div>
+
+  <!-- 4 -->
+  <div class="panel">
+    <h2>4 &middot; How many R sounds?</h2>
+    <p class="sub" style="margin-bottom:8px;">Not how many letters. How many times you actually <b>make the sound</b>. Say the word out loud first.</p>
+    <div class="prog" id="sr-prog">Word 1 of 0</div>
+    <div class="bar"><i id="sr-fill"></i></div>
+    <div class="word" id="sr-word">&middot;</div>
+    <div class="center" style="margin-bottom:10px;"><button class="listen" id="sr-say">&#128266; Listen</button></div>
+    <div class="btns" id="sr-cats">
+      <button class="cat" data-c="0">None</button>
+      <button class="cat" data-c="1">One</button>
+      <button class="cat" data-c="2">Two</button>
+    </div>
+    <div class="fb" id="sr-fb"></div>
+    <div class="why" id="sr-why"></div>
+    <div class="center"><button class="accent hidden" id="sr-nextw">Next word &rarr;</button> <button class="ghost hidden" id="sr-again">Play again</button></div>
+    <div class="score" id="sr-score"></div>
+    <p class="note" id="sr-ttsnote"></p>
+  </div>
+
+  <!-- 5 -->
+  <div class="panel">
+    <h2>5 &middot; When the silent R comes back</h2>
+    <p>A final r is silent, <b>unless the next word begins with a vowel sound</b>. Then it comes back, to join the two words together. It is called the linking /r/.</p>
+    <div class="tw">The bee<span class="x">r</span> was cold. &nbsp;&rarr;&nbsp; no r, because <i>was</i> starts with a consonant.</div>
+    <div class="tw">The bee<span class="v">r_</span>is cold. &nbsp;&rarr;&nbsp; the r comes back, to join <i>beer</i> to <i>is</i>.</div>
+    <div class="tw">A porte<span class="v">r_</span>and a stout. &nbsp;&rarr;&nbsp; same thing, because <i>and</i> starts with a vowel.</div>
+    <p class="note">So <b>beer</b> on its own has no /r/ at all, and <b>beer is</b> has one. Same word. The sound belongs to the join, not to the word.</p>
+
+    <div class="flag">
+      Everything on this page is <b>British</b> English. American English is <i>rhotic</i>: every written r is pronounced, with the tongue curled back. Pick one accent and be consistent.
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="panel">
+    <h2>6 &middot; The brewery words</h2>
+    <p class="sub" style="margin-bottom:8px;">Tap to hear. Then say each one, and notice which r's you are not saying.</p>
+    <div id="sr-chips"></div>
+  </div>
+
+  <!-- 7 -->
+  <div class="panel">
+    <h2>7 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;"><span class="v">Underlined</span> is a real /r/. <span class="x">Struck through</span> is written but not said: stretch the vowel instead.</p>
+    <div class="tw">My tailo<span class="x">r</span> is <span class="v">r</span>ich. <span class="chip" data-w="My tailor is rich.">&#128266; Listen</span></div>
+    <div class="tw">Wate<span class="x">r</span> ha<span class="x">r</span>dness affects the flavou<span class="x">r</span>. <span class="note" style="display:inline;">(three written, none said)</span> <span class="chip" data-w="Water hardness affects the flavour.">&#128266; Listen</span></div>
+    <div class="tw">The da<span class="x">r</span>ke<span class="x">r</span> po<span class="x">r</span>te<span class="x">r</span> tastes bitte<span class="x">r</span>. <span class="note" style="display:inline;">(five written, none said)</span> <span class="chip" data-w="The darker porter tastes bitter.">&#128266; Listen</span></div>
+    <div class="tw">The b<span class="v">r</span>ewe<span class="x">r</span> <span class="v">r</span>oasts the <span class="v">r</span>ye and the ba<span class="x">r</span>ley. <span class="note" style="display:inline;">(three real, two silent)</span> <span class="chip" data-w="The brewer roasts the rye and the barley.">&#128266; Listen</span></div>
+    <table style="margin-top:12px;">
+      <tr><td>Real /r/</td><td><b>brew &middot; brewer &middot; roast &middot; grain &middot; grist &middot; rye &middot; rich &middot; dry &middot; barrel</b></td></tr>
+      <tr><td>No /r/ at all</td><td><b>barley &middot; bitter &middot; lager &middot; cellar &middot; porter &middot; water &middot; flavour &middot; mixture &middot; sugar &middot; darker &middot; wort &middot; fermentation</b></td></tr>
+      <tr><td>Same rule as session 1</td><td><b>bitter &middot; lager &middot; cellar &middot; porter &middot; water &middot; flavour</b> (-er and -our = /&#601;/)</td></tr>
+      <tr><td>The r comes back</td><td><b>the beer_is cold &middot; a porter_and a stout &middot; the lager_is ready</b></td></tr>
+    </table>
+  </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];}};
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then in the older geii collection, then the
+       browser voice. The cascade means no list of filenames has to be kept in step
+       with the folder: record a word, drop the mp3 in, and it starts playing on the
+       next page load. Delete one and the page quietly degrades instead of going
+       silent.
+
+       The geii base is the R module's own bank, which already holds water, primary,
+       right, white, wave, rave and my-tailor-is-rich. Those cascade in for free.
+
+       Both paths are lowercase and GitHub Pages is case-sensitive: a folder named
+       "Pronunciation" with a capital P is a different URL and will 404. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/silent-r/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/r/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      /* Remembers which base answered for a given key, so the second click on a word
+         goes straight to the right host instead of walking the cascade again. */
+      var found={};
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=function(){ attempt(i+1); };
+          a.onplaying=function(){ found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](function(){ attempt(i+1); });
+        })(0);
+      }};
+    })();
+
+    R('sr-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where one exists, and the browser voice otherwise. If it is the browser voice, check it is a British one: an American voice will pronounce every single r, which is the opposite of this lesson.'
+      : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
+
+    /* any .listen button carrying data-w */
+    Array.prototype.forEach.call(document.querySelectorAll('#sr-mod .listen[data-w]'), function(b){
+      b.addEventListener('click',function(){ TTS.say(b.getAttribute('data-w'), 0.75); });
+    });
+
+    /* ---------- 3. w or r pairs ---------- */
+    var PAIRS=[["rye","why"],["red","wed"],["right","white"],
+               ["round","wound"],["rest","west"],["rave","wave"]];
+    (function(){
+      var box=R('sr-pairs'), html='';
+      for(var i=0;i<PAIRS.length;i++){
+        html += '<div class="pairrow"><span class="pair">'
+             +  '<a href="#" class="sayw" data-w="'+PAIRS[i][0]+'">'+PAIRS[i][0]+'</a>'
+             +  ' &nbsp;vs&nbsp; <a href="#" class="sayw" data-w="'+PAIRS[i][1]+'">'+PAIRS[i][1]+'</a>'
+             +  '</span><span class="note" style="margin:0;">more buzz on the r</span></div>';
+      }
+      box.innerHTML=html;
+      box.addEventListener('click',function(e){
+        var a=e.target.closest ? e.target.closest('.sayw') : null;
+        if(!a) return;
+        e.preventDefault();
+        TTS.say(a.getAttribute('data-w'), 0.8);
+      });
+    })();
+
+    /* ---------- 4. count the r sounds ---------- */
+    var WHY={
+      "darker":["0","Two written r's and not one sound. The first stretches the vowel, the second is a schwa."],
+      "brewer":["1","One real r, at the front, because it starts a syllable. The -er at the end is a schwa."],
+      "brewery":["2","Three written r's, two sounds. The br- and the r before the y are real. The middle one is not."],
+      "barley":["0","The r is before a consonant, so it is silent and the vowel goes long: BAR-lee with a long ah."],
+      "bitter":["0","No r. The -er ending is a schwa, exactly as session 1 said."],
+      "lager":["0","No r. Another -er ending, another schwa."],
+      "cellar":["0","No r. The -ar ending is a schwa too, not just -er."],
+      "porter":["0","Two written r's, no sounds at all. The first stretches the vowel, the second is a schwa."],
+      "water":["0","No r. It ends /ˈwɔːtə/. You have been saying this word since session 1."],
+      "flavour":["0","No r. The -our ending is a schwa, same as -er."],
+      "mixture":["0","No r. The -ture ending is a schwa, and it came up in the transparent words lesson."],
+      "sugar":["0","No r. The -ar is a schwa. And the s is a sh."],
+      "hardness":["0","Silent r before a consonant. The vowel stretches instead: HARD with a long ah."],
+      "wort":["0","Silent r before a consonant. It is said WERT with a long vowel, and it rhymes with hurt."],
+      "fermentation":["0","No r sound anywhere. The r is before the m, so it just lengthens the vowel."],
+      "roast":["1","Real r at the front, starting the syllable."],
+      "grain":["1","Real r, because it comes after the g and before a vowel."],
+      "brew":["1","Real r, in the br- cluster."],
+      "grist":["1","Real r in the gr- cluster."],
+      "rye":["1","Real r at the front."],
+      "dry":["1","Real r in the dr- cluster."],
+      "barrel":["1","One real r in the middle, before a vowel. Written double, said once."],
+      "driver":["1","Real r in the dr- at the front. The -er at the end is a schwa, so only one."],
+      "primary":["2","Two real ones: the pr- and the r before the y."],
+      "refinery":["2","Two real ones: the r at the front and the r before the y. The middle -ne- has none."]
+    };
+    var LABEL={"0":"No r sound","1":"One r sound","2":"Two r sounds"};
+    var WORDS=Object.keys(WHY);
+    function shuffle(){ for(var i=WORDS.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=WORDS[i];WORDS[i]=WORDS[j];WORDS[j]=t;} }
+    shuffle();
+    var idx=0, right=0, answered=false;
+
+    function render(){
+      answered=false;
+      R('sr-word').textContent=WORDS[idx];
+      R('sr-fb').textContent=''; R('sr-fb').className='fb';
+      R('sr-why').textContent='';
+      R('sr-nextw').classList.add('hidden');
+      R('sr-again').classList.add('hidden');
+      R('sr-cats').classList.remove('hidden');
+      R('sr-prog').textContent='Word '+(idx+1)+' of '+WORDS.length;
+      R('sr-fill').style.width=Math.round(idx/WORDS.length*100)+'%';
+    }
+    function answer(c){
+      if(answered) return;
+      answered=true;
+      var w=WORDS[idx], truth=WHY[w][0], fb=R('sr-fb');
+      if(c===truth){ right++; fb.textContent='Yes. '+LABEL[truth]; fb.className='fb ok'; }
+      else { fb.textContent='No. '+LABEL[truth]; fb.className='fb no'; }
+      R('sr-why').textContent=WHY[w][1];
+      R('sr-cats').classList.add('hidden');
+      R('sr-score').textContent=right+' right out of '+(idx+1);
+      if(idx<WORDS.length-1) R('sr-nextw').classList.remove('hidden');
+      else{
+        R('sr-again').classList.remove('hidden');
+        R('sr-fill').style.width='100%';
+        R('sr-score').textContent='Finished: '+right+' right out of '+WORDS.length+'.';
+      }
+    }
+
+    /* module-level, so a .chip anywhere on the page plays, not only the ones
+       built into the generated box below */
+    (document.getElementById('sr-mod')||{addEventListener:function(){}}).addEventListener('click',function(e){
+      var c=e.target.closest?e.target.closest('.chip[data-w]'):null;
+      if(c) TTS.say(c.getAttribute('data-w'), 0.75);
+    });
+    R('sr-cats').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('.cat') : null;
+      if(b) answer(b.getAttribute('data-c'));
+    });
+    R('sr-nextw').addEventListener('click',function(){ idx++; render(); });
+    R('sr-again').addEventListener('click',function(){
+      idx=0; right=0; shuffle(); R('sr-score').textContent=''; render();
+    });
+    R('sr-say').addEventListener('click',function(){ TTS.say(WORDS[idx], 0.8); });
+    render();
+
+    /* ---------- 6. the brewery words ---------- */
+    var LAB=["barley","bitter","lager","cellar","porter","water","flavour","mixture",
+             "sugar","darker","hardness","wort","fermentation","brewer","brewery",
+             "roast","grain","barrel","driver","grist","primary","dry","brew","rye"];
+    (function(){
+      var box=R('sr-chips'), html='';
+      for(var i=0;i<LAB.length;i++) html+='<span class="chip" data-w="'+LAB[i]+'">'+LAB[i]+'</span>';
+      box.innerHTML=html;
+    })();
+
+    if(MISS.length && window.console && console.warn) console.warn('sr-mod: elements missing from the page: '+MISS.join(', '));
+  })();
+  </script>
+</div>
