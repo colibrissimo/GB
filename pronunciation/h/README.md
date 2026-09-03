@@ -12,7 +12,8 @@ same one as `silent-r`, so it can be pasted into a Moodle Page.
 - **77 listen buttons**, of which **36 already have a recording** in the GEII H
   bank and cascade in for free
 - **10 minimal pairs** — all ten recorded already
-- **35 drill items**: 12 with no /h/, 19 with one, 4 with two
+- **35 drill items in two stages**: a core of 20, then 15 optional. Across the
+  whole pool, 12 have no /h/, 19 have one, 4 have two
 - **7 sentence clips** across 6 lines
 - **41 clips still to record**, all of them beer words. `AUDIO_TODO.txt` lists them.
 
@@ -54,6 +55,14 @@ word the whole semester turns on. That argument is in `Pronunciation_decisions.m
 - **`an historic` is named as a wobble, not taught as a rule.** They will meet it in
   written beer history and it contradicts the article test, so it is better disarmed
   than discovered.
+- **The drill stops at twenty, and the stop is real.** Sarah's instinct on 3
+  September was to keep all 35 and tell students the ones at the end were optional.
+  That could not work as built: the pool was one shuffled list, so "the end" was a
+  different fifteen words on every load, and *household* or *an honest hour* could
+  land at 33 and be skipped by half the room. Split into a core of 20 and an extra
+  of 15, shuffled separately. The core carries both anchors, the who/whole trap,
+  all three problems and all three counts, so a student who stops at the twenty has
+  met the whole lesson.
 - **Drill counts breaths, not letters**, so *household* and *hogshead* are two,
   *alehouse* is one, and *an honest hour* is none at all.
 

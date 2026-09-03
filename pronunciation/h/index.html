@@ -198,7 +198,7 @@
   <!-- 6 -->
   <div class="panel">
     <h2>6 &middot; How many /h/ sounds?</h2>
-    <p class="sub" style="margin-bottom:8px;">Not how many letters. How many times you actually <b>breathe</b>. Say it out loud first.</p>
+    <p class="sub" style="margin-bottom:8px;">Not how many letters. How many times you actually <b>breathe</b>. Say it out loud first.<br><b>Twenty words, then a stop.</b> Fifteen more are waiting behind it if you want them.</p>
     <div class="prog" id="h-prog">Word 1 of 0</div>
     <div class="bar"><i id="h-fill"></i></div>
     <div class="word" id="h-word">&middot;</div>
@@ -210,7 +210,7 @@
     </div>
     <div class="fb" id="h-fb"></div>
     <div class="why" id="h-why"></div>
-    <div class="center"><button class="accent hidden" id="h-nextw">Next &rarr;</button> <button class="ghost hidden" id="h-again">Play again</button></div>
+    <div class="center"><button class="accent hidden" id="h-nextw">Next &rarr;</button> <button class="accent hidden" id="h-more">Fifteen more &rarr;</button> <button class="ghost hidden" id="h-again">Play again</button></div>
     <div class="score" id="h-score"></div>
     <p class="note" id="h-ttsnote"></p>
   </div>
@@ -386,9 +386,28 @@
       "a hoppy head":["2","Two: hoppy and head. The a in front warns you both times."]
     };
     var LABEL={"0":"No /h/ at all","1":"One /h/","2":"Two /h/ sounds"};
-    var WORDS=Object.keys(WHY);
-    function shuffle(){ for(var i=WORDS.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=WORDS[i];WORDS[i]=WORDS[j];WORDS[j]=t;} }
-    shuffle();
+
+    /* Two stages, shuffled separately and never mixed.
+
+       The first twenty carry both anchors, the who/whole trap, all three problems
+       and all three counts, so a student who stops there has met the whole lesson.
+       The fifteen after them are the middle-h family and the second-tier beer words.
+
+       This is why the pool is not one shuffled list of thirty-five: with one list,
+       "the ones at the end are optional" means nothing, because the end is a
+       different fifteen words on every load and household or an honest hour can
+       land at 33 and be skipped by half the room. */
+    var CORE=["hour","honest","ale","ancient","what","an honest hour",
+              "hop","hops","harvest","honey","head","heat","half","alehouse",
+              "who","whole","perhaps",
+              "household","hogshead","hop harvest"];
+    var EXTRA=["honour","heir","where","exhaust","vehicle","ghost",
+               "hoppy","history","hymn","whose","behind","beheaded",
+               "unhealthy","inhabitant","a hoppy head"];
+    function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+    var WORDS=[];
+    function deal(){ WORDS=shuffle(CORE.slice()).concat(shuffle(EXTRA.slice())); }
+    deal();
     var idx=0, right=0, answered=false;
 
     function render(){
@@ -397,10 +416,16 @@
       R('h-fb').textContent=''; R('h-fb').className='fb';
       R('h-why').textContent='';
       R('h-nextw').classList.add('hidden');
+      R('h-more').classList.add('hidden');
       R('h-again').classList.add('hidden');
       R('h-cats').classList.remove('hidden');
-      R('h-prog').textContent='Word '+(idx+1)+' of '+WORDS.length;
-      R('h-fill').style.width=Math.round(idx/WORDS.length*100)+'%';
+      var core=(idx<CORE.length);
+      R('h-prog').textContent = core
+        ? 'Word '+(idx+1)+' of '+CORE.length
+        : 'Extra '+(idx-CORE.length+1)+' of '+EXTRA.length;
+      R('h-fill').style.width = (core
+        ? Math.round(idx/CORE.length*100)
+        : Math.round((idx-CORE.length)/EXTRA.length*100))+'%';
     }
     function answer(c){
       if(answered) return;
@@ -411,11 +436,17 @@
       R('h-why').textContent=WHY[w][1];
       R('h-cats').classList.add('hidden');
       R('h-score').textContent=right+' right out of '+(idx+1);
-      if(idx<WORDS.length-1) R('h-nextw').classList.remove('hidden');
+      if(idx===CORE.length-1){
+        R('h-fill').style.width='100%';
+        R('h-score').textContent='The twenty are done: '+right+' right out of '+CORE.length+'. Stop here, or keep going.';
+        R('h-more').classList.remove('hidden');
+        R('h-again').classList.remove('hidden');
+      }
+      else if(idx<WORDS.length-1) R('h-nextw').classList.remove('hidden');
       else{
         R('h-again').classList.remove('hidden');
         R('h-fill').style.width='100%';
-        R('h-score').textContent='Finished: '+right+' right out of '+WORDS.length+'.';
+        R('h-score').textContent='All thirty-five: '+right+' right out of '+WORDS.length+'.';
       }
     }
 
@@ -429,8 +460,9 @@
       if(b) answer(b.getAttribute('data-c'));
     });
     R('h-nextw').addEventListener('click',function(){ idx++; render(); });
+    R('h-more').addEventListener('click',function(){ idx++; render(); });
     R('h-again').addEventListener('click',function(){
-      idx=0; right=0; shuffle(); R('h-score').textContent=''; render();
+      idx=0; right=0; deal(); R('h-score').textContent=''; render();
     });
     R('h-say').addEventListener('click',function(){ TTS.say(WORDS[idx], 0.8); });
     render();
