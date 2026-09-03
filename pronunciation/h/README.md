@@ -9,12 +9,12 @@ same one as `silent-r`, so it can be pasted into a Moodle Page.
 
 ## Counts
 - **8 sections** plus the rule panel
-- **76 listen buttons**, of which **36 already have a recording** in the GEII H
+- **77 listen buttons**, of which **36 already have a recording** in the GEII H
   bank and cascade in for free
 - **10 minimal pairs** — all ten recorded already
 - **35 drill items**: 12 with no /h/, 19 with one, 4 with two
-- **6 sentences**
-- **40 clips still to record**, all of them beer words. `AUDIO_TODO.txt` lists them.
+- **7 sentence clips** across 6 lines
+- **41 clips still to record**, all of them beer words. `AUDIO_TODO.txt` lists them.
 
 ## Where the words come from
 The beer words are taken from the vocabulary the students actually meet, not from a

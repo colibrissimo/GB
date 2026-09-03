@@ -2,7 +2,7 @@ The /h/ sound: clips not yet recorded.
 Generated from the module's own buttons. Drop an mp3 named <key>.mp3
 into assets/audio/ and it plays on the next load. Nothing to register.
 
-36 of the 76 buttons on this page already have a recording in the GEII H bank
+36 of the 77 buttons on this page already have a recording in the GEII H bank
 and cascade in for free: all ten minimal pairs, every silent-h word, every
 bare-vowel word. Only the beer words below are missing. Until they exist the
 page falls back to the browser voice, which works but is flat.
@@ -41,6 +41,8 @@ india-pale-ale.mp3
     India Pale Ale
 the-boil-takes-an-hour.mp3
     The boil takes an hour.
+a-hop-is-a-flower.mp3
+    A hop is a flower.
 the-hop-harvest-is-in-september.mp3
     The hop harvest is in September.
 in-honour-of-ninkasi-they-sang-a-hymn.mp3
