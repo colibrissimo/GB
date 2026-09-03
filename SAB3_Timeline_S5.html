@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SAB Bioengineering English — Year 3, S5</title>
+</head>
+<body>
+<style>
+:root{
+ --gt-cream:#faf6ef;--gt-ink:#2b2b2b;--gt-muted:#6d7078;--gt-teal:#2f7d4f;--gt-teal-d:#1f5c39;
+ --gt-orange:#e08a3c;--gt-line:#e3dccd;--gt-line-s:#cdc4ad;--gt-card:#ffffff;
+ --gt-me:#b8860b;--gt-mt:#3b6ea5;--gt-tp:#2e8b57;--gt-ds:#c0392b;--gt-sae:#7a5ea8;--gt-info:#8a8578;
+ --gt-me-bg:#fdf6e3;--gt-mt-bg:#eef3f9;--gt-tp-bg:#ecf6f0;--gt-ds-bg:#fceceb;--gt-sae-bg:#f3eefa;
+ --gt-info-bg:#f2f0e9;
+}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]){
+  --gt-cream:#1a1b17;--gt-ink:#ece7db;--gt-muted:#a49d8a;--gt-teal:#5eb87e;--gt-teal-d:#8ad4a2;
+  --gt-orange:#e8a361;--gt-line:#33392c;--gt-line-s:#454c39;--gt-card:#22261c;
+  --gt-me:#dcb24f;--gt-mt:#7ba7d8;--gt-tp:#5fbe88;--gt-ds:#e8746a;--gt-sae:#b39ddb;--gt-info:#9a948a;
+  --gt-me-bg:#2e2a1c;--gt-mt-bg:#1e2733;--gt-tp-bg:#1c2a22;--gt-ds-bg:#301f1d;--gt-sae-bg:#272233;
+  --gt-info-bg:#26241d;
+ }
+}
+:root[data-theme="dark"]{
+ --gt-cream:#1a1b17;--gt-ink:#ece7db;--gt-muted:#a49d8a;--gt-teal:#5eb87e;--gt-teal-d:#8ad4a2;
+ --gt-orange:#e8a361;--gt-line:#33392c;--gt-line-s:#454c39;--gt-card:#22261c;
+ --gt-me:#dcb24f;--gt-mt:#7ba7d8;--gt-tp:#5fbe88;--gt-ds:#e8746a;--gt-sae:#b39ddb;--gt-info:#9a948a;
+ --gt-me-bg:#2e2a1c;--gt-mt-bg:#1e2733;--gt-tp-bg:#1c2a22;--gt-ds-bg:#301f1d;--gt-sae-bg:#272233;
+ --gt-info-bg:#26241d;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--gt-cream);color:var(--gt-ink);
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+ line-height:1.55;letter-spacing:.15px;font-size:16px;padding:26px 22px 70px}
+.gt-wrap,.gt-wrap *{box-sizing:border-box}
+.gt-wrap{max-width:1000px;margin:0 auto;color:var(--gt-ink)}
+.gt-wrap h1{font-size:24px;margin:0 0 4px;color:var(--gt-teal-d);letter-spacing:.2px;
+ font-weight:700;line-height:1.25}
+.gt-sub{color:var(--gt-muted);font-size:14.5px;margin:0 0 2px;max-width:70ch}
+.gt-frame{background:var(--gt-card);border:1px solid var(--gt-line-s);
+ border-left:5px solid var(--gt-orange);border-radius:8px;padding:11px 15px;margin:16px 0 0;
+ font-size:14px;color:var(--gt-ink)}
+.gt-frame b{color:var(--gt-teal-d)}
+
+.gt-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:20px 0 4px;font-size:12.5px;
+ color:var(--gt-muted);align-items:center}
+.gt-chip{display:inline-block;font-size:12px;font-weight:700;line-height:1.4;padding:2px 9px;
+ border-radius:999px;border:1.5px solid;white-space:nowrap}
+.gt-chip.me{color:var(--gt-me);border-color:var(--gt-me);background:var(--gt-me-bg)}
+.gt-chip.mt{color:var(--gt-mt);border-color:var(--gt-mt);background:var(--gt-mt-bg)}
+.gt-chip.tp{color:var(--gt-tp);border-color:var(--gt-tp);background:var(--gt-tp-bg)}
+.gt-chip.ds{color:var(--gt-ds);border-color:var(--gt-ds);background:var(--gt-ds-bg)}
+.gt-chip.sae{color:var(--gt-sae);border-color:var(--gt-sae);background:var(--gt-sae-bg)}
+.gt-chip.info{color:var(--gt-info);border-color:var(--gt-info);background:var(--gt-info-bg)}
+
+.gt-tl{list-style:none;margin:34px 0 30px 220px;padding:0 0 0 32px;
+ border-left:7px solid var(--gt-line-s)}
+.gt-tl>li{margin:34px 0;position:relative;list-style:none}
+.gt-tl .gt-radio{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.gt-rel{position:relative}
+.gt-head{font-size:17px;font-weight:600;position:absolute;z-index:5;cursor:pointer;top:18px;
+ transition:transform .2s linear;display:block;padding-right:12px;color:var(--gt-ink);margin:0}
+.gt-head:hover{color:var(--gt-teal-d)}
+.gt-sid{display:inline-block;font-weight:700;color:var(--gt-teal-d);font-size:12.5px;
+ background:var(--gt-card);border:1px solid var(--gt-line-s);border-radius:5px;padding:0 6px;
+ margin-right:7px;vertical-align:2px;letter-spacing:.3px}
+.gt-date{position:absolute;top:50%;transform:translateY(-50%);left:-255px;width:190px;
+ text-align:right;font-size:13.5px;line-height:1.4;color:var(--gt-muted)}
+.gt-date b{display:block;color:var(--gt-ink);font-size:14px;font-weight:700}
+.gt-date .gt-hm{font-variant-numeric:tabular-nums}
+.gt-dot{position:absolute;margin-top:-11px;top:50%;left:-46px;width:11px;height:11px;
+ background:var(--gt-cream);border:5px solid var(--gt-line-s);border-radius:50%;display:block;
+ transition:.2s}
+li.me .gt-dot{border-color:var(--gt-me)} li.mt .gt-dot{border-color:var(--gt-mt)}
+li.tp .gt-dot{border-color:var(--gt-tp)} li.ds .gt-dot{border-color:var(--gt-ds)}
+li.sae .gt-dot{border-color:var(--gt-sae)} li.info .gt-dot{border-color:var(--gt-info)}
+
+.gt-body{max-height:22px;padding:52px 20px 0;border:2px solid transparent;border-radius:.6em;
+ position:relative;background:transparent}
+.gt-body:before,.gt-body:after{content:"";width:0;height:0;border:18px solid transparent;
+ position:absolute;pointer-events:none;right:100%}
+.gt-body:before{border-right-color:inherit;top:50%;margin-top:-18px}
+.gt-body:after{border-width:15px;border-right-color:var(--gt-cream);top:50%;margin-top:-15px}
+.gt-inner{max-height:0;opacity:0;overflow:hidden;transition:opacity .25s linear}
+.gt-inner dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:14.5px}
+.gt-inner dt{font-weight:700;color:var(--gt-teal-d);white-space:nowrap;margin:0}
+.gt-inner dd{margin:0}
+.gt-file{font-size:13px;color:var(--gt-muted);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.gt-note{margin:12px 0 0;padding:9px 12px;border-radius:7px;font-size:13.5px;border:1.5px solid}
+.gt-note.me{border-color:var(--gt-me);background:var(--gt-me-bg)}
+.gt-note.mt{border-color:var(--gt-mt);background:var(--gt-mt-bg)}
+.gt-note.tp{border-color:var(--gt-tp);background:var(--gt-tp-bg)}
+.gt-note.ds{border-color:var(--gt-ds);background:var(--gt-ds-bg)}
+.gt-note.info{border-color:var(--gt-info);background:var(--gt-info-bg)}
+.gt-note b{display:block;margin-bottom:2px}
+.gt-tba{color:var(--gt-orange);font-style:italic;font-weight:700}
+
+.gt-radio:checked+.gt-rel .gt-head{cursor:auto;transform:translateX(44px)}
+.gt-radio:checked+.gt-rel .gt-dot{background:var(--gt-teal);border-color:var(--gt-teal)}
+li.me .gt-radio:checked+.gt-rel .gt-dot{background:var(--gt-me)}
+li.mt .gt-radio:checked+.gt-rel .gt-dot{background:var(--gt-mt)}
+li.tp .gt-radio:checked+.gt-rel .gt-dot{background:var(--gt-tp)}
+li.ds .gt-radio:checked+.gt-rel .gt-dot{background:var(--gt-ds)}
+li.sae .gt-radio:checked+.gt-rel .gt-dot{background:var(--gt-sae)}
+li.info .gt-radio:checked+.gt-rel .gt-dot{background:var(--gt-info)}
+.gt-radio:checked~.gt-body{max-height:1400px;border-color:var(--gt-line-s);background:var(--gt-card);
+ margin-right:20px;transform:translateX(20px);
+ transition:max-height .4s linear,border-color .4s linear,transform .2s linear}
+.gt-radio:checked~.gt-body .gt-inner{max-height:1300px;opacity:1;padding-bottom:18px;
+ transition:opacity .3s linear .15s}
+li.me .gt-radio:checked~.gt-body{border-color:var(--gt-me)}
+li.mt .gt-radio:checked~.gt-body{border-color:var(--gt-mt)}
+li.tp .gt-radio:checked~.gt-body{border-color:var(--gt-tp)}
+li.ds .gt-radio:checked~.gt-body{border-color:var(--gt-ds)}
+li.sae .gt-radio:checked~.gt-body{border-color:var(--gt-sae)}
+li.info .gt-radio:checked~.gt-body{border-color:var(--gt-info)}
+
+.gt-foot{max-width:1000px;margin:30px auto 0;color:var(--gt-muted);font-size:12px}
+.gt-foot code{background:var(--gt-line);padding:1px 6px;border-radius:4px}
+
+@media screen and (max-width:900px){
+ body{padding:20px 16px 60px;font-size:15.5px}
+ .gt-tl{margin-left:0;padding-left:0;border-left:none}
+ .gt-tl>li{margin:26px 0}
+ .gt-head{position:static;display:block;transform:none!important;font-size:16px;padding:0 0 4px}
+ .gt-dot{display:none}
+ .gt-date{position:static;width:auto;text-align:left;margin:0 0 4px;left:auto;font-size:13px;
+  transform:none}
+ .gt-date b{display:inline;margin-right:8px}
+ .gt-body{max-height:0;padding:0 14px;margin:8px 0 0!important;transform:none!important;
+  border-color:var(--gt-line-s);background:var(--gt-card)}
+ .gt-body:before,.gt-body:after{display:none}
+ .gt-radio:checked~.gt-body{padding-top:14px;transform:none!important;margin-right:0!important}
+ .gt-inner dl{grid-template-columns:1fr;gap:1px 0}
+ .gt-inner dd{margin:0 0 8px}
+}
+@media print{
+ body{padding:0;font-size:11.5px;background:#fff}
+ .gt-tl{margin-left:220px}
+ .gt-body{max-height:none!important;border-color:var(--gt-line-s)!important;background:#fff!important;
+  transform:none!important}
+ .gt-inner{max-height:none!important;opacity:1!important}
+ .gt-head{transform:none!important}
+}
+</style>
+<div class="gt-wrap">
+<h1>Bioengineering English, Year 3, Semester 5</h1>
+<div class="gt-legend"><span>Assessment:</span><span class="gt-chip ds">Exam</span><span class="gt-chip tp">Oral TP</span><span>Click a session to open it.</span></div>
+<ul class="gt-tl">
+  <li class="">
+    <input class="gt-radio" id="SAB3_0" name="tl_SAB3" type="radio" checked>
+    <div class="gt-rel">
+      <label class="gt-head" for="SAB3_0"><span class="gt-sid">s1</span>History of beer</label>
+      <span class="gt-date"><b>Friday 4 September</b><span class="gt-hm">08:00 to 10:00</span><br>Room A315</span>
+      <span class="gt-dot"></span>
+    </div>
+    <div class="gt-body"><div class="gt-inner"><dt>Topic</dt><dd>Beer from Sumerian ration tablets to the modern brewery</dd><dt>Pronunciation</dt><dd>The /h/ sound</i></dd></div></div>
+  </li>
+  <li class="">
+    <input class="gt-radio" id="SAB3_1" name="tl_SAB3" type="radio">
+    <div class="gt-rel">
+      <label class="gt-head" for="SAB3_1"><span class="gt-sid">s2</span>Present perfect</label>
+      <span class="gt-date"><b>Friday 11 September</b><span class="gt-hm">10:00 to 12:00</span><br>Room A315</span>
+      <span class="gt-dot"></span>
+    </div>
+    <div class="gt-body"><div class="gt-inner"><dt>Grammar</dt><dd>The present perfect: what it does that the past simple cannot, and why <i>I have brewed</i> and <i>I brewed</i> land differently.</dd><dt>Pronunciation</dt><dd>-ed endings. /t/, /d/ and /ɪd/</dd></div></div>
+  </li>
+  <li class="">
+    <input class="gt-radio" id="SAB3_2" name="tl_SAB3" type="radio">
+    <div class="gt-rel">
+      <label class="gt-head" for="SAB3_2"><span class="gt-sid">s3</span>How beer is made</label>
+      <span class="gt-date"><b>Friday 18 September</b><span class="gt-hm">08:00 to 10:00</span><br>Room A315</span>
+      <span class="gt-dot"></span>
+    </div>
+    <div class="gt-body"><div class="gt-inner"><dt>Topic</dt><dd>The overview: ingredients and stages</dd><dt>Pronunciation</dt><dd>The silent R</dd></div></div>
+  </li>
+  <li class="">
+    <input class="gt-radio" id="SAB3_3" name="tl_SAB3" type="radio">
+    <div class="gt-rel">
+      <label class="gt-head" for="SAB3_3"><span class="gt-sid">s4</span>The brewing process</label>
+      <span class="gt-date"><b>Friday 25 September</b><span class="gt-hm">10:00 to 12:00</span><br>Room A315</span>
+      <span class="gt-dot"></span>
+    </div>
+    <div class="gt-body"><div class="gt-inner"><dt>Topic</dt><dd>Stage by stage: malting, mashing, boiling, fermenting, conditioning. Sequencing language and process connectors.</dd><dt>Pronunciation</dt><dd>Diphthongs</dd></div></div>
+  </li>
+  <li class="">
+    <input class="gt-radio" id="SAB3_4" name="tl_SAB3" type="radio">
+    <div class="gt-rel">
+      <label class="gt-head" for="SAB3_4"><span class="gt-sid">s5</span>Describe a beer like a brewer</label>
+      <span class="gt-date"><b>Friday 2 October</b><span class="gt-hm">08:00 to 10:00</span><br>Room A315</span>
+      <span class="gt-dot"></span>
+    </div>
+    <div class="gt-body"><div class="gt-inner"><dt>Topic</dt><dd>Sensory vocabulary</dd><dt>Pronunciation</dt><dd>The sound L</dd></div></div>
+  </li>
+  <li class="">
+    <input class="gt-radio" id="SAB3_5" name="tl_SAB3" type="radio">
+    <div class="gt-rel">
+      <label class="gt-head" for="SAB3_5"><span class="gt-sid">s6</span>Stress, from word to sentence</label>
+      <span class="gt-date"><b>Friday 9 October</b><span class="gt-hm">10:00 to 12:00</span><br>Room A315</span>
+      <span class="gt-dot"></span>
+    </div>
+    <div class="gt-body"><div class="gt-inner"><dt>Topic</dt><dd>A full session on stress, starting inside the word and ending inside the sentence.</dd><dt>Pronunciation</dt><dd>Sentence stress</dd></div></div>
+  </li>
+  <li class="ds">
+    <input class="gt-radio" id="SAB3_6" name="tl_SAB3" type="radio">
+    <div class="gt-rel">
+      <label class="gt-head" for="SAB3_6"><span class="gt-sid">s7</span>Exam <span class="gt-chip ds">Exam</span></label>
+      <span class="gt-date"><b>Friday 16 October</b><span class="gt-hm">08:00 to 10:00</span><br>Room A315</span>
+      <span class="gt-dot"></span>
+    </div>
+    <div class="gt-body"><div class="gt-inner"><dt>Format</dt><dd>Moodle Safe exam browser</dd><dt>Content</dt><dd>Sessions 1 to 6: brewing vocabulary, the present perfect, process description, and a reading comprehension.</dd></div></div>
+  </li>
+  <li class="">
+    <input class="gt-radio" id="SAB3_7" name="tl_SAB3" type="radio">
+    <div class="gt-rel">
+      <label class="gt-head" for="SAB3_7"><span class="gt-sid">TP 1</span>TP: crowd-funding pitch</label>
+      <span class="gt-date"><b class="gt-tba">Date to come</b><span>not yet on the timetable</span></span>
+      <span class="gt-dot"></span>
+    </div>
+    <div class="gt-body"><div class="gt-inner"><dt>Format</dt><dd>Half-group, workshop.</dd><dt>Work</dt><dd>Build the pitch: the product, the story, the ask. Rehearsal against the marking grid.</dd><dt>Note</dt><dd>Date not yet on the timetable.</dd></div></div>
+  </li>
+  <li class="tp">
+    <input class="gt-radio" id="SAB3_8" name="tl_SAB3" type="radio">
+    <div class="gt-rel">
+      <label class="gt-head" for="SAB3_8"><span class="gt-sid">TP 2</span>TP: oral evaluations (2h) <span class="gt-chip tp">Oral TP</span></label>
+      <span class="gt-date"><b class="gt-tba">Date to come</b><span>not yet on the timetable</span></span>
+      <span class="gt-dot"></span>
+    </div>
+    <div class="gt-body"><div class="gt-inner"><dt>Format</dt><dd>Two hours, half-group. The pitch, delivered and graded.</dd><dt>Grid</dt><dd>Content, structure, and pronunciation.</dd><dt>Note</dt><dd>Date not yet on the timetable.</dd></div></div>
+  </li>
+</ul>
+</div>
+</body>
+</html>
