@@ -1,0 +1,127 @@
+The /h/ sound: clips not yet recorded.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into assets/audio/ and it plays on the next load. Nothing to register.
+
+36 of the 76 buttons on this page already have a recording in the GEII H bank
+and cascade in for free: all ten minimal pairs, every silent-h word, every
+bare-vowel word. Only the beer words below are missing. Until they exist the
+page falls back to the browser voice, which works but is flat.
+
+an-hour.mp3
+    an hour
+ale.mp3
+    ale
+alehouse.mp3
+    alehouse
+hop.mp3
+    hop
+harvest.mp3
+    harvest
+heir.mp3
+    heir
+whole.mp3
+    whole
+alewife.mp3
+    alewife
+ancient.mp3
+    ancient
+egypt.mp3
+    Egypt
+empire.mp3
+    empire
+inn.mp3
+    inn
+oats.mp3
+    oats
+intoxication.mp3
+    intoxication
+ingredient.mp3
+    ingredient
+india-pale-ale.mp3
+    India Pale Ale
+the-boil-takes-an-hour.mp3
+    The boil takes an hour.
+the-hop-harvest-is-in-september.mp3
+    The hop harvest is in September.
+in-honour-of-ninkasi-they-sang-a-hymn.mp3
+    In honour of Ninkasi they sang a hymn.
+the-alewife-sold-ale-in-her-alehouse.mp3
+    The alewife sold ale in her alehouse.
+half-the-household-drank-small-beer.mp3
+    Half the household drank small beer.
+an-honest-hour-a-hoppy-ale.mp3
+    An honest hour, a hoppy ale.
+an-honest-hour.mp3
+    an honest hour
+hops.mp3
+    hops
+hoppy.mp3
+    hoppy
+honey.mp3
+    honey
+head.mp3
+    head
+half.mp3
+    half
+history.mp3
+    history
+hymn.mp3
+    hymn
+beheaded.mp3
+    beheaded
+unhealthy.mp3
+    unhealthy
+inhabitant.mp3
+    inhabitant
+household.mp3
+    household
+hogshead.mp3
+    hogshead
+hop-harvest.mp3
+    hop harvest
+a-hoppy-head.mp3
+    a hoppy head
+hard-water.mp3
+    hard water
+headquarters.mp3
+    headquarters
+herb.mp3
+    herb
+
+--- already covered by the geii cascade, do not re-record ---
+air
+and
+arm
+art
+ate
+behind
+ear
+eat
+exhaust
+exhibit
+eye
+ghost
+hair
+hand
+harm
+hate
+hear
+heart
+heat
+high
+hill
+hold
+honest
+honour
+hour
+ill
+old
+perhaps
+shepherd
+vehicle
+what
+when
+where
+who
+whose
+why

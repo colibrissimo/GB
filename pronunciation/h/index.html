@@ -1,0 +1,451 @@
+<div id="h-mod">
+  <style>
+    #h-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #h-mod *{box-sizing:border-box;}
+    #h-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #h-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #h-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #h-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #h-mod .rule{font-size:16px;}
+    #h-mod .rule b{color:var(--petrol);}
+    #h-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #h-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #h-mod .key .y{color:var(--saffron2);}
+    #h-mod .word{font-size:30px;font-weight:bold;text-align:center;color:var(--ink);margin:6px 0 14px;}
+    #h-mod .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    #h-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #h-mod .cat{background:var(--petrol);color:#fff;flex:1;min-width:120px;}
+    #h-mod .cat:hover{background:var(--petrol2);}
+    #h-mod .accent{background:var(--saffron);color:var(--ink);}
+    #h-mod .accent:hover{background:var(--saffron2);}
+    #h-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #h-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #h-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #h-mod .fb.ok{color:var(--ok);} #h-mod .fb.no{color:var(--no);}
+    #h-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #h-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #h-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #h-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #h-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #h-mod td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;}
+    #h-mod td:first-child{color:#6a7a7d;} #h-mod td b{color:var(--petrol);}
+    #h-mod .pairrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+    #h-mod .pairrow .pair{font-size:18px;font-weight:bold;}
+    #h-mod .pairrow a{color:var(--petrol);text-decoration:none;border-bottom:1px dotted var(--line);}
+    #h-mod .pairrow a:hover{border-bottom-color:var(--saffron);}
+    #h-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #h-mod .tw .v{color:var(--petrol);font-weight:bold;text-decoration:underline;}
+    #h-mod .tw .x{color:#9aa7ab;text-decoration:line-through;}
+    #h-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #h-mod .hidden{display:none !important;}
+    #h-mod .center{text-align:center;}
+    #h-mod .steps{margin:0;padding-left:20px;}
+    #h-mod .steps li{margin-bottom:7px;}
+    #h-mod .anchor{background:linear-gradient(180deg,#fff,#f2f7f8);border:2px solid var(--petrol);border-radius:12px;padding:14px 16px;margin:12px 0;}
+    #h-mod .anchor .aw{font-size:34px;font-weight:bold;color:var(--petrol);text-align:center;letter-spacing:2px;margin-bottom:4px;}
+    #h-mod .anchor .aw em{color:var(--saffron2);font-style:normal;}
+    #h-mod .anchor .aw s{color:#9aa7ab;}
+    #h-mod .anchor p{margin:6px 0;font-size:16px;}
+    #h-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #h-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #h-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+    #h-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+    #h-mod .grp{margin:10px 0;}
+    #h-mod .grp .lab{display:block;font-size:13px;color:#6a7a7d;margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px;}
+    #h-mod .chip s{color:#9aa7ab;}
+  </style>
+
+  <h1>The /h/ sound</h1>
+  <p class="sub">History of beer. Session 1.</p>
+
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <p>/h/ is <b>not a consonant you place somewhere</b>. There is no tongue position, no lip shape, no vibration. You push a breath out in front of the vowel, the way you fog a window on a cold morning.</p>
+    <p><b>French has no /h/ at all.</b> So the muscle is not missing and it is not difficult. It is unused.</p>
+
+    <div class="key">
+      <div class="big">eat &nbsp;&rarr;&nbsp; heat &nbsp;&nbsp;&middot;&nbsp;&nbsp; ate &nbsp;&rarr;&nbsp; hate &nbsp;&nbsp;&middot;&nbsp;&nbsp; old &nbsp;&rarr;&nbsp; hold</div>
+      <div class="y">The vowel does not change. One breath arrives in front of it.</div>
+    </div>
+
+    <p><b>Three problems, not one.</b></p>
+    <ol class="steps">
+      <li><b>Saying it.</b> <i>hop, harvest, honey, head</i> &mdash; the breath is there and French speakers drop it.</li>
+      <li><b>Not saying it.</b> <i>hour, honour, honest</i> &mdash; the h is written and there is no breath at all.</li>
+      <li><b>Not inventing it.</b> <i>ale, ancient, India</i> &mdash; having learned that English likes its h, you start putting one where there is none.</li>
+    </ol>
+    <p class="note">The third is the one nobody warns you about, and it is the one that makes <i>ale</i> come out as <i>hale</i>.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="panel">
+    <h2>1 &middot; The two words that prove it</h2>
+
+    <div class="anchor">
+      <div class="aw">AN <s>H</s>OUR</div>
+      <p class="center">Written h. <b>No breath at all.</b> /&#712;a&#650;&#601;/</p>
+      <p class="center">And you already knew: you write <b>an</b> hour, never <b>a</b> hour. Nobody ever told you why.</p>
+      <div class="center"><button class="listen" data-w="hour">&#128266; Listen</button> <button class="listen" data-w="an hour">&#128266; an hour</button></div>
+    </div>
+
+    <div class="anchor">
+      <div class="aw">ALE<em>H</em>OUSE</div>
+      <p class="center"><b>No h at the front</b> &mdash; and you will put one there. <b>One h in the middle</b> &mdash; and you will drop it.</p>
+      <p class="center">/&#712;e&#618;lha&#650;s/ &nbsp; Both mistakes live in one word.</p>
+      <div class="center"><button class="listen" data-w="ale">&#128266; ale</button> <button class="listen" data-w="alehouse">&#128266; alehouse</button></div>
+    </div>
+
+    <div class="key" style="font-size:17px;">
+      <div class="big">&ldquo;an&rdquo; in front means there is no /h/</div>
+      <div class="y">&ldquo;a&rdquo; in front means there is one</div>
+    </div>
+    <p>The article is a written test for a spoken thing. <b>a hop &middot; a harvest &middot; a history</b> all take <i>a</i>, because the breath is there to keep the two words apart. <b>an hour &middot; an honour &middot; an honest brewer &middot; an heir</b> all take <i>an</i>, because it is not.</p>
+    <p class="note">One wobble, so it does not surprise you: some British writers still put <i>an</i> in front of <i>historic</i>, and a few older speakers say <i>an hotel</i>. Leftovers from a time when those h's were dropped. Not a rule you need, but you will meet it in writing about beer history.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="panel">
+    <h2>2 &middot; The window test</h2>
+    <ol class="steps">
+      <li>Hold your hand flat, a few centimetres in front of your mouth.</li>
+      <li>Say <b>ate</b>. Nothing lands on your palm.</li>
+      <li>Say <b>hate</b>. You should feel warm air arrive <b>before</b> the vowel.</li>
+      <li>Now run the beer words and check every one warms your hand: <b>hop, hops, harvest, honey, head, half</b>.</li>
+      <li>No warmth means no /h/, and the word did not happen.</li>
+    </ol>
+    <p class="note">No hand free: whisper the word instead. Whispered, the h becomes the loudest part of it.</p>
+    <div class="center" style="margin-top:6px;">
+      <span class="chip" data-w="ate">&#128266; ate</span>
+      <span class="chip" data-w="hate">&#128266; hate</span>
+      <span class="chip" data-w="hop">&#128266; hop</span>
+      <span class="chip" data-w="harvest">&#128266; harvest</span>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="panel">
+    <h2>3 &middot; One breath, ten pairs</h2>
+    <p class="sub" style="margin-bottom:8px;">A single breath is the only difference between these twenty words. Tap both sides and hear it appear.</p>
+    <div id="h-pairs"></div>
+    <p class="note">Two of these are brewing words on the right-hand side: you <b>heat</b> the mash, and you <b>hold</b> the temperature.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="panel">
+    <h2>4 &middot; Written, never said</h2>
+    <p class="sub" style="margin-bottom:8px;">The h is on the page and makes no sound. Struck through means silent. Tap to hear.</p>
+
+    <div class="grp">
+      <span class="lab">h at the start</span>
+      <span class="chip" data-w="hour"><s>h</s>our</span>
+      <span class="chip" data-w="honour"><s>h</s>onour</span>
+      <span class="chip" data-w="honest"><s>h</s>onest</span>
+      <span class="chip" data-w="heir"><s>h</s>eir</span>
+    </div>
+
+    <div class="grp">
+      <span class="lab">h in the middle</span>
+      <span class="chip" data-w="ghost">g<s>h</s>ost</span>
+      <span class="chip" data-w="exhaust">ex<s>h</s>aust</span>
+      <span class="chip" data-w="exhibit">ex<s>h</s>ibit</span>
+      <span class="chip" data-w="vehicle">ve<s>h</s>icle</span>
+      <span class="chip" data-w="shepherd">shep<s>h</s>erd</span>
+    </div>
+
+    <div class="grp">
+      <span class="lab">wh- questions: no /h/</span>
+      <span class="chip" data-w="what">w<s>h</s>at</span>
+      <span class="chip" data-w="when">w<s>h</s>en</span>
+      <span class="chip" data-w="where">w<s>h</s>ere</span>
+      <span class="chip" data-w="why">w<s>h</s>y</span>
+    </div>
+
+    <div class="key" style="font-size:16px;">
+      <div class="big">who &middot; whose &middot; whole</div>
+      <div class="y">The trap. These three keep the /h/ and lose the /w/: <b>hoo, hooz, hole</b>.</div>
+    </div>
+    <div class="center">
+      <span class="chip" data-w="who">who</span>
+      <span class="chip" data-w="whose">whose</span>
+      <span class="chip" data-w="whole">whole</span>
+    </div>
+
+    <div class="flag">
+      <b>herb</b> is the one word where the two accents split. British <b>/h&#604;&#720;b/</b>, with the breath. American <b>/&#604;&#720;rb/</b>, without. It matters here: before hops arrived, beer was flavoured with <b>gruit</b>, a mixture of herbs. Say the h &mdash; everything else on this page is British.
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="panel">
+    <h2>5 &middot; Do not invent one</h2>
+    <p>The mirror-image mistake, and the one nobody corrects. These words start on a bare vowel. Open your mouth and let the vowel arrive with <b>no breath in front of it</b>.</p>
+    <div class="center" style="margin:10px 0;">
+      <span class="chip" data-w="ale">ale</span>
+      <span class="chip" data-w="alewife">alewife</span>
+      <span class="chip" data-w="ancient">ancient</span>
+      <span class="chip" data-w="Egypt">Egypt</span>
+      <span class="chip" data-w="empire">empire</span>
+      <span class="chip" data-w="inn">inn</span>
+      <span class="chip" data-w="oats">oats</span>
+      <span class="chip" data-w="intoxication">intoxication</span>
+      <span class="chip" data-w="ingredient">ingredient</span>
+      <span class="chip" data-w="India Pale Ale">India Pale Ale</span>
+    </div>
+    <p class="note"><b>IPA</b> is <i>India Pale Ale</i>. Three words, three bare vowels, no h anywhere near it.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="panel">
+    <h2>6 &middot; How many /h/ sounds?</h2>
+    <p class="sub" style="margin-bottom:8px;">Not how many letters. How many times you actually <b>breathe</b>. Say it out loud first.</p>
+    <div class="prog" id="h-prog">Word 1 of 0</div>
+    <div class="bar"><i id="h-fill"></i></div>
+    <div class="word" id="h-word">&middot;</div>
+    <div class="center" style="margin-bottom:10px;"><button class="listen" id="h-say">&#128266; Listen</button></div>
+    <div class="btns" id="h-cats">
+      <button class="cat" data-c="0">None</button>
+      <button class="cat" data-c="1">One</button>
+      <button class="cat" data-c="2">Two</button>
+    </div>
+    <div class="fb" id="h-fb"></div>
+    <div class="why" id="h-why"></div>
+    <div class="center"><button class="accent hidden" id="h-nextw">Next &rarr;</button> <button class="ghost hidden" id="h-again">Play again</button></div>
+    <div class="score" id="h-score"></div>
+    <p class="note" id="h-ttsnote"></p>
+  </div>
+
+  <!-- 7 -->
+  <div class="panel">
+    <h2>7 &middot; The beer words</h2>
+    <p class="sub" style="margin-bottom:8px;">Tap to hear. Then say each one with your hand in front of your mouth.</p>
+    <div id="h-chips"></div>
+  </div>
+
+  <!-- 8 -->
+  <div class="panel">
+    <h2>8 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;"><span class="v">Underlined</span> is a real breath. <span class="x">Struck through</span> is written and silent.</p>
+
+    <div class="tw">The boil takes an <span class="x">h</span>our. <span class="note" style="display:inline;">(one written, none said)</span> <span class="chip" data-w="The boil takes an hour.">&#128266; Listen</span></div>
+    <div class="tw">A <span class="v">h</span>op is a flower. The <span class="v">h</span>op <span class="v">h</span>arvest is in September. <span class="note" style="display:inline;">(three, all said)</span> <span class="chip" data-w="The hop harvest is in September.">&#128266; Listen</span></div>
+    <div class="tw">In <span class="x">h</span>onour of Ninkasi they sang a <span class="v">h</span>ymn. <span class="note" style="display:inline;">(two written, one said)</span> <span class="chip" data-w="In honour of Ninkasi they sang a hymn.">&#128266; Listen</span></div>
+    <div class="tw">The alewife sold ale in <span class="v">h</span>er ale<span class="v">h</span>ouse. <span class="note" style="display:inline;">(two said, and three bare vowels not to breathe on)</span> <span class="chip" data-w="The alewife sold ale in her alehouse.">&#128266; Listen</span></div>
+    <div class="tw"><span class="v">H</span>alf the <span class="v">h</span>ouse<span class="v">h</span>old drank small beer. <span class="note" style="display:inline;">(three, all said)</span> <span class="chip" data-w="Half the household drank small beer.">&#128266; Listen</span></div>
+    <div class="tw">An <span class="x">h</span>onest <span class="x">h</span>our, a <span class="v">h</span>oppy ale. <span class="note" style="display:inline;">(three written, one said)</span> <span class="chip" data-w="An honest hour, a hoppy ale.">&#128266; Listen</span></div>
+
+    <table style="margin-top:12px;">
+      <tr><td>Real /h/</td><td><b>hop &middot; hops &middot; hoppy &middot; harvest &middot; honey &middot; head &middot; heat &middot; half &middot; history &middot; hymn &middot; household &middot; alehouse &middot; hogshead &middot; headquarters &middot; perhaps &middot; behind &middot; beheaded &middot; unhealthy &middot; inhabitant</b></td></tr>
+      <tr><td>Written, never said</td><td><b>hour &middot; honour &middot; honest &middot; heir &middot; ghost &middot; exhaust &middot; exhibit &middot; vehicle &middot; shepherd &middot; what &middot; when &middot; where &middot; why</b></td></tr>
+      <tr><td>The trap</td><td><b>who &middot; whose &middot; whole</b> &mdash; /h/ yes, /w/ no</td></tr>
+      <tr><td>No h on the page</td><td><b>ale &middot; alewife &middot; ancient &middot; Egypt &middot; empire &middot; inn &middot; oats &middot; ingredient &middot; intoxication &middot; India Pale Ale</b> &mdash; do not put one there</td></tr>
+      <tr><td>The article proves it</td><td><b>a hop &middot; a harvest &middot; a history</b> &nbsp;vs&nbsp; <b>an hour &middot; an honour &middot; an heir</b></td></tr>
+    </table>
+  </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];}};
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then in the older geii collection, then the
+       browser voice. Same cascade as the other modules: record a word, drop the mp3
+       in, and it plays on the next load, with nothing to register.
+
+       The geii base is the GEII H deck's own bank of 48 clips. Every minimal pair,
+       every silent-h word and every bare-vowel word on this page cascades in from
+       there for free. Only the beer words are new.
+
+       Both paths are lowercase and GitHub Pages is case-sensitive. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/h/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/h/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      var found={};
+      return {ok:ok, key:key, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=function(){ attempt(i+1); };
+          a.onplaying=function(){ found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](function(){ attempt(i+1); });
+        })(0);
+      }};
+    })();
+
+    R('h-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where one exists, and the browser voice otherwise. If it is the browser voice, check it is a British one: an American voice says herb without its h, which is the one word on this page where the accents disagree.'
+      : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
+
+    Array.prototype.forEach.call(document.querySelectorAll('#h-mod .listen[data-w]'), function(b){
+      b.addEventListener('click',function(){ TTS.say(b.getAttribute('data-w'), 0.75); });
+    });
+
+    /* ---------- 3. the ten minimal pairs ---------- */
+    var PAIRS=[["air","hair"],["and","hand"],["arm","harm"],["art","heart"],["ate","hate"],
+               ["ear","hear"],["eat","heat"],["eye","high"],["ill","hill"],["old","hold"]];
+    var IPA={air:"/eə/",hair:"/heə/",and:"/ænd/",hand:"/hænd/",
+      arm:"/ɑːm/",harm:"/hɑːm/",art:"/ɑːt/",heart:"/hɑːt/",
+      ate:"/eɪt/",hate:"/heɪt/",ear:"/ɪə/",hear:"/hɪə/",
+      eat:"/iːt/",heat:"/hiːt/",eye:"/aɪ/",high:"/haɪ/",
+      ill:"/ɪl/",hill:"/hɪl/",old:"/əʊld/",hold:"/həʊld/"};
+    (function(){
+      var box=R('h-pairs'), html='';
+      for(var i=0;i<PAIRS.length;i++){
+        var a=PAIRS[i][0], b=PAIRS[i][1];
+        html += '<div class="pairrow"><span class="pair">'
+             +  '<a href="#" class="sayw" data-w="'+a+'">'+a+'</a>'
+             +  ' &nbsp;vs&nbsp; <a href="#" class="sayw" data-w="'+b+'">'+b+'</a>'
+             +  '</span><span class="note" style="margin:0;">'+IPA[a]+' &nbsp;&rarr;&nbsp; '+IPA[b]+'</span></div>';
+      }
+      box.innerHTML=html;
+      box.addEventListener('click',function(e){
+        var a=e.target.closest ? e.target.closest('.sayw') : null;
+        if(!a) return;
+        e.preventDefault();
+        TTS.say(a.getAttribute('data-w'), 0.8);
+      });
+    })();
+
+    /* ---------- 6. count the breaths ---------- */
+    var WHY={
+      "hour":["0","Written h, no breath. And you write an hour, which is the proof."],
+      "honest":["0","No breath. An honest brewer, never a honest brewer."],
+      "honour":["0","No breath. It starts on the vowel: /ˈɒnə/."],
+      "heir":["0","No breath. It sounds exactly like air."],
+      "an honest hour":["0","Two written h's and not one breath in the whole phrase."],
+      "ale":["0","No h on the page and none in the mouth. This is the one you will add."],
+      "ancient":["0","Bare vowel. Ancient Egypt, not h-ancient h-Egypt."],
+      "what":["0","The wh- questions have lost their h. Just /w/."],
+      "where":["0","Same: /weə/, no breath."],
+      "exhaust":["0","The h sits between two vowels and says nothing: /ɪɡˈzɔːst/."],
+      "vehicle":["0","No breath: /ˈviːəkl/. The h is written scenery."],
+      "ghost":["0","No breath. The h is only there to keep the g hard."],
+      "hop":["1","One breath, and it is the word this whole semester turns on."],
+      "hops":["1","One. Same word, plural."],
+      "hoppy":["1","One, at the front. A hoppy IPA."],
+      "harvest":["1","One. The hop harvest is in September."],
+      "honey":["1","One. Honey has its breath; honest does not. Nothing in the spelling tells you."],
+      "head":["1","One. The head is the foam on top."],
+      "heat":["1","One. You heat the mash. Without the breath it is eat."],
+      "half":["1","One. Half a pint."],
+      "history":["1","One. A history of beer, not an history of beer."],
+      "hymn":["1","One breath at the front. The n at the end is the silent one."],
+      "alehouse":["1","One, in the middle. None at the front, however much you want to put one there."],
+      "who":["1","The trap. It keeps the h and loses the w: hoo."],
+      "whose":["1","Same trap: hooz."],
+      "whole":["1","Same again: hole. Not w-hole."],
+      "perhaps":["1","One, in the middle. Not at the start of the word, but you must breathe it."],
+      "behind":["1","One, in the middle: be-HIND."],
+      "beheaded":["1","One, in the middle: be-HED-ed."],
+      "unhealthy":["1","One, in the middle: un-HEL-thy."],
+      "inhabitant":["1","One, in the middle: in-HAB-it-ant."],
+      "household":["2","Two, and both are said: HOUSE-hold."],
+      "hogshead":["2","Two, and both are said: HOGZ-hed. It is a cask, and a large one."],
+      "hop harvest":["2","Two, back to back. Say them both or the phrase collapses."],
+      "a hoppy head":["2","Two: hoppy and head. The a in front warns you both times."]
+    };
+    var LABEL={"0":"No /h/ at all","1":"One /h/","2":"Two /h/ sounds"};
+    var WORDS=Object.keys(WHY);
+    function shuffle(){ for(var i=WORDS.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=WORDS[i];WORDS[i]=WORDS[j];WORDS[j]=t;} }
+    shuffle();
+    var idx=0, right=0, answered=false;
+
+    function render(){
+      answered=false;
+      R('h-word').textContent=WORDS[idx];
+      R('h-fb').textContent=''; R('h-fb').className='fb';
+      R('h-why').textContent='';
+      R('h-nextw').classList.add('hidden');
+      R('h-again').classList.add('hidden');
+      R('h-cats').classList.remove('hidden');
+      R('h-prog').textContent='Word '+(idx+1)+' of '+WORDS.length;
+      R('h-fill').style.width=Math.round(idx/WORDS.length*100)+'%';
+    }
+    function answer(c){
+      if(answered) return;
+      answered=true;
+      var w=WORDS[idx], truth=WHY[w][0], fb=R('h-fb');
+      if(c===truth){ right++; fb.textContent='Yes. '+LABEL[truth]; fb.className='fb ok'; }
+      else { fb.textContent='No. '+LABEL[truth]; fb.className='fb no'; }
+      R('h-why').textContent=WHY[w][1];
+      R('h-cats').classList.add('hidden');
+      R('h-score').textContent=right+' right out of '+(idx+1);
+      if(idx<WORDS.length-1) R('h-nextw').classList.remove('hidden');
+      else{
+        R('h-again').classList.remove('hidden');
+        R('h-fill').style.width='100%';
+        R('h-score').textContent='Finished: '+right+' right out of '+WORDS.length+'.';
+      }
+    }
+
+    /* module-level, so a .chip anywhere on the page plays */
+    (document.getElementById('h-mod')||{addEventListener:function(){}}).addEventListener('click',function(e){
+      var c=e.target.closest?e.target.closest('.chip[data-w]'):null;
+      if(c) TTS.say(c.getAttribute('data-w'), 0.75);
+    });
+    R('h-cats').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('.cat') : null;
+      if(b) answer(b.getAttribute('data-c'));
+    });
+    R('h-nextw').addEventListener('click',function(){ idx++; render(); });
+    R('h-again').addEventListener('click',function(){
+      idx=0; right=0; shuffle(); R('h-score').textContent=''; render();
+    });
+    R('h-say').addEventListener('click',function(){ TTS.say(WORDS[idx], 0.8); });
+    render();
+
+    /* ---------- 7. the beer words ---------- */
+    var LAB=["hop","hops","hoppy","harvest","honey","head","heat","half","hard water",
+             "history","hymn","household","alehouse","hogshead","headquarters","herb",
+             "behind","perhaps","beheaded","unhealthy","inhabitant",
+             "hour","honour","honest","heir","who","whose","whole"];
+    (function(){
+      var box=R('h-chips'), html='';
+      for(var i=0;i<LAB.length;i++) html+='<span class="chip" data-w="'+LAB[i]+'">'+LAB[i]+'</span>';
+      box.innerHTML=html;
+    })();
+
+    if(MISS.length && window.console && console.warn) console.warn('h-mod: elements missing from the page: '+MISS.join(', '));
+  })();
+  </script>
+</div>
