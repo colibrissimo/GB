@@ -251,14 +251,22 @@
         try{window.speechSynthesis.cancel();}catch(e){}
         if(player){ try{ player.pause(); }catch(e){} }
         var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        /* A 404 fires BOTH onerror and the play() rejection, so the next base was
+           being tried twice and two copies of the same clip played over each other.
+           Worse, in Firefox the retry happens in a promise callback, after the
+           click's user activation is spent, and the second play is blocked outright
+           as autoplay: silence, no error, and any word with no recording at all
+           never reaches the browser voice. One guarded step per attempt. */
         (function attempt(i){
           if(i>=order.length){ tts(t,r); return; }
+          var moved=false;
+          function next(){ if(moved) return; moved=true; attempt(i+1); }
           var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
           player=a;
-          a.onerror=function(){ attempt(i+1); };
-          a.onplaying=function(){ found[k]=(order===CLIPS)?i:found[k]; };
+          a.onerror=next;
+          a.onplaying=function(){ moved=true; found[k]=(order===CLIPS)?i:found[k]; };
           var pr=a.play();
-          if(pr&&pr["catch"]) pr["catch"](function(){ attempt(i+1); });
+          if(pr&&pr["catch"]) pr["catch"](next);
         })(0);
       }};
     })();
