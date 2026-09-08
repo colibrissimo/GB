@@ -8,8 +8,9 @@ Files here are self-contained: one HTML file, CSS and JavaScript inline, no exte
 
 | File | What it is |
 |---|---|
-| `index.html` | Beer Brewing Process — an interactive scene. Click an area of the brewery to get the term, its pronunciation, and where it sits in the process. |
-| `brewery.png` | The scene image used by `index.html`. |
+| `index.html` | The front door. Timelines, pronunciation, activities. |
+| `pronunciation/index.html` | The pronunciation index, split by year and ordered by the date each sound is taught. |
+| `activities/brewing-scene/` | Beer Brewing Process — an interactive scene. Click an area of the brewery to get the term, its pronunciation, and where it sits in the process. Ships with `brewery.png`. |
 | `pronunciation/schwa/` | The schwa module, with a Food science bank and a Brewing bank on a switch. Serves SAB2 S3 session 2. |
 | `pronunciation/transparent-words/` | Words French and English share on the page and not in the mouth. Coffee menu at the centre. SAB2 S3 session 1. |
 | `pronunciation/h/` | The /h/ sound: saying it, not saying it, and not inventing one. Beer words throughout. SAB3 S5 session 1. |
@@ -17,7 +18,7 @@ Files here are self-contained: one HTML file, CSS and JavaScript inline, no exte
 
 ## Where it's used
 
-**SAB Year 3, Semester 5** runs the brewing thread — history of beer, how beer is made, the brewing process, describing a beer, and a crowd-funding pitch at the end. `index.html` belongs to the brewing process session.
+**SAB Year 3, Semester 5** runs the brewing thread — history of beer, how beer is made, the brewing process, describing a beer, and a crowd-funding pitch at the end. `activities/brewing-scene/` belongs to the brewing process session.
 
 **SAB Year 2, Semester 3** covers food science and biotechnology.
 
