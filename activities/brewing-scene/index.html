@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beer Brewing Process - Interactive Pronunciation Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #0891b2;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        
+        .instructions {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            border-left: 5px solid #f97316;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .instructions h3 {
+            color: #f97316;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .instructions p {
+            margin: 8px 0;
+            color: #78350f;
+            line-height: 1.6;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: #f0f9ff;
+            border-radius: 25px;
+            border: 2px solid #0891b2;
+        }
+        
+        .stress-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid #0891b2;
+        }
+        
+        .stress-dot.stressed {
+            background: #0891b2;
+        }
+        
+        .stress-dot.unstressed {
+            background: white;
+        }
+        
+        .legend-text {
+            font-weight: 600;
+            color: #0891b2;
+        }
+        
+        .scene-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            border: 4px solid #0891b2;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 5px 20px rgba(8, 145, 178, 0.2);
+        }
+        
+        .scene-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .clickable-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .hotspot {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            background: rgba(8, 145, 178, 0.15);
+            border: 2px solid rgba(8, 145, 178, 0.3);
+        }
+        
+        .hotspot:hover {
+            background: rgba(8, 145, 178, 0.35);
+            border-color: #0891b2;
+            border-width: 3px;
+            transform: scale(1.05);
+            z-index: 100;
+        }
+        
+        .hotspot.active {
+            background: rgba(249, 115, 22, 0.5);
+            border-color: #f97316;
+            animation: pulse 0.6s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        
+        .word-panel {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            border-radius: 15px;
+            color: white;
+            min-height: 200px;
+            box-shadow: 0 5px 20px rgba(8, 145, 178, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .word-panel.inactive h2 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.8em;
+            text-align: center;
+        }
+        
+        .word-display {
+            display: none;
+            text-align: center;
+        }
+        
+        .word-display.active {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .word-main {
+            font-size: 4em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            color: white;
+        }
+        
+        .syllables {
+            font-size: 2em;
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .stress-visual {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .stress-circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stress-circle.stressed {
+            background: white;
+        }
+        
+        .stress-circle.unstressed {
+            background: transparent;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .btn-play {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+        }
+        
+        .btn-play:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(249, 115, 22, 0.4);
+        }
+        
+        .btn-play:active {
+            transform: translateY(0);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            max-width: 600px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .word-main {
+                font-size: 2.5em;
+            }
+            
+            .syllables {
+                font-size: 1.3em;
+            }
+            
+            .stress-circle {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍺 Beer Brewing Process - Interactive Scene</h1>
+        <p class="subtitle">Click on any element in the brewery scene to learn pronunciation and stress patterns</p>
+        
+        <div class="instructions">
+            <h3>📌 How to Use:</h3>
+            <p><strong>1.</strong> Click on any labelled area in the brewery illustration below</p>
+            <p><strong>2.</strong> Listen to the pronunciation with clear stress emphasis</p>
+            <p><strong>3.</strong> Watch the stress pattern visualisation (● = stressed, ○ = unstressed)</p>
+            <p><strong>4.</strong> Click "🔊 Play Again" to hear it multiple times</p>
+            <p><strong>💡 Tip:</strong> Notice how stressed syllables are LOUDER, HIGHER, and LONGER!</p>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="stress-dot stressed"></div>
+                <span class="legend-text">● = STRESSED syllable</span>
+            </div>
+            <div class="legend-item">
+                <div class="stress-dot unstressed"></div>
+                <span class="legend-text">○ = unstressed syllable</span>
+            </div>
+        </div>
+        
+        <div class="scene-container">
+            <img src="brewery.png" 
+                 alt="Beer Brewing Process Illustration" 
+                 class="scene-image" 
+                 id="sceneImage">
+            <div class="clickable-overlay" id="overlay"></div>
+        </div>
+        
+        <div class="word-panel inactive" id="wordPanel">
+            <h2 id="defaultMessage">👆 Click any area in the brewery scene above!</h2>
+            <div class="word-display" id="wordDisplay">
+                <div class="word-main" id="wordMain"></div>
+                <div class="syllables" id="syllables"></div>
+                <div class="stress-visual" id="stressVisual"></div>
+                <div class="controls">
+                    <button class="btn btn-play" id="playButton">🔊 Play Again</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-bar" style="margin-top: 30px;">
+            <div class="progress-fill" id="progressBar">0 / 29 words explored</div>
+        </div>
+    </div>
+    
+    <script>
+        // Vocabulary data with coordinates (percentages of image dimensions)
+        const vocabulary = [
+            // LEFT SECTION - Ingredients
+            { word: "grain silo", syllables: "GRAIN SI-lo", pattern: [1, 1, 0], x: 6, y: 5, size: 11 },
+            { word: "grist", syllables: "GRIST", pattern: [1], x: 18, y: 27, size: 7 },
+            { word: "barley", syllables: "BAR-ley", pattern: [1, 0], x: 14, y: 44, size: 9 },
+            { word: "milling", syllables: "MILL-ing", pattern: [1, 0], x: 5, y: 72, size: 8 },
+            { word: "yeast", syllables: "YEAST", pattern: [1], x: 15, y: 59, size: 6 },
+            { word: "enzymes", syllables: "EN-zymes", pattern: [1, 0], x: 12, y: 63, size: 7 },
+            { word: "organism", syllables: "ORG-an-ism", pattern: [1, 0, 0], x: 20, y: 72, size: 9 },
+            
+            // MIDDLE-LEFT - Mashing
+            { word: "mashing", syllables: "MASH-ing", pattern: [1, 0], x: 30, y: 33, size: 9 },
+            { word: "lautering", syllables: "LAU-ter-ing", pattern: [1, 0, 0], x: 28, y: 52, size: 10 },
+            { word: "temperature", syllables: "TEM-per-a-ture", pattern: [1, 0, 0, 0], x: 36, y: 72, size: 11 },
+            
+            // CENTRE - Brewing
+            { word: "brewing kettle", syllables: "brewing KET-tle", pattern: [1, 0, 1, 0], x: 48, y: 44, size: 13 },
+            { word: "hops", syllables: "HOPS", pattern: [1], x: 48, y: 57, size: 7 },
+            { word: "wort", syllables: "WORT", pattern: [1], x: 45, y: 63, size: 5 },
+            { word: "water", syllables: "WA-ter", pattern: [1, 0], x: 48, y: 74, size: 7 },
+            { word: "cooling", syllables: "COOL-ing", pattern: [1, 0], x: 63, y: 73, size: 8 },
+            
+            // MIDDLE-RIGHT - Fermentation
+            { word: "fermentation tank", syllables: "fer-men-TA-tion TANK", pattern: [0, 0, 1, 0, 1], x: 67, y: 36, size: 11 },
+            { word: "pitched", syllables: "PITCHED", pattern: [1], x: 74, y: 43, size: 6 },
+            { word: "reaction", syllables: "RE-ac-tion", pattern: [1, 1, 0], x: 68, y: 58, size: 8 },
+            { word: "brewer", syllables: "BREW-er", pattern: [1, 0], x: 68, y: 69, size: 7 },
+            
+            // RIGHT - Conditioning
+            { word: "conditioning", syllables: "con-di-tion-ing", pattern: [0, 1, 0, 0], x: 77, y: 31, size: 9 },
+            { word: "lagering", syllables: "LAG-er-ing", pattern: [1, 0, 0], x: 88, y: 20, size: 9 },
+            { word: "filtration", syllables: "fil-TRA-tion", pattern: [0, 1, 0], x: 88, y: 35, size: 8 },
+            
+            // FAR RIGHT - Final Product
+            { word: "packaging", syllables: "PACK-ag-ing", pattern: [1, 0, 0], x: 88, y: 50, size: 9 },
+            { word: "bottles", syllables: "BOT-tles", pattern: [1, 0], x: 88, y: 60, size: 8 },
+            { word: "beer head", syllables: "BEER HEAD", pattern: [1, 1], x: 84, y: 66, size: 7 },
+            { word: "beverage", syllables: "BEV-er-age", pattern: [1, 0, 0], x: 75, y: 73, size: 8 },
+            { word: "bitterness", syllables: "BIT-ter-ness", pattern: [1, 0, 0], x: 85, y: 73, size: 8 },
+            { word: "taste", syllables: "TASTE", pattern: [1], x: 94, y: 73, size: 5 }
+        ];
+        
+        let currentWord = null;
+        let exploredWords = new Set();
+        
+        // Speech synthesis
+        function speakWord(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-GB';
+            utterance.rate = 0.65;
+            utterance.pitch = 1;
+            
+            speechSynthesis.cancel();
+            speechSynthesis.speak(utterance);
+        }
+        
+        // Create hotspots
+        function createHotspots() {
+            const overlay = document.getElementById('overlay');
+            const container = document.querySelector('.scene-container');
+            
+            vocabulary.forEach((item, index) => {
+                const hotspot = document.createElement('div');
+                hotspot.className = 'hotspot';
+                hotspot.style.left = `${item.x}%`;
+                hotspot.style.top = `${item.y}%`;
+                hotspot.style.width = `${item.size}%`;
+                hotspot.style.height = `${item.size * 0.8}%`;
+                hotspot.setAttribute('data-index', index);
+                hotspot.setAttribute('title', item.word);
+                
+                hotspot.addEventListener('click', () => displayWord(item, hotspot));
+                
+                overlay.appendChild(hotspot);
+            });
+        }
+        
+        // Display word information
+        function displayWord(wordData, hotspot) {
+            currentWord = wordData.word;
+            exploredWords.add(wordData.word);
+            
+            // Update progress
+            updateProgress();
+            
+            // Remove active class from all hotspots
+            document.querySelectorAll('.hotspot').forEach(h => h.classList.remove('active'));
+            hotspot.classList.add('active');
+            
+            // Update panel
+            const panel = document.getElementById('wordPanel');
+            panel.classList.remove('inactive');
+            document.getElementById('defaultMessage').style.display = 'none';
+            document.getElementById('wordDisplay').classList.add('active');
+            
+            // Update content
+            document.getElementById('wordMain').textContent = wordData.word;
+            document.getElementById('syllables').textContent = wordData.syllables;
+            
+            // Create stress pattern
+            const stressVisual = document.getElementById('stressVisual');
+            stressVisual.innerHTML = '';
+            
+            wordData.pattern.forEach(stressed => {
+                const circle = document.createElement('div');
+                circle.className = `stress-circle ${stressed ? 'stressed' : 'unstressed'}`;
+                stressVisual.appendChild(circle);
+            });
+            
+            // Speak the word
+            speakWord(wordData.word);
+            
+            // Scroll to panel
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // Update progress bar
+        function updateProgress() {
+            const total = vocabulary.length;
+            const explored = exploredWords.size;
+            const percentage = (explored / total) * 100;
+            
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = `${percentage}%`;
+            progressBar.textContent = `${explored} / ${total} words explored`;
+        }
+        
+        // Play button
+        document.getElementById('playButton').addEventListener('click', () => {
+            if (currentWord) {
+                speakWord(currentWord);
+                
+                // Animate stress circles
+                const circles = document.querySelectorAll('.stress-circle');
+                circles.forEach((circle, index) => {
+                    setTimeout(() => {
+                        circle.style.transform = 'scale(1.2)';
+                        setTimeout(() => {
+                            circle.style.transform = 'scale(1)';
+                        }, 200);
+                    }, index * 150);
+                });
+            }
+        });
+        
+        // Initialise
+        const img = document.getElementById('sceneImage');
+        img.addEventListener('load', () => {
+            createHotspots();
+        });
+        
+        // If image already loaded
+        if (img.complete) {
+            createHotspots();
+        }
+    </script>
+</body>
+</html>

@@ -189,6 +189,11 @@
       classList:{add:function(){},remove:function(){}},
       addEventListener:function(){},getAttribute:function(){return null;},
       querySelectorAll:function(){return [];}};
+    /* Standalone on GitHub Pages this file is the whole document and has no title,
+       so the tab would read as a URL. Pasted into a Moodle Page it is a fragment
+       inside a document that already has one, and that one must be left alone. */
+    if(!document.title) document.title='The silent R · Bioengineering English';
+
     var R=function(id){
       var e=document.getElementById(id);
       if(e) return e;
