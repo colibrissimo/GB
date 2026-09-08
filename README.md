@@ -13,6 +13,7 @@ Files here are self-contained: one HTML file, CSS and JavaScript inline, no exte
 | `activities/brewing-scene/` | Beer Brewing Process — an interactive scene. Click an area of the brewery to get the term, its pronunciation, and where it sits in the process. Ships with `brewery.png`. |
 | `pronunciation/schwa/` | The schwa module, with a Food science bank and a Brewing bank on a switch. Serves SAB2 S3 session 2. |
 | `pronunciation/transparent-words/` | Words French and English share on the page and not in the mouth. Coffee menu at the centre. SAB2 S3 session 1. |
+| `pronunciation/ed/` | The -ed ending: /t/, /d/ and /ɪd/, and the one mistake that is adding a syllable. Brewing verbs throughout. SAB3 S5 session 2. |
 | `pronunciation/h/` | The /h/ sound: saying it, not saying it, and not inventing one. Beer words throughout. SAB3 S5 session 1. |
 | `pronunciation/silent-r/` | The written r that is not pronounced, and the linking r that comes back. SAB3 S5 session 3. |
 

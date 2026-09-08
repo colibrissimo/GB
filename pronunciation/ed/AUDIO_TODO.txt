@@ -1,0 +1,84 @@
+The -ed ending: clips not yet recorded.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into assets/audio/ and it plays on the next load. Nothing to register.
+
+Nine buttons already have a voice from the geii -ed bank and are not listed
+here: it works, it worked, it helps, it helped, naked, wicked, sacred,
+beloved, rugged.
+
+For the drill pairs, read the base verb, a short pause, then the past form,
+and let the pause do the work: the whole point is whether the second word
+got longer.
+
+it-boils.mp3
+    it boils
+it-boiled.mp3
+    it boiled
+it-cools.mp3
+    it cools
+it-cooled.mp3
+    it cooled
+it-heats.mp3
+    it heats
+it-heated.mp3
+    it heated
+the-beer-aged-in-oak.mp3
+    the beer aged in oak
+an-aged-lambic.mp3
+    an aged lambic
+we-crushed-the-malt-mashed-it-and-brewed-the-beer-three-verbs-no-extra-syllables.mp3
+    We crushed the malt, mashed it and brewed the beer. (three verbs, no extra syllables)
+we-malted-the-barley-heated-the-wort-and-fermented-the-beer-three-verbs-three-extra-syllables.mp3
+    We malted the barley, heated the wort and fermented the beer. (three verbs, three extra syllables)
+the-wort-boiled-so-we-cooled-it-transferred-it-and-started-the-fermentation.mp3
+    The wort boiled, so we cooled it, transferred it and started the fermentation.
+we-filtered-it-flavoured-it-and-matured-it-long-words-and-not-one-extra-syllable-between-them.mp3
+    We filtered it, flavoured it and matured it. Long words, and not one extra syllable between them.
+brew-brewed.mp3
+    brew, brewed.
+malt-malted.mp3
+    malt, malted.
+mash-mashed.mp3
+    mash, mashed.
+ferment-fermented.mp3
+    ferment, fermented.
+boil-boiled.mp3
+    boil, boiled.
+heat-heated.mp3
+    heat, heated.
+crush-crushed.mp3
+    crush, crushed.
+filter-filtered.mp3
+    filter, filtered.
+add-added.mp3
+    add, added.
+cool-cooled.mp3
+    cool, cooled.
+roast-roasted.mp3
+    roast, roasted.
+transfer-transferred.mp3
+    transfer, transferred.
+produce-produced.mp3
+    produce, produced.
+separate-separated.mp3
+    separate, separated.
+mature-matured.mp3
+    mature, matured.
+hop-hopped.mp3
+    hop, hopped.
+condition-conditioned.mp3
+    condition, conditioned.
+degrade-degraded.mp3
+    degrade, degraded.
+flavour-flavoured.mp3
+    flavour, flavoured.
+carbonate-carbonated.mp3
+    carbonate, carbonated.
+pack-packed.mp3
+    pack, packed.
+pour-poured.mp3
+    pour, poured.
+taste-tasted.mp3
+    taste, tasted.
+metabolise-metabolised.mp3
+    metabolise, metabolised.
