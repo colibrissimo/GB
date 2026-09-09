@@ -1,3 +1,7 @@
+ALL DONE — recorded 9 September 2026. All 45 buttons on the module are voiced,
+verified against the published URLs. Kept below as the record of what was asked
+for and in what order.
+
 The -ed ending: clips not yet recorded.
 Generated from the module's own buttons. Drop an mp3 named <key>.mp3
 into assets/audio/ and it plays on the next load. Nothing to register.

@@ -1,8 +1,9 @@
 # The -ed ending
 
 **Status: built 8 September 2026, for SAB3 S5 session 2 (Present perfect + the
-brewing thread, Friday 11 September, 10:00). Audio: 9 of 45 buttons voiced, all 9
-inherited. 36 clips to record — see `AUDIO_TODO.txt`. Not yet on Moodle.**
+brewing thread, Friday 11 September, 10:00). Audio complete 9 September: all 45
+buttons voiced, 37 from GB and 8 inherited from the geii bank. Verified against the
+published URLs, not the folder. Not yet on Moodle.**
 
 Adapted from the GEII module at `geii/pronunciation/ed/`, and the adaptation was
 larger than it looked. Sarah's first read was that the second half needed the work
@@ -24,11 +25,13 @@ Page.
 
 ## Counts
 - **5 sections** plus the rule panel
-- **45 listen buttons**, of which **9 cascade in free** from the geii -ed bank
+- **45 listen buttons**, all voiced: **37 recorded for GB**, **8 cascading in** from
+  the geii -ed bank
 - **24 drill items in two stages**: a core of 16, then 8 extra. 9 of the 24 add a
   syllable, 15 do not
 - **4 sentence clips**
-- **36 clips still to record**, all of them brewing words
+- **36 clips recorded 9 September**, all of them brewing words, plus a `beloved`
+  that overrides the inherited one
 
 ## Where the verbs come from
 All 24 are from material the students have already met: the Set 1 process verbs in
@@ -62,8 +65,17 @@ chosen because it was convenient for the rule, and the page says so at the botto
   helped* are general English, not GEII vocabulary, and they cascade in with no
   recording. The three brewing pairs beside them do not, yet.
 
+## Audio provenance
+The 8 inherited clips came from the GEII deck. The 37 in GB are Sarah's own, recorded
+9 September, 192 kbps stereo against the geii bank's 64 kbps mono, so the two sound
+different in a way a student will notice if they click across the exceptions row.
+
+`beloved` is the one deliberate override. The inherited clip says it the ordinary
+way and the whole point of the word is that it does not follow the rule. GB is first
+in the cascade, so the GB file shadows the geii one with nothing to configure.
+
+The four sentence clips carry the sentence only, not the parenthetical note that is
+part of the button's key. That is the right call: the note is on screen as text.
+
 ## What is missing
-1. **The 36 clips.** Until they exist those buttons fall back to the browser voice,
-   which is usable in class but flat, and will be American unless the machine has a
-   British voice installed.
-2. **Nothing else.** The page is complete as a lesson.
+Nothing. The page is complete as a lesson and fully voiced.
