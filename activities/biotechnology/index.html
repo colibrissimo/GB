@@ -564,6 +564,13 @@
             min-width: 250px;
         }
 
+        /* On the quiz tab there is no French to show, so the control stands down.
+           visibility, not display: the space stays and the tab strip does not jump. */
+        .container.quiz-open .toggle-row,
+        .container.quiz-open .hint {
+            visibility: hidden;
+        }
+
         @media print {
             .toggle-row, .hint, .tab-container, .submit-btn { display: none; }
             .content-section { display: block !important; }
@@ -921,12 +928,26 @@
         var tabs = document.querySelectorAll('.tab');
         var sections = document.querySelectorAll('.content-section');
 
+        var container = document.querySelector('.container');
+        var frToggle = document.getElementById('frToggle');
+
         function showTab(button) {
             var name = button.getAttribute('data-tab');
             for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove('active'); }
             for (var j = 0; j < sections.length; j++) { sections[j].classList.remove('active'); }
             button.classList.add('active');
             document.getElementById(name).classList.add('active');
+            /* The checkbox lives outside .container, so CSS cannot reach it.
+               Disable it on the quiz tab or a keyboard user can still tab onto
+               an invisible control. :checked survives disabling, so the
+               student's French setting is not lost. */
+            if (name === 'quiz') {
+                container.classList.add('quiz-open');
+                frToggle.disabled = true;
+            } else {
+                container.classList.remove('quiz-open');
+                frToggle.disabled = false;
+            }
         }
 
         for (var t = 0; t < tabs.length; t++) {
