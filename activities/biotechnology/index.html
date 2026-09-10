@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en-GB" style="width: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Biotechnology</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
+            width: 100%;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: none;
+        }
+        h1 {
+            color: #367588;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            position: relative;
+            cursor: help;
+        }
+        h1:hover::after {
+            content: attr(data-fr);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.6em;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+        h2 {
+            color: #367588;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            position: relative;
+            cursor: help;
+        }
+        h2:hover::after {
+            content: attr(data-fr);
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            background-color: #333;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.6em;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+        h3 {
+            color: #367588;
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            position: relative;
+            cursor: help;
+        }
+        h3:hover::after {
+            content: attr(data-fr);
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            background-color: #333;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.55em;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        .tab-container {
+            display: flex;
+            border-bottom: 3px solid #367588;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 10px 16px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: none;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            margin-right: 4px;
+            margin-bottom: -3px;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            font-family: inherit;
+            color: #333;
+        }
+        .tab:hover {
+            background-color: #e0e0e0;
+        }
+        .tab.active {
+            background-color: #367588;
+            color: white;
+            border-bottom: 3px solid #367588;
+        }
+        .tab:focus-visible {
+            outline: 3px solid #f9a825;
+            outline-offset: 2px;
+        }
+        .content-section {
+            display: none;
+            padding: 15px 0;
+            animation: fadeIn 0.5s;
+        }
+        .content-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .process-step {
+            margin-bottom: 15px;
+            padding: 12px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #ffa500;
+            border-radius: 5px;
+        }
+        .process-step p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+        .key-term {
+            font-weight: bold;
+            color: #ffa500;
+            position: relative;
+            cursor: help;
+        }
+        .key-term:hover::after {
+            content: attr(data-fr);
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            background-color: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+        .pointer {
+            background-color: #f0f8ff;
+            border-left: 4px solid #367588;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        .pointer strong { color: #367588; }
+
+        /* ---- Colours of biotechnology ---- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .colour-card {
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 5px solid;
+            background-color: #f9f9f9;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .colour-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .colour-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .colour-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            color: white;
+            flex-shrink: 0;
+        }
+        .colour-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #367588;
+            position: relative;
+            cursor: help;
+        }
+        .colour-name:hover::after {
+            content: attr(data-fr);
+            position: absolute;
+            top: -25px;
+            left: 0;
+            background-color: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+        .colour-description {
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .red { border-left-color: #e74c3c; }
+        .red .colour-icon { background-color: #e74c3c; }
+
+        .white { border-left-color: #95a5a6; }
+        .white .colour-icon { background-color: #95a5a6; }
+
+        .green { border-left-color: #27ae60; }
+        .green .colour-icon { background-color: #27ae60; }
+
+        .blue { border-left-color: #3498db; }
+        .blue .colour-icon { background-color: #3498db; }
+
+        .yellow { border-left-color: #f1c40f; }
+        .yellow .colour-icon { background-color: #f1c40f; }
+
+        .grey { border-left-color: #7f8c8d; }
+        .grey .colour-icon { background-color: #7f8c8d; }
+
+        .gold { border-left-color: #f39c12; }
+        .gold .colour-icon { background-color: #f39c12; }
+
+        .brown { border-left-color: #a0522d; }
+        .brown .colour-icon { background-color: #a0522d; }
+
+        .violet { border-left-color: #9b59b6; }
+        .violet .colour-icon { background-color: #9b59b6; }
+
+        .dark { border-left-color: #2c3e50; }
+        .dark .colour-icon { background-color: #2c3e50; }
+
+        .summary-box {
+            background: linear-gradient(135deg, #367588 0%, #2c5f6f 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .summary-box h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            color: white;
+            cursor: auto;
+        }
+        .summary-box p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+
+        /* ---- Quiz ---- */
+        .quiz-section {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .quiz-question {
+            margin-bottom: 15px;
+            padding: 12px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .quiz-question-text {
+            font-weight: bold;
+            color: #367588;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .quiz-option {
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            position: relative;
+        }
+        .quiz-option:hover {
+            border-color: #367588;
+            background-color: #f0f8ff;
+        }
+        .quiz-option.selected {
+            border-color: #367588;
+            background-color: #e6f3f7;
+        }
+        .quiz-option.correct {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+        .quiz-option.incorrect {
+            border-color: #f44336;
+            background-color: #ffebee;
+        }
+        .quiz-section.locked .quiz-option {
+            cursor: default;
+        }
+        .quiz-section.locked .quiz-option:hover {
+            border-color: #ddd;
+            background-color: transparent;
+        }
+        .quiz-section.locked .quiz-option.selected:hover {
+            border-color: #367588;
+            background-color: #e6f3f7;
+        }
+        .quiz-section.locked .quiz-option.correct:hover {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+        }
+        .quiz-section.locked .quiz-option.incorrect:hover {
+            border-color: #f44336;
+            background-color: #ffebee;
+        }
+        .tag {
+            display: none;
+            float: right;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 10px;
+        }
+        .quiz-option.correct .tag.tag-correct,
+        .quiz-option.incorrect .tag.tag-yours {
+            display: inline;
+        }
+        .tag-correct { color: #2e7d32; }
+        .tag-yours { color: #c62828; }
+        .submit-btn {
+            background-color: #ffa500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            font-family: inherit;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 12px;
+            margin-right: 8px;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #ff8c00;
+        }
+        .submit-btn.secondary {
+            background-color: #367588;
+            display: none;
+        }
+        .submit-btn.secondary:hover {
+            background-color: #2c5f6f;
+        }
+        .submit-btn:focus-visible {
+            outline: 3px solid #f9a825;
+            outline-offset: 2px;
+        }
+        .quiz-notice {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff3e0;
+            color: #e65100;
+            font-size: 0.9em;
+            display: none;
+        }
+        .quiz-notice.show { display: block; }
+        .quiz-result {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        .quiz-result.show {
+            display: block;
+        }
+
+        /* ---- Vocabulary ---- */
+        .vocabulary-box {
+            background-color: #fff8e6;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 4px solid #ffa500;
+            margin-bottom: 15px;
+        }
+        .vocabulary-box h4 {
+            color: #367588;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        .vocab-term {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 14px;
+            row-gap: 2px;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+        .vocab-word {
+            font-weight: bold;
+            color: #ffa500;
+            min-width: 140px;
+            position: relative;
+            cursor: help;
+        }
+        .vocab-word:hover::after {
+            content: attr(data-fr);
+            position: absolute;
+            top: -25px;
+            left: 0;
+            background-color: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+        ol, ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+        .hint {
+            text-align: center;
+            color: #888;
+            font-size: 0.8em;
+            margin-top: 0;
+            margin-bottom: 18px;
+        }
+
+        /* ---- French toggle: CSS only, so it survives anywhere ---- */
+        .fr-switch {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+        .toggle-row {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .fr-btn {
+            display: inline-block;
+            background-color: #367588;
+            color: white;
+            border-radius: 20px;
+            padding: 7px 18px;
+            font-size: 0.85em;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+        .fr-btn:hover { background-color: #2c5f6f; }
+        .fr-btn::after { content: "Show all the French"; }
+        .fr-switch:checked ~ .container .fr-btn::after { content: "Hide the French"; }
+        .fr-switch:focus ~ .container .fr-btn {
+            outline: 3px solid #f9a825;
+            outline-offset: 2px;
+        }
+
+        /* Switch on: French sits inline in the text, and the hover tooltips stand down */
+        .fr-switch:checked ~ .container .key-term::after,
+        .fr-switch:checked ~ .container .key-term:hover::after,
+        .fr-switch:checked ~ .container .vocab-word::after,
+        .fr-switch:checked ~ .container .vocab-word:hover::after,
+        .fr-switch:checked ~ .container .colour-name::after,
+        .fr-switch:checked ~ .container .colour-name:hover::after {
+            content: "\00a0(" attr(data-fr) ")";
+            position: static;
+            transform: none;
+            background-color: transparent;
+            color: #5f6b70;
+            padding: 0;
+            border-radius: 0;
+            font-size: 0.92em;
+            font-weight: normal;
+            white-space: normal;
+            z-index: auto;
+        }
+        .fr-switch:checked ~ .container h1::after,
+        .fr-switch:checked ~ .container h1:hover::after,
+        .fr-switch:checked ~ .container h2::after,
+        .fr-switch:checked ~ .container h2:hover::after,
+        .fr-switch:checked ~ .container h3::after,
+        .fr-switch:checked ~ .container h3:hover::after {
+            content: attr(data-fr);
+            display: block;
+            position: static;
+            transform: none;
+            background-color: transparent;
+            color: #5f6b70;
+            padding: 4px 0 0 0;
+            font-size: 0.72em;
+            font-weight: normal;
+            white-space: normal;
+        }
+        .fr-switch:checked ~ .container h1::after,
+        .fr-switch:checked ~ .container h1:hover::after {
+            font-size: 0.55em;
+        }
+        .fr-switch:checked ~ .container .summary-box h3::after,
+        .fr-switch:checked ~ .container .summary-box h3:hover::after {
+            content: none;
+        }
+        .fr-switch:checked ~ .container .vocab-word {
+            min-width: 250px;
+        }
+
+        @media print {
+            .toggle-row, .hint, .tab-container, .submit-btn { display: none; }
+            .content-section { display: block !important; }
+            .colour-card, .process-step { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="frToggle" class="fr-switch">
+    <div class="container">
+        <h1 data-fr="Introduction à la Biotechnologie">Introduction to Biotechnology</h1>
+        <p class="subtitle">Food science and bioengineering. SAB Year 2.</p>
+        <div class="toggle-row">
+            <label for="frToggle" class="fr-btn"><span class="sr-only">Show or hide the French translations</span></label>
+        </div>
+        <p class="hint">Or hover over any word in colour to see it on its own</p>
+
+        <div class="tab-container">
+            <button type="button" class="tab active" data-tab="overview">Overview</button>
+            <button type="button" class="tab" data-tab="colours">The Colours</button>
+            <button type="button" class="tab" data-tab="traditional">Traditional</button>
+            <button type="button" class="tab" data-tab="modern">Modern</button>
+            <button type="button" class="tab" data-tab="food">Food Applications</button>
+            <button type="button" class="tab" data-tab="vocabulary">Vocabulary</button>
+            <button type="button" class="tab" data-tab="quiz">Mini Quiz</button>
+        </div>
+
+        <div id="overview" class="content-section active">
+            <h2 data-fr="Qu'est-ce que la Biotechnologie ?">What is Biotechnology?</h2>
+            <p><span class="key-term" data-fr="Biotechnologie">Biotechnology</span> is the use of living organisms, cells, or biological systems to develop products and technologies that improve our lives and the health of our planet.</p>
+
+            <div class="pointer">
+                <strong>Biotechnology is divided into ten branches, each named after a colour.</strong> Open <em>The Colours</em> tab to see all ten. The ones that matter most for food science are green (agriculture), white (industry) and yellow (food and insects).
+            </div>
+
+            <div class="process-step">
+                <h3 data-fr="Applications dans la Science Alimentaire">Applications in Food Science</h3>
+                <p>Biotechnology plays a crucial role in food science through:</p>
+                <ul>
+                    <li>Fermentation processes for dairy, bread, and beverages</li>
+                    <li>Enzyme technology for food processing</li>
+                    <li>Genetic improvement of crops and livestock</li>
+                    <li>Development of functional foods and nutraceuticals</li>
+                    <li>Food preservation and safety</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <h3 data-fr="Deux Âges de la Biotechnologie">Two Ages of Biotechnology</h3>
+                <p>Everything in this lesson sits on one side or the other of a single line: whether we work with an organism as we find it, or change its DNA directly.</p>
+                <ul>
+                    <li><strong>Traditional:</strong> fermentation, selective breeding, preservation. Thousands of years old.</li>
+                    <li><strong>Modern:</strong> genetic engineering, enzyme technology, recombinant proteins. Roughly fifty years old.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="colours" class="content-section">
+            <h2 data-fr="Les Couleurs de la Biotechnologie">The Colours of Biotechnology</h2>
+            <p>Biotechnology is divided into specialised branches, each represented by a colour.</p>
+
+            <div class="grid-container">
+                <div class="colour-card red">
+                    <div class="colour-header">
+                        <div class="colour-icon">🏥</div>
+                        <div class="colour-name" data-fr="Rouge">Red Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Medical and pharmaceutical applications. Includes production of vaccines, antibiotics, gene therapy, molecular diagnostics, and development of treatments for diseases. Future: 3D bioprinting of organs.
+                    </div>
+                </div>
+
+                <div class="colour-card white">
+                    <div class="colour-header">
+                        <div class="colour-icon">🏭</div>
+                        <div class="colour-name" data-fr="Blanc">White Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Industrial processes using microorganisms. Produces chemicals, biofuels, enzymes, and biodegradable materials. Focuses on sustainable manufacturing and reducing environmental impact.
+                    </div>
+                </div>
+
+                <div class="colour-card green">
+                    <div class="colour-header">
+                        <div class="colour-icon">🌱</div>
+                        <div class="colour-name" data-fr="Vert">Green Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Agricultural and environmental applications. Develops GMO crops, biofertilisers, biopesticides, and bioremediation techniques. Aims to secure global food production sustainably.
+                    </div>
+                </div>
+
+                <div class="colour-card blue">
+                    <div class="colour-header">
+                        <div class="colour-icon">🐟</div>
+                        <div class="colour-name" data-fr="Bleu">Blue Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Marine and aquatic biotechnology. Exploits marine biodiversity for drug discovery, food supply, environmental remediation, and developing new industrial processes from marine organisms.
+                    </div>
+                </div>
+
+                <div class="colour-card yellow">
+                    <div class="colour-header">
+                        <div class="colour-icon">🍎</div>
+                        <div class="colour-name" data-fr="Jaune">Yellow Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Food production and insect biotechnology. Uses insect-derived molecules for medicine and agriculture. Aims to minimise environmental impact from food production.
+                    </div>
+                </div>
+
+                <div class="colour-card grey">
+                    <div class="colour-header">
+                        <div class="colour-icon">♻️</div>
+                        <div class="colour-name" data-fr="Gris">Grey Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Environmental protection and pollution control. Uses microorganisms for waste treatment, bioremediation, and plastic degradation. Focuses on protecting flora and fauna.
+                    </div>
+                </div>
+
+                <div class="colour-card gold">
+                    <div class="colour-header">
+                        <div class="colour-icon">💻</div>
+                        <div class="colour-name" data-fr="Or">Gold Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Bioinformatics and nanotechnology. Applies computational tools to analyse biological data, develops nanoscale medical treatments, and advances computer science applications in biology.
+                    </div>
+                </div>
+
+                <div class="colour-card brown">
+                    <div class="colour-header">
+                        <div class="colour-icon">🌵</div>
+                        <div class="colour-name" data-fr="Marron">Brown Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Arid zone and desert biotechnology. Develops drought-resistant crops, saline agriculture, and improved seeds for extreme climates. Aims to uplift arid regions economically.
+                    </div>
+                </div>
+
+                <div class="colour-card violet">
+                    <div class="colour-header">
+                        <div class="colour-icon">⚖️</div>
+                        <div class="colour-name" data-fr="Violet">Violet Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Law, ethics, and intellectual property. Focuses on patents, regulations, and IPRs in biotechnology. Ensures fair recognition and protection of biotech inventions.
+                    </div>
+                </div>
+
+                <div class="colour-card dark">
+                    <div class="colour-header">
+                        <div class="colour-icon">⚠️</div>
+                        <div class="colour-name" data-fr="Sombre">Dark Biotechnology</div>
+                    </div>
+                    <div class="colour-description">
+                        Bioterrorism and biological warfare. Addresses the potential misuse of biotechnology for harmful purposes. Requires strict regulation and ethical oversight.
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h3>The Rainbow of Innovation</h3>
+                <p>Each colour of biotechnology represents a specialised field working to solve global challenges. From healing diseases to protecting our environment, from feeding growing populations to ensuring ethical practices, these interconnected disciplines shape the future of science and society.</p>
+                <p>Together, they demonstrate biotechnology's vast potential to improve human life whilst addressing critical issues in health, sustainability, and innovation.</p>
+            </div>
+        </div>
+
+        <div id="traditional" class="content-section">
+            <h2 data-fr="Biotechnologie Traditionnelle">Traditional Biotechnology</h2>
+
+            <div class="process-step">
+                <h3 data-fr="Fermentation">Fermentation</h3>
+                <p><span class="key-term" data-fr="Fermentation">Fermentation</span> is one of the oldest biotechnological processes, dating back thousands of years. It involves the <span class="key-term" data-fr="Conversion métabolique">metabolic conversion</span> of sugars into acids, gases, or alcohol using microorganisms.</p>
+                <p><strong>Common fermented foods:</strong></p>
+                <ul>
+                    <li>Bread (using <span class="key-term" data-fr="Levure">yeast</span>)</li>
+                    <li>Yoghurt and cheese (using <span class="key-term" data-fr="Bactéries lactiques">lactic acid bacteria</span>)</li>
+                    <li>Wine and beer (alcoholic fermentation)</li>
+                    <li>Sauerkraut and kimchi (vegetable fermentation)</li>
+                    <li>Soy sauce and tempeh (fungal fermentation)</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <h3 data-fr="Sélection et Élevage">Selection and Breeding</h3>
+                <p>Traditional <span class="key-term" data-fr="Sélection">selective breeding</span> has been used for centuries to improve crops and livestock. Farmers selected organisms with desirable traits and bred them over generations.</p>
+                <p>This process created:</p>
+                <ul>
+                    <li>Wheat varieties with higher yields</li>
+                    <li>Cattle producing more milk</li>
+                    <li>Fruits with better taste and shelf life</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <h3 data-fr="Préservation">Preservation Techniques</h3>
+                <p>Biotechnology has enhanced food preservation methods:</p>
+                <ul>
+                    <li><span class="key-term" data-fr="Pasteurisation">Pasteurisation</span>: Heat treatment to eliminate pathogens</li>
+                    <li><span class="key-term" data-fr="Stérilisation">Sterilisation</span>: Complete elimination of microorganisms</li>
+                    <li>Use of <span class="key-term" data-fr="Conservateurs naturels">natural preservatives</span> produced by microorganisms</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="modern" class="content-section">
+            <h2 data-fr="Biotechnologie Moderne">Modern Biotechnology</h2>
+
+            <div class="process-step">
+                <h3 data-fr="Génie Génétique">Genetic Engineering</h3>
+                <p><span class="key-term" data-fr="Génie génétique">Genetic engineering</span> allows scientists to directly modify an organism's DNA. This technology has revolutionised biotechnology.</p>
+                <p><strong>Key techniques:</strong></p>
+                <ul>
+                    <li><span class="key-term" data-fr="ADN recombinant">Recombinant DNA</span> technology</li>
+                    <li><span class="key-term" data-fr="Édition génomique">Gene editing</span> (CRISPR-Cas9)</li>
+                    <li><span class="key-term" data-fr="Clonage">Cloning</span> and gene transfer</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <h3 data-fr="Technologie des Enzymes">Enzyme Technology</h3>
+                <p><span class="key-term" data-fr="Enzymes">Enzymes</span> are biological catalysts that speed up chemical reactions. Modern biotechnology produces enzymes for various applications:</p>
+                <ul>
+                    <li><strong>Amylases:</strong> Break down starch in baking and brewing</li>
+                    <li><strong>Proteases:</strong> Tenderise meat and clarify beverages</li>
+                    <li><strong>Lipases:</strong> Modify fats and improve flavours</li>
+                    <li><strong>Lactase:</strong> Produce lactose-free dairy products</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <h3 data-fr="Production de Protéines Recombinantes">Recombinant Protein Production</h3>
+                <p>Microorganisms can be engineered to produce valuable proteins:</p>
+                <ul>
+                    <li>Human insulin for diabetes treatment</li>
+                    <li>Chymosin for cheese production</li>
+                    <li>Food additives and vitamins</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="food" class="content-section">
+            <h2 data-fr="Applications dans l'Industrie Alimentaire">Food Industry Applications</h2>
+
+            <div class="process-step">
+                <h3 data-fr="Organismes Génétiquement Modifiés (OGM)">Genetically Modified Organisms (GMOs)</h3>
+                <p><span class="key-term" data-fr="OGM">GMOs</span> are organisms whose genetic material has been altered using genetic engineering. In food science:</p>
+                <ul>
+                    <li>Crops with enhanced nutritional value (Golden Rice with vitamin A)</li>
+                    <li>Plants resistant to pests and diseases</li>
+                    <li>Improved shelf life and quality</li>
+                    <li>Crops tolerant to environmental stress</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <h3 data-fr="Aliments Fonctionnels">Functional Foods</h3>
+                <p><span class="key-term" data-fr="Aliments fonctionnels">Functional foods</span> provide health benefits beyond basic nutrition:</p>
+                <ul>
+                    <li><span class="key-term" data-fr="Probiotiques">Probiotics</span>: Live beneficial bacteria in yoghurt</li>
+                    <li><span class="key-term" data-fr="Prébiotiques">Prebiotics</span>: Fibres that feed beneficial gut bacteria</li>
+                    <li>Fortified foods with added vitamins and minerals</li>
+                    <li>Bioactive compounds with health-promoting properties</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <h3 data-fr="Sécurité et Contrôle Qualité">Safety and Quality Control</h3>
+                <p>Biotechnology ensures food safety through:</p>
+                <ul>
+                    <li><span class="key-term" data-fr="Détection rapide">Rapid detection</span> of pathogens using biosensors</li>
+                    <li>DNA testing for food authenticity and traceability</li>
+                    <li>Development of antimicrobial packaging</li>
+                    <li>Monitoring of allergens and contaminants</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="vocabulary" class="content-section">
+            <h2 data-fr="Vocabulaire Clé">Key Vocabulary</h2>
+
+            <div class="vocabulary-box">
+                <h4>Essential Biotechnology Terms</h4>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Biotechnologie">Biotechnology</span>
+                    <span>Use of living systems to develop products</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Fermentation">Fermentation</span>
+                    <span>Metabolic process converting sugars to acids or alcohol</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Enzyme">Enzyme</span>
+                    <span>Biological catalyst that speeds up reactions</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Génie génétique">Genetic Engineering</span>
+                    <span>Direct manipulation of an organism's DNA</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="OGM">GMO</span>
+                    <span>Genetically Modified Organism</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="ADN recombinant">Recombinant DNA</span>
+                    <span>DNA formed by combining sequences from different sources</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Probiotique">Probiotic</span>
+                    <span>Live beneficial microorganisms for health</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Pasteurisation">Pasteurisation</span>
+                    <span>Heat treatment to kill harmful microorganisms</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Substrat">Substrate</span>
+                    <span>Substance on which an enzyme acts</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Culture">Culture</span>
+                    <span>Growth of microorganisms in controlled conditions</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Inoculation">Inoculation</span>
+                    <span>Introduction of microorganisms into a medium</span>
+                </div>
+                <div class="vocab-term">
+                    <span class="vocab-word" data-fr="Bioréacteur">Bioreactor</span>
+                    <span>Vessel for biological reactions at industrial scale</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="quiz" class="content-section">
+            <h2 data-fr="Testez Vos Connaissances">Test Your Knowledge</h2>
+            <div class="quiz-section" id="quizSection">
+                <div id="quizQuestions"></div>
+                <button type="button" class="submit-btn" id="checkBtn">Check Answers</button>
+                <button type="button" class="submit-btn secondary" id="againBtn">Try Again</button>
+                <div class="quiz-notice" id="quizNotice"></div>
+                <div class="quiz-result" id="quizResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        /* ---------- Tabs ---------- */
+        var tabs = document.querySelectorAll('.tab');
+        var sections = document.querySelectorAll('.content-section');
+
+        function showTab(button) {
+            var name = button.getAttribute('data-tab');
+            for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove('active'); }
+            for (var j = 0; j < sections.length; j++) { sections[j].classList.remove('active'); }
+            button.classList.add('active');
+            document.getElementById(name).classList.add('active');
+        }
+
+        for (var t = 0; t < tabs.length; t++) {
+            tabs[t].addEventListener('click', function () { showTab(this); });
+        }
+
+        /* ---------- Quiz ----------
+           The key lives here, not in the markup: no data-answer attribute to read
+           off the page, and no element named after its own answer. */
+        var BANK = [
+            {
+                q: 'Which microorganism is primarily used in bread making?',
+                options: [
+                    'Lactic acid bacteria',
+                    'Yeast (Saccharomyces cerevisiae)',
+                    'E. coli',
+                    'Penicillium mould'
+                ],
+                answer: 1
+            },
+            {
+                q: 'What type of food contains live beneficial bacteria?',
+                options: [
+                    'Prebiotic foods',
+                    'Probiotic foods',
+                    'Fortified foods',
+                    'GMO foods'
+                ],
+                answer: 1
+            },
+            {
+                q: 'What is the function of amylase enzyme in food processing?',
+                options: [
+                    'Break down proteins',
+                    'Break down starch',
+                    'Break down fats',
+                    'Break down cellulose'
+                ],
+                answer: 1
+            },
+            {
+                q: "Which technique allows direct modification of an organism's DNA?",
+                options: [
+                    'Traditional breeding',
+                    'Pasteurisation',
+                    'Genetic engineering',
+                    'Fermentation'
+                ],
+                answer: 2
+            },
+            {
+                q: 'What is recombinant DNA technology used to produce in the food industry?',
+                options: [
+                    'Natural preservatives only',
+                    'Enzymes and proteins like chymosin',
+                    'Artificial colours',
+                    'Chemical additives'
+                ],
+                answer: 1
+            },
+            {
+                q: 'Which colour of biotechnology covers industrial processes and biofuels?',
+                options: [
+                    'Green biotechnology',
+                    'White biotechnology',
+                    'Blue biotechnology',
+                    'Violet biotechnology'
+                ],
+                answer: 1
+            }
+        ];
+
+        var section = document.getElementById('quizSection');
+        var host = document.getElementById('quizQuestions');
+        var checkBtn = document.getElementById('checkBtn');
+        var againBtn = document.getElementById('againBtn');
+        var notice = document.getElementById('quizNotice');
+        var result = document.getElementById('quizResult');
+
+        var correctIndex = [];   // per rendered question, kept out of the DOM
+        var locked = false;
+
+        function shuffle(list) {
+            var a = list.slice();
+            for (var i = a.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+            }
+            return a;
+        }
+
+        function buildQuiz() {
+            locked = false;
+            correctIndex = [];
+            section.classList.remove('locked');
+            host.innerHTML = '';
+            notice.classList.remove('show');
+            result.classList.remove('show');
+            checkBtn.style.display = '';
+            againBtn.style.display = 'none';
+
+            BANK.forEach(function (item, qi) {
+                var correctText = item.options[item.answer];
+                var order = shuffle(item.options);
+                correctIndex.push(order.indexOf(correctText));
+
+                var block = document.createElement('div');
+                block.className = 'quiz-question';
+                block.id = 'q-' + (qi + 1);
+
+                var text = document.createElement('div');
+                text.className = 'quiz-question-text';
+                text.textContent = (qi + 1) + '. ' + item.q;
+                block.appendChild(text);
+
+                var opts = document.createElement('div');
+                opts.className = 'quiz-options';
+
+                order.forEach(function (label, oi) {
+                    var opt = document.createElement('div');
+                    opt.className = 'quiz-option';
+                    opt.id = 'q' + (qi + 1) + '-o' + (oi + 1);
+
+                    var tagYours = document.createElement('span');
+                    tagYours.className = 'tag tag-yours';
+                    tagYours.textContent = 'your answer';
+
+                    var tagCorrect = document.createElement('span');
+                    tagCorrect.className = 'tag tag-correct';
+                    tagCorrect.textContent = 'correct answer';
+
+                    opt.appendChild(tagYours);
+                    opt.appendChild(tagCorrect);
+                    opt.appendChild(document.createTextNode(label));
+
+                    opt.addEventListener('click', function () {
+                        if (locked) { return; }
+                        var siblings = opts.querySelectorAll('.quiz-option');
+                        for (var s = 0; s < siblings.length; s++) {
+                            siblings[s].classList.remove('selected');
+                        }
+                        opt.classList.add('selected');
+                    });
+
+                    opts.appendChild(opt);
+                });
+
+                block.appendChild(opts);
+                host.appendChild(block);
+            });
+        }
+
+        function checkQuiz() {
+            if (locked) { return; }
+
+            var blocks = host.querySelectorAll('.quiz-question');
+            var chosen = [];
+            var answered = 0;
+
+            for (var i = 0; i < blocks.length; i++) {
+                var sel = blocks[i].querySelector('.quiz-option.selected');
+                chosen.push(sel);
+                if (sel) { answered++; }
+            }
+
+            if (answered < blocks.length) {
+                notice.textContent = 'Answer all ' + blocks.length + ' questions first. You have done ' + answered + '.';
+                notice.classList.add('show');
+                return;
+            }
+
+            locked = true;
+            section.classList.add('locked');
+            notice.classList.remove('show');
+            checkBtn.style.display = 'none';
+            againBtn.style.display = '';
+
+            var correct = 0;
+
+            for (var b = 0; b < blocks.length; b++) {
+                var options = blocks[b].querySelectorAll('.quiz-option');
+                var right = options[correctIndex[b]];
+                right.classList.add('correct');
+
+                if (chosen[b] === right) {
+                    correct++;
+                } else {
+                    /* Their own choice stays on screen, marked, beside the correct one. */
+                    chosen[b].classList.add('incorrect');
+                }
+            }
+
+            var total = blocks.length;
+            var percentage = (correct / total) * 100;
+            result.classList.add('show');
+
+            if (percentage === 100) {
+                result.style.backgroundColor = '#e8f5e9';
+                result.style.color = '#2e7d32';
+                result.textContent = 'Perfect. All ' + total + ' correct. 🎉';
+            } else if (percentage >= 60) {
+                result.style.backgroundColor = '#fff3e0';
+                result.style.color = '#e65100';
+                result.textContent = 'Good work. ' + correct + ' out of ' + total + ' correct. The right answer is marked in green on each question.';
+            } else {
+                result.style.backgroundColor = '#ffebee';
+                result.style.color = '#c62828';
+                result.textContent = correct + ' out of ' + total + ' correct. Your answer is marked in red, the right one in green. Review the material and try again.';
+            }
+        }
+
+        checkBtn.addEventListener('click', checkQuiz);
+        againBtn.addEventListener('click', buildQuiz);
+
+        buildQuiz();
+    })();
+    </script>
+</body>
+</html>
