@@ -1,0 +1,372 @@
+<div id="cs-mod">
+  <style>
+    #cs-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #cs-mod *{box-sizing:border-box;}
+    #cs-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #cs-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #cs-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #cs-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #cs-mod .rule{font-size:16px;}
+    #cs-mod .rule b{color:var(--petrol);}
+    #cs-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #cs-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #cs-mod .key .y{color:var(--saffron2);}
+    #cs-mod .word{font-size:30px;font-weight:bold;text-align:center;color:var(--ink);margin:6px 0 14px;}
+    #cs-mod .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    #cs-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #cs-mod .cat{background:var(--petrol);color:#fff;flex:1;min-width:120px;}
+    #cs-mod .cat:hover{background:var(--petrol2);}
+    #cs-mod .accent{background:var(--saffron);color:var(--ink);}
+    #cs-mod .accent:hover{background:var(--saffron2);}
+    #cs-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #cs-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #cs-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #cs-mod .fb.ok{color:var(--ok);} #cs-mod .fb.no{color:var(--no);}
+    #cs-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #cs-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #cs-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #cs-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #cs-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #cs-mod td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;}
+    #cs-mod td:first-child{color:#6a7a7d;} #cs-mod td b{color:var(--petrol);}
+    #cs-mod .pairrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+    #cs-mod .pairrow .pair{font-size:18px;font-weight:bold;}
+    #cs-mod .pairrow a{color:var(--petrol);text-decoration:none;border-bottom:1px dotted var(--line);}
+    #cs-mod .pairrow a:hover{border-bottom-color:var(--saffron);}
+    #cs-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #cs-mod .c{color:var(--petrol);font-weight:bold;text-decoration:underline;}
+    #cs-mod .s{color:var(--saffron2);font-weight:bold;text-decoration:underline;text-decoration-style:dotted;}
+    #cs-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #cs-mod .hidden{display:none !important;}
+    #cs-mod .center{text-align:center;}
+    #cs-mod .steps{margin:0;padding-left:20px;}
+    #cs-mod .steps li{margin-bottom:7px;}
+    #cs-mod .anchor{background:linear-gradient(180deg,#fff,#f2f7f8);border:2px solid var(--petrol);border-radius:12px;padding:14px 16px;margin:12px 0;}
+    #cs-mod .anchor .aw{font-size:34px;font-weight:bold;color:var(--petrol);text-align:center;letter-spacing:2px;margin-bottom:4px;}
+    #cs-mod .anchor .aw em{color:var(--saffron2);font-style:normal;}
+    #cs-mod .anchor p{margin:6px 0;font-size:16px;}
+    #cs-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #cs-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #cs-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+    #cs-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+  </style>
+
+  <h1>CH and SH</h1>
+  <p class="sub">Food phrasal verbs and idioms. Session 3.</p>
+
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <p>French has one of these sounds. English has both, and writes them differently.</p>
+    <p><b>SH is /&#643;/</b>, the sound of <i>chat</i> and <i>chocolat</i>. In English it is spelt <b>sh</b>: <i>ship, fish, fresh, mushroom</i>. You already make it perfectly.</p>
+    <p><b>CH is /t&#643;/</b>, and it is <b>two sounds glued together</b>: a /t/ and then the /&#643;/. It is the sound at the start of <i>tchin-tchin</i> and at the end of <i>match</i>. In English it is spelt <b>ch</b>: <i>chips, cheese, chicken, chop</i>.</p>
+    <div class="key">
+      <div class="big">chips /t&#643;&#618;ps/ &nbsp;&nbsp;&middot;&nbsp;&nbsp; ships /&#643;&#618;ps/</div>
+      <div class="y">One starts with the tongue touching the ridge behind your teeth. The other never touches.</div>
+    </div>
+    <p><b>The French trap:</b> you see <i>ch</i> and you say the French <i>ch</i>. So <i>chips</i> becomes <i>ships</i>, <i>cheap</i> becomes <i>sheep</i>, <i>chop</i> becomes <i>shop</i>, and <i>watch</i> becomes <i>wash</i>. Every one of those is a different word.</p>
+    <p class="note">The letters ch are not always /t&#643;/, either. Section 5 has the two exceptions. Both are words you already know how to say, because one set is French and the other is science.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="panel">
+    <h2>1 &middot; The two words that prove it</h2>
+
+    <div class="anchor">
+      <div class="aw"><em>CH</em>IPS</div>
+      <p class="center">/t&#643;&#618;ps/ &nbsp; The tongue <b>touches</b> first, blocks the air, then lets it go into the sh.</p>
+      <div class="center"><button class="listen" data-w="chips">&#128266; Listen</button></div>
+    </div>
+
+    <div class="anchor">
+      <div class="aw"><em>SH</em>IPS</div>
+      <p class="center">/&#643;&#618;ps/ &nbsp; The tongue <b>never touches</b>. The air goes from the start.</p>
+      <div class="center"><button class="listen" data-w="ships">&#128266; Listen</button></div>
+    </div>
+
+    <div class="anchor">
+      <div class="aw"><em>CH</em>EF &nbsp;&middot;&nbsp; <em>CH</em>IEF</div>
+      <p class="center">Same two letters. <b>chef</b> /&#643;ef/ is a French word, so it keeps the French sound. <b>chief</b> /t&#643;i&#720;f/ is English, so it takes the English one.</p>
+      <div class="center"><button class="listen" data-w="chef">&#128266; chef</button> <button class="listen" data-w="chief">&#128266; chief</button></div>
+    </div>
+
+    <div class="key" style="font-size:17px;">
+      <div class="big">CH = t + sh. Touch, then release.</div>
+      <div class="y">SH = sh only. Never touch.</div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="panel">
+    <h2>2 &middot; How to make the CH</h2>
+    <ol class="steps">
+      <li>Say a long <b>shhhhh</b>, the one you use to ask for quiet. Notice the tongue is <b>near</b> the ridge behind your top teeth, not on it.</li>
+      <li>Now put the tip of your tongue <b>on</b> that ridge. Block the air completely for a moment.</li>
+      <li>Release it straight into the shhh. That release is <b>/t&#643;/</b>. Say <i>tchin-tchin</i>. Then <i>cheese</i>.</li>
+      <li>Hand flat in front of your mouth. <b>CH gives a small puff</b> at the start. <b>SH gives a steady stream</b> and no puff. Test it on <i>chop</i> and <i>shop</i>.</li>
+    </ol>
+    <p class="note">If it sounds like <i>sh</i> with a little click before it, you are already there. The click is the t.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="panel">
+    <h2>3 &middot; CH or SH?</h2>
+    <p class="sub" style="margin-bottom:8px;">Each pair is two different words. Tap to hear, then say both with your hand in front of your mouth.</p>
+    <div id="cs-pairs"></div>
+  </div>
+
+  <!-- 4 -->
+  <div class="panel">
+    <h2>4 &middot; Which sound?</h2>
+    <p class="sub" style="margin-bottom:8px;">Not which letters. Which <b>sound</b> you make. Say the word out loud first.</p>
+    <div class="prog" id="cs-prog">Word 1 of 0</div>
+    <div class="bar"><i id="cs-fill"></i></div>
+    <div class="word" id="cs-word">&middot;</div>
+    <div class="center" style="margin-bottom:10px;"><button class="listen" id="cs-say">&#128266; Listen</button></div>
+    <div class="btns" id="cs-cats">
+      <button class="cat" data-c="ch">CH /t&#643;/</button>
+      <button class="cat" data-c="sh">SH /&#643;/</button>
+      <button class="cat" data-c="k">K /k/</button>
+    </div>
+    <div class="fb" id="cs-fb"></div>
+    <div class="why" id="cs-why"></div>
+    <div class="center"><button class="accent hidden" id="cs-nextw">Next word &rarr;</button> <button class="ghost hidden" id="cs-again">Play again</button></div>
+    <div class="score" id="cs-score"></div>
+    <p class="note" id="cs-ttsnote"></p>
+  </div>
+
+  <!-- 5 -->
+  <div class="panel">
+    <h2>5 &middot; The letters lie, three ways</h2>
+    <table>
+      <tr><td>ch = /t&#643;/</td><td>The English default. <b>chips &middot; cheese &middot; chicken &middot; chop &middot; cherry &middot; chocolate &middot; lunch &middot; kitchen &middot; sandwich</b></td></tr>
+      <tr><td>ch = /&#643;/</td><td>Words English borrowed from French keep the French sound. <b>chef &middot; machine &middot; champagne &middot; quiche &middot; brochure &middot; moustache</b></td></tr>
+      <tr><td>ch = /k/</td><td>Words from Greek, which is most of science. <b>chemistry &middot; chemical &middot; technology &middot; stomach &middot; mechanic &middot; character &middot; ache</b></td></tr>
+      <tr><td>/&#643;/ with no sh</td><td>The sound is there and the letters are not. <b>sugar &middot; sure &middot; nutrition &middot; fermentation &middot; delicious &middot; special</b></td></tr>
+      <tr><td>-ture = /t&#643;&#601;/</td><td>Session 1's transparent words. <b>mixture &middot; temperature &middot; texture &middot; culture &middot; nature</b>. Not the French -ture.</td></tr>
+    </table>
+    <div class="flag" style="margin-top:12px;">
+      A short rule that nearly always works: <b>if it looks French, say it French. If it looks like science, say k. Otherwise, touch first.</b>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="panel">
+    <h2>6 &middot; The kitchen words</h2>
+    <p class="sub" style="margin-bottom:8px;">Tap to hear. Then say each one, and notice whether your tongue touched.</p>
+    <div id="cs-chips"></div>
+  </div>
+
+  <!-- 7 -->
+  <div class="panel">
+    <h2>7 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;"><span class="c">Solid underline</span> is CH: touch first. <span class="s">Dotted underline</span> is SH: never touch.</p>
+    <div class="tw">The <span class="s">ch</span>ef <span class="c">ch</span>ops the fre<span class="s">sh</span> mu<span class="s">sh</span>rooms in the kit<span class="c">ch</span>en. <span class="chip" data-w="The chef chops the fresh mushrooms in the kitchen.">&#128266; Listen</span></div>
+    <div class="tw">We had fi<span class="s">sh</span> and <span class="c">ch</span>ips with <span class="c">ch</span>eese sandwi<span class="c">ch</span>es. <span class="chip" data-w="We had fish and chips with cheese sandwiches.">&#128266; Listen</span></div>
+    <div class="tw">Are you <span class="s">s</span>ure the <span class="s">s</span>ugar is in the mix<span class="c">t</span>ure? <span class="note" style="display:inline;">(two sh with no sh, one ch with no ch)</span> <span class="chip" data-w="Are you sure the sugar is in the mixture?">&#128266; Listen</span></div>
+    <div class="tw">Whi<span class="c">ch</span> <span class="s">sh</span>op sells fre<span class="s">sh</span> Fren<span class="c">ch</span> <span class="c">ch</span>eese and <span class="c">ch</span>ocolate? <span class="chip" data-w="Which shop sells fresh French cheese and chocolate?">&#128266; Listen</span></div>
+    <div class="tw">The tea<span class="c">ch</span>er <span class="c">ch</span>ecked the tempera<span class="c">t</span>ure of the <span class="c">ch</span>ocolate. <span class="chip" data-w="The teacher checked the temperature of the chocolate.">&#128266; Listen</span></div>
+    <table style="margin-top:12px;">
+      <tr><td>CH /t&#643;/</td><td><b>chips &middot; cheese &middot; chicken &middot; chop &middot; cherry &middot; chocolate &middot; lunch &middot; kitchen &middot; sandwich &middot; crunchy &middot; mixture &middot; temperature</b></td></tr>
+      <tr><td>SH /&#643;/</td><td><b>fish &middot; dish &middot; fresh &middot; mushroom &middot; shrimp &middot; shellfish &middot; chef &middot; machine &middot; quiche &middot; sugar &middot; sure &middot; nutrition</b></td></tr>
+      <tr><td>K /k/</td><td><b>chemistry &middot; chemical &middot; technology &middot; stomach &middot; mechanic &middot; ache</b></td></tr>
+      <tr><td>Different words</td><td><b>chips / ships &middot; cheap / sheep &middot; chop / shop &middot; watch / wash &middot; catch / cash</b></td></tr>
+    </table>
+  </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];}};
+    if(!document.title) document.title='CH and SH · Bioengineering English';
+
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then the browser voice. Drop an mp3 named
+       <key>.mp3 into assets/audio/ and it plays on the next load. Lowercase path:
+       GitHub Pages is case-sensitive. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/ch-sh/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      var found={};
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        /* One guarded step per attempt: a 404 fires both onerror and the play()
+           rejection, and Firefox blocks a retry made after the click's activation
+           is spent. See silent-r for the full story. */
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var moved=false;
+          function next(){ if(moved) return; moved=true; attempt(i+1); }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=next;
+          a.onplaying=function(){ moved=true; found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](next);
+        })(0);
+      }};
+    })();
+
+    R('cs-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where one exists, and the browser voice otherwise. The browser voice is fine for this lesson: every English voice makes the CH and SH difference.'
+      : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
+
+    Array.prototype.forEach.call(document.querySelectorAll('#cs-mod .listen[data-w]'), function(b){
+      b.addEventListener('click',function(){ TTS.say(b.getAttribute('data-w'), 0.75); });
+    });
+
+    /* ---------- 3. ch / sh pairs ---------- */
+    var PAIRS=[["chips","ships"],["cheap","sheep"],["chop","shop"],["chew","shoe"],
+               ["watch","wash"],["catch","cash"],["match","mash"],["chair","share"],
+               ["which","wish"],["cheat","sheet"]];
+    (function(){
+      var box=R('cs-pairs'), html='';
+      for(var i=0;i<PAIRS.length;i++){
+        html += '<div class="pairrow"><span class="pair">'
+             +  '<a href="#" class="sayw" data-w="'+PAIRS[i][0]+'">'+PAIRS[i][0]+'</a>'
+             +  ' &nbsp;vs&nbsp; <a href="#" class="sayw" data-w="'+PAIRS[i][1]+'">'+PAIRS[i][1]+'</a>'
+             +  '</span><span class="note" style="margin:0;">puff on the first, stream on the second</span></div>';
+      }
+      box.innerHTML=html;
+      box.addEventListener('click',function(e){
+        var a=e.target.closest ? e.target.closest('.sayw') : null;
+        if(!a) return;
+        e.preventDefault();
+        TTS.say(a.getAttribute('data-w'), 0.8);
+      });
+    })();
+
+    /* ---------- 4. which sound ---------- */
+    var WHY={
+      "chips":["ch","English ch. Touch first, then the sh. Not ships."],
+      "cheese":["ch","English ch. The word French speakers most often turn into sheese."],
+      "chicken":["ch","English ch, and the same sound again in the middle: no."],
+      "kitchen":["ch","English ch in the middle. The t before it is part of the same sound: kit-chen."],
+      "chop":["ch","English ch. Chop and shop are two different words."],
+      "cherry":["ch","English ch, as in the cherry on top."],
+      "chocolate":["ch","English ch, unlike the French chocolat. Two syllables in English: CHOC-lit."],
+      "lunch":["ch","English ch at the end. Tongue touches, then releases."],
+      "sandwich":["ch","English ch at the end: sand-witch."],
+      "crunchy":["ch","English ch in the middle."],
+      "mixture":["ch","The -ture ending is /tʃə/. Session 1: mixture is a transparent word that does not sound French."],
+      "temperature":["ch","The -ture ending again: /tʃə/. Three syllables, TEM-pra-cha."],
+      "fish":["sh","Spelt sh, said sh. Never touch."],
+      "dish":["sh","Spelt sh, said sh."],
+      "fresh":["sh","Spelt sh, said sh."],
+      "mushroom":["sh","Spelt sh, said sh: MUSH-room."],
+      "shrimp":["sh","Spelt sh, said sh, then straight into the r."],
+      "shellfish":["sh","Two sh, one at each end, both the same sound."],
+      "chef":["sh","Spelt ch but it is a French word, so it keeps the French sound. Chef, not tchef."],
+      "machine":["sh","French word, French sound: ma-SHEEN."],
+      "champagne":["sh","French word, French sound."],
+      "quiche":["sh","French word, French sound: keesh."],
+      "sugar":["sh","A sh with no sh in it. SHUG-ə. The s is not /s/."],
+      "sure":["sh","A sh with no sh in it. Sure and shore sound the same."],
+      "nutrition":["sh","The -tion ending is /ʃən/. No t sound in it at all."],
+      "chemistry":["k","Greek word: the ch is /k/. KEM-is-tree."],
+      "chemical":["k","Greek word: the ch is /k/."],
+      "technology":["k","Greek word: the ch is /k/. tek-NOL-ə-jee."],
+      "stomach":["k","Greek word: the ch at the end is /k/. STUM-ək, and the a is a schwa."],
+      "mechanic":["k","Greek word: the ch is /k/. me-KAN-ik."],
+      "ache":["k","Greek word: the ch is /k/. It rhymes with cake."]
+    };
+    var LABEL={"ch":"CH /tʃ/, touch first","sh":"SH /ʃ/, never touch","k":"K /k/"};
+    var WORDS=Object.keys(WHY);
+    function shuffle(){ for(var i=WORDS.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=WORDS[i];WORDS[i]=WORDS[j];WORDS[j]=t;} }
+    shuffle();
+    var idx=0, right=0, answered=false;
+
+    function render(){
+      answered=false;
+      R('cs-word').textContent=WORDS[idx];
+      R('cs-fb').textContent=''; R('cs-fb').className='fb';
+      R('cs-why').textContent='';
+      R('cs-nextw').classList.add('hidden');
+      R('cs-again').classList.add('hidden');
+      R('cs-cats').classList.remove('hidden');
+      R('cs-prog').textContent='Word '+(idx+1)+' of '+WORDS.length;
+      R('cs-fill').style.width=Math.round(idx/WORDS.length*100)+'%';
+    }
+    function answer(c){
+      if(answered) return;
+      answered=true;
+      var w=WORDS[idx], truth=WHY[w][0], fb=R('cs-fb');
+      if(c===truth){ right++; fb.textContent='Yes. '+LABEL[truth]; fb.className='fb ok'; }
+      else { fb.textContent='No. '+LABEL[truth]; fb.className='fb no'; }
+      R('cs-why').textContent=WHY[w][1];
+      R('cs-cats').classList.add('hidden');
+      R('cs-score').textContent=right+' right out of '+(idx+1);
+      if(idx<WORDS.length-1) R('cs-nextw').classList.remove('hidden');
+      else{
+        R('cs-again').classList.remove('hidden');
+        R('cs-fill').style.width='100%';
+        R('cs-score').textContent='Finished: '+right+' right out of '+WORDS.length+'.';
+      }
+    }
+
+    (document.getElementById('cs-mod')||{addEventListener:function(){}}).addEventListener('click',function(e){
+      var c=e.target.closest?e.target.closest('.chip[data-w]'):null;
+      if(c) TTS.say(c.getAttribute('data-w'), 0.75);
+    });
+    R('cs-cats').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('.cat') : null;
+      if(b) answer(b.getAttribute('data-c'));
+    });
+    R('cs-nextw').addEventListener('click',function(){ idx++; render(); });
+    R('cs-again').addEventListener('click',function(){
+      idx=0; right=0; shuffle(); R('cs-score').textContent=''; render();
+    });
+    R('cs-say').addEventListener('click',function(){ TTS.say(WORDS[idx], 0.8); });
+    render();
+
+    /* ---------- 6. the kitchen words ---------- */
+    var LAB=["chips","cheese","chicken","kitchen","chop","cherry","chocolate","lunch",
+             "sandwich","crunchy","mixture","temperature","fish","dish","fresh","mushroom",
+             "shrimp","shellfish","chef","machine","quiche","sugar","sure","nutrition",
+             "chemistry","technology","stomach","ache"];
+    (function(){
+      var box=R('cs-chips'), html='';
+      for(var i=0;i<LAB.length;i++) html+='<span class="chip" data-w="'+LAB[i]+'">'+LAB[i]+'</span>';
+      box.innerHTML=html;
+    })();
+
+    if(MISS.length && window.console && console.warn) console.warn('cs-mod: elements missing from the page: '+MISS.join(', '));
+  })();
+  </script>
+</div>

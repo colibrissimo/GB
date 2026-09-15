@@ -1,0 +1,73 @@
+<div id="fi-mean">
+  <style>
+    #fi-mean{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #fi-mean *{box-sizing:border-box;}
+    #fi-mean h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #fi-mean .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #fi-mean .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #fi-mean .line{margin:4px 0;font-size:17px;}
+    #fi-mean .line b{color:var(--petrol);display:inline-block;min-width:26px;}
+    #fi-mean .line mark{background:#fff7e6;color:var(--ink);font-weight:bold;border-bottom:2px solid var(--saffron);padding:0 2px;}
+    #fi-mean .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+    #fi-mean button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;background:var(--petrol);color:#fff;flex:1;min-width:200px;text-align:left;}
+    #fi-mean button:hover{background:var(--petrol2);}
+    #fi-mean button.ok{background:var(--ok);} #fi-mean button.no{background:var(--no);}
+    #fi-mean button:disabled{cursor:default;opacity:.85;}
+    #fi-mean .fb{font-weight:bold;min-height:24px;margin-top:8px;font-size:16px;}
+    #fi-mean .fb.ok{color:var(--ok);} #fi-mean .fb.no{color:var(--no);}
+    #fi-mean .score{text-align:center;color:#52646a;font-size:15px;margin-top:6px;}
+  </style>
+  <h1>Food idioms &middot; What does it mean?</h1>
+  <p class="sub">Read each conversation. The phrase in <mark style="background:#fff7e6;border-bottom:2px solid #F4B942;">yellow</mark> is the idiom. Choose its meaning.</p>
+  <div id="fi-items"></div>
+  <div class="score" id="fi-score"></div>
+  <script>
+  (function(){
+    var ITEMS=[
+      {a:"Everyone knew about the surprise at the annual company party. We need to learn who <mark>spilt the beans</mark>!",
+       b:"I think it could have been Mary. She has such a big mouth.",
+       o:["gossiped about it","gave away the secret"],k:1,
+       why:"To spill the beans is to reveal a secret. Gossip is talk in general; this is one specific leak."},
+      {a:"Have you seen the news? The number of crimes has doubled over the last decade and no one has done anything about it!",
+       b:"Crime figures have always been a political <mark>hot potato</mark>.",
+       o:["a difficult subject nobody wants to handle","a scandal"],k:0,
+       why:"A hot potato: you pick it up and immediately want to pass it to someone else. Difficult, not necessarily scandalous."},
+      {a:"How come your children learn and behave so well?",
+       b:"Well, I use the <mark>carrot and stick</mark> approach with them and it works best!",
+       o:["a system based only on rewards","a system based on rewards and threats"],k:1,
+       why:"The carrot is the reward, the stick is the punishment. Both, or it is not the idiom."},
+      {a:"Do you think I should have private insurance?",
+       b:"I think so. People who don't have it often find themselves <mark>in a pickle</mark> if something goes wrong.",
+       o:["in a difficult situation","without any solution"],k:0,
+       why:"In a pickle is in trouble, in a mess. It says nothing about whether a solution exists."},
+      {a:"Which dance is better: hip-hop or tango?",
+       b:"Come on! I can't choose! It's <mark>apples and oranges</mark>.",
+       o:["two things too different to compare","two things that are almost the same"],k:0,
+       why:"Apples and oranges are both fruit, and still you cannot say one is a better version of the other."},
+      {a:"Were you nervous during your presentation?",
+       b:"Not at all. I was <mark>cool as a cucumber</mark>.",
+       o:["calm and relaxed","excited and anxious"],k:0,
+       why:"Cool as a cucumber is completely calm. A cucumber is cold inside even on a hot day, apparently."}
+    ];
+    var box=document.getElementById('fi-items'), sc=document.getElementById('fi-score');
+    if(!box) return;
+    var html='', done=0, right=0;
+    for(var i=0;i<ITEMS.length;i++){
+      var it=ITEMS[i];
+      html+='<div class="panel" data-i="'+i+'"><div class="line"><b>A:</b> '+it.a+'</div><div class="line"><b>B:</b> '+it.b+'</div><div class="btns">';
+      for(var j=0;j<it.o.length;j++) html+='<button data-j="'+j+'">'+(j+1)+') '+it.o[j]+'</button>';
+      html+='</div><div class="fb"></div></div>';
+    }
+    box.innerHTML=html;
+    box.addEventListener('click',function(e){
+      var b=e.target.closest?e.target.closest('button'):null; if(!b||b.disabled) return;
+      var p=b.closest('.panel'), it=ITEMS[+p.getAttribute('data-i')], j=+b.getAttribute('data-j');
+      var bs=p.querySelectorAll('button'); for(var k=0;k<bs.length;k++){ bs[k].disabled=true; if(k===it.k) bs[k].className='ok'; }
+      var fb=p.querySelector('.fb'); done++;
+      if(j===it.k){ right++; fb.className='fb ok'; fb.textContent='Yes. '+it.why; }
+      else { b.className='no'; fb.className='fb no'; fb.textContent='No. '+it.why; }
+      sc.textContent=right+' right out of '+done+(done===ITEMS.length?'. Finished.':'');
+    });
+  })();
+  </script>
+</div>
