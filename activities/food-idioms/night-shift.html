@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Food idioms · Night Shift</title>
+<style>html,body{margin:0;background:#fefce8;}</style>
+</head>
+<body>
+<div id="ns-game">
+<style>
+#ns-game {
+  --teal:#0891B2; --teal-l:#cffafe; --teal-d:#0e7490;
+  --orange:#F97316; --orange-l:#ffedd5; --orange-d:#c2410c;
+  --cream:#fefce8; --ink:#1c1917; --muted:#78716c; --line:#e7e5e4;
+  --radius:12px;
+  font-family:'Segoe UI', system-ui, Arial, sans-serif;
+  background:var(--cream); color:var(--ink);
+  padding:16px 12px 32px; box-sizing:border-box;
+}
+#ns-game *, #ns-game *::before, #ns-game *::after { box-sizing:border-box; margin:0; padding:0; }
+#ns-game .ns-inner { max-width:860px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+
+#ns-game h1 { text-align:center; font-size:1.7rem; font-weight:900; letter-spacing:3px; color:var(--ink); }
+#ns-game h1 .ns-t { color:var(--teal-d); } #ns-game h1 .ns-o { color:var(--orange-d); }
+#ns-game .ns-epigraph {
+  text-align:center; font-size:.8rem; color:var(--muted); font-style:italic;
+  max-width:52ch; margin:-4px auto 0;
+}
+
+/* scoreboard */
+#ns-game .ns-hud { display:flex; gap:10px; align-items:stretch; }
+#ns-game .ns-crew {
+  flex:1; background:white; border-radius:var(--radius); padding:8px 14px;
+  border:2px solid var(--line); display:flex; justify-content:space-between; align-items:center;
+  transition:border-color .2s, box-shadow .2s;
+}
+#ns-game .ns-crew .ns-crew-name { font-weight:800; font-size:.9rem; letter-spacing:.06em; }
+#ns-game .ns-crew .ns-crew-pts  { font-weight:900; font-size:1.3rem; font-variant-numeric:tabular-nums; }
+#ns-game .ns-crew.ns-teal   .ns-crew-name, #ns-game .ns-crew.ns-teal   .ns-crew-pts { color:var(--teal-d); }
+#ns-game .ns-crew.ns-orange .ns-crew-name, #ns-game .ns-crew.ns-orange .ns-crew-pts { color:var(--orange-d); }
+#ns-game .ns-crew.ns-active.ns-teal   { border-color:var(--teal);   box-shadow:0 0 0 3px var(--teal-l); }
+#ns-game .ns-crew.ns-active.ns-orange { border-color:var(--orange); box-shadow:0 0 0 3px var(--orange-l); }
+#ns-game .ns-turnline { text-align:center; font-size:.8rem; color:var(--muted); }
+
+/* ticket board */
+#ns-game .ns-board {
+  display:grid; grid-template-columns:repeat(5,1fr); gap:8px;
+}
+@media (max-width:560px){ #ns-game .ns-board { grid-template-columns:repeat(4,1fr); } }
+#ns-game .ns-ticket {
+  background:white; border:2px solid var(--line); border-radius:10px;
+  padding:10px 4px 8px; text-align:center; cursor:pointer;
+  font-family:inherit; transition:transform .1s, border-color .15s;
+  display:flex; flex-direction:column; gap:2px; min-height:64px; justify-content:center;
+}
+#ns-game .ns-ticket:not(:disabled):hover { transform:translateY(-2px); border-color:var(--ink); }
+#ns-game .ns-ticket .ns-tid  { font-size:.66rem; color:var(--muted); letter-spacing:.08em; }
+#ns-game .ns-ticket .ns-tpts { font-size:1.05rem; font-weight:900; color:var(--ink); }
+#ns-game .ns-ticket:disabled { cursor:default; }
+#ns-game .ns-ticket.ns-claimed-teal   { background:var(--teal);   border-color:var(--teal-d); }
+#ns-game .ns-ticket.ns-claimed-orange { background:var(--orange); border-color:var(--orange-d); }
+#ns-game .ns-ticket.ns-claimed-teal *, #ns-game .ns-ticket.ns-claimed-orange * { color:white; }
+
+/* modal */
+#ns-game .ns-modal-bg {
+  display:none; position:fixed; inset:0; background:rgba(28,25,23,.55); z-index:50;
+  align-items:flex-start; justify-content:center; padding:24px 12px; overflow-y:auto;
+}
+#ns-game .ns-modal-bg.ns-show { display:flex; }
+#ns-game .ns-modal {
+  background:white; border-radius:var(--radius); max-width:560px; width:100%;
+  padding:20px 20px 18px; border-top:6px solid var(--ink);
+  display:flex; flex-direction:column; gap:14px;
+}
+#ns-game .ns-modal .ns-m-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+#ns-game .ns-modal .ns-m-id { font-size:.72rem; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; }
+#ns-game .ns-modal .ns-m-crew { font-size:.78rem; font-weight:800; }
+#ns-game .ns-modal .ns-m-title { font-size:1.15rem; font-weight:800; line-height:1.35; }
+#ns-game .ns-modal .ns-m-task { font-size:.78rem; color:var(--muted); }
+
+/* sequence UI */
+#ns-game .ns-slots, #ns-game .ns-pool { display:flex; flex-direction:column; gap:6px; }
+#ns-game .ns-slot {
+  border:2px dashed var(--line); border-radius:9px; min-height:42px;
+  display:flex; align-items:center; padding:6px 10px; gap:8px; font-size:.9rem;
+}
+#ns-game .ns-slot .ns-slot-n { font-weight:900; color:var(--muted); font-size:.8rem; width:18px; }
+#ns-game .ns-slot.ns-filled { border-style:solid; border-color:var(--ink); cursor:pointer; }
+#ns-game .ns-chip {
+  border:2px solid var(--ink); background:white; color:var(--ink);
+  border-radius:9px; padding:9px 12px; font-size:.9rem; font-weight:600;
+  cursor:pointer; text-align:left; font-family:inherit; transition:background .12s;
+}
+#ns-game .ns-chip:hover { background:var(--cream); }
+#ns-game .ns-chip:disabled { opacity:.35; cursor:default; }
+
+/* option buttons (gap / pron) */
+#ns-game .ns-opts { display:flex; flex-direction:column; gap:8px; }
+#ns-game .ns-opt {
+  border:2px solid var(--line); background:white; border-radius:9px;
+  padding:11px 14px; font-size:.95rem; font-weight:600; text-align:left;
+  cursor:pointer; font-family:inherit; transition:border-color .12s, background .12s;
+}
+#ns-game .ns-opt:hover { border-color:var(--ink); }
+#ns-game .ns-opt.ns-picked { border-color:var(--ink); background:var(--cream); font-weight:800; }
+
+/* modal footer */
+#ns-game .ns-m-actions { display:flex; gap:10px; justify-content:flex-end; }
+#ns-game .ns-btn {
+  border:none; border-radius:9px; padding:11px 24px; font-size:.9rem; font-weight:800;
+  cursor:pointer; font-family:inherit; transition:transform .1s;
+}
+#ns-game .ns-btn:active { transform:scale(.96); }
+#ns-game .ns-btn-confirm { background:var(--ink); color:white; }
+#ns-game .ns-btn-confirm:disabled { opacity:.35; cursor:default; }
+#ns-game .ns-btn-cancel { background:none; border:2px solid var(--line); color:var(--muted); }
+#ns-game .ns-btn-next { background:var(--ink); color:white; width:100%; }
+
+/* verdict */
+#ns-game .ns-verdict { display:none; border-radius:9px; padding:12px 14px; font-size:.92rem; line-height:1.5; }
+#ns-game .ns-verdict.ns-show { display:block; }
+#ns-game .ns-verdict.ns-good { background:var(--teal-l); color:var(--teal-d); border:2px solid var(--teal); }
+#ns-game .ns-verdict.ns-bad  { background:var(--orange-l); color:var(--orange-d); border:2px solid var(--orange); }
+#ns-game .ns-verdict strong { display:block; margin-bottom:4px; letter-spacing:.04em; }
+
+/* end screen */
+#ns-game .ns-end {
+  display:none; background:white; border-radius:var(--radius);
+  border:2px solid var(--ink); padding:26px; text-align:center;
+}
+#ns-game .ns-end.ns-show { display:block; }
+#ns-game .ns-end h2 { font-size:1.3rem; letter-spacing:2px; margin-bottom:6px; }
+#ns-game .ns-end .ns-end-score { font-size:1.9rem; font-weight:900; margin:8px 0; }
+#ns-game .ns-end .ns-end-line { font-size:.85rem; color:var(--muted); margin-bottom:14px; }
+</style>
+
+<div class="ns-inner">
+  <h1><span class="ns-t">NIGHT</span> <span class="ns-o">SHIFT</span></h1>
+  <p class="ns-epigraph">Friday night. Twenty orders on the board. Two crews. The kitchen closes when the last ticket does.</p>
+
+  <div class="ns-hud">
+    <div class="ns-crew ns-teal ns-active" id="ns-crew-0">
+      <span class="ns-crew-name">TEAL CREW</span><span class="ns-crew-pts" id="ns-pts-0">0</span>
+    </div>
+    <div class="ns-crew ns-orange" id="ns-crew-1">
+      <span class="ns-crew-name">ORANGE CREW</span><span class="ns-crew-pts" id="ns-pts-1">0</span>
+    </div>
+  </div>
+  <p class="ns-turnline" id="ns-turnline">Teal Crew — pick an open ticket.</p>
+
+  <div class="ns-board" id="ns-board"></div>
+
+  <div class="ns-end" id="ns-end">
+    <h2>END OF SHIFT</h2>
+    <div class="ns-end-score" id="ns-end-score"></div>
+    <p class="ns-end-line" id="ns-end-line"></p>
+    <button class="ns-btn ns-btn-confirm" id="ns-again">▶ New shift</button>
+  </div>
+</div>
+
+<!-- modal -->
+<div class="ns-modal-bg" id="ns-modal-bg">
+  <div class="ns-modal">
+    <div class="ns-m-head">
+      <span class="ns-m-id" id="ns-m-id"></span>
+      <span class="ns-m-crew" id="ns-m-crew"></span>
+    </div>
+    <div class="ns-m-title" id="ns-m-title"></div>
+    <div class="ns-m-task" id="ns-m-task"></div>
+    <div id="ns-m-body"></div>
+    <div class="ns-verdict" id="ns-verdict"></div>
+    <div class="ns-m-actions" id="ns-m-actions">
+      <button class="ns-btn ns-btn-cancel" id="ns-cancel">Cancel</button>
+      <button class="ns-btn ns-btn-confirm" id="ns-confirm" disabled>Confirm</button>
+    </div>
+    <button class="ns-btn ns-btn-next" id="ns-next" style="display:none;">Next turn →</button>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ── encoded ticket deck (regenerate via scratchpad gen_food_nightshift.py) ── */
+var ENC = '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';
+var KEY='spill+the+beans';
+function decode(){
+  var raw=atob(ENC), out='';
+  for(var i=0;i<raw.length;i++) out+=String.fromCharCode(raw.charCodeAt(i)^KEY.charCodeAt(i%KEY.length));
+  return JSON.parse(decodeURIComponent(escape(out)));
+}
+var DECK=decode();
+
+/* ── helpers ── */
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function el(id){return document.getElementById(id);}
+
+/* ── state ── */
+var tickets, turn, pts, open, picked, seqOrder, locked;
+var CREWS=['Teal Crew','Orange Crew'], CLS=['ns-claimed-teal','ns-claimed-orange'];
+
+function newGame(){
+  var values=shuffle([10,10,10,10,10,10,10,20,20,20,20,20,20,20,30,30,30,30,30,30]);
+  var ids=shuffle((function(){var a=[];for(var n=1;n<=100;n++)a.push(n);return a;})()).slice(0,DECK.length);
+  tickets=shuffle(DECK.map(function(t,i){return {data:t};})).map(function(t,i){
+    t.pts=values[i]; t.id=ids[i]; t.claimed=-1; return t;
+  });
+  turn=0; pts=[0,0]; locked=false;
+  el('ns-pts-0').textContent='0'; el('ns-pts-1').textContent='0';
+  el('ns-end').classList.remove('ns-show');
+  renderBoard(); renderTurn();
+}
+
+function renderBoard(){
+  var b=el('ns-board'); b.innerHTML='';
+  tickets.forEach(function(t,i){
+    var btn=document.createElement('button');
+    btn.className='ns-ticket'+(t.claimed>=0?' '+CLS[t.claimed]:'');
+    btn.disabled=(t.claimed>=0);
+    btn.innerHTML='<span class="ns-tid">#'+String(t.id).padStart(3,'0')+'</span><span class="ns-tpts">'+t.pts+'</span>';
+    btn.addEventListener('click',function(){openTicket(i);});
+    b.appendChild(btn);
+  });
+}
+
+function renderTurn(){
+  el('ns-crew-0').classList.toggle('ns-active',turn===0);
+  el('ns-crew-1').classList.toggle('ns-active',turn===1);
+  el('ns-turnline').textContent=CREWS[turn]+' — pick an open ticket.';
+}
+
+/* ── modal ── */
+function openTicket(i){
+  open=i; picked=null; seqOrder=[]; locked=false;
+  var t=tickets[i], d=t.data;
+  el('ns-m-id').textContent='Ticket #'+String(t.id).padStart(3,'0')+' · '+t.pts+' pts';
+  el('ns-m-crew').textContent=CREWS[turn];
+  el('ns-m-crew').style.color=(turn===0?'var(--teal-d)':'var(--orange-d)');
+  el('ns-m-title').textContent=d.title;
+  el('ns-verdict').className='ns-verdict';
+  el('ns-next').style.display='none';
+  el('ns-cancel').style.display='';
+  el('ns-confirm').style.display='';
+  el('ns-confirm').disabled=true;
+  var body=el('ns-m-body'); body.innerHTML='';
+
+  if(d.type==='seq'){
+    el('ns-m-task').textContent='Tap the steps in the correct order. Tap a placed step to remove it.';
+    var disp;
+    do{ disp=shuffle(d.steps); }while(disp.join('|')===d.steps.join('|'));
+    var slots=document.createElement('div'); slots.className='ns-slots'; slots.id='ns-slots';
+    for(var s=0;s<d.steps.length;s++){
+      var sl=document.createElement('div'); sl.className='ns-slot';
+      sl.innerHTML='<span class="ns-slot-n">'+(s+1)+'</span><span class="ns-slot-txt"></span>';
+      slots.appendChild(sl);
+    }
+    var pool=document.createElement('div'); pool.className='ns-pool'; pool.style.marginTop='10px';
+    disp.forEach(function(step){
+      var c=document.createElement('button'); c.className='ns-chip'; c.textContent=step;
+      c.addEventListener('click',function(){
+        if(locked||c.disabled)return;
+        seqOrder.push(step); c.disabled=true; syncSlots();
+      });
+      pool.appendChild(c);
+    });
+    slots.addEventListener('click',function(e){
+      if(locked)return;
+      var slot=e.target.closest('.ns-slot');
+      if(!slot||!slot.classList.contains('ns-filled'))return;
+      var idx=Array.prototype.indexOf.call(slots.children,slot);
+      if(idx<0||idx>=seqOrder.length)return;
+      var removed=seqOrder.splice(idx,1)[0];
+      Array.prototype.forEach.call(pool.children,function(c){ if(c.textContent===removed)c.disabled=false; });
+      syncSlots();
+    });
+    function syncSlots(){
+      Array.prototype.forEach.call(slots.children,function(sl,idx){
+        var txt=sl.querySelector('.ns-slot-txt');
+        txt.textContent=seqOrder[idx]||'';
+        sl.classList.toggle('ns-filled',idx<seqOrder.length);
+      });
+      el('ns-confirm').disabled=(seqOrder.length!==d.steps.length);
+    }
+    body.appendChild(slots); body.appendChild(pool);
+  } else {
+    el('ns-m-task').textContent=(d.type==='gap'?'Choose the missing particle.':d.type==='idiom'?'Which idiom fits the situation?':'Choose the correct sentence.');
+    var opts=document.createElement('div'); opts.className='ns-opts';
+    shuffle(d.options).forEach(function(o){
+      var btn=document.createElement('button'); btn.className='ns-opt'; btn.textContent=o;
+      btn.addEventListener('click',function(){
+        if(locked)return;
+        picked=o;
+        Array.prototype.forEach.call(opts.children,function(x){x.classList.remove('ns-picked');});
+        btn.classList.add('ns-picked');
+        el('ns-confirm').disabled=false;
+      });
+      opts.appendChild(btn);
+    });
+    body.appendChild(opts);
+  }
+  el('ns-modal-bg').classList.add('ns-show');
+}
+
+el('ns-confirm').addEventListener('click',function(){
+  if(el('ns-confirm').disabled||locked)return;   /* single-submission lock */
+  locked=true;
+  el('ns-confirm').disabled=true;
+  el('ns-cancel').style.display='none';          /* no taking it back */
+  var t=tickets[open], d=t.data, ok;
+  if(d.type==='seq') ok=(seqOrder.join('|')===d.steps.join('|'));
+  else ok=(picked===d.answer);
+
+  var v=el('ns-verdict');
+  if(ok){
+    t.claimed=turn; pts[turn]+=t.pts;
+    el('ns-pts-'+turn).textContent=pts[turn];
+    v.className='ns-verdict ns-good ns-show';
+    v.innerHTML='<strong>✓ TICKET CLOSED — +'+t.pts+' pts</strong>'+
+      (d.type==='seq'?d.steps.map(function(s,i){return (i+1)+'. '+s;}).join('<br>')+'<br><br>':'')+
+      (d.type!=='seq'?'<em>'+d.answer+'</em><br><br>':'')+d.note;
+  } else {
+    v.className='ns-verdict ns-bad ns-show';
+    v.innerHTML='<strong>✗ NOT RESOLVED</strong>Ticket stays open. Try again another turn.';
+  }
+  el('ns-confirm').style.display='none';
+  el('ns-next').style.display='';               /* manual turn control */
+}, false);
+
+el('ns-cancel').addEventListener('click',function(){
+  el('ns-modal-bg').classList.remove('ns-show');
+});
+
+el('ns-next').addEventListener('click',function(){
+  el('ns-modal-bg').classList.remove('ns-show');
+  renderBoard();
+  if(tickets.every(function(t){return t.claimed>=0;})){ endShift(); return; }
+  turn=1-turn; renderTurn();
+});
+
+function endShift(){
+  var line;
+  if(pts[0]===pts[1]) line='A perfectly balanced shift. Management is suspicious.';
+  else line=(pts[0]>pts[1]?'Teal Crew':'Orange Crew')+' closed the most valuable tickets. The other crew does the washing-up.';
+  el('ns-end-score').innerHTML=
+    '<span style="color:var(--teal-d)">'+pts[0]+'</span> · <span style="color:var(--orange-d)">'+pts[1]+'</span>';
+  el('ns-end-line').textContent=line;
+  el('ns-end').classList.add('ns-show');
+  el('ns-turnline').textContent='All 20 orders served. Kitchen closed.';
+}
+
+el('ns-again').addEventListener('click',newGame);
+newGame();
+})();
+</script>
+</div>
+
+</body>
+</html>
