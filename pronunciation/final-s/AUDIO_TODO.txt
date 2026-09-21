@@ -1,0 +1,91 @@
+The final S: 38 clips to record, 9 already served from the GEII copy.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into final-s/assets/audio/ and it plays on the next load. Nothing to register.
+
+process.mp3
+    process
+processes.mp3
+    processes
+disease.mp3
+    disease
+diseases.mp3
+    diseases
+virus.mp3
+    virus
+viruses.mp3
+    viruses
+cell.mp3
+    cell
+cells.mp3
+    cells
+species.mp3
+    species
+the-scientists-report.mp3
+    the scientist's report
+pasteurs-lab.mp3
+    Pasteur's lab
+the-scientists-meeting.mp3
+    the scientists' meeting
+the-cells-membranes.mp3
+    the cells' membranes
+scientists-use-living-organisms-to-make-medicines-and-vaccines.mp3
+    Scientists use living organisms to make medicines and vaccines.
+a-yeast-cell-produces-enzymes-that-break-down-sugars.mp3
+    A yeast cell produces enzymes that break down sugars.
+biotechnology-fights-diseases-and-reduces-pollutants.mp3
+    Biotechnology fights diseases and reduces pollutants.
+pickles-and-cheeses-need-microbes-that-ferment-the-sugars.mp3
+    Pickles and cheeses need microbes that ferment the sugars.
+the-scientists-say-the-new-process-kills-harmful-bacteria.mp3
+    The scientists say the new process kills harmful bacteria.
+pollutants.mp3
+    pollutants
+plants.mp3
+    plants
+genes.mp3
+    genes
+hormones.mp3
+    hormones
+antibiotics.mp3
+    antibiotics
+organisms.mp3
+    organisms
+proteins.mp3
+    proteins
+tests.mp3
+    tests
+biosensors.mp3
+    biosensors
+cheeses.mp3
+    cheeses
+additives.mp3
+    additives
+medicines.mp3
+    medicines
+it-grows.mp3
+    it grows
+it-ferments.mp3
+    it ferments
+it-kills.mp3
+    it kills
+it-reduces.mp3
+    it reduces
+the-scientists.mp3
+    the scientist's
+pasteurs.mp3
+    Pasteur's
+alices.mp3
+    Alice's
+the-labs.mp3
+    the lab's
+
+# Already recorded for GEII, played from colibrissimo.github.io/geii/pronunciation/final-s/ (no need to redo):
+#   zzzzzz.mp3    Zzzzzz
+#   ssssss.mp3    Ssssss
+#   shhhhh.mp3    Shhhhh
+#   jjjjjj.mp3    Jjjjjj
+#   mikes-cat.mp3    Mike's cat
+#   roses-cat.mp3    Rose's cat
+#   tesss-car.mp3    Tess's car
+#   it-detects.mp3    it detects
+#   it-produces.mp3    it produces

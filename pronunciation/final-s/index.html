@@ -1,0 +1,449 @@
+<div id="fs-mod">
+  <style>
+    #fs-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #fs-mod *{box-sizing:border-box;}
+    #fs-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #fs-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #fs-mod h3{font-size:16px;color:var(--petrol);margin:14px 0 6px;}
+    #fs-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #fs-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #fs-mod .rule{font-size:16px;}
+    #fs-mod .rule b{color:var(--petrol);}
+    #fs-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #fs-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #fs-mod .key .y{color:var(--saffron2);}
+    #fs-mod .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    #fs-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #fs-mod .cat{background:var(--petrol);color:#fff;flex:1;min-width:150px;font-size:16px;}
+    #fs-mod .cat:hover{background:var(--petrol2);}
+    #fs-mod .accent{background:var(--saffron);color:var(--ink);}
+    #fs-mod .accent:hover{background:var(--saffron2);}
+    #fs-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #fs-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #fs-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #fs-mod .fb.ok{color:var(--ok);} #fs-mod .fb.no{color:var(--no);}
+    #fs-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #fs-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #fs-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #fs-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #fs-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #fs-mod td,#fs-mod th{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left;}
+    #fs-mod th{background:#eef1f0;color:var(--petrol);font-size:17px;}
+    #fs-mod td:first-child{color:var(--petrol);font-weight:bold;white-space:nowrap;}
+    #fs-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #fs-mod .x{color:var(--saffron2);font-weight:bold;}
+    #fs-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #fs-mod .hidden{display:none !important;}
+    #fs-mod .center{text-align:center;}
+    #fs-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #fs-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #fs-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+    #fs-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+    #fs-mod .bigword{font-size:34px;font-weight:bold;text-align:center;color:var(--ink);margin:6px 0 2px;}
+    #fs-mod .base{text-align:center;font-size:15px;color:#52646a;margin-bottom:8px;}
+
+    /* the four noises */
+    #fs-mod .noises{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;}
+    #fs-mod .noise{flex:1;min-width:150px;background:#fff7e6;border:2px solid var(--saffron);border-radius:12px;padding:12px;text-align:center;}
+    #fs-mod .noise .snd{font-size:24px;font-weight:bold;color:var(--petrol);letter-spacing:1px;}
+    #fs-mod .noise .ipa{font-size:19px;font-weight:bold;color:var(--saffron2);margin:4px 0;}
+    #fs-mod .noise .do{font-size:14px;color:#3a4a4d;}
+
+    /* selectable words */
+    #fs-mod .words{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0;}
+    #fs-mod .w{background:#eef1f0;border:2px solid var(--line);border-radius:10px;padding:9px 14px;font-size:17px;font-weight:bold;letter-spacing:1px;cursor:pointer;color:var(--petrol);}
+    #fs-mod .w:hover{border-color:var(--saffron);}
+    #fs-mod .w.on{background:#fff7e6;border-color:var(--saffron);}
+    #fs-mod .w.right{background:#e7f3ec;border-color:var(--ok);color:var(--ok);}
+    #fs-mod .w.wrong{background:#f7e9e9;border-color:var(--no);color:var(--no);}
+    #fs-mod .w.missed{background:#fff;border-color:var(--no);border-style:dashed;color:var(--no);}
+
+    /* the staged fork */
+    #fs-mod .step{border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0;background:#fbfbf9;}
+    #fs-mod .step.live{border-color:var(--saffron);background:#fff7e6;}
+    #fs-mod .step.done{opacity:.65;}
+    #fs-mod .steplabel{font-size:13px;font-weight:bold;color:var(--petrol);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+    #fs-mod .verdict{text-align:center;font-size:26px;font-weight:bold;color:var(--petrol);margin:6px 0;}
+    #fs-mod .verdict small{display:block;font-size:14px;font-weight:normal;color:#3a4a4d;margin-top:4px;}
+  </style>
+
+  <h1>The final S</h1>
+  <p class="sub">What is biotechnology? Session 4. In French the final <b>s</b> is silent. In English it is not.</p>
+
+  <div class="panel rule">
+    <h2>One rule, three grammars</h2>
+    <p><b>The pronunciation rule is the same for the plural, the genitive and the third person singular.</b></p>
+
+    <div class="key">
+      <div class="big">two cell<span class="y">s</span> &nbsp;&middot;&nbsp; the scientist<span class="y">'s</span> report &nbsp;&middot;&nbsp; it grow<span class="y">s</span></div>
+    </div>
+
+    <p>There are three possible pronunciations. The sound in front decides.</p>
+
+    <table>
+      <tr><th>/z/</th><th>/s/</th><th>/&#618;z/</th></tr>
+      <tr>
+        <td style="color:var(--ink);font-weight:normal;">after a <b>voiced</b> consonant, and after any <b>vowel</b><br><br>cells &middot; genes &middot; hormones<br>it grows &middot; it kills</td>
+        <td style="color:var(--ink);font-weight:normal;">after a <b>voiceless</b> consonant<br><br>pollutants &middot; plants &middot; antibiotics<br>it detects &middot; it ferments</td>
+        <td style="color:var(--ink);font-weight:normal;">after a <b>sibilant</b><br>(and it adds a whole syllable)<br><br>diseases &middot; processes &middot; viruses<br>it produces</td>
+      </tr>
+    </table>
+
+    <p>One rule and one exception:</p>
+
+    <div class="key">
+      <div class="big">/z/ is the normal ending.</div>
+      <div class="y">It becomes /s/ only when the sound before it is voiceless, because you cannot switch your voice on that fast.</div>
+    </div>
+
+    <p class="note">Fingers on the throat. Say the end of <i>lab</i>, then the end of <i>lap</i>. /b/ buzzes and /p/ does not.</p>
+  </div>
+
+  <!-- 1. THE FOUR NOISES -->
+  <div class="panel">
+    <h2>1 &middot; The four noises</h2>
+    <p class="sub" style="margin-bottom:8px;">Everything on this page depends on recognising one family of sounds. Do these out loud.</p>
+
+    <div class="noises">
+      <div class="noise"><div class="snd">Zzzzzz</div><div class="ipa">/z/</div><div class="do">be the bee</div><span class="chip" data-w="Zzzzzz">&#128266; Listen</span></div>
+      <div class="noise"><div class="snd">Ssssss</div><div class="ipa">/s/</div><div class="do">be the snake</div><span class="chip" data-w="Ssssss">&#128266; Listen</span></div>
+      <div class="noise"><div class="snd">Shhhhh</div><div class="ipa">/&#643;/</div><div class="do">ask for silence</div><span class="chip" data-w="Shhhhh">&#128266; Listen</span></div>
+      <div class="noise"><div class="snd">Jjjjjj</div><div class="ipa">/&#658;/</div><div class="do">say "joujou"</div><span class="chip" data-w="Jjjjjj">&#128266; Listen</span></div>
+    </div>
+
+    <p>Those are <b>sibilants</b>: consonants that hiss or buzz, made by sending air at your teeth. Add the two that are the same noises with a stop on the front, and the full list is six. You met the /t&#643;/ and the /&#643;/ last week.</p>
+
+    <p class="center" style="font-size:20px;line-height:2;">
+      /s/ &nbsp; /z/ &nbsp; /&#643;/ &nbsp; /t&#643;/ &nbsp; /&#658;/ &nbsp; /d&#658;/
+      <br><span style="font-size:15px;color:#3a4a4d;">proce<b>ss</b> &nbsp;&middot;&nbsp; disea<b>se</b> &nbsp;&middot;&nbsp; fre<b>sh</b> &nbsp;&middot;&nbsp; ba<b>tch</b> &nbsp;&middot;&nbsp; bei<b>ge</b> &nbsp;&middot;&nbsp; fri<b>dge</b></span>
+    </p>
+
+    <h3>Now find them.</h3>
+    <p class="sub" style="margin-bottom:8px;">Click every word that <b>ends in one of those six sounds</b>. Say each one aloud first.</p>
+    <div class="words" id="fs-ex31"></div>
+    <div class="center"><button class="accent" id="fs-ex31check">Check</button> <button class="ghost hidden" id="fs-ex31reset">Try again</button></div>
+    <div class="fb" id="fs-ex31fb"></div>
+    <div class="why" id="fs-ex31why"></div>
+  </div>
+
+  <!-- 2. THE FORK -->
+  <div class="panel">
+    <h2>2 &middot; Run the decision</h2>
+    <div class="prog" id="fs-prog">Word 1 of 0</div>
+    <div class="bar"><i id="fs-fill"></i></div>
+    <div class="bigword" id="fs-word">&middot;</div>
+    <div class="base" id="fs-base">&nbsp;</div>
+    <div class="center" style="margin-bottom:4px;"><button class="listen" id="fs-say">&#128266; Listen</button></div>
+
+    <div class="step" id="fs-step1">
+      <div class="steplabel">Step 1</div>
+      <p class="center" style="margin:0 0 10px;font-size:17px;">Is the last sound of the <b>base word</b> one of the <b>four noises</b>?</p>
+      <div class="btns" id="fs-c1">
+        <button class="cat" data-c="sib">Yes, it hisses or buzzes</button>
+        <button class="cat" data-c="not">No, it is something else</button>
+      </div>
+    </div>
+
+    <div class="step hidden" id="fs-step2">
+      <div class="steplabel">Step 2</div>
+      <p class="center" style="margin:0 0 10px;font-size:17px;">Fingers on the throat. Does the last sound <b>buzz</b>?</p>
+      <div class="btns" id="fs-c2">
+        <button class="cat" data-c="vd">Yes, it is voiced</button>
+        <button class="cat" data-c="vl">No, it is voiceless</button>
+      </div>
+    </div>
+
+    <div class="verdict hidden" id="fs-verdict"></div>
+    <div class="fb" id="fs-fb"></div>
+    <div class="why" id="fs-why"></div>
+    <div class="center"><button class="accent hidden" id="fs-next">Next word &rarr;</button> <button class="ghost hidden" id="fs-again">Play again</button></div>
+    <div class="score" id="fs-score"></div>
+    <p class="note" id="fs-ttsnote"></p>
+  </div>
+
+  <!-- 3. WHY THE THIRD ONE EXISTS -->
+  <div class="panel">
+    <h2>3 &middot; Why an extra syllable?</h2>
+    <div class="flag">
+      <p style="margin-top:0;"><b>/&#618;z/ exists to make the /s/ or /z/ audible.</b></p>
+      <p style="margin-bottom:0;">Try it. Say <i>process</i>, then try to add an s straight on the end without changing anything. You cannot. An s after an s is an s. So English pushes a small vowel in front of it, and the word grows a syllable.</p>
+    </div>
+    <table>
+      <tr><th>one syllable more</th><th>because</th></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="process">process</span> &rarr; <span class="chip" data-w="processes">processes</span></td><td style="font-weight:normal;">PRO-cess-iz. Three syllables, not two.</td></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="disease">disease</span> &rarr; <span class="chip" data-w="diseases">diseases</span></td><td style="font-weight:normal;">di-ZEEZ-iz. The written <i>se</i> is already a /z/.</td></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="virus">virus</span> &rarr; <span class="chip" data-w="viruses">viruses</span></td><td style="font-weight:normal;">VY-rus-iz.</td></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="cell">cell</span> &rarr; <span class="chip" data-w="cells">cells</span></td><td style="font-weight:normal;">no. Cell ends in /l/, so <i>cells</i> stays one syllable with a /z/ on the end.</td></tr>
+    </table>
+    <div class="flag" style="margin-top:12px;">
+      <b>The word that breaks the pattern: species.</b> <span class="chip" data-w="species">species</span> is one species and two species. The s is already there, said /z/, and nothing is added. The same for <i>series</i>.
+    </div>
+   </div>
+
+  <!-- 4. THE GENITIVE -->
+  <div class="panel">
+    <h2>4 &middot; The same rule, wearing an apostrophe</h2>
+    <p class="sub" style="margin-bottom:8px;">Tap any of them to hear it.</p>
+    <table>
+      <tr><th>genitive</th><th>sound</th><th>because</th></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="Mike's cat">Mike's cat</span></td><td style="color:var(--ink);font-weight:normal;">/s/</td><td style="color:var(--ink);font-weight:normal;">Mike ends in /k/, voiceless</td></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="Rose's cat">Rose's cat</span></td><td style="color:var(--ink);font-weight:normal;">/&#618;z/</td><td style="color:var(--ink);font-weight:normal;">Rose already ends in a buzz. ROH-ziz</td></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="Tess's car">Tess's car</span></td><td style="color:var(--ink);font-weight:normal;">/&#618;z/</td><td style="color:var(--ink);font-weight:normal;">TESS-iz. The one everybody gets wrong</td></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="the scientist's report">the scientist's report</span></td><td style="color:var(--ink);font-weight:normal;">/s/</td><td style="color:var(--ink);font-weight:normal;">scientist ends in /t/, voiceless</td></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="Pasteur's lab">Pasteur's lab</span></td><td style="color:var(--ink);font-weight:normal;">/z/</td><td style="color:var(--ink);font-weight:normal;">in English, Pasteur ends in a vowel sound, and vowels are voiced</td></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="the scientists' meeting">the scientists' meeting</span></td><td style="color:var(--ink);font-weight:normal;">/s/</td><td style="color:var(--ink);font-weight:normal;">ends in /t/, voiceless. The apostrophe is silent</td></tr>
+      <tr><td style="font-weight:normal;"><span class="chip" data-w="the cells' membranes">the cells' membranes</span></td><td style="color:var(--ink);font-weight:normal;">/z/</td><td style="color:var(--ink);font-weight:normal;">ends in /l/, voiced</td></tr>
+    </table>
+    <p class="note">Notice the last two. <i>The scientists' meeting</i> and <i>the cells' membranes</i> have no extra s written at all, and they are still pronounced with the ending they already had. The apostrophe never makes a sound. It only tells you who owns the thing.</p>
+  </div>
+
+  <!-- 5. SAY IT -->
+  <div class="panel">
+    <h2>5 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;">The <span class="x">orange</span> endings are the ones that add a syllable. Every other s is there and must be heard.</p>
+    <div class="tw">Scientist<b>s</b> use living organism<b>s</b> to make medicine<b>s</b> and vaccine<b>s</b>. <span class="note" style="display:inline;">(one /s/, then three /z/)</span> <span class="chip" data-w="Scientists use living organisms to make medicines and vaccines.">&#128266; Listen</span></div>
+    <div class="tw">A yeast cell produc<span class="x">es</span> enzyme<b>s</b> that break down sugar<b>s</b>. <span class="chip" data-w="A yeast cell produces enzymes that break down sugars.">&#128266; Listen</span></div>
+    <div class="tw">Biotechnology fight<b>s</b> diseas<span class="x">es</span> and reduc<span class="x">es</span> pollutant<b>s</b>. <span class="note" style="display:inline;">(two /s/, two extra syllables)</span> <span class="chip" data-w="Biotechnology fights diseases and reduces pollutants.">&#128266; Listen</span></div>
+    <div class="tw">Pickle<b>s</b> and chees<span class="x">es</span> need microbe<b>s</b> that ferment the sugar<b>s</b>. <span class="chip" data-w="Pickles and cheeses need microbes that ferment the sugars.">&#128266; Listen</span></div>
+    <div class="tw">The scientist<b>s</b> say the new process kill<b>s</b> harmful bacteria. <span class="note" style="display:inline;">(and the s of <i>process</i> is not an ending at all)</span> <span class="chip" data-w="The scientists say the new process kills harmful bacteria.">&#128266; Listen</span></div>
+    <table style="margin-top:12px;">
+      <tr><td>/s/</td><td style="color:var(--ink);font-weight:normal;"><b>pollutants &middot; plants &middot; crops &middot; antibiotics &middot; tests &middot; products &middot; it detects &middot; it ferments &middot; it fights</b></td></tr>
+      <tr><td>/z/</td><td style="color:var(--ink);font-weight:normal;"><b>cells &middot; genes &middot; hormones &middot; medicines &middot; organisms &middot; proteins &middot; biosensors &middot; antibodies &middot; additives &middot; pickles &middot; it grows &middot; it kills &middot; it hampers</b></td></tr>
+      <tr><td>/&#618;z/</td><td style="color:var(--ink);font-weight:normal;"><b>diseases &middot; processes &middot; viruses &middot; cheeses &middot; batches &middot; juices &middot; it produces &middot; it reduces &middot; it uses</b></td></tr>
+    </table>
+    </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},children:[],
+      classList:{add:function(){},remove:function(){},contains:function(){return false;}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];},querySelector:function(){return null;},appendChild:function(){}};
+    if(!document.title) document.title='The final S · Bioengineering English';
+
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then in the GEII copy of this lesson (the four
+       noises, the three cats and cars, and a few verbs were recorded there), then the
+       browser voice. Drop an mp3 named <key>.mp3 into assets/audio/ and it plays on
+       the next load. Lowercase path: GitHub Pages is case-sensitive. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/final-s/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/final-s/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.8);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      var found={};
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        /* One guarded step per attempt: a 404 fires both onerror and the play()
+           rejection, and Firefox blocks a retry made after the click's activation
+           is spent. See silent-r for the full story. */
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var moved=false;
+          function next(){ if(moved) return; moved=true; attempt(i+1); }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=next;
+          a.onplaying=function(){ moved=true; found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](next);
+        })(0);
+      }};
+    })();
+
+    R('fs-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where a clip exists, and fall back to your browser voice if one is missing or slow.'
+      : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
+
+    Array.prototype.forEach.call(document.querySelectorAll('#fs-mod .chip[data-w]'), function(c){
+      c.addEventListener('click', function(){ TTS.say(c.getAttribute('data-w'), 0.72); });
+    });
+
+    /* ---------- 1. find the sibilants ---------- */
+    var EX31=[
+      ["BATCH",1,"ends in /t&#643;/, one of the six"],
+      ["CROP",0,"ends in /p/. A plosive, not a sibilant"],
+      ["MIX",1,"the trick one. &lt;x&gt; is /ks/, so it ends in an s sound. That is why it is <i>mixes</i>"],
+      ["FOOD",0,"ends in /d/. Voiced, but not a hiss"],
+      ["BEVERAGE",1,"ends in /d&#658;/, the fridge sound"],
+      ["FRESH",1,"ends in /&#643;/"],
+      ["DISEASE",1,"ends in /z/. The &lt;e&gt; is silent, the buzz is not"],
+      ["GRAPH",0,"ends in /f/. It hisses a little, but the air goes at the lip, not the teeth"],
+      ["YEAST",0,"the other trick one. It has an s in it, but the last sound is /t/"],
+      ["JUICE",1,"ends in /s/. The &lt;ce&gt; is a hiss"]
+    ];
+    var ex31box=R('fs-ex31');
+    EX31.forEach(function(it,i){
+      var b=document.createElement('div');
+      b.className='w'; b.textContent=it[0]; b.setAttribute('data-i',i);
+      b.addEventListener('click',function(){
+        if(ex31done) return;
+        b.classList.toggle('on');
+      });
+      ex31box.appendChild(b);
+    });
+    var ex31done=false;
+    R('fs-ex31check').addEventListener('click',function(){
+      if(ex31done) return;
+      ex31done=true;
+      var got=0, tot=0, notes=[];
+      Array.prototype.forEach.call(ex31box.children,function(b,i){
+        var truth=EX31[i][1], on=b.classList.contains('on');
+        if(truth) tot++;
+        b.classList.remove('on');
+        if(truth && on){ b.classList.add('right'); got++; }
+        else if(!truth && on){ b.classList.add('wrong'); notes.push('<b>'+EX31[i][0]+'</b>: '+EX31[i][2]); }
+        else if(truth && !on){ b.classList.add('missed'); notes.push('<b>'+EX31[i][0]+'</b>: '+EX31[i][2]); }
+      });
+      var fb=R('fs-ex31fb');
+      fb.textContent=got+' of '+tot+' sibilant words found.';
+      fb.className = (got===tot && notes.length===0) ? 'fb ok' : 'fb no';
+      R('fs-ex31why').innerHTML = notes.length ? notes.join('<br>') : 'All six, and none of the traps. MIX and YEAST are the two that catch people.';
+      R('fs-ex31reset').classList.remove('hidden');
+    });
+    R('fs-ex31reset').addEventListener('click',function(){
+      ex31done=false;
+      Array.prototype.forEach.call(ex31box.children,function(b){ b.className='w'; });
+      R('fs-ex31fb').textContent=''; R('fs-ex31fb').className='fb';
+      R('fs-ex31why').innerHTML='';
+      R('fs-ex31reset').classList.add('hidden');
+    });
+
+    /* ---------- 2. the staged fork ---------- */
+    /* word, gloss, class: sib | vd | vl, why */
+    var ITEMS=[
+      ["pollutants","plural of pollutant","vl","Pollutant ends in /t/, voiceless. So /s/."],
+      ["cells","plural of cell","vd","Cell ends in /l/, voiced. So /z/, the normal ending."],
+      ["diseases","plural of disease","sib","Disease ends in /z/, already a buzz. di-ZEEZ-iz."],
+      ["plants","plural of plant","vl","Plant ends in /t/, voiceless. So /s/."],
+      ["genes","plural of gene","vd","Gene ends in /n/, voiced. So /z/."],
+      ["processes","plural of process","sib","Process ends in /s/. You cannot hear an s after an s: PRO-cess-iz."],
+      ["hormones","plural of hormone","vd","Hormone ends in /n/, voiced. So /z/."],
+      ["antibiotics","plural of antibiotic","vl","Antibiotic ends in /k/, voiceless. So /s/."],
+      ["organisms","plural of organism","vd","Organism ends in /m/, voiced. So /z/."],
+      ["viruses","plural of virus","sib","Virus ends in /s/. VY-rus-iz, three syllables."],
+      ["proteins","plural of protein","vd","Protein ends in /n/, voiced. So /z/."],
+      ["tests","plural of test","vl","Test ends in /t/, voiceless. So /s/. The s in the middle changes nothing: only the END matters."],
+      ["biosensors","plural of biosensor","vd","Biosensor ends in a vowel sound, and vowels are always voiced. So /z/."],
+      ["cheeses","plural of cheese","sib","Cheese ends in /z/. CHEEZ-iz."],
+      ["additives","plural of additive","vd","Additive ends in /v/, voiced. So /z/."],
+      ["medicines","plural of medicine","vd","Medicine ends in /n/, voiced. So /z/."],
+      ["it detects","third person","vl","Detect ends in /t/, voiceless. So /s/."],
+      ["it grows","third person","vd","Grow ends in a vowel sound. So /z/."],
+      ["it produces","third person","sib","Produce ends in /s/. pro-DUCE-iz."],
+      ["it ferments","third person","vl","Ferment ends in /t/, voiceless. So /s/."],
+      ["it kills","third person","vd","Kill ends in /l/, voiced. So /z/."],
+      ["it reduces","third person","sib","Reduce ends in /s/. re-DUCE-iz."],
+      ["the scientist's","genitive","vl","Scientist ends in /t/, voiceless. So /s/."],
+      ["Pasteur's","genitive","vd","In English, Pasteur ends in a vowel sound, and vowels are voiced. So /z/."],
+      ["Alice's","genitive","sib","Alice ends in /s/. AL-iss-iz. Almost everybody says AL-iss."],
+      ["the lab's","genitive","vd","Lab ends in /b/, voiced. So /z/."]
+    ];
+    var LABEL={sib:"/&#618;z/", vd:"/z/", vl:"/s/"};
+    var SUB={sib:"and the word grows a syllable", vd:"the normal ending", vl:"because the sound in front is voiceless"};
+
+    function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} }
+    shuffle(ITEMS);
+    var idx=0, right=0, stage=1;
+
+    function render(){
+      stage=1;
+      var it=ITEMS[idx];
+      R('fs-word').textContent=it[0];
+      R('fs-base').textContent=it[1];
+      R('fs-fb').textContent=''; R('fs-fb').className='fb';
+      R('fs-why').innerHTML='';
+      R('fs-verdict').classList.add('hidden');
+      R('fs-step1').classList.remove('hidden','done'); R('fs-step1').classList.add('live');
+      R('fs-step2').classList.add('hidden'); R('fs-step2').classList.remove('live','done');
+      R('fs-next').classList.add('hidden');
+      R('fs-again').classList.add('hidden');
+      R('fs-prog').textContent='Word '+(idx+1)+' of '+ITEMS.length;
+      R('fs-fill').style.width=Math.round(idx/ITEMS.length*100)+'%';
+    }
+
+    function finish(correct){
+      var it=ITEMS[idx], fb=R('fs-fb'), v=R('fs-verdict');
+      v.innerHTML=it[0].replace(/s$/,'<span style="color:#e0a52a">s</span>')+' &nbsp;'+LABEL[it[2]]+'<small>'+SUB[it[2]]+'</small>';
+      v.classList.remove('hidden');
+      if(correct){ right++; fb.textContent='Correct.'; fb.className='fb ok'; }
+      else { fb.textContent='Not this one.'; fb.className='fb no'; }
+      R('fs-why').innerHTML=it[3];
+      R('fs-step1').classList.add('done'); R('fs-step1').classList.remove('live');
+      R('fs-step2').classList.add('done'); R('fs-step2').classList.remove('live');
+      R('fs-score').textContent=right+' right out of '+(idx+1);
+      if(idx<ITEMS.length-1) R('fs-next').classList.remove('hidden');
+      else{
+        R('fs-again').classList.remove('hidden');
+        R('fs-fill').style.width='100%';
+        R('fs-score').textContent='Finished: '+right+' right out of '+ITEMS.length+'.';
+      }
+    }
+
+    R('fs-c1').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('.cat') : null;
+      if(!b || stage!==1) return;
+      var it=ITEMS[idx], isSib=(it[2]==='sib'), said=(b.getAttribute('data-c')==='sib');
+      if(said && isSib){ stage=0; finish(true); return; }
+      if(said && !isSib){ stage=0; finish(false); return; }
+      if(!said && isSib){ stage=0; finish(false); return; }
+      /* correct: not a sibilant, so open the voicing fork */
+      stage=2;
+      R('fs-step1').classList.add('done'); R('fs-step1').classList.remove('live');
+      R('fs-step2').classList.remove('hidden'); R('fs-step2').classList.add('live');
+      var fb=R('fs-fb'); fb.textContent='Right, no hiss. So the word stays the same length.'; fb.className='fb ok';
+    });
+
+    R('fs-c2').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('.cat') : null;
+      if(!b || stage!==2) return;
+      stage=0;
+      finish(b.getAttribute('data-c')===ITEMS[idx][2]);
+    });
+
+    R('fs-next').addEventListener('click',function(){ idx++; render(); });
+    R('fs-again').addEventListener('click',function(){
+      idx=0; right=0; shuffle(ITEMS); R('fs-score').textContent=''; render();
+    });
+    R('fs-say').addEventListener('click',function(){ TTS.say(ITEMS[idx][0], 0.72); });
+
+    render();
+
+    if(MISS.length && window.console && console.warn) console.warn('fs-mod: elements missing from the page: '+MISS.join(', '));
+  })();
+  </script>
+</div>

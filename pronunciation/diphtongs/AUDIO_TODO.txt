@@ -1,0 +1,148 @@
+Diphthongs: 59 clips to record, 24 already served from the GEII copy.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into diphtongs/assets/audio/ and it plays on the next load. Nothing to register.
+
+grain.mp3
+    grain
+ale.mp3
+    ale
+flavour.mp3
+    flavour
+stage.mp3
+    stage
+carbonate.mp3
+    carbonate
+fermentation.mp3
+    fermentation
+pint.mp3
+    pint
+rye.mp3
+    rye
+dry.mp3
+    dry
+pipe.mp3
+    pipe
+mild.mp3
+    mild
+light.mp3
+    light
+roast.mp3
+    roast
+toasty.mp3
+    toasty
+foam.mp3
+    foam
+cold.mp3
+    cold
+oats.mp3
+    oats
+aroma.mp3
+    aroma
+boil.mp3
+    boil
+boiling.mp3
+    boiling
+oil.mp3
+    oil
+spoil.mp3
+    spoil
+stout.mp3
+    stout
+lautering.mp3
+    lautering
+brown.mp3
+    brown
+sour.mp3
+    sour
+cloudy.mp3
+    cloudy
+amount.mp3
+    amount
+air.mp3
+    air
+airlock.mp3
+    airlock
+share.mp3
+    share
+prepare.mp3
+    prepare
+compare.mp3
+    compare
+clear.mp3
+    clear
+year.mp3
+    year
+cereal.mp3
+    cereal
+mature.mp3
+    mature
+ipa.mp3
+    IPA
+process.mp3
+    process
+hops.mp3
+    hops
+pale.mp3
+    pale
+roast-the-grain-slowly-and-the-stout-turns-brown-and-toasty.mp3
+    Roast the grain slowly and the stout turns brown and toasty.
+a-pint-of-pale-ale-should-taste-bright-and-clear-in-the-glass.mp3
+    A pint of pale ale should taste bright and clear in the glass.
+boil-the-wort-for-an-hour-then-cool-it-before-fermentation.mp3
+    Boil the wort for an hour, then cool it before fermentation.
+make-sure-the-beer-matures-for-a-year-in-a-cold-cellar.mp3
+    Make sure the beer matures for a year in a cold cellar.
+malt.mp3
+    malt
+wort.mp3
+    wort
+mash.mp3
+    mash
+yeast.mp3
+    yeast
+kettle.mp3
+    kettle
+water.mp3
+    water
+sugar.mp3
+    sugar
+tank.mp3
+    tank
+crush.mp3
+    crush
+barley.mp3
+    barley
+cool.mp3
+    cool
+grist.mp3
+    grist
+bottle.mp3
+    bottle
+lager.mp3
+    lager
+
+# Already recorded for GEII, played from colibrissimo.github.io/geii/pronunciation/diphthongs/ (no need to redo):
+#   let.mp3    let
+#   late.mp3    late
+#   pen.mp3    pen
+#   pain.mp3    pain
+#   test.mp3    test
+#   taste.mp3    taste
+#   get.mp3    get
+#   gate.mp3    gate
+#   hop.mp3    hop
+#   hope.mp3    hope
+#   not.mp3    not
+#   note.mp3    note
+#   cost.mp3    cost
+#   coast.mp3    coast
+#   rod.mp3    rod
+#   road.mp3    road
+#   choice.mp3    choice
+#   beer.mp3    beer
+#   near.mp3    near
+#   sure.mp3    sure
+#   pure.mp3    pure
+#   tour.mp3    tour
+#   secure.mp3    secure
+#   filter.mp3    filter

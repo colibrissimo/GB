@@ -1,0 +1,288 @@
+<div id="dp-mod">
+  <style>
+    #dp-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #dp-mod *{box-sizing:border-box;}
+    #dp-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #dp-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #dp-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #dp-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #dp-mod .rule{font-size:16px;}
+    #dp-mod .rule b{color:var(--petrol);}
+    #dp-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #dp-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #dp-mod .key .y{color:var(--saffron2);}
+    #dp-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #dp-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #dp-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #dp-mod .fb.ok{color:var(--ok);} #dp-mod .fb.no{color:var(--no);}
+    #dp-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #dp-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #dp-mod td{border:1px solid var(--line);padding:8px 10px;}
+    #dp-mod td:first-child{color:#6a7a7d;white-space:nowrap;} #dp-mod td b{color:var(--petrol);}
+    #dp-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #dp-mod .tw u{text-decoration:none;border-bottom:3px solid var(--saffron);font-weight:bold;}
+    #dp-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #dp-mod .hidden{display:none !important;}
+    #dp-mod .center{text-align:center;}
+    #dp-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #dp-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+
+    #dp-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+    #dp-mod .pairs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:10px 0;}
+    #dp-mod .pairs div{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#fff;text-align:center;min-width:128px;}
+    /* the eight, named */
+    #dp-mod .nm{display:inline-block;background:var(--petrol);color:#fff;border-radius:6px;padding:2px 9px;font-weight:bold;font-size:15px;letter-spacing:1px;white-space:nowrap;}
+    #dp-mod .nm.letter{background:var(--saffron);color:var(--ink);}
+    /* the maze */
+    #dp-mod .maze{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:14px auto 8px;max-width:560px;}
+    #dp-mod .maze button{font-size:14px;font-weight:bold;padding:14px 4px;background:#fff;border:2px solid var(--line);
+      color:#8a9599;border-radius:8px;text-transform:uppercase;letter-spacing:.5px;}
+    #dp-mod .maze button:hover{border-color:var(--saffron);}
+    #dp-mod .maze button.on{background:#e6f4ec;border-color:var(--ok);color:var(--ok);}
+    #dp-mod .maze button.here{background:var(--ok);border-color:var(--ok);color:#fff;}
+    #dp-mod .maze button.dead{background:#fbeaea;border-color:var(--no);color:var(--no);}
+    #dp-mod .maze button.start{border-style:dashed;}
+    #dp-mod .mzstat{text-align:center;font-size:15px;color:var(--petrol);font-weight:bold;margin-bottom:4px;}
+    #dp-mod .mirror{background:#fff7e6;border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;}
+    #dp-mod .mirror b{color:var(--petrol);}
+    #dp-mod .jaw{font-size:19px;text-align:center;margin:8px 0 4px;color:var(--petrol);font-weight:bold;}
+  </style>
+
+  <h1>Diphthongs</h1>
+  <p class="sub">The brewing process. Session 4. Two vowel sounds inside one syllable.</p>
+
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <div class="key">
+      <div class="big">2 vowels &nbsp;/&nbsp; 1 single syllable</div>
+      <div class="y">Three words from the brewhouse. Three diphthongs.</div>
+      <div class="big">gr<b>ai</b>n &middot; p<b>i</b>nt &middot; r<b>oa</b>st</div>
+    </div>
+    <div class="flag"><b>Why this is hard for a French person:</b> French vowels hold still. They start somewhere and stay there. English keeps moving. Say <i>grain</i> in French, then in English: the French one is one sound, the English one starts on <i>e</i> and slides up to <i>i</i>.</div>
+  </div>
+
+  <!-- 1 -->
+  <div class="panel">
+    <h2>1 &middot; The mirror test</h2>
+    <div class="mirror">
+      <div class="jaw">let &nbsp;&rarr;&nbsp; late</div>
+      <p style="margin-top:4px;"><b>Watch your lower jaw.</b> On <i>let</i> it stays where it is. On <i>late</i> it should move <b>upward</b>, a small amount, <i>while</i> you are still saying the vowel.</p>
+      <p class="center"><b class="chip" data-w="let">let</b> <b class="chip" data-w="late">late</b> &nbsp;&middot;&nbsp; <b class="chip" data-w="pen">pen</b> <b class="chip" data-w="pain">pain</b> &nbsp;&middot;&nbsp; <b class="chip" data-w="test">test</b> <b class="chip" data-w="taste">taste</b> &nbsp;&middot;&nbsp; <b class="chip" data-w="get">get</b> <b class="chip" data-w="gate">gate</b></p>
+    </div>
+
+    <div class="mirror">
+      <div class="jaw">hop &nbsp;&rarr;&nbsp; hope</div>
+      <p style="margin-top:4px;">On <i>hope</i> the jaw moves <b>forward</b>, and the lips round as it goes. Yes, <i>hop</i>: the plant is the short one. Say it French and it is right.</p>
+      <p class="center"><b class="chip" data-w="hop">hop</b> <b class="chip" data-w="hope">hope</b> &nbsp;&middot;&nbsp; <b class="chip" data-w="not">not</b> <b class="chip" data-w="note">note</b> &nbsp;&middot;&nbsp; <b class="chip" data-w="cost">cost</b> <b class="chip" data-w="coast">coast</b> &nbsp;&middot;&nbsp; <b class="chip" data-w="rod">rod</b> <b class="chip" data-w="road">road</b></p>
+    </div>
+ </div>
+
+  <!-- 2 -->
+  <div class="panel">
+    <h2>2 &middot; The eight sounds</h2>
+    <p class="sub" style="margin-bottom:8px;">The right-hand column is the useful part: most of the time you can tell from the spelling alone.</p>
+    <table>
+      <tr><td><span class="nm letter">the A</span></td><td><b class="chip" data-w="grain">grain</b> <b class="chip" data-w="ale">ale</b> <b class="chip" data-w="taste">taste</b> <b class="chip" data-w="flavour">flavour</b> <b class="chip" data-w="stage">stage</b> <b class="chip" data-w="carbonate">carbonate</b> <b class="chip" data-w="fermentation">fermentation</b> &middot; <i>ai, ay, ei, -ation, and a + consonant + silent e</i></td></tr>
+      <tr><td><span class="nm letter">the I</span></td><td><b class="chip" data-w="pint">pint</b> <b class="chip" data-w="rye">rye</b> <b class="chip" data-w="dry">dry</b> <b class="chip" data-w="pipe">pipe</b> <b class="chip" data-w="mild">mild</b> <b class="chip" data-w="light">light</b> &middot; <i>igh, y at the end, and i + consonant + silent e</i></td></tr>
+      <tr><td><span class="nm letter">the O</span></td><td><b class="chip" data-w="roast">roast</b> <b class="chip" data-w="toasty">toasty</b> <b class="chip" data-w="foam">foam</b> <b class="chip" data-w="cold">cold</b> <b class="chip" data-w="oats">oats</b> <b class="chip" data-w="aroma">aroma</b> &middot; <i>oa, and o + consonant + silent e</i></td></tr>
+      <tr><td><span class="nm">OY</span></td><td><b class="chip" data-w="boil">boil</b> <b class="chip" data-w="boiling">boiling</b> <b class="chip" data-w="oil">oil</b> <b class="chip" data-w="spoil">spoil</b> <b class="chip" data-w="choice">choice</b> &middot; <i>oi, oy</i></td></tr>
+      <tr><td><span class="nm">OW</span></td><td><b class="chip" data-w="stout">stout</b> <b class="chip" data-w="lautering">lautering</b> <b class="chip" data-w="brown">brown</b> <b class="chip" data-w="sour">sour</b> <b class="chip" data-w="cloudy">cloudy</b> <b class="chip" data-w="amount">amount</b> &middot; <i>ou, ow, au in lautering</i></td></tr>
+      <tr><td><span class="nm">AIR</span></td><td><b class="chip" data-w="air">air</b> <b class="chip" data-w="airlock">airlock</b> <b class="chip" data-w="share">share</b> <b class="chip" data-w="prepare">prepare</b> <b class="chip" data-w="compare">compare</b> &middot; <i>air, and a + r + silent e</i></td></tr>
+      <tr><td><span class="nm">EAR</span></td><td><b class="chip" data-w="beer">beer</b> <b class="chip" data-w="clear">clear</b> <b class="chip" data-w="year">year</b> <b class="chip" data-w="cereal">cereal</b> <b class="chip" data-w="near">near</b> &middot; <i>ee, ea + r</i></td></tr>
+      <tr><td><span class="nm">SURE</span></td><td><b class="chip" data-w="mature">mature</b> <b class="chip" data-w="sure">sure</b> <b class="chip" data-w="pure">pure</b> <b class="chip" data-w="tour">tour</b> <b class="chip" data-w="secure">secure</b> &middot; <i>u + r + silent e, our</i></td></tr>
+    </table>
+    <div class="flag"><b>Two glides in three letters.</b> <b class="chip" data-w="IPA">IPA</b> is said letter by letter: <i>the I</i>, then P, then <i>the A</i>. Eye-pee-ay. Only the P holds still.</div>
+    <div class="flag"><b>The false friend.</b> <b class="chip" data-w="process">process</b> is <i>the O</i> in British English: PROH-cess. Not the French <i>processus</i>. And <b class="chip" data-w="hops">hops</b> is not: short o, jaw still.</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="panel">
+    <h2>3 &middot; The maze</h2>
+    <p class="sub" style="margin-bottom:8px;">Your own vocabulary, laid out in a grid. <b>Start on GRAIN, get to BEER.</b> One step at a time, up, down, left or right, never diagonally, and <b>you may only stand on a word that glides.</b></p>
+    <div class="mzstat" id="dp-mzstat">&nbsp;</div>
+    <div class="maze" id="dp-maze"></div>
+    <div class="fb" id="dp-fb"></div>
+    <div class="why" id="dp-why"></div>
+    <div class="center"><button class="ghost hidden" id="dp-again">Clear and try again</button></div>
+    <p class="note" id="dp-ttsnote"></p>
+  </div>
+
+  <!-- 4 -->
+  <div class="panel">
+    <h2>4 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;">In each pair, both words have the same glide. Tap to hear.</p>
+    <div class="pairs">
+      <div><b class="chip" data-w="grain">grain</b> = <b class="chip" data-w="pale">pale</b></div>
+      <div><b class="chip" data-w="boil">boil</b> = <b class="chip" data-w="spoil">spoil</b></div>
+      <div><b class="chip" data-w="roast">roast</b> = <b class="chip" data-w="foam">foam</b></div>
+      <div><b class="chip" data-w="pint">pint</b> = <b class="chip" data-w="rye">rye</b></div>
+      <div><b class="chip" data-w="beer">beer</b> = <b class="chip" data-w="clear">clear</b></div>
+      <div><b class="chip" data-w="air">air</b> = <b class="chip" data-w="share">share</b></div>
+      <div><b class="chip" data-w="sure">sure</b> = <b class="chip" data-w="mature">mature</b></div>
+      <div><b class="chip" data-w="stout">stout</b> = <b class="chip" data-w="sour">sour</b></div>
+    </div>
+
+    <p style="margin-top:14px;"><b>Now out loud, slowly, watching the jaw move.</b> The underlined vowels glide.</p>
+    <div class="tw">R<u>oa</u>st the gr<u>ai</u>n slowly and the st<u>ou</u>t turns br<u>ow</u>n and t<u>oa</u>sty. <span class="chip" data-w="Roast the grain slowly and the stout turns brown and toasty.">&#128266; Listen</span></div>
+    <div class="tw">A p<u>i</u>nt of p<u>a</u>le <u>a</u>le should t<u>a</u>ste br<u>igh</u>t and cl<u>ea</u>r in the glass. <span class="chip" data-w="A pint of pale ale should taste bright and clear in the glass.">&#128266; Listen</span></div>
+    <div class="tw">B<u>oi</u>l the wort for an h<u>ou</u>r, then cool it before ferment<u>a</u>tion. <span class="note" style="display:inline;">(and wort does not glide: it rhymes with hurt)</span> <span class="chip" data-w="Boil the wort for an hour, then cool it before fermentation.">&#128266; Listen</span></div>
+    <div class="tw">Make s<u>u</u>re the b<u>ee</u>r mat<u>u</u>res for a y<u>ea</u>r in a c<u>o</u>ld cellar. <span class="chip" data-w="Make sure the beer matures for a year in a cold cellar.">&#128266; Listen</span></div>
+   </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];},querySelector:function(){return null;}};
+    if(!document.title) document.title='Diphthongs · Bioengineering English';
+
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then in the GEII copy of this lesson (the
+       mirror-test pairs and a few general words were recorded there), then the
+       browser voice. Drop an mp3 named <key>.mp3 into assets/audio/ and it plays on
+       the next load. Lowercase path: GitHub Pages is case-sensitive. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/diphtongs/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/diphthongs/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      var found={};
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        /* One guarded step per attempt: a 404 fires both onerror and the play()
+           rejection, and Firefox blocks a retry made after the click's activation
+           is spent. See silent-r for the full story. */
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var moved=false;
+          function next(){ if(moved) return; moved=true; attempt(i+1); }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=next;
+          a.onplaying=function(){ moved=true; found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](next);
+        })(0);
+      }};
+    })();
+
+    R('dp-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where a clip exists, and fall back to your browser voice if one is missing or slow.'
+      : 'This browser has no speech support, so tapping a word will not play it. Everything else works.';
+
+    Array.prototype.forEach.call(document.querySelectorAll('#dp-mod .chip[data-w]'), function(c){
+      c.addEventListener('click', function(){ TTS.say(c.getAttribute('data-w'), 0.75); });
+    });
+
+    /* ---------- the maze ---------- */
+    var GRID=[
+      ["grain","malt","hops","wort","mash"],
+      ["taste","yeast","kettle","water","sugar"],
+      ["pint","boil","foam","filter","tank"],
+      ["crush","barley","roast","stout","cool"],
+      ["grist","bottle","lager","mature","beer"]
+    ];
+    var GLIDES={grain:1,taste:1,pint:1,boil:1,foam:1,roast:1,stout:1,mature:1,beer:1};
+    var here=[0,0], on={"0,0":1}, wrong=0, done=false;
+
+    function draw(){
+      var html='';
+      for(var r=0;r<5;r++){
+        for(var c=0;c<5;c++){
+          var k=r+','+c, cls='';
+          if(here[0]===r&&here[1]===c) cls='here';
+          else if(on[k]) cls='on';
+          if(r===0&&c===0&&cls!=='here') cls+=' start';
+          html+='<button data-r="'+r+'" data-c="'+c+'"'+(cls?' class="'+cls.trim()+'"':'')+'>'+GRID[r][c]+'</button>';
+        }
+      }
+      R('dp-maze').innerHTML=html;
+    }
+
+    function status(t){ R('dp-mzstat').textContent=t; }
+
+    function step(r,c){
+      if(done) return;
+      var dr=Math.abs(r-here[0]), dc=Math.abs(c-here[1]);
+      if(dr+dc!==1){ status('One step at a time, and no diagonals.'); return; }
+      var w=GRID[r][c];
+      if(!GLIDES[w]){
+        wrong++;
+        var b=R('dp-maze').querySelector('button[data-r="'+r+'"][data-c="'+c+'"]');
+        if(b) b.className='dead';
+        R('dp-fb').textContent='No. ' + w.toUpperCase() + ' has one vowel sound, not a glide.';
+        R('dp-fb').className='fb no';
+        R('dp-why').textContent='Say it and hold it: your mouth does not move. Wrong turns so far: '+wrong+'.';
+        return;
+      }
+      here=[r,c]; on[r+','+c]=1;
+      draw();
+      R('dp-fb').textContent='Yes. ' + w.toUpperCase() + ' glides.';
+      R('dp-fb').className='fb ok';
+      R('dp-why').textContent='';
+      TTS.say(w,0.8);
+      if(r===4&&c===4){
+        done=true;
+        status('Out. Nine words, nine glides.');
+        R('dp-fb').textContent='Finished, with '+wrong+' wrong turn'+(wrong===1?'':'s')+'.';
+        R('dp-fb').className='fb ok';
+        R('dp-why').textContent='Every word on that path had two vowel sounds inside one syllable. Every word you could not step on had one.';
+        R('dp-again').classList.remove('hidden');
+      } else {
+        status('You are on ' + w.toUpperCase() + '. Keep going down and right.');
+      }
+    }
+
+    R('dp-maze').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('button') : null;
+      if(b) step(parseInt(b.getAttribute('data-r'),10), parseInt(b.getAttribute('data-c'),10));
+    });
+    R('dp-again').addEventListener('click',function(){
+      here=[0,0]; on={"0,0":1}; wrong=0; done=false;
+      R('dp-fb').textContent=''; R('dp-fb').className='fb'; R('dp-why').textContent='';
+      R('dp-again').classList.add('hidden');
+      status('Start on GRAIN. Get to BEER.');
+      draw();
+    });
+    status('Start on GRAIN. Get to BEER.');
+    draw();
+
+    if(MISS.length && window.console && console.warn) console.warn('dp-mod: elements missing from the page: '+MISS.join(', '));
+  })();
+  </script>
+</div>
