@@ -1,0 +1,359 @@
+<div id="th-mod">
+  <style>
+    #th-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #th-mod *{box-sizing:border-box;}
+    #th-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #th-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #th-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #th-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #th-mod .rule{font-size:16px;}
+    #th-mod .rule b{color:var(--petrol);}
+    #th-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #th-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #th-mod .key .y{color:var(--saffron2);}
+    #th-mod .word{font-size:30px;font-weight:bold;text-align:center;color:var(--ink);margin:6px 0 14px;}
+    #th-mod .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    #th-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #th-mod .cat{background:var(--petrol);color:#fff;flex:1;min-width:150px;}
+    #th-mod .cat:hover{background:var(--petrol2);}
+    #th-mod .accent{background:var(--saffron);color:var(--ink);}
+    #th-mod .accent:hover{background:var(--saffron2);}
+    #th-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #th-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #th-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #th-mod .fb.ok{color:var(--ok);} #th-mod .fb.no{color:var(--no);}
+    #th-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #th-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #th-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #th-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #th-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #th-mod td{border:1px solid var(--line);padding:8px 10px;}
+    #th-mod td:first-child{color:#6a7a7d;} #th-mod td b{color:var(--petrol);}
+    #th-mod .pairrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+    #th-mod .pairrow .pair{font-size:18px;font-weight:bold;}
+    #th-mod .pairrow .pair .h{color:var(--saffron2);}
+    #th-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #th-mod .tw .h{color:var(--saffron2);font-weight:bold;}
+    #th-mod .tw .v{color:var(--petrol);font-weight:bold;text-decoration:underline;}
+    #th-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #th-mod .hidden{display:none !important;}
+    #th-mod .center{text-align:center;}
+    #th-mod .steps{margin:0;padding-left:20px;}
+    #th-mod .steps li{margin-bottom:7px;}
+    #th-mod .twocol{display:flex;gap:14px;flex-wrap:wrap;}
+    #th-mod .twocol > div{flex:1;min-width:230px;background:#fff7e6;border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+    #th-mod .twocol h3{margin:0 0 8px;font-size:17px;color:var(--petrol);}
+    #th-mod .twocol p{margin:4px 0;font-size:15px;}
+    #th-mod .sname{font-size:22px;font-weight:bold;color:var(--saffron2);}
+    #th-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #th-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #th-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+  </style>
+
+  <h1>The sound TH</h1>
+  <p class="sub">The letters &lt;th&gt; are two sounds, and neither of them exists in French.</p>
+
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <p><b>The mouth position:</b> tip of the tongue <i>between</i> the teeth, and blow gently. Not behind the teeth. Between them. You should be able to see it in a mirror.</p>
+
+    <div class="twocol">
+      <div>
+        <h3><span class="sname">the quiet th</span></h3>
+        <p>No vibration. Hand on the throat: <b>nothing</b>.</p>
+        <p><b>think, three, threat, thousand</b></p>
+        <p><b>method, ethics, healthy</b></p>
+        <p><b>growth, health, truth, both</b></p>
+      </div>
+      <div>
+        <h3><span class="sname">the buzzing th</span></h3>
+        <p>Vibration. Hand on the throat: <b>a buzz</b>.</p>
+        <p><b>the, they, this, that, there</b></p>
+        <p><b>other, whether, together</b></p>
+        <p><b>breathe, bathe, with</b></p>
+      </div>
+    </div>
+
+    <div class="key">
+      <div class="big">Content word &rarr; quiet &nbsp;&nbsp;·&nbsp;&nbsp; Grammar word &rarr; buzzing</div>
+      <div class="y">think, three, threat are things. the, this, that, they are glue.</div>
+    </div>
+
+    <p><b>Two more rules, for the middle and the end of a word:</b></p>
+    <p>① <b>In the middle:</b> <b>buzzing</b> between two vowels (<i>other, whether, together</i>). <b>But</b> a Greek or Latin word stays <b>quiet</b> anyway: <i>method, pathogen, synthetic</i>, and <b>ethics</b>, which sits between two vowels and stays quiet regardless, because the word is Greek.</p>
+    <p>② <b>At the end:</b> the noun is <b>quiet</b>, the verb <b>buzzes</b>. <i>brea<b>th</b></i> (noun, quiet) but <i>brea<b>the</b></i> (verb, buzzing). Same for <i>bath</i> and <i>bathe</i>. <i>Growth, health, truth</i> are nouns, so they are quiet.</p>
+    <p class="note">The exceptions, where &lt;th&gt; really is a plain <b>t</b>, are: <b>Thailand, Thames, Thomas, Anthony, Theresa, apartheid</b>.</p>
+  </div>
+
+  <!-- ACTIVITY 1 -->
+  <div class="panel">
+    <h2>1 &middot; The throat test</h2>
+    <ol class="steps">
+      <li>Put the flat of your hand on the front of your throat.</li>
+      <li>Say <b>think</b>. Hold the first sound: <i>thhhhh</i>. Your hand feels <b>nothing</b>. That is the <b>quiet th</b>.</li>
+      <li>Now say <b>this</b>. Hold it: <i>thhhhh</i>. Your hand feels a <b>buzz</b>. That is the <b>buzzing th</b>.</li>
+      <li>Go back and forth: <i>think, this, think, this</i>. The tongue does not move. Only the buzz switches on and off.</li>
+    </ol>
+    <div class="key">
+      <div class="big">Same tongue. Same teeth. Same air.</div>
+      <div class="y">The only difference is whether your throat is switched on.</div>
+    </div>
+    </div>
+
+  <!-- ACTIVITY 2 -->
+  <div class="panel">
+    <h2>2 &middot; Zat is ze question</h2>
+    <p class="sub" style="margin-bottom:8px;">French does not have these sounds, so we borrow the nearest one. The trouble is that the nearest one is a different word. Tap either word to hear it.</p>
+    <div id="th-pairs"></div>
+    <p class="note">Notice that there is no single wrong sound. Depending on the word we reach for <b>s</b>, <b>f</b>, <b>z</b>, <b>d</b> or <b>t</b>. That is why "just say z" does not fix it, and why the tongue has to go between the teeth instead. <b>threat</b> and <b>treat</b> are the pair to remember: a GM crop can be one or the other, and the only difference is your tongue.</p>
+  </div>
+
+  <!-- ACTIVITY 3 -->
+  <div class="panel">
+    <h2>3 &middot; Buzz or no buzz?</h2>
+    <p class="sub" style="margin-bottom:8px;">Hand on the throat. Say the word out loud first, then choose. You will see the reason after each one.</p>
+    <div class="prog" id="th-prog">Word 1 of 0</div>
+    <div class="bar"><i id="th-fill"></i></div>
+    <div class="word" id="th-word">&middot;</div>
+    <div class="center" style="margin-bottom:10px;"><button class="listen" id="th-say">&#128266; Listen</button></div>
+    <div class="btns" id="th-cats">
+      <button class="cat" data-c="voiced">Buzz</button>
+      <button class="cat" data-c="voiceless">No buzz</button>
+    </div>
+    <div class="fb" id="th-fb"></div>
+    <div class="why" id="th-why"></div>
+    <div class="center"><button class="accent hidden" id="th-nextw">Next word &rarr;</button> <button class="ghost hidden" id="th-again">Play again</button></div>
+    <div class="score" id="th-score"></div>
+    <p class="note" id="th-ttsnote"></p>
+  </div>
+
+  <!-- ACTIVITY 4 -->
+  <div class="panel">
+    <h2>4 &middot; The GMO words</h2>
+    <p class="sub" style="margin-bottom:8px;">Words you will actually say in this debate. Tap to hear, then say each one with the tongue between the teeth.</p>
+    <div id="th-chips"></div>
+    <p class="note"><b>health</b> is the one to get right. Two sounds French does not have, one at each end: the <b>h</b> at the front and the <b>quiet th</b> at the back, tongue between the teeth. Not "elt", not "elf". And <b>ethics</b> is not "etics": the French word has a t in the mouth, the English one does not.</p>
+  </div>
+
+  <!-- ACTIVITY 5 -->
+  <div class="panel">
+    <h2>5 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;">Read aloud, slowly. <span class="v">The underlined letter</span> buzzes. <span class="h">The orange letter</span> is quiet. Then again at speed.</p>
+    <div class="tw"><span class="v">Th</span>e tru<span class="h">th</span> is <span class="v">th</span>at bo<span class="h">th</span> me<span class="h">th</span>ods <span class="h">th</span>reaten <span class="v">th</span>e heal<span class="h">th</span> of <span class="v">th</span>e soil. <span class="chip" data-w="The truth is that both methods threaten the health of the soil.">&#128266; Listen</span></div>
+    <div class="tw">Whe<span class="v">th</span>er <span class="v">th</span>ey <span class="h">th</span>rive or not depends on <span class="v">th</span>e wea<span class="v">th</span>er and <span class="v">th</span>e water. <span class="chip" data-w="Whether they thrive or not depends on the weather and the water.">&#128266; Listen</span></div>
+    <div class="tw"><span class="h">Th</span>ree <span class="h">th</span>ousand farmers <span class="h">th</span>ink <span class="v">th</span>e <span class="h">th</span>reat is wor<span class="h">th</span> <span class="v">th</span>e risk. <span class="chip" data-w="Three thousand farmers think the threat is worth the risk.">&#128266; Listen</span></div>
+    <div class="tw">Al<span class="v">th</span>ough <span class="v">th</span>e pa<span class="h">th</span>ogen is syn<span class="h">th</span>etic, <span class="v">th</span>e o<span class="v">th</span>er risks are e<span class="h">th</span>ical. <span class="chip" data-w="Although the pathogen is synthetic, the other risks are ethical.">&#128266; Listen</span></div>
+    <table style="margin-top:12px;">
+      <tr><td>Buzz it</td><td><b>the &middot; this &middot; that &middot; they &middot; there &middot; with &middot; other &middot; whether &middot; either &middot; although &middot; together &middot; rather &middot; breathe</b></td></tr>
+      <tr><td>No buzz</td><td><b>think &middot; three &middot; through &middot; threat &middot; thrive &middot; thousand &middot; health &middot; growth &middot; truth &middot; myth &middot; both &middot; worth</b></td></tr>
+      <tr><td>Greek, so quiet anyway</td><td><b>method &middot; ethics &middot; ethical &middot; pathogen &middot; synthetic &middot; methane</b></td></tr>
+      <tr><td>Noun quiet, verb buzzing</td><td><b>breath / breathe &middot; bath / bathe &middot; cloth / clothe</b></td></tr>
+      <tr><td>Really a plain t (short list)</td><td><b>Thailand &middot; Thames &middot; Thomas &middot; Anthony &middot; Theresa &middot; apartheid</b></td></tr>
+    </table>
+    <p class="note">A dictionary will write the quiet th as /&#952;/ and the buzzing th as /&#240;/. Those two symbols are the only thing on this page you cannot work out with your hand on your throat, and you do not need them here.</p>
+    </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];}};
+    /* Standalone on GitHub Pages this file is the whole document and has no title,
+       so the tab would read as a URL. Pasted into a Moodle Page it is a fragment
+       inside a document that already has one, and that one must be left alone. */
+    if(!document.title) document.title='The sound TH · Bioengineering English';
+
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then in the older geii collection, then the
+       browser voice. The geii th bank lends the general words: the minimal pairs,
+       the grammar words, the Greek examples. Nothing electrical is borrowed, and the
+       GMO words (health, ethics, threat, thrive...) are GB's own.
+
+       Both paths are lowercase and GitHub Pages is case-sensitive. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/th/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/th/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      /* Remembers which base answered for a given key, so the second click on a word
+         goes straight to the right host instead of walking the cascade again. */
+      var found={};
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        /* A 404 fires BOTH onerror and the play() rejection, so the next base was
+           being tried twice and two copies of the same clip played over each other.
+           Worse, in Firefox the retry happens in a promise callback, after the
+           click's user activation is spent, and the second play is blocked outright
+           as autoplay: silence, no error, and any word with no recording at all
+           never reaches the browser voice. One guarded step per attempt. */
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var moved=false;
+          function next(){ if(moved) return; moved=true; attempt(i+1); }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=next;
+          a.onplaying=function(){ moved=true; found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](next);
+        })(0);
+      }};
+    })();
+
+    R('th-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where a clip exists, and fall back to your browser voice if one is missing or slow. The fallback is a guide, not a model: a machine voice says single words badly.'
+      : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
+
+    /* ---------- 2. minimal pairs ---------- */
+    var PAIRS=[
+      ["think","sink","s instead of the quiet th"],
+      ["thought","fought","f instead of the quiet th"],
+      ["death","deaf","f instead of the quiet th"],
+      ["threat","treat","t instead of the quiet th"],
+      ["thirst","first","f instead of the quiet th"],
+      ["worth","worse","s instead of the quiet th"],
+      ["then","zen","z instead of the buzzing th"],
+      ["there","dare","d instead of the buzzing th"],
+      ["breathe","breeze","z instead of the buzzing th"],
+      ["with","whizz","z instead of the buzzing th"]
+    ];
+    (function(){
+      var box=R('th-pairs'), html='';
+      for(var i=0;i<PAIRS.length;i++){
+        var p=PAIRS[i];
+        html += '<div class="pairrow">'
+             +  '<span class="pair"><span class="chip" data-w="'+p[0]+'"><span class="h">'+p[0]+'</span></span>'
+             +  ' &nbsp;vs&nbsp; <span class="chip" data-w="'+p[1]+'">'+p[1]+'</span></span>'
+             +  '<span class="note" style="margin:0;">the French slip: '+p[2]+'</span></div>';
+      }
+      box.innerHTML=html;
+    })();
+
+    /* ---------- 3. sorter ---------- */
+    /* Twenty words. Eleven quiet, nine buzzing. The GMO words carry the three
+       rules: content word (threat, thrive, health), Greek in the middle (ethics,
+       method, pathogen), noun at the end (growth, truth). The grammar words are the
+       ones the debate runs on: whether, either, although, other. */
+    var WHY={
+      "the":["voiced","A grammar word, so it buzzes. And the commonest word in English."],
+      "think":["voiceless","A content word at the start, so it is quiet."],
+      "this":["voiced","A demonstrative, so a grammar word, so it buzzes."],
+      "three":["voiceless","A content word at the start, so it is quiet."],
+      "whether":["voiced","Between two vowels, so it buzzes. Whether or not, and the buzz is there either way."],
+      "method":["voiceless","Between two vowels, but Greek, so it is quiet anyway."],
+      "growth":["voiceless","A noun ending in th, so it is quiet. The verb is grow; there is no growthe."],
+      "breathe":["voiced","A verb ending in th, so it buzzes. The noun breath is quiet."],
+      "health":["voiceless","A noun ending in th, so it is quiet. And the h at the front is not silent."],
+      "healthy":["voiceless","An l sits in front of it, not a vowel, so the middle rule does not apply. Quiet, like health."],
+      "ethics":["voiceless","Between two vowels, so you would expect a buzz. It is Greek, so it stays quiet."],
+      "they":["voiced","A pronoun, so a grammar word, so it buzzes."],
+      "threat":["voiceless","A content word at the start, so it is quiet. Not treat."],
+      "either":["voiced","Between two vowels, so it buzzes."],
+      "pathogen":["voiceless","Greek, so it is quiet. Patho- as in pathology."],
+      "thrive":["voiceless","A content word at the start, so it is quiet."],
+      "truth":["voiceless","A noun ending in th, so it is quiet."],
+      "other":["voiced","Between two vowels, so it buzzes."],
+      "although":["voiced","A grammar word, and the th sits between two vowels. It buzzes."],
+      "with":["voiced","One of the few common words that ends in a buzzing th."]
+    };
+    var LABEL={voiced:"Buzz",voiceless:"No buzz"};
+    var WORDS=Object.keys(WHY);
+    /* shuffle */
+    for(var i=WORDS.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=WORDS[i];WORDS[i]=WORDS[j];WORDS[j]=t;}
+    var idx=0, right=0, answered=false;
+
+    function render(){
+      answered=false;
+      R('th-word').textContent = WORDS[idx];
+      R('th-fb').textContent=''; R('th-fb').className='fb';
+      R('th-why').textContent='';
+      R('th-nextw').classList.add('hidden');
+      R('th-again').classList.add('hidden');
+      R('th-prog').textContent='Word '+(idx+1)+' of '+WORDS.length;
+      R('th-fill').style.width = Math.round(idx/WORDS.length*100)+'%';
+      R('th-cats').classList.remove('hidden');
+    }
+    function answer(choice){
+      if(answered) return;
+      answered=true;
+      var w=WORDS[idx], truth=WHY[w][0], fb=R('th-fb');
+      if(choice===truth){ right++; fb.textContent='Yes. '+LABEL[truth]; fb.className='fb ok'; }
+      else { fb.textContent='No. It is '+LABEL[truth]; fb.className='fb no'; }
+      R('th-why').textContent = WHY[w][1];
+      R('th-cats').classList.add('hidden');
+      R('th-score').textContent = right+' right out of '+(idx+1);
+      if(idx < WORDS.length-1) R('th-nextw').classList.remove('hidden');
+      else {
+        R('th-again').classList.remove('hidden');
+        R('th-fill').style.width='100%';
+        R('th-score').textContent = 'Finished: '+right+' right out of '+WORDS.length+'.';
+      }
+    }
+    /* module-level, so a .chip anywhere on the page plays, not only the ones
+       built into the generated boxes */
+    R('th-mod').addEventListener('click',function(e){
+      var c=e.target.closest?e.target.closest('.chip[data-w]'):null;
+      if(c) TTS.say(c.getAttribute('data-w'), 0.75);
+    });
+    R('th-cats').addEventListener('click',function(e){
+      var b = e.target.closest ? e.target.closest('.cat') : null;
+      if(b) answer(b.getAttribute('data-c'));
+    });
+    R('th-nextw').addEventListener('click',function(){ idx++; render(); });
+    R('th-again').addEventListener('click',function(){
+      idx=0; right=0;
+      for(var i=WORDS.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=WORDS[i];WORDS[i]=WORDS[j];WORDS[j]=t;}
+      R('th-score').textContent=''; render();
+    });
+    R('th-say').addEventListener('click',function(){
+      TTS.say(WORDS[idx], 0.8);
+    });
+    render();
+
+    /* ---------- 4. GMO words ---------- */
+    var LAB=["ethics","ethical","health","healthy","growth","threat","threaten","thrive",
+             "pathogen","synthetic","method","truth","myth","thousands","worth","both",
+             "whether","although","either","together","without"];
+    (function(){
+      var box=R('th-chips'), html='';
+      for(var i=0;i<LAB.length;i++) html += '<span class="chip" data-w="'+LAB[i]+'">'+LAB[i]+'</span>';
+      box.innerHTML=html;
+    })();
+  })();
+  </script>
+</div>

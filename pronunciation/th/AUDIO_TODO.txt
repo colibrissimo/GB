@@ -1,0 +1,58 @@
+The TH sound: 26 clips to record, 22 already served from the GEII copy.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into th/assets/audio/ and it plays on the next load. Nothing to register.
+
+Already voiced from geii (22): think, sink, thought, fought, death, deaf, thirst, first, then, zen, there, dare, breathe, breeze, with, whizz, the, this, three, method, they, other
+
+the-truth-is-that-both-methods-threaten-the-health-of-the-soil.mp3
+    The truth is that both methods threaten the health of the soil.
+whether-they-thrive-or-not-depends-on-the-weather-and-the-water.mp3
+    Whether they thrive or not depends on the weather and the water.
+three-thousand-farmers-think-the-threat-is-worth-the-risk.mp3
+    Three thousand farmers think the threat is worth the risk.
+although-the-pathogen-is-synthetic-the-other-risks-are-ethical.mp3
+    Although the pathogen is synthetic, the other risks are ethical.
+threat.mp3
+    threat
+treat.mp3
+    treat
+worth.mp3
+    worth
+worse.mp3
+    worse
+whether.mp3
+    whether
+growth.mp3
+    growth
+health.mp3
+    health
+healthy.mp3
+    healthy
+ethics.mp3
+    ethics
+either.mp3
+    either
+pathogen.mp3
+    pathogen
+thrive.mp3
+    thrive
+truth.mp3
+    truth
+although.mp3
+    although
+ethical.mp3
+    ethical
+threaten.mp3
+    threaten
+synthetic.mp3
+    synthetic
+myth.mp3
+    myth
+thousands.mp3
+    thousands
+both.mp3
+    both
+together.mp3
+    together
+without.mp3
+    without

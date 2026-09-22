@@ -1,0 +1,58 @@
+The L sound: 26 clips to record, 11 already served from the GEII copy.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into l/assets/audio/ and it plays on the next load. Nothing to register.
+
+Already voiced from geii (11): would, could, should, calm, palm, half, calf, talk, walk, light, full
+
+a-full-pale-ale-well-chilled.mp3
+    A full pale ale, well chilled.
+salmon.mp3
+    salmon
+yolk.mp3
+    yolk
+half-a-pint.mp3
+    half a pint
+ale.mp3
+    ale
+pale-ale.mp3
+    pale ale
+the-label-says-the-lager-is-light-and-floral.mp3
+    The label says the lager is light and floral.
+smell-the-malt-then-sip-it-slowly-and-feel-the-bubbles.mp3
+    Smell the malt, then sip it slowly and feel the bubbles.
+you-should-pour-half-a-glass-and-let-it-settle-until-it-is-clear.mp3
+    You should pour half a glass and let it settle until it is clear.
+floral.mp3
+    floral
+label.mp3
+    label
+pale.mp3
+    pale
+lager.mp3
+    lager
+clear.mp3
+    clear
+herbal.mp3
+    herbal
+malt.mp3
+    malt
+bottle.mp3
+    bottle
+glass.mp3
+    glass
+flavour.mp3
+    flavour
+mouthfeel.mp3
+    mouthfeel
+alcohol.mp3
+    alcohol
+cloudy.mp3
+    cloudy
+smell.mp3
+    smell
+cold.mp3
+    cold
+lace.mp3
+    lace
+bubbles.mp3
+    bubbles

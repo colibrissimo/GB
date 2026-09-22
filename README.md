@@ -19,6 +19,8 @@ Files here are self-contained: one HTML file, CSS and JavaScript inline, no exte
 | `pronunciation/h/` | The /h/ sound: saying it, not saying it, and not inventing one. Beer words throughout. SAB3 S5 session 1. |
 | `pronunciation/ch-sh/` | CH /tʃ/ against SH /ʃ/, and the three things the letters ch can mean. Kitchen words throughout. SAB2 S3 session 3. |
 | `pronunciation/silent-r/` | The written r that is not pronounced, and the linking r that comes back. SAB3 S5 session 3. |
+| `pronunciation/th/` | The two TH sounds, quiet and buzzing, and the five French substitutes for them. GMO debate words throughout. SAB2 S3 session 6. |
+| `pronunciation/l/` | Clear L, dark L, and the L that is silent. Beer-describing words throughout; *pale ale* is the anchor. SAB3 S5 session 5. |
 
 ## Where it's used
 
