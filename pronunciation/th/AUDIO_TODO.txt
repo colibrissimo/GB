@@ -1,3 +1,7 @@
+ALL DONE — recorded 22 September 2026. All 48 buttons on the module are voiced,
+verified against the published URLs. Kept below as the record of what was asked
+for and in what order.
+
 The TH sound: 26 clips to record, 22 already served from the GEII copy.
 Generated from the module's own buttons. Drop an mp3 named <key>.mp3
 into th/assets/audio/ and it plays on the next load. Nothing to register.
