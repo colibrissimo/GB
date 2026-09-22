@@ -1,0 +1,61 @@
+Short and long I: 26 clips to record, 4 already served from the GEII copy.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into short-long-i/assets/audio/ and it plays on the next load. Nothing to register.
+
+Every drill word is said inside its carrier phrase, not bare: read the whole
+phrase, at normal speed. The target word is the one the page picks out in bold.
+
+Already voiced from geii (4): we-built-it, give-it-to-me, since-yesterday, the-chip-is-not-cheap
+
+pass-it-through-a-sieve.mp3
+    pass it through a sieve
+a-packet-of-biscuits.mp3
+    a packet of biscuits
+living-organisms-live-here.mp3
+    living organisms live here
+fill-the-bin-then-feel-the-bean.mp3
+    Fill the bin, then feel the bean.
+we-built-the-sieve-sifted-the-meal-and-heated-the-milk.mp3
+    We built the sieve, sifted the meal and heated the milk.
+these-living-cells-live-in-the-dish-those-pieces-of-cheese-leave-tomorrow.mp3
+    These living cells live in the dish; those pieces of cheese leave tomorrow.
+fish-and-chips.mp3
+    fish and chips
+a-cheap-meal.mp3
+    a cheap meal
+fresh-fish.mp3
+    fresh fish
+a-piece-of-cheese.mp3
+    a piece of cheese
+a-tin-of-beans.mp3
+    a tin of beans
+a-teenager.mp3
+    a teenager
+a-flour-mill.mp3
+    a flour mill
+an-evening-meal.mp3
+    an evening meal
+a-jar-of-pickles.mp3
+    a jar of pickles
+yeast-and-sugar.mp3
+    yeast and sugar
+a-litre-of-milk.mp3
+    a litre of milk
+a-clean-bench.mp3
+    a clean bench
+a-thick-sauce.mp3
+    a thick sauce
+heat-it-up.mp3
+    heat it up
+a-petri-dish.mp3
+    a petri dish
+one-seed.mp3
+    one seed
+a-clear-liquid.mp3
+    a clear liquid
+plant-protein.mp3
+    plant protein
+a-rich-flavour.mp3
+    a rich flavour
+a-washing-machine.mp3
+    a washing machine

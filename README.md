@@ -21,6 +21,7 @@ Files here are self-contained: one HTML file, CSS and JavaScript inline, no exte
 | `pronunciation/silent-r/` | The written r that is not pronounced, and the linking r that comes back. SAB3 S5 session 3. |
 | `pronunciation/th/` | The two TH sounds, quiet and buzzing, and the five French substitutes for them. GMO debate words throughout. SAB2 S3 session 6. |
 | `pronunciation/l/` | Clear L, dark L, and the L that is silent. Beer-describing words throughout; *pale ale* is the anchor. SAB3 S5 session 5. |
+| `pronunciation/short-long-i/` | The short /ɪ/ and the long /iː/, and the spelling rule that predicts which. Food and lab words throughout; *sieve* and *biscuit* are the exceptions that bite. SAB2 S3 session 5. |
 
 ## Where it's used
 
