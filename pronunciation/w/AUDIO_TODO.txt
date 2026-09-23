@@ -1,3 +1,5 @@
+Recorded 23 September 2026, all but one: aquifer.mp3 is still missing and falls to the browser voice. Kept below as the record of what was asked for.
+
 The sound W: 23 clips to record, 27 already served from the GEII copy.
 Generated from the module's own buttons. Drop an mp3 named <key>.mp3
 into w/assets/audio/ and it plays on the next load. Nothing to register.

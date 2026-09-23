@@ -1,3 +1,5 @@
+ALL DONE — recorded 23 September 2026. Three files came in with clipped names and were renamed to their keys. Kept below as the record of what was asked for.
+
 Word stress: 7 clips to record, 16 already copied in from the other GB modules (your SAB3 and SAB2 recordings).
 Generated from the module's own buttons. Drop an mp3 named <key>.mp3
 into word-stress/assets/audio/ and it plays on the next load. Nothing to register.
