@@ -21,6 +21,8 @@ Files here are self-contained: one HTML file, CSS and JavaScript inline, no exte
 | `pronunciation/silent-r/` | The written r that is not pronounced, and the linking r that comes back. SAB3 S5 session 3. |
 | `pronunciation/th/` | The two TH sounds, quiet and buzzing, and the five French substitutes for them. GMO debate words throughout. SAB2 S3 session 6. |
 | `pronunciation/l/` | Clear L, dark L, and the L that is silent. Beer-describing words throughout; *pale ale* is the anchor. SAB3 S5 session 5. |
+| `pronunciation/word-stress/` | Word stress, part 1: Morse code not machine gun, the endings that fix the stress, noun/verb pairs (a FERment, to ferMENT). Brewing words throughout. SAB3 S5 session 6. |
+| `pronunciation/sentence-stress/` | Sentence stress, part 2, after *How Do You Say?* Fiche 20: content and function words, the telegram test, the beat that keeps time. Drill sentences are the SAB3 modules' own recorded ones. SAB3 S5 session 6. |
 | `pronunciation/w/` | The sound W: lips, not teeth; the w that is silent; the w hidden in qu. Bioremediation words throughout (waste, willow, groundwater, aquifer, sewage). SAB2 S3 session 7. |
 | `pronunciation/short-long-i/` | The short /ɪ/ and the long /iː/, and the spelling rule that predicts which. Food and lab words throughout; *sieve* and *biscuit* are the exceptions that bite. SAB2 S3 session 5. |
 

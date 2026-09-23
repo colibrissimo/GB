@@ -1,0 +1,22 @@
+Sentence stress: 8 clips to record, 8 already copied in from the other GB modules (your SAB3 and SAB2 recordings).
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into sentence-stress/assets/audio/ and it plays on the next load. Nothing to register.
+
+Copied in (8): The brewer roasts the rye and the barley., Water hardness affects the flavour., A pint of pale ale should taste bright and clear in the glass., The wort boiled, so we cooled it, transferred it and started the fermentation., The label says the lager is light and floral., Roast the grain slowly and the stout turns brown and toasty., Smell the malt, then sip it slowly and feel the bubbles., Boil the wort for an hour, then cool it before fermentation.
+
+brew-beer.mp3
+    Brew beer.
+brew-the-beer.mp3
+    Brew the beer.
+we-brew-the-beer.mp3
+    We brew the beer.
+we-can-brew-the-beer.mp3
+    We can brew the beer.
+we-should-have-brewed-the-beer.mp3
+    We should have brewed the beer.
+we-should-have-been-brewing-the-beer.mp3
+    We should have been brewing the beer.
+we-should-have-been-brewing-the-beer-in-the-cellar.mp3
+    We should have been brewing the beer in the cellar.
+it-is-a-truth-universally-acknowledged-that-a-brewer-in-possession-of-good-barley-must-be-in-want-of-a-yeast.mp3
+    It is a truth universally acknowledged that a brewer in possession of good barley must be in want of a yeast.

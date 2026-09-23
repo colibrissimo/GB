@@ -1,0 +1,296 @@
+<div id="ss-mod">
+  <style>
+    #ss-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #ss-mod *{box-sizing:border-box;}
+    #ss-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #ss-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #ss-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #ss-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #ss-mod .rule{font-size:16px;}
+    #ss-mod .rule b{color:var(--petrol);}
+    #ss-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #ss-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #ss-mod .key .y{color:var(--saffron2);}
+    #ss-mod .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    #ss-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #ss-mod .accent{background:var(--saffron);color:var(--ink);}
+    #ss-mod .accent:hover{background:var(--saffron2);}
+    #ss-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #ss-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #ss-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #ss-mod .fb.ok{color:var(--ok);} #ss-mod .fb.no{color:var(--no);}
+    #ss-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #ss-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #ss-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #ss-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #ss-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #ss-mod td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;}
+    #ss-mod td:first-child{color:var(--petrol);font-weight:bold;white-space:nowrap;}
+    #ss-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #ss-mod .st{color:var(--petrol);font-weight:bold;text-transform:uppercase;}
+    #ss-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #ss-mod .hidden{display:none !important;}
+    #ss-mod .center{text-align:center;}
+    #ss-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #ss-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #ss-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+    #ss-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+    #ss-mod .bigword{font-size:30px;font-weight:bold;text-align:center;color:var(--ink);margin:6px 0 2px;letter-spacing:1px;}
+    #ss-mod .pat{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:10px 0 4px;}
+    #ss-mod .pat button{font-size:26px;letter-spacing:6px;background:#eef1f0;border:2px solid var(--line);color:var(--ink);padding:10px 18px;line-height:1;}
+    #ss-mod .pat button:hover{border-color:var(--saffron);background:#fff7e6;}
+    #ss-mod .pat button.good{background:#e6f4ec;border-color:var(--ok);color:var(--ok);}
+    #ss-mod .pat button.bad{background:#fbeaea;border-color:var(--no);color:var(--no);}
+    #ss-mod .pat button.reveal{border-color:var(--ok);color:var(--ok);}
+    #ss-mod .rhythm{font-size:15px;color:#52646a;text-align:center;margin-bottom:6px;}
+    #ss-mod .end{display:inline-block;background:var(--petrol);color:#fff;border-radius:6px;padding:2px 7px;font-weight:bold;}
+    #ss-mod .cnt{font-size:26px;text-align:center;letter-spacing:4px;margin:10px 0 2px;color:var(--petrol);font-weight:bold;}
+    #ss-mod .sent{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0 6px;}
+    #ss-mod .sent button{font-size:19px;font-weight:normal;background:#eef1f0;border:2px solid var(--line);color:var(--ink);padding:6px 10px;}
+    #ss-mod .sent button:hover{border-color:var(--saffron);}
+    #ss-mod .sent button.on{background:#fff7e6;border-color:var(--saffron2);font-weight:bold;}
+    #ss-mod .sent button.good{background:#e6f4ec;border-color:var(--ok);color:var(--ok);font-weight:bold;}
+    #ss-mod .sent button.bad{background:#fbeaea;border-color:var(--no);color:var(--no);}
+    #ss-mod .sent button.miss{border-color:var(--ok);border-style:dashed;color:var(--ok);font-weight:bold;}
+    #ss-mod .sent button.opt{color:#73848a;}
+    #ss-mod .tele{text-align:center;font-size:16px;color:var(--petrol);letter-spacing:.5px;min-height:22px;}
+    #ss-mod .dots{font-size:22px;letter-spacing:10px;text-align:center;color:var(--petrol);margin:2px 0 10px;}
+    #ss-mod .beat{font-size:18px;text-align:center;margin:10px 0 2px;}
+    #ss-mod .beat b{color:var(--petrol);}
+    #ss-mod .ladder .tw{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  </style>
+  <h1>Sentence stress</h1>
+  <p class="sub">Part 2 of 2: from the word to the sentence. Part 1 put one strong syllable in each word. Now some whole words go strong, and the rest get squeezed.</p>
+
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <p>In a sentence, English stresses the words that <b>carry the meaning</b> and squeezes the words that only <b>hold the grammar</b>.</p>
+    <table>
+      <tr><td>Stressed<br><span style="font-weight:normal;color:#52646a;">content words</span></td><td>nouns &middot; main verbs &middot; adjectives &middot; adverbs &middot; question words &middot; prepositions of two syllables or more (<i>before</i>, <i>under</i>)</td></tr>
+      <tr><td>Squeezed<br><span style="font-weight:normal;color:#52646a;">function words</span></td><td>the, a, an &middot; I, it, we, they &middot; is, are, have, can, should &middot; and, but, so &middot; short prepositions (<i>of, in, for, to</i>)</td></tr>
+    </table>
+    <div class="key">
+      <div class="big">The telegram test</div>
+      <div class="y">Keep only the stressed words. You can still understand the sentence.</div>
+    </div>
+    <p class="beat">The <b>brewer</b> <b>roasts</b> the <b>rye</b> and the <b>barley</b>. &nbsp;<span class="chip" data-w="The brewer roasts the rye and the barley.">&#128266; Listen</span></p>
+    <p class="center"><b>brewer &middot; roasts &middot; rye &middot; barley</b> &nbsp;&rarr; still a message.<br><span style="color:#73848a;">the &middot; the &middot; and &middot; the</span> &nbsp;&rarr; nothing at all.</p>
+    <div class="flag"><b>Part 1 still applies.</b> Inside a stressed word, only its stressed syllable takes the beat: the <b>BREW</b>er, not the brew<b>ER</b>; the <b>BAR</b>ley, not the bar<b>LEY</b>. Sentence stress sits on top of word stress. It never replaces it.</div>
+  </div>
+
+  <!-- 1 -->
+  <div class="panel">
+    <h2>1 &middot; Keep the beat</h2>
+    <p>English keeps the <b>time between two stressed syllables</b> roughly the same, however many weak syllables are squeezed in between. French gives every syllable its own time, so a longer sentence takes longer. In English it takes a bit longer, but much less than you think.</p>
+    <p class="beat">The <b>brew</b>er / <b>roasts</b> the / <b>rye</b> and the / <b>bar</b>ley.</p>
+    <div class="dots">&#8226;&#9679;&#8226; &nbsp;&#9679;&#8226; &nbsp;&#9679;&#8226;&#8226; &nbsp;&#9679;&#8226;</div>
+    <p class="sub">Four beats. One weak syllable in one gap, two in another, and every gap takes the same time. Tap the table on each capital and say the sentence to the tapping.</p>
+    <div class="ladder">
+      <div class="tw"><span><b>Brew</b> <b>beer</b>.</span> <span class="chip" data-w="Brew beer.">&#128266; Listen</span></div>
+      <div class="tw"><span><b>Brew</b> the <b>beer</b>.</span> <span class="chip" data-w="Brew the beer.">&#128266; Listen</span></div>
+      <div class="tw"><span>We <b>brew</b> the <b>beer</b>.</span> <span class="chip" data-w="We brew the beer.">&#128266; Listen</span></div>
+      <div class="tw"><span>We can <b>brew</b> the <b>beer</b>.</span> <span class="chip" data-w="We can brew the beer.">&#128266; Listen</span></div>
+      <div class="tw"><span>We should have <b>brewed</b> the <b>beer</b>.</span> <span class="chip" data-w="We should have brewed the beer.">&#128266; Listen</span></div>
+      <div class="tw"><span>We should have been <b>brew</b>ing the <b>beer</b>.</span> <span class="chip" data-w="We should have been brewing the beer.">&#128266; Listen</span></div>
+      <div class="tw"><span>We should have been <b>brew</b>ing the <b>beer</b> in the <b>cel</b>lar.</span> <span class="chip" data-w="We should have been brewing the beer in the cellar.">&#128266; Listen</span></div>
+    </div>
+    <p class="note">Tap a steady beat, two taps a line (three on the last one). The sixth line has four times as many syllables as the first and takes nowhere near four times as long: <i>we should have been</i> and <i>-ing the</i> are squeezed into the gaps.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="panel">
+    <h2>2 &middot; Find the stressed words</h2>
+    <p class="sub" style="margin-bottom:8px;">You have already said most of these sentences in earlier lessons. Listen, then click <b>every word that takes a beat</b> and press Check. A word in grey may go either way and is not counted.</p>
+    <div class="prog" id="ss-prog">Sentence 1 of 0</div>
+    <div class="bar"><i id="ss-fill"></i></div>
+    <div class="center" style="margin-bottom:2px;"><button class="listen" id="ss-say">&#128266; Listen</button></div>
+    <div class="sent" id="ss-sent"></div>
+    <div class="center"><button class="accent" id="ss-check">Check</button></div>
+    <div class="fb" id="ss-fb"></div>
+    <div class="tele" id="ss-tele"></div>
+    <div class="why" id="ss-why"></div>
+    <div class="center"><button class="accent hidden" id="ss-next">Next sentence &rarr;</button> <button class="ghost hidden" id="ss-again">Play again</button></div>
+    <div class="score" id="ss-score"></div>
+    <p class="note" id="ss-ttsnote"></p>
+  </div>
+
+  <!-- 3 -->
+  <div class="panel">
+    <h2>3 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;">Lean on the bold words, squeeze the rest. Then read it again as a telegram, bold words only, and check it still makes sense.</p>
+    <div class="tw"><b>Water</b> <b>hardness</b> <b>affects</b> the <b>flavour</b>. <span class="chip" data-w="Water hardness affects the flavour.">&#128266; Listen</span></div>
+    <div class="tw">A <b>pint</b> of <b>pale</b> <b>ale</b> should <b>taste</b> <b>bright</b> and <b>clear</b> in the <b>glass</b>. <span class="chip" data-w="A pint of pale ale should taste bright and clear in the glass.">&#128266; Listen</span></div>
+    <div class="tw">The <b>wort</b> <b>boiled</b>, so we <b>cooled</b> it, <b>transferred</b> it and <b>started</b> the <b>fermentation</b>. <span class="chip" data-w="The wort boiled, so we cooled it, transferred it and started the fermentation.">&#128266; Listen</span></div>
+    <div class="tw">It is a <b>truth</b> <b>universally</b> <b>acknowledged</b> that a <b>brewer</b> in <b>possession</b> of <b>good</b> <b>barley</b> must be in <b>want</b> of a <b>yeast</b>. <span class="chip" data-w="It is a truth universally acknowledged that a brewer in possession of good barley must be in want of a yeast.">&#128266; Listen</span></div>
+    <p class="note">The last one is Jane Austen's opening line from <i>Pride and Prejudice</i> (1813), with a single man swapped for a brewer. Twelve function words and nine content words, and the nine are all you need.</p>
+  </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];}};
+    if(!document.title) document.title='Sentence stress · Bioengineering English';
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then in the older geii collection, then the
+       browser voice. Nothing electrical is borrowed from geii's word-stress bank.
+       The brewing words were recorded for the SAB3 modules (h, silent-r, diphtongs,
+       l, schwa...) and are copied into this module's own folder, because the
+       cascade only looks in a module's own name.
+
+       Both paths are lowercase and GitHub Pages is case-sensitive. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/sentence-stress/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/sentence-stress/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      /* Remembers which base answered for a given key, so the second click on a word
+         goes straight to the right host instead of walking the cascade again. */
+      var found={};
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        /* A 404 fires BOTH onerror and the play() rejection, so the next base was
+           being tried twice and two copies of the same clip played over each other.
+           Worse, in Firefox the retry happens in a promise callback, after the
+           click's user activation is spent, and the second play is blocked outright
+           as autoplay: silence, no error, and any word with no recording at all
+           never reaches the browser voice. One guarded step per attempt. */
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var moved=false;
+          function next(){ if(moved) return; moved=true; attempt(i+1); }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=next;
+          a.onplaying=function(){ moved=true; found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](next);
+        })(0);
+      }};
+    })();
+
+
+    R('ss-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where a clip exists, and fall back to your browser voice if one is missing or slow.'
+      : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
+
+    Array.prototype.forEach.call(document.querySelectorAll('#ss-mod .chip[data-w]'), function(c){
+      c.addEventListener('click', function(){ TTS.say(c.getAttribute('data-w'), 0.85); });
+    });
+
+    var ITEMS=[
+      ["The brewer roasts the rye and the barley.","The *brewer *roasts the *rye and the *barley.","Four nouns and verbs, four beats. The three the's and the and are squeezed."],
+      ["Water hardness affects the flavour.","*Water *hardness *affects the *flavour.","Only one function word in the whole sentence: the."],
+      ["The label says the lager is light and floral.","The *label *says the *lager is *light and *floral.","says is a main verb, so it takes a beat. is only links, so it is squeezed."],
+      ["A pint of pale ale should taste bright and clear in the glass.","A *pint of *pale *ale should *taste *bright and *clear in the *glass.","should is a modal: it holds the grammar, so it is squeezed. pale and ale both take a beat."],
+      ["Roast the grain slowly and the stout turns brown and toasty.","*Roast the *grain *slowly and the *stout *turns *brown and *toasty.","slowly is an adverb, so it takes a beat. Two and's, both squeezed."],
+      ["Smell the malt, then sip it slowly and feel the bubbles.","*Smell the *malt, ~then *sip it *slowly and *feel the *bubbles.","it is a pronoun, so it is squeezed even after a verb: SIP-it. then may go either way."],
+      ["Boil the wort for an hour, then cool it before fermentation.","*Boil the *wort for an *hour, ~then *cool it ~before *fermentation.","before has two syllables, so it can take a beat; either answer counts. for and an are squeezed."],
+      ["The wort boiled, so we cooled it, transferred it and started the fermentation.","The *wort *boiled, so we *cooled it, *transferred it and *started the *fermentation.","Every verb takes a beat, every it is squeezed. And the -ed from session 2 adds no syllable."]
+    ];
+    var LAST=["It is a truth universally acknowledged that a brewer in possession of good barley must be in want of a yeast.","It is a *truth *universally *acknowledged that a *brewer in *possession of *good *barley must be in *want of a *yeast.","Jane Austen, with a brewer in it. must and be are squeezed: the telegram is truth, universally acknowledged, brewer, possession, good barley, want, yeast."];
+    function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} }
+    function deck(){ var d=ITEMS.slice(); shuffle(d); d.push(LAST); return d; }
+    var D=deck(), idx=0, right=0, answered=false, toks=[];
+
+    function parse(s){
+      return s.split(' ').map(function(w){
+        var k=w.charAt(0)==='*'?1:(w.charAt(0)==='~'?2:0);
+        return {w:k?w.slice(1):w, k:k};
+      });
+    }
+    function bare(w){ return w.replace(/[.,:;!?]/g,''); }
+    function render(){
+      answered=false;
+      toks=parse(D[idx][1]);
+      var html='';
+      for(var i=0;i<toks.length;i++){
+        html+='<button data-i="'+i+'"'+(toks[i].k===2?' class="opt"':'')+'>'+toks[i].w+'</button>';
+      }
+      R('ss-sent').innerHTML=html;
+      R('ss-fb').textContent=''; R('ss-fb').className='fb';
+      R('ss-tele').textContent=''; R('ss-why').textContent='';
+      R('ss-check').classList.remove('hidden');
+      R('ss-next').classList.add('hidden'); R('ss-again').classList.add('hidden');
+      R('ss-prog').textContent='Sentence '+(idx+1)+' of '+D.length;
+      R('ss-fill').style.width=Math.round(idx/D.length*100)+'%';
+    }
+    function check(){
+      if(answered) return;
+      answered=true;
+      var btns=R('ss-sent').querySelectorAll('button'), wrong=0, missed=0, tele=[];
+      for(var i=0;i<toks.length;i++){
+        var on=btns[i].classList.contains('on'), t=toks[i];
+        if(t.k===1) tele.push(bare(t.w));
+        if(t.k===2){ btns[i].className='opt'; continue; }
+        if(t.k===1 && on) btns[i].className='good';
+        else if(t.k===1){ btns[i].className='miss'; missed++; }
+        else if(on){ btns[i].className='bad'; wrong++; }
+        else btns[i].className='';
+      }
+      var fb=R('ss-fb');
+      if(!wrong && !missed){ right++; fb.textContent='Yes. Every beat in the right place.'; fb.className='fb ok'; }
+      else{
+        var bits=[];
+        if(missed) bits.push(missed+' beat'+(missed>1?'s':'')+' missed (dashed)');
+        if(wrong) bits.push(wrong+' squeezed word'+(wrong>1?'s':'')+' stressed (red)');
+        fb.textContent='Not quite: '+bits.join(', ')+'.'; fb.className='fb no';
+      }
+      R('ss-tele').textContent='Telegram: '+tele.join(' · ');
+      R('ss-why').textContent=D[idx][2];
+      R('ss-check').classList.add('hidden');
+      R('ss-score').textContent=right+' right out of '+(idx+1);
+      if(idx<D.length-1) R('ss-next').classList.remove('hidden');
+      else{
+        R('ss-again').classList.remove('hidden'); R('ss-fill').style.width='100%';
+        R('ss-score').textContent='Finished: '+right+' right out of '+D.length+'.';
+      }
+    }
+    R('ss-sent').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('button') : null;
+      if(!b || answered || b.classList.contains('opt')) return;
+      b.classList.toggle('on');
+    });
+    R('ss-check').addEventListener('click',check);
+    R('ss-next').addEventListener('click',function(){ idx++; render(); });
+    R('ss-again').addEventListener('click',function(){ D=deck(); idx=0; right=0; R('ss-score').textContent=''; render(); });
+    R('ss-say').addEventListener('click',function(){ TTS.say(D[idx][0], 0.85); });
+    render();
+  })();
+  </script>
+</div>

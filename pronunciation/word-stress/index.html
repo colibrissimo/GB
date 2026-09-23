@@ -1,0 +1,313 @@
+<div id="ws-mod">
+  <style>
+    #ws-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #ws-mod *{box-sizing:border-box;}
+    #ws-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #ws-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #ws-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #ws-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #ws-mod .rule{font-size:16px;}
+    #ws-mod .rule b{color:var(--petrol);}
+    #ws-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #ws-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #ws-mod .key .y{color:var(--saffron2);}
+    #ws-mod .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    #ws-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #ws-mod .accent{background:var(--saffron);color:var(--ink);}
+    #ws-mod .accent:hover{background:var(--saffron2);}
+    #ws-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #ws-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #ws-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #ws-mod .fb.ok{color:var(--ok);} #ws-mod .fb.no{color:var(--no);}
+    #ws-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #ws-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #ws-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #ws-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #ws-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #ws-mod td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;}
+    #ws-mod td:first-child{color:var(--petrol);font-weight:bold;white-space:nowrap;}
+    #ws-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #ws-mod .st{color:var(--petrol);font-weight:bold;text-transform:uppercase;}
+    #ws-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #ws-mod .hidden{display:none !important;}
+    #ws-mod .center{text-align:center;}
+    #ws-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #ws-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #ws-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+    #ws-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+    #ws-mod .bigword{font-size:30px;font-weight:bold;text-align:center;color:var(--ink);margin:6px 0 2px;letter-spacing:1px;}
+    #ws-mod .pat{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:10px 0 4px;}
+    #ws-mod .pat button{font-size:26px;letter-spacing:6px;background:#eef1f0;border:2px solid var(--line);color:var(--ink);padding:10px 18px;line-height:1;}
+    #ws-mod .pat button:hover{border-color:var(--saffron);background:#fff7e6;}
+    #ws-mod .pat button.good{background:#e6f4ec;border-color:var(--ok);color:var(--ok);}
+    #ws-mod .pat button.bad{background:#fbeaea;border-color:var(--no);color:var(--no);}
+    #ws-mod .pat button.reveal{border-color:var(--ok);color:var(--ok);}
+    #ws-mod .rhythm{font-size:15px;color:#52646a;text-align:center;margin-bottom:6px;}
+    #ws-mod .end{display:inline-block;background:var(--petrol);color:#fff;border-radius:6px;padding:2px 7px;font-weight:bold;}
+    #ws-mod .cnt{font-size:26px;text-align:center;letter-spacing:4px;margin:10px 0 2px;color:var(--petrol);font-weight:bold;}
+  </style>
+  <h1>Word stress</h1>
+  <p class="sub">Part 1 of 2: inside the word. Part 2 is the sentence.</p>
+
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <p>French rhythm is a <b>machine gun</b>. Every syllable the same length, the same force, rat-a-tat-a-tat. English rhythm is <b>Morse code</b>. Strong and weak alternate, and one syllable in each word stands out from the rest.</p>
+    <div class="key">
+      <div class="big">fer-men-ta-tion &nbsp;&rarr;&nbsp; four even syllables</div>
+      <div class="y">fermen<b>TA</b>tion &nbsp;&rarr;&nbsp; one syllable said, the other three thrown away</div>
+    </div>
+    <p><b>What "stressed" actually means</b>: the stressed syllable is <b>higher, stronger, longer</b>. Not only louder. Higher in pitch, stronger in force, longer in time, all three at once.</p>
+    <p><b>And the other syllables?</b> They go to the schwa, the weak "uh". <i>Barley</i> is <b>BAR</b>-lee, <i>container</i> is kuhn-<b>TAY</b>-nuh.</p>
+    <div class="flag"><b>The mark in the dictionary.</b> When you look a word up you will see /&#712;/ before a syllable. That is the stress, and it goes <b>in front of</b> the syllable you lean on: <i>aroma</i> is /&#601;&#712;r&#601;&#650;m&#601;/, so the stress is on <b>ro</b>. On this page we use CAPITALS instead, because they are easier to see: a<span class="st">ro</span>ma.</div>
+  </div>
+
+  <!-- 1 -->
+  <div class="panel">
+    <h2>1 &middot; Listening exercise</h2>
+    <p class="sub" style="margin-bottom:8px;">Before any rule, learn to hear the <b>shape</b> of a word. &#9679; is a strong syllable, &#8226; is a weak one. Listen, say the word out loud, then pick its rhythm.</p>
+    <div class="prog" id="ws-prog">Word 1 of 0</div>
+    <div class="bar"><i id="ws-fill"></i></div>
+    <div class="bigword" id="ws-word">&middot;</div>
+    <div class="rhythm" id="ws-syl">&nbsp;</div>
+    <div class="center" style="margin-bottom:6px;"><button class="listen" id="ws-say">&#128266; Listen</button></div>
+    <div class="pat" id="ws-pats"></div>
+    <div class="fb" id="ws-fb"></div>
+    <div class="why" id="ws-why"></div>
+    <div class="center"><button class="accent hidden" id="ws-next">Next word &rarr;</button> <button class="ghost hidden" id="ws-again">Play again</button></div>
+    <div class="score" id="ws-score"></div>
+    <p class="note" id="ws-ttsnote"></p>
+  </div>
+
+  <!-- 2 -->
+  <div class="panel">
+    <h2>2 &middot; The stress is not in the word. It is in the ending.</h2>
+    <div class="key">
+      <div class="big">Find the ending. Count back one. Done.</div>
+      <div class="y">You do not need to know the word. You need to know the ending.</div>
+    </div>
+    <table>
+      <tr><td><span class="end">-ion</span><br><span class="end">-ial</span></td>
+      <td><b>Stress the syllable just before it.</b><br>fermen<span class="st">ta</span>tion &middot; fil<span class="st">tra</span>tion &middot; carbo<span class="st">na</span>tion &middot; distil<span class="st">la</span>tion &middot; germi<span class="st">na</span>tion &middot; pro<span class="st">duc</span>tion &middot; ma<span class="st">te</span>rial &middot; in<span class="st">dus</span>trial</td></tr>
+      <tr><td><span class="end">-ic</span><br><span class="end">-ical</span><br><span class="end">-ity</span></td>
+      <td><b>Stress the syllable just before it.</b><br>aro<span class="st">ma</span>tic &middot; or<span class="st">gan</span>ic &middot; alco<span class="st">hol</span>ic &middot; <span class="st">chem</span>ical &middot; bio<span class="st">log</span>ical &middot; a<span class="st">cid</span>ity &middot; <span class="st">qual</span>ity &middot; <span class="st">clar</span>ity</td></tr>
+    </table>
+    <p class="note"><b>The ending moves the beat.</b> <span class="st">al</span>cohol, but alco<span class="st">hol</span>ic. <span class="st">or</span>ganism, but or<span class="st">gan</span>ic. Same root, and the stress jumps to wherever the ending tells it to go.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="panel">
+    <h2>3 &middot; The procedure</h2>
+    <p class="sub" style="margin-bottom:8px;">Four steps. It works on words you have never seen.</p>
+    <div class="cnt">a &middot; cid &middot; <span class="end">-ity</span></div>
+    <table>
+      <tr><td>1</td><td>Find the ending. Here it is <span class="end">-ity</span>.</td></tr>
+      <tr><td>2</td><td>That ending is in the "just before" list.</td></tr>
+      <tr><td>3</td><td>Count back one syllable from the ending: <b>cid</b>.</td></tr>
+      <tr><td>4</td><td>Say it higher, stronger, longer, and throw the others away.<br>a<span class="st">cid</span>ity &nbsp; &#8226;&#9679;&#8226;&#8226; &nbsp;<span style="font-weight:normal;color:#52646a;">(four beats when you clap it: <span class="end">-ity</span> is two)</span></td></tr>
+    </table>
+    <p class="note">Try it on a long one: <b>pasteurisation</b>. Ending <span class="end">-ion</span>, count back one, and you get pasteuri<span class="st">sa</span>tion. Louis Pasteur would say it the French way. A brewer in Leeds would not.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="panel">
+    <h2>4 &middot; Same spelling, two beats</h2>
+    <div class="key">
+      <div class="big">Noun: stress at the front. Verb: stress at the back.</div>
+    </div>
+    <table>
+      <tr><td>ferment</td><td>a <span class="st">fer</span>ment (the thing) &middot; to fer<span class="st">ment</span> (the action)</td></tr>
+      <tr><td>extract</td><td>malt <span class="st">ex</span>tract &middot; to ex<span class="st">tract</span> the sugars</td></tr>
+      <tr><td>produce</td><td>local <span class="st">pro</span>duce &middot; to pro<span class="st">duce</span> beer</td></tr>
+      <tr><td>import</td><td>an <span class="st">im</span>port &middot; to im<span class="st">port</span> hops</td></tr>
+      <tr><td>increase</td><td>an <span class="st">in</span>crease &middot; to in<span class="st">crease</span> the temperature</td></tr>
+    </table>
+    <p class="note">In a dictionary, look at the letters in brackets: (n.) and (v.). If both are there, check where the /&#712;/ goes for each.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="panel">
+    <h2>5 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;">Lean on the <span class="st">capitals</span>. Tap any word to hear it first.</p>
+    <div class="tw">Fermen<span class="st">ta</span>tion, fil<span class="st">tra</span>tion, carbo<span class="st">na</span>tion: same ending, same beat. <span class="chip" data-w="Fermentation, filtration, carbonation: same ending, same beat.">&#128266; Listen</span></div>
+    <div class="tw"><span class="st">Al</span>cohol, alco<span class="st">hol</span>ic: the ending moves the beat. <span class="chip" data-w="Alcohol, alcoholic: the ending moves the beat.">&#128266; Listen</span></div>
+    <div class="tw">A<span class="st">cid</span>ity, <span class="st">qual</span>ity, <span class="st">clar</span>ity: count back one, every time. <span class="chip" data-w="Acidity, quality, clarity: count back one, every time.">&#128266; Listen</span></div>
+    <div class="tw">We ex<span class="st">tract</span> the sugars, and the brewer buys malt <span class="st">ex</span>tract. <span class="chip" data-w="We extract the sugars, and the brewer buys malt extract.">&#128266; Listen</span></div>
+    <p class="center" style="font-size:16px;line-height:2;">
+      <span class="chip" data-w="barley">barley</span> <span class="chip" data-w="brewery">brewery</span>
+      <span class="chip" data-w="aroma">aroma</span> <span class="chip" data-w="container">container</span>
+      <span class="chip" data-w="fermentation">fermentation</span> <span class="chip" data-w="beverage">beverage</span>
+      <span class="chip" data-w="alcohol">alcohol</span> <span class="chip" data-w="alcoholic">alcoholic</span>
+      <span class="chip" data-w="material">material</span> <span class="chip" data-w="chemical">chemical</span>
+      <span class="chip" data-w="acidity">acidity</span> <span class="chip" data-w="refinery">refinery</span>
+    </p>
+  </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];}};
+    if(!document.title) document.title='Word stress · Bioengineering English';
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then in the older geii collection, then the
+       browser voice. Nothing electrical is borrowed from geii's word-stress bank.
+       The brewing words were recorded for the SAB3 modules (h, silent-r, diphtongs,
+       l, schwa...) and are copied into this module's own folder, because the
+       cascade only looks in a module's own name.
+
+       Both paths are lowercase and GitHub Pages is case-sensitive. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/word-stress/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/word-stress/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      /* Remembers which base answered for a given key, so the second click on a word
+         goes straight to the right host instead of walking the cascade again. */
+      var found={};
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        /* A 404 fires BOTH onerror and the play() rejection, so the next base was
+           being tried twice and two copies of the same clip played over each other.
+           Worse, in Firefox the retry happens in a promise callback, after the
+           click's user activation is spent, and the second play is blocked outright
+           as autoplay: silence, no error, and any word with no recording at all
+           never reaches the browser voice. One guarded step per attempt. */
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var moved=false;
+          function next(){ if(moved) return; moved=true; attempt(i+1); }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=next;
+          a.onplaying=function(){ moved=true; found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](next);
+        })(0);
+      }};
+    })();
+
+
+    R('ws-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where a clip exists, and fall back to your browser voice if one is missing or slow. The fallback is a guide, not a model: a machine voice says single words badly.'
+      : 'This browser has no speech support, so the Listen buttons will not work. Everything else does.';
+
+    Array.prototype.forEach.call(document.querySelectorAll('#ws-mod .chip[data-w]'), function(c){
+      c.addEventListener('click', function(){ TTS.say(c.getAttribute('data-w'), 0.75); });
+    });
+
+    var ITEMS=[
+      ["barley",["bar","ley"],0,"Two-syllable noun, first syllable. And no r, from the silent R lesson."],
+      ["cellar",["cel","lar"],0,"Two-syllable noun, first syllable. The -ar is a schwa."],
+      ["brewery",["brew","er","y"],0,"No strong ending, so the beat falls early."],
+      ["beverage",["bev","er","age"],0,"Early beat. The middle vowel almost disappears: BEV-ridge."],
+      ["carbonate",["car","bo","nate"],0,"Early beat, and a long -ate at the end that is still not stressed."],
+      ["lautering",["lau","ter","ing"],0,"Early beat. The -ing never takes the stress."],
+      ["alcohol",["al","co","hol"],0,"First syllable. Now look what the ending -ic does to it."],
+      ["alcoholic",["al","co","hol","ic"],2,"Ends in -ic, so count back one. The ending moved the beat from AL to HOL."],
+      ["aroma",["a","ro","ma"],1,"Middle beat. The two a's at the ends are both schwas."],
+      ["container",["con","tai","ner"],1,"The -er is a schwa, so the beat is in the middle."],
+      ["refinery",["re","fi","ne","ry"],1,"Second syllable, the one that is also stressed in refine."],
+      ["fermentation",["fer","men","ta","tion"],2,"Ends in -ion, so count back one."],
+      ["material",["ma","te","ri","al"],1,"Ends in -ial, so count back one."],
+      ["chemical",["chem","i","cal"],0,"Ends in -ical, count back one: here that is the first syllable."],
+      ["biological",["bi","o","log","i","cal"],2,"Ends in -ical, so count back one."],
+      ["acidity",["a","cid","i","ty"],1,"Ends in -ity, so count back one."],
+      ["temperature",["tem","pe","ra","ture"],0,"Early beat, and the middle collapses: TEM-pruh-chuh. Four written, three said."],
+      ["preservative",["pre","ser","va","tive"],1,"Careful: -ative is one longer ending. Count back one from it: pre-SER-va-tive."],
+      ["caramelise",["car","a","mel","ise"],0,"Early beat. The -ise at the end is long but not stressed."]
+    ];
+    var PATSET={
+      2:["●•","•●"],
+      3:["●••","•●•","••●"],
+      4:["●•••","•●••","••●•","•••●"],
+      5:["●••••","•●•••","••●••","•••●•"]
+    };
+    function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} }
+    shuffle(ITEMS);
+    var idx=0, right=0, answered=false;
+
+    function render(){
+      answered=false;
+      var it=ITEMS[idx], n=it[1].length;
+      R('ws-word').textContent=it[0];
+      R('ws-syl').textContent=it[1].join(' · ')+'   ('+n+' syllables)';
+      var pats=PATSET[n], html='';
+      for(var i=0;i<pats.length;i++) html+='<button data-i="'+i+'">'+pats[i]+'</button>';
+      R('ws-pats').innerHTML=html;
+      R('ws-fb').textContent=''; R('ws-fb').className='fb';
+      R('ws-why').textContent='';
+      R('ws-next').classList.add('hidden');
+      R('ws-again').classList.add('hidden');
+      R('ws-prog').textContent='Word '+(idx+1)+' of '+ITEMS.length;
+      R('ws-fill').style.width=Math.round(idx/ITEMS.length*100)+'%';
+    }
+    function answer(i){
+      if(answered) return;
+      answered=true;
+      var it=ITEMS[idx], truth=it[2], btns=R('ws-pats').querySelectorAll('button'), fb=R('ws-fb');
+      if(i===truth){ right++; btns[i].className='good'; fb.textContent='Yes. '+it[1][truth].toUpperCase()+' is the one you lean on.'; fb.className='fb ok'; }
+      else{
+        btns[i].className='bad'; btns[truth].className='reveal';
+        fb.textContent='No. It is '+it[1].map(function(s,k){return k===truth?s.toUpperCase():s;}).join('-')+'.';
+        fb.className='fb no';
+      }
+      R('ws-why').textContent=it[3];
+      R('ws-score').textContent=right+' right out of '+(idx+1);
+      if(idx<ITEMS.length-1) R('ws-next').classList.remove('hidden');
+      else{
+        R('ws-again').classList.remove('hidden');
+        R('ws-fill').style.width='100%';
+        R('ws-score').textContent='Finished: '+right+' right out of '+ITEMS.length+'.';
+      }
+    }
+    R('ws-pats').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('button') : null;
+      if(b) answer(parseInt(b.getAttribute('data-i'),10));
+    });
+    R('ws-next').addEventListener('click',function(){ idx++; render(); });
+    R('ws-again').addEventListener('click',function(){
+      idx=0; right=0; shuffle(ITEMS); R('ws-score').textContent=''; render();
+    });
+    R('ws-say').addEventListener('click',function(){
+      var w=ITEMS[idx][0];
+      TTS.say(w, 0.8);
+    });
+    render();
+  })();
+  </script>
+</div>

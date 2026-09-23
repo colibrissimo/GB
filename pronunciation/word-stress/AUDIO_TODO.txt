@@ -1,0 +1,20 @@
+Word stress: 7 clips to record, 16 already copied in from the other GB modules (your SAB3 and SAB2 recordings).
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into word-stress/assets/audio/ and it plays on the next load. Nothing to register.
+
+Copied in (16): barley, brewery, aroma, container, fermentation, beverage, alcohol, material, chemical, refinery, cellar, carbonate, lautering, temperature, preservative, caramelise
+
+fermentation-filtration-carbonation-same-ending-same-beat.mp3
+    Fermentation, filtration, carbonation: same ending, same beat.
+alcohol-alcoholic-the-ending-moves-the-beat.mp3
+    Alcohol, alcoholic: the ending moves the beat.
+acidity-quality-clarity-count-back-one-every-time.mp3
+    Acidity, quality, clarity: count back one, every time.
+we-extract-the-sugars-and-the-brewer-buys-malt-extract.mp3
+    We extract the sugars, and the brewer buys malt extract.
+alcoholic.mp3
+    alcoholic
+acidity.mp3
+    acidity
+biological.mp3
+    biological
