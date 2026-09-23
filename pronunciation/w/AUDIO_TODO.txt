@@ -1,0 +1,52 @@
+The sound W: 23 clips to record, 27 already served from the GEII copy.
+Generated from the module's own buttons. Drop an mp3 named <key>.mp3
+into w/assets/audio/ and it plays on the next load. Nothing to register.
+
+Already voiced from geii (27): went, vent, wine, vine, wet, vet, west, vest, wow, vow, quality, quantity, liquid, equipment, sequence, frequency, one, once, choir, which, always, language, write, wrong, who, answer, two
+
+we-watched-the-willows-clean-the-water-in-the-wetland.mp3
+    We watched the willows clean the water in the wetland.
+what-is-the-quality-of-the-groundwater-under-the-landfill.mp3
+    What is the quality of the groundwater under the landfill?
+which-worms-work-well-in-wet-and-woody-environments.mp3
+    Which worms work well in wet and woody environments?
+liquid-waste-requires-treatment-before-it-reaches-the-aquifer.mp3
+    Liquid waste requires treatment before it reaches the aquifer.
+who-wrote-the-answer-to-the-whole-sewage-question.mp3
+    Who wrote the answer to the whole sewage question?
+waste.mp3
+    waste
+vast.mp3
+    vast
+wetland.mp3
+    wetland
+vegetation.mp3
+    vegetation
+aquatic.mp3
+    aquatic
+aquifer.mp3
+    aquifer
+require.mp3
+    require
+adequate.mp3
+    adequate
+water.mp3
+    water
+worm.mp3
+    worm
+woody.mp3
+    woody
+world.mp3
+    world
+willow.mp3
+    willow
+groundwater.mp3
+    groundwater
+stormwater.mp3
+    stormwater
+whole.mp3
+    whole
+grow.mp3
+    grow
+sewage.mp3
+    sewage

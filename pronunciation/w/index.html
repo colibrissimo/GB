@@ -1,0 +1,321 @@
+<div id="ww-mod">
+  <style>
+    #ww-mod{--petrol:#13525C;--petrol2:#1c6b78;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;--ok:#2e7d52;--no:#b23b3b;
+      font-family:Arial, sans-serif;color:var(--ink);background:var(--paper);max-width:820px;margin:0 auto;padding:18px;border-radius:14px;line-height:1.55;}
+    #ww-mod *{box-sizing:border-box;}
+    #ww-mod h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+    #ww-mod h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+    #ww-mod .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+    #ww-mod .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+    #ww-mod .rule{font-size:16px;}
+    #ww-mod .rule b{color:var(--petrol);}
+    #ww-mod .key{background:linear-gradient(180deg,#fff,#fff7e6);border:2px solid var(--saffron);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:18px;text-align:center;}
+    #ww-mod .key .big{font-size:22px;font-weight:bold;color:var(--petrol);}
+    #ww-mod .key .y{color:var(--saffron2);}
+    #ww-mod button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+    #ww-mod .accent{background:var(--saffron);color:var(--ink);}
+    #ww-mod .accent:hover{background:var(--saffron2);}
+    #ww-mod .ghost{background:#eef1f0;color:var(--petrol);}
+    #ww-mod .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:7px 12px;border:1px solid var(--line);}
+    #ww-mod .fb{text-align:center;font-size:17px;font-weight:bold;min-height:26px;margin:12px 0 6px;}
+    #ww-mod .fb.ok{color:var(--ok);} #ww-mod .fb.no{color:var(--no);}
+    #ww-mod .why{text-align:center;font-size:15px;color:#3a4a4d;min-height:22px;margin-bottom:6px;}
+    #ww-mod .prog{text-align:center;color:#52646a;font-size:14px;margin-bottom:6px;}
+    #ww-mod .bar{height:8px;background:#e7ece9;border-radius:6px;overflow:hidden;margin-bottom:12px;}
+    #ww-mod .bar > i{display:block;height:100%;background:var(--saffron);width:0;transition:width .25s;}
+    #ww-mod table{width:100%;border-collapse:collapse;font-size:16px;}
+    #ww-mod td{border:1px solid var(--line);padding:8px 10px;}
+    #ww-mod td:first-child{color:#6a7a7d;} #ww-mod td b{color:var(--petrol);}
+    #ww-mod .tw{font-size:18px;margin:8px 0;padding:10px 12px;background:#fff7e6;border-left:4px solid var(--saffron);border-radius:6px;}
+    #ww-mod .note{font-size:13px;color:#73848a;margin-top:8px;}
+    #ww-mod .hidden{display:none !important;}
+    #ww-mod .center{text-align:center;}
+    #ww-mod .chip{display:inline-block;background:#eef1f0;border:1px solid var(--line);border-radius:8px;padding:4px 9px;margin:3px 3px 3px 0;font-size:15px;cursor:pointer;}
+    #ww-mod .chip:hover{background:#fff7e6;border-color:var(--saffron);}
+    #ww-mod .score{text-align:center;font-size:15px;color:#52646a;margin-top:10px;}
+
+    #ww-mod .flag{background:#f2f7f8;border-left:4px solid var(--petrol);border-radius:6px;padding:10px 12px;margin:10px 0;font-size:15px;}
+    /* W-specific: the letter grid for "point at the sound" */
+    #ww-mod .lets{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:14px 0 6px;}
+    #ww-mod .lets button{font-size:30px;font-weight:bold;width:52px;height:60px;padding:0;line-height:60px;
+      background:#eef1f0;border:2px solid var(--line);color:var(--ink);text-transform:lowercase;}
+    #ww-mod .lets button:hover{border-color:var(--saffron);background:#fff7e6;}
+    #ww-mod .lets button.good{background:#e6f4ec;border-color:var(--ok);color:var(--ok);}
+    #ww-mod .lets button.bad{background:#fbeaea;border-color:var(--no);color:var(--no);}
+    #ww-mod .lets button.reveal{border-color:var(--ok);color:var(--ok);border-style:dashed;}
+    #ww-mod .nonebtn{margin-top:4px;}
+    #ww-mod .pairs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:10px 0;}
+    #ww-mod .pair{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#fff;text-align:center;min-width:132px;}
+    #ww-mod .pair b{display:block;font-size:19px;color:var(--petrol);}
+    #ww-mod .pair i{display:block;font-size:17px;color:var(--no);font-style:normal;}
+    #ww-mod .pair span{font-size:13px;color:#73848a;}
+    #ww-mod .resp{font-weight:bold;color:var(--petrol);letter-spacing:1px;}
+  </style>
+
+  <h1>The sound W</h1>
+  <p class="sub">A letter French calls double-v, and English calls double-u for a reason.</p>
+  <div class="panel rule">
+    <h2>The rule</h2>
+    <p>In French it is <i>double-v</i>. In English it is <b>double-u</b>. As in<span class="resp">DUH-bul-YOO</span>.</p>
+
+    <div class="key">
+      <div class="big">Round your lips, as if blowing out a candle.</div>
+      <div class="y">Or starting to whistle. Then let the vowel out.</div>
+    </div>
+
+    <p><b>The one thing to avoid:</b> the teeth. If your top teeth touch your bottom lip you have said a <b>v</b>, and <i>wine</i> has become <i>vine</i>. The lips must not touch the teeth at all.</p>
+
+    <div class="flag"><b>Check it in a mirror, or with a finger.</b> Hold one finger flat, a centimetre in front of your mouth, and say <i>west</i>. You should feel a small push of air from rounded lips.</div>
+  </div>
+
+  <!-- 1 -->
+  <div class="panel">
+    <h2>1 &middot; Wet or vet?</h2>
+    <p class="sub" style="margin-bottom:8px;">Tap either word to hear it, then say both.</p>
+    <div class="pairs">
+      <div class="pair"><b class="chip" data-w="went">went</b><i class="chip" data-w="vent">vent</i><span>lips / teeth</span></div>
+      <div class="pair"><b class="chip" data-w="wine">wine</b><i class="chip" data-w="vine">vine</i><span>lips / teeth</span></div>
+      <div class="pair"><b class="chip" data-w="wet">wet</b><i class="chip" data-w="vet">vet</i><span>lips / teeth</span></div>
+      <div class="pair"><b class="chip" data-w="west">west</b><i class="chip" data-w="vest">vest</i><span>lips / teeth</span></div>
+      <div class="pair"><b class="chip" data-w="wow">wow</b><i class="chip" data-w="vow">vow</i><span>lips / teeth</span></div>
+    </div>
+    <p class="note">And the site vocabulary does it too: <b class="chip" data-w="waste">waste</b> and <b class="chip" data-w="vast">vast</b>, <b class="chip" data-w="wetland">wetland</b> and <b class="chip" data-w="vegetation">vegetation</b>. The first of each pair starts with the lips, the second with the teeth.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="panel">
+    <h2>2 &middot; When the w says nothing</h2>
+    <table>
+      <tr><td>w before r</td><td><b>write &middot; wrong &middot; wrist &middot; wrap</b><br>The w is silent. Only the r is said. <span class="resp">RITE, RONG</span></td></tr>
+      <tr><td>wh before o</td><td><b>who &middot; whose &middot; whole</b><br>Only the h survives. <span class="resp">HOO, HOOZ, HOLE</span></td></tr>
+      <tr><td>after a vowel</td><td><b>grow &middot; grew &middot; flow &middot; sewage</b><br>The w stops being a consonant and stretches the vowel in front of it instead. <i>Sewage</i> is <span class="resp">SOO-idj</span>: no w sound at all.</td></tr>
+      <tr><td>three odd ones</td><td><b>two &middot; sword &middot; answer</b><br>No rule.<span class="resp">TOO, SORD, AN-sa</span></td></tr>
+    </table>
+    <p class="note"><b>which</b> and <b>witch</b> are pronounced exactly the same in British English. So are <b>whale</b> and <b>wail</b>. The h in <i>wh</i> does nothing at all, unless an o follows it.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="panel">
+    <h2>3 &middot; Point at the sound</h2>
+    <p class="sub" style="margin-bottom:8px;">Say the word out loud. Then click the <b>letter that makes the double-u sound</b>.</p>
+    <div class="prog" id="ww-prog">Word 1 of 0</div>
+    <div class="bar"><i id="ww-fill"></i></div>
+    <div class="center" style="margin-bottom:2px;"><button class="listen" id="ww-say">&#128266; Listen</button></div>
+    <div class="lets" id="ww-lets"></div>
+    <div class="center"><button class="ghost nonebtn" id="ww-none">No double-u sound in this word</button></div>
+    <div class="fb" id="ww-fb"></div>
+    <div class="why" id="ww-why"></div>
+    <div class="center"><button class="accent hidden" id="ww-next">Next word &rarr;</button> <button class="ghost hidden" id="ww-again">Play again</button></div>
+    <div class="score" id="ww-score"></div>
+    <p class="note" id="ww-ttsnote"></p>
+  </div>
+
+  <!-- 4 -->
+  <div class="panel">
+    <h2>4 &middot; The sound QU</h2>
+     <div class="key">
+      <div class="big">qu is never just k. It is k plus double-u.</div>
+    </div>
+    <p class="center" style="font-size:16px;line-height:2;">
+      <span class="chip" data-w="quality">quality</span> <span class="chip" data-w="quantity">quantity</span>
+      <span class="chip" data-w="liquid">liquid</span> <span class="chip" data-w="equipment">equipment</span>
+      <span class="chip" data-w="sequence">sequence</span> <span class="chip" data-w="frequency">frequency</span>
+      <span class="chip" data-w="aquatic">aquatic</span> <span class="chip" data-w="aquifer">aquifer</span>
+      <span class="chip" data-w="require">require</span> <span class="chip" data-w="adequate">adequate</span>
+    </p>
+    <p>Every one of those is a word you will meet on a contaminated site or in the lab that tests it, and every one of them contains a sound you would never guess from looking at it. <b>Aquifer</b> is <span class="resp">AK-wi-fuh</span>, not <span class="resp">AK-i-fer</span>, and <b>adequate</b> is <span class="resp">AD-i-kwut</span>.</p>
+    <div class="flag"><b>Three more with no w and no qu:</b> <b class="chip" data-w="one">one</b> is <span class="resp">WUN</span>, <b class="chip" data-w="once">once</b> is <span class="resp">WUNCE</span>, and <b class="chip" data-w="choir">choir</b> is <span class="resp">KWIRE</span>. In <i>choir</i> there is no w, no u after a q.</div>
+    </div>
+
+  <!-- 5 -->
+  <div class="panel">
+    <h2>5 &middot; Say it</h2>
+    <p class="sub" style="margin-bottom:8px;">Lips rounded, teeth out of the way. Slowly first, then at speed.</p>
+    <div class="tw">We watched the willows clean the water in the wetland. <span class="chip" data-w="We watched the willows clean the water in the wetland.">&#128266; Listen</span></div>
+    <div class="tw">What is the quality of the groundwater under the landfill? <span class="chip" data-w="What is the quality of the groundwater under the landfill?">&#128266; Listen</span></div>
+    <div class="tw">Which worms work well in wet and woody environments? <span class="chip" data-w="Which worms work well in wet and woody environments?">&#128266; Listen</span></div>
+    <div class="tw">Liquid waste requires treatment before it reaches the aquifer. <span class="chip" data-w="Liquid waste requires treatment before it reaches the aquifer.">&#128266; Listen</span></div>
+    <div class="tw">Who wrote the answer to the whole sewage question? <span class="chip" data-w="Who wrote the answer to the whole sewage question?">&#128266; Listen</span></div>
+    </div>
+
+  <script>
+  (function(){
+    /* Moodle can drop an element on paste. R() must not throw when it does:
+       a missing element costs its own feature, not the rest of the page. */
+    var MISS=[], NUL={textContent:'',innerHTML:'',className:'',style:{},
+      classList:{add:function(){},remove:function(){}},
+      addEventListener:function(){},getAttribute:function(){return null;},
+      querySelectorAll:function(){return [];}};
+    if(!document.title) document.title='The sound W · Bioengineering English';
+    var R=function(id){
+      var e=document.getElementById(id);
+      if(e) return e;
+      if(MISS.indexOf(id)===-1) MISS.push(id);
+      return NUL;
+    };
+
+    /* Audio is looked for in GB first, then in the older geii collection, then the
+       browser voice. The geii w bank lends the general words: the wet/vet pairs,
+       the silent ones, the qu words. Nothing electrical is borrowed, and the
+       bioremediation words (waste, willow, groundwater, aquifer...) are GB's own.
+
+       Both paths are lowercase and GitHub Pages is case-sensitive. */
+    var CLIPS=[
+      "https://colibrissimo.github.io/GB/pronunciation/w/assets/audio/",
+      "https://colibrissimo.github.io/geii/pronunciation/w/assets/audio/"
+    ];
+
+    var TTS=(function(){
+      var ok=('speechSynthesis' in window), voice=null;
+      function pick(){
+        if(!ok) return null;
+        var vs=window.speechSynthesis.getVoices()||[];
+        var gb=vs.filter(function(v){return /en[-_]GB/i.test(v.lang);});
+        return gb[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null;
+      }
+      if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+      function tts(t,r){
+        if(!ok) return;
+        try{window.speechSynthesis.cancel();}catch(e){}
+        var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=(r||0.85);
+        if(voice) u.voice=voice; window.speechSynthesis.speak(u);
+      }
+      var player=null;
+      /* filename key: lowercase, apostrophes dropped, every other run of non-alphanumerics
+         collapsed to one hyphen. Same rule as the other pronunciation modules. */
+      function key(t){
+        return String(t).toLowerCase().replace(/['’]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      }
+      /* Remembers which base answered for a given key, so the second click on a word
+         goes straight to the right host instead of walking the cascade again. */
+      var found={};
+      return {ok:ok, say:function(t,r){
+        var k=key(t);
+        try{window.speechSynthesis.cancel();}catch(e){}
+        if(player){ try{ player.pause(); }catch(e){} }
+        var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+        /* A 404 fires BOTH onerror and the play() rejection, so the next base was
+           being tried twice and two copies of the same clip played over each other.
+           Worse, in Firefox the retry happens in a promise callback, after the
+           click's user activation is spent, and the second play is blocked outright
+           as autoplay: silence, no error, and any word with no recording at all
+           never reaches the browser voice. One guarded step per attempt. */
+        (function attempt(i){
+          if(i>=order.length){ tts(t,r); return; }
+          var moved=false;
+          function next(){ if(moved) return; moved=true; attempt(i+1); }
+          var a=new Audio(order[i]+encodeURIComponent(k)+".mp3");
+          player=a;
+          a.onerror=next;
+          a.onplaying=function(){ moved=true; found[k]=(order===CLIPS)?i:found[k]; };
+          var pr=a.play();
+          if(pr&&pr["catch"]) pr["catch"](next);
+        })(0);
+      }};
+    })();
+
+
+    R('ww-ttsnote').textContent = TTS.ok
+      ? 'The Listen buttons play a recorded voice where a clip exists, and fall back to your browser voice if one is missing or slow. The fallback is a guide, not a model: a machine voice says single words badly.'
+      : 'This browser has no speech support, so the Listen buttons will not work.';
+
+    Array.prototype.forEach.call(document.querySelectorAll('#ww-mod .chip[data-w]'), function(c){
+      c.addEventListener('click', function(){ TTS.say(c.getAttribute('data-w'), 0.75); });
+    });
+
+    /* ---------- point at the sound ---------- */
+    /* word, index of the letter that makes the /w/, -1 if nothing does, why */
+    var ITEMS=[
+      ["went",0,"The letter w, said as double-u. Round your lips."],
+      ["wine",0,"Said. Not vine: round the lips, do not use the teeth."],
+      ["waste",0,"Said. Not vast: the lips, not the teeth."],
+      ["water",0,"Said, and rounded: WAW-tuh."],
+      ["wetland",0,"Said. A wet land, and a wet is not a vet."],
+      ["worm",0,"Said. Round the lips before the vowel starts."],
+      ["woody",0,"Said. The lips are already round for the oo."],
+      ["world",0,"Said. And the r after it is silent in British English."],
+      ["which",0,"wh is just double-u here. In British English which and witch sound exactly the same."],
+      ["willow",0,"The first w is said. The last one comes after a vowel, so it goes into the vowel."],
+      ["groundwater",6,"Two words stuck together, and the w starts the second one: GROUND-waw-tuh."],
+      ["stormwater",5,"Same again: STORM-waw-tuh."],
+      ["always",2,"In the middle of a word and still fully said."],
+      ["quality",1,"No w in sight. The u after q is doing it: KWOL-i-tee."],
+      ["liquid",3,"qu again, in the middle: LIK-wid."],
+      ["aquifer",2,"qu again: AK-wi-fuh."],
+      ["require",3,"qu again: ri-KWIRE."],
+      ["language",4,"gu this time, not qu, and it still hides a double-u: LANG-gwidj."],
+      ["one",0,"No w and no u. The o alone is doing it: WUN."],
+      ["once",0,"Same as one: WUNCE."],
+      ["write",-1,"w before r is silent. Only the r is said."],
+      ["wrong",-1,"w before r is silent."],
+      ["who",-1,"wh before o keeps only the h: HOO."],
+      ["whole",-1,"wh before o keeps only the h: HOLE, like a hole in the ground."],
+      ["answer",-1,"One of the three odd ones: AN-sa."],
+      ["two",-1,"Another odd one: TOO."],
+      ["grow",-1,"A vowel comes first, so the w stops being a consonant and stretches the vowel instead."],
+      ["sewage",-1,"The w has gone into the vowel: SOO-idj."]
+    ];
+    function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} }
+    shuffle(ITEMS);
+    var idx=0, right=0, answered=false;
+
+    function render(){
+      answered=false;
+      var w=ITEMS[idx][0], html='';
+      for(var i=0;i<w.length;i++) html+='<button data-i="'+i+'">'+w.charAt(i)+'</button>';
+      R('ww-lets').innerHTML=html;
+      R('ww-none').classList.remove('hidden');
+      R('ww-fb').textContent=''; R('ww-fb').className='fb';
+      R('ww-why').textContent='';
+      R('ww-next').classList.add('hidden');
+      R('ww-again').classList.add('hidden');
+      R('ww-prog').textContent='Word '+(idx+1)+' of '+ITEMS.length;
+      R('ww-fill').style.width=Math.round(idx/ITEMS.length*100)+'%';
+    }
+
+    function answer(pick){
+      if(answered) return;
+      answered=true;
+      var it=ITEMS[idx], truth=it[1], word=it[0];
+      var btns=R('ww-lets').querySelectorAll('button'), fb=R('ww-fb');
+      if(pick===truth){
+        right++;
+        if(truth>=0) btns[truth].className='good';
+        fb.textContent = truth<0
+          ? 'Yes. Nothing in ' + word + ' makes that sound.'
+          : 'Yes. The ' + word.charAt(truth) + ' is doing it.';
+        fb.className='fb ok';
+      } else {
+        if(pick>=0) btns[pick].className='bad';
+        if(truth>=0) btns[truth].className='reveal';
+        fb.textContent = truth<0
+          ? 'No. There is no double-u sound in ' + word + ' at all.'
+          : 'No. It is the ' + word.charAt(truth) + ', letter ' + (truth+1) + '.';
+        fb.className='fb no';
+      }
+      R('ww-none').classList.add('hidden');
+      R('ww-why').textContent=it[2];
+      R('ww-score').textContent=right+' right out of '+(idx+1);
+      if(idx<ITEMS.length-1) R('ww-next').classList.remove('hidden');
+      else{
+        R('ww-again').classList.remove('hidden');
+        R('ww-fill').style.width='100%';
+        R('ww-score').textContent='Finished: '+right+' right out of '+ITEMS.length+'.';
+      }
+    }
+
+    R('ww-lets').addEventListener('click',function(e){
+      var b=e.target.closest ? e.target.closest('button') : null;
+      if(b) answer(parseInt(b.getAttribute('data-i'),10));
+    });
+    R('ww-none').addEventListener('click',function(){ answer(-1); });
+    R('ww-next').addEventListener('click',function(){ idx++; render(); });
+    R('ww-again').addEventListener('click',function(){
+      idx=0; right=0; shuffle(ITEMS); R('ww-score').textContent=''; render();
+    });
+    R('ww-say').addEventListener('click',function(){ TTS.say(ITEMS[idx][0], 0.8); });
+    render();
+  })();
+  </script>
+</div>
