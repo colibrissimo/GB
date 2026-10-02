@@ -34,6 +34,8 @@ Files here are self-contained: one HTML file, CSS and JavaScript inline, no exte
 
 Both years carry a pronunciation strand running underneath the topics. Material for it arrives here as it's built.
 
+Neither year had any pronunciation teaching before, so the strand reuses the GEII Year 1 pronunciation modules (the `geii` repo), rebuilt with bioengineering words, apart from a few exceptions. Semester 3 and Semester 5 are built. The Semester 4 modules (magic E, plosives, compound stress) have GEII versions but no GB versions yet; they are built next semester.
+
 ## House rules
 
 - **British English in the prose, American English in the CSS.** `colour` in what students read; `color` in the stylesheet. CSS silently discards British spellings — `text-align: centre` doesn't fail loudly, it just doesn't centre anything.
