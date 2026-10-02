@@ -336,10 +336,18 @@
   $('start').onclick=start;
   $('again').onclick=function(){ $('end').classList.add('hidden'); $('setup').classList.remove('hidden'); };
 
+  /* Moodle's URL resource set to "Embed" puts the page in a frame that is not
+     allowed to go full screen, and the browser refuses silently. Inside such a
+     frame the button opens the page in its own tab instead, where it can. */
+  var d=document, el=d.documentElement;
+  var canFs=!!(d.fullscreenEnabled||d.webkitFullscreenEnabled);
+  var framed=(function(){ try{ return window.self!==window.top; }catch(e){ return true; } })();
+  if(!canFs && framed) $('fs').innerHTML='&#x2197; open in its own tab';
   function fs(){
-    var d=document;
-    if(!d.fullscreenElement){ if(d.documentElement.requestFullscreen) d.documentElement.requestFullscreen(); }
-    else if(d.exitFullscreen) d.exitFullscreen();
+    if(!canFs){ if(framed) window.open(location.href,'_blank'); return; }
+    if(!(d.fullscreenElement||d.webkitFullscreenElement)){
+      if(el.requestFullscreen) el.requestFullscreen(); else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    } else { if(d.exitFullscreen) d.exitFullscreen(); else if(d.webkitExitFullscreen) d.webkitExitFullscreen(); }
   }
   $('fs').onclick=fs;
   document.addEventListener('keydown',function(e){
