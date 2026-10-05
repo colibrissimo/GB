@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stress: True or False</title>
+<style>
+  :root{--petrol:#13525C;--saffron:#F4B942;--saffron2:#e0a52a;--ink:#10262b;--paper:#f6f4ee;--line:#cfd8d8;
+    --ok:#2e7d52;--okbg:#e6f4ec;--no:#b23b3b;--nobg:#fbeaea;--muted:#52646a;--p1:#13525C;--p2:#c0661c;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial, sans-serif;line-height:1.5;}
+  #tf{max-width:900px;margin:0 auto;padding:18px 16px 40px;}
+  #tf h1{font-size:30px;margin:0 0 2px;color:var(--petrol);}
+  #tf h2{font-size:20px;color:var(--petrol);margin:0 0 10px;}
+  #tf .sub{margin:0 0 16px;color:#3a4a4d;font-size:15px;}
+  #tf .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+  #tf .hidden{display:none !important;}
+  #tf .center{text-align:center;}
+  #tf button{font-family:inherit;font-size:15px;font-weight:bold;border:none;border-radius:10px;padding:11px 16px;cursor:pointer;}
+  #tf .accent{background:var(--saffron);color:var(--ink);}
+  #tf .accent:hover{background:var(--saffron2);}
+  #tf .ghost{background:#eef1f0;color:var(--petrol);}
+  #tf .modes{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 14px;}
+  #tf .mode{flex:1 1 240px;text-align:left;background:#eef1f0;border:2px solid var(--line);color:var(--ink);font-weight:normal;padding:14px 16px;}
+  #tf .mode b{display:block;font-size:17px;color:var(--petrol);margin-bottom:2px;}
+  #tf .mode.on{border-color:var(--saffron2);background:#fff7e6;}
+  #tf .names{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0 14px;}
+  #tf .names label{flex:1 1 200px;font-size:14px;font-weight:bold;}
+  #tf .names input{display:block;width:100%;margin-top:4px;padding:9px 11px;border:2px solid var(--line);border-radius:8px;font-size:16px;font-family:inherit;}
+  #tf .c1{color:var(--p1);} #tf .c2{color:var(--p2);}
+  #tf ul.how{margin:6px 0 0;padding-left:20px;font-size:15px;}
+  #tf kbd{display:inline-block;min-width:24px;text-align:center;border:1px solid #9fb0b3;border-bottom-width:3px;border-radius:5px;padding:0 6px;font-family:inherit;font-weight:bold;background:#fff;}
+  #tf .bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+  #tf .chip{flex:1 1 160px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14px;color:var(--muted);}
+  #tf .chip strong{display:block;font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums;}
+  #tf .clock strong{color:var(--petrol);font-size:26px;}
+  #tf .sc{color:#fff;border:none;} #tf .sc strong{color:#fff;}
+  #tf .sc.s1{background:var(--p1);} #tf .sc.s2{background:var(--p2);}
+  #tf .card{background:#fff;border:2px solid var(--line);border-radius:14px;padding:22px 20px;text-align:center;min-height:150px;
+    display:flex;flex-direction:column;justify-content:center;}
+  #tf .kind{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  #tf .stmt{font-size:22px;line-height:1.35;}
+  #tf .word{font-size:40px;letter-spacing:1px;}
+  #tf .st{color:var(--petrol);font-weight:bold;}
+  #tf .wait .stmt,#tf .wait .word{opacity:.25;}
+  #tf .answers{display:flex;gap:14px;justify-content:center;margin:16px 0 4px;flex-wrap:wrap;}
+  #tf .answers button{min-width:160px;font-size:20px;padding:14px 18px;background:#eef1f0;border:2px solid var(--line);color:var(--ink);}
+  #tf .answers button:hover{border-color:var(--saffron2);}
+  #tf .answers button.pick-ok{background:var(--okbg);border-color:var(--ok);color:var(--ok);}
+  #tf .answers button.pick-no{background:var(--nobg);border-color:var(--no);color:var(--no);text-decoration:line-through;}
+  #tf .answers button.is-right{border-color:var(--ok);border-style:dashed;color:var(--ok);}
+  #tf .duel{display:flex;gap:14px;justify-content:space-between;margin:16px 0 4px;flex-wrap:wrap;}
+  #tf .side{flex:1 1 260px;border-radius:12px;padding:10px;text-align:center;color:#fff;}
+  #tf .side.s1{background:var(--p1);} #tf .side.s2{background:var(--p2);}
+  #tf .side .nm{font-weight:bold;font-size:16px;margin-bottom:6px;}
+  #tf .side button{background:rgba(255,255,255,.95);color:var(--ink);margin:3px;min-width:110px;font-size:17px;}
+  #tf .side.dim{opacity:.4;}
+  #tf .side button.pick-ok{background:var(--okbg);color:var(--ok);box-shadow:0 0 0 3px var(--ok);}
+  #tf .side button.pick-no{background:var(--nobg);color:var(--no);box-shadow:0 0 0 3px var(--no);text-decoration:line-through;}
+  #tf .fb{margin-top:14px;border-radius:12px;padding:12px 16px;font-size:17px;}
+  #tf .fb.ok{background:var(--okbg);color:var(--ok);} #tf .fb.no{background:var(--nobg);color:var(--no);}
+  #tf .fb .why{color:var(--ink);font-size:16px;margin-top:4px;}
+  #tf .saw{margin-top:8px;font-size:20px;color:var(--ink);}
+  #tf .saw td{padding:2px 10px;text-align:left;border:none;}
+  #tf .saw .lab{font-size:14px;color:var(--muted);text-align:right;}
+  #tf .saw s{color:var(--no);}
+  #tf .listen{background:#eef1f0;color:var(--petrol);font-size:14px;padding:6px 11px;border:1px solid var(--line);margin-left:8px;}
+  #tf .next{margin-top:12px;}
+  #tf table.res{width:100%;border-collapse:collapse;font-size:15px;margin-top:8px;}
+  #tf table.res td,#tf table.res th{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top;}
+  #tf table.res th{background:#f2f7f8;color:var(--petrol);}
+  #tf .result{font-size:24px;font-weight:bold;color:var(--petrol);text-align:center;margin:6px 0 10px;}
+  #tf .msg{text-align:center;min-height:22px;color:var(--muted);font-size:15px;margin-top:6px;}
+  @media (max-width:600px){ #tf .word{font-size:30px;} #tf .stmt{font-size:18px;} }
+</style>
+</head>
+<body>
+<div id="tf">
+  <h1>True or false?</h1>
+  <p class="sub">Word stress, part 1. Rules and words, as fast as you can.</p>
+
+  <div class="panel" id="tf-setup">
+    <h2>How do you want to play?</h2>
+    <div class="modes">
+      <button class="mode on" id="tf-m1" type="button"><b>Solo, against the clock</b>20 questions. Every wrong answer costs 5 seconds.</button>
+      <button class="mode" id="tf-m2" type="button"><b>Duel, one keyboard</b>16 questions. Fastest right answer takes the point.</button>
+    </div>
+    <div class="names hidden" id="tf-names">
+      <label><span class="c1">Left player</span><input id="tf-n1" maxlength="18" placeholder="Name"></label>
+      <label><span class="c2">Right player</span><input id="tf-n2" maxlength="18" placeholder="Name"></label>
+    </div>
+    <ul class="how" id="tf-how1">
+      <li>Two kinds of question: a <b>rule</b> (is it true?) and a <b>word</b> with its stressed syllable in capitals (is the stress in the right place?).</li>
+      <li>Click TRUE or FALSE, or press <kbd>T</kbd> or <kbd>F</kbd>.</li>
+      <li>The clock stops while you read the answer. Press <kbd>Enter</kbd> or Next to go on.</li>
+      <li>Say each word out loud before you answer.</li>
+    </ul>
+    <ul class="how hidden" id="tf-how2">
+      <li>Sit side by side. <span class="c1"><b>Left player</b></span>: <kbd>S</kbd> = TRUE, <kbd>D</kbd> = FALSE. <span class="c2"><b>Right player</b></span>: <kbd>K</kbd> = TRUE, <kbd>L</kbd> = FALSE.</li>
+      <li>The first one to answer takes the question. Right: <b>+1</b> for you. Wrong: <b>+1 for the other player</b>. So don't guess.</li>
+      <li>The keys wake up a moment after the question appears: read it first.</li>
+      <li>The highest score after 16 questions wins.</li>
+    </ul>
+    <p class="center" style="margin:16px 0 0;"><button class="accent" id="tf-start" type="button">Start &rarr;</button></p>
+  </div>
+
+  <div id="tf-play" class="hidden">
+    <div class="bar" id="tf-bar"></div>
+    <div class="card" id="tf-card"><div class="kind" id="tf-kind"></div><div id="tf-q"></div></div>
+    <div class="answers" id="tf-solo-ans">
+      <button type="button" id="tf-true">TRUE <kbd>T</kbd></button>
+      <button type="button" id="tf-false">FALSE <kbd>F</kbd></button>
+    </div>
+    <div class="duel hidden" id="tf-duel-ans">
+      <div class="side s1" id="tf-side0"><div class="nm" id="tf-nm0"></div>
+        <button type="button" data-p="0" data-a="1">TRUE <kbd>S</kbd></button><button type="button" data-p="0" data-a="0">FALSE <kbd>D</kbd></button></div>
+      <div class="side s2" id="tf-side1"><div class="nm" id="tf-nm1"></div>
+        <button type="button" data-p="1" data-a="1">TRUE <kbd>K</kbd></button><button type="button" data-p="1" data-a="0">FALSE <kbd>L</kbd></button></div>
+    </div>
+    <p class="msg" id="tf-msg"></p>
+    <div id="tf-fb"></div>
+    <p class="center next hidden" id="tf-nextp"><button class="accent" id="tf-next" type="button">Next &rarr; <kbd>Enter</kbd></button></p>
+  </div>
+
+  <div class="panel hidden" id="tf-end">
+    <h2>Finished</h2>
+    <div class="result" id="tf-result"></div>
+    <div id="tf-end-body"></div>
+    <p class="center" style="margin-top:14px;"><button class="accent" id="tf-again" type="button">Play again</button> <button class="ghost" id="tf-menu" type="button">Change mode</button></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* RULE statements. Each one matches what the word stress page and Emma's video teach.
+     [statement, true/false, explanation] */
+  var RULES=[
+    ["Two-syllable nouns are usually stressed on the first syllable: <span class='st'>BAR</span>ley, <span class='st'>CEL</span>lar.",1,"Yes, like TABle, TICKet and PENcil."],
+    ["Two-syllable adjectives are usually stressed on the first syllable: <span class='st'>HAP</span>py, <span class='st'>BIT</span>ter.",1,"Yes, just like two-syllable nouns."],
+    ["Two-syllable verbs are often stressed on the second syllable: pro<span class='st'>VIDE</span>, re<span class='st'>DUCE</span>.",1,"Yes, above all when the verb starts with a prefix: pro-, re-, ex-."],
+    ["Every two-syllable verb is stressed on the second syllable.",0,"No: FILter, PROcess, MEASure and HARvest are all stressed on the first."],
+    ["One spelling can have two stresses: a <span class='st'>FER</span>ment, to fer<span class='st'>MENT</span>.",1,"Yes. Noun: stress at the front. Verb: stress at the back."],
+    ["In <i>the brewer buys malt extract</i>, extract is stressed at the back: ex<span class='st'>TRACT</span>.",0,"No: here it is a noun, so the stress is at the front: malt EXtract. The verb is to exTRACT."],
+    ["Words ending in -ic are stressed on the syllable just before -ic: or<span class='st'>GAN</span>ic.",1,"Yes: find the ending, count back one."],
+    ["Words ending in -tion are stressed on -tion.",0,"No: an ending like -tion is never stressed. Count back one: fermenTAtion."],
+    ["-ity counts as one ending. Count back one from it: a<span class='st'>CID</span>ity.",1,"Yes: aCIDity, QUALity, CLARity."],
+    ["An ending can move the stress: <span class='st'>AL</span>cohol, but alco<span class='st'>HOL</span>ic.",1,"Yes: -ic pulls the stress onto the syllable just before it."],
+    ["All words ending in -al are stressed on the third syllable from the end.",0,"No: that is safe for -ical (CHEMical, bioLOGical), not for every -al: enviroMENtal."],
+    ["A long word can have two main stresses of the same strength.",0,"No: one main stress per word. Some long words have a second, lighter one."],
+    ["A stressed syllable is higher, stronger and longer, not only louder.",1,"Yes: all three at once."],
+    ["In English, every syllable takes about the same time, like in French.",0,"No: that is French, the machine gun. English is Morse code: strong and weak."],
+    ["In a dictionary, the mark &#712; comes just before the stressed syllable.",1,"Yes: aroma is /&#601;&#712;r&#601;&#650;m&#601;/, so the stress is on ro."],
+    ["The unstressed syllables keep their full vowel.",0,"No: most of them go to the schwa, the weak \"uh\": BAR-lee, kuhn-TAY-nuh."]
+  ];
+
+  /* WORDS: same list as the stress maze. Capitals = stressed syllable, hyphens = syllables.
+     No noun/verb pairs (record, extract...): a word on its own cannot say which it is. */
+  var SRC=(
+    "BAR-ley CEL-lar KET-tle WA-ter BOT-tle LA-bel FLA-vour BIT-ter SU-gar BUT-ter PRO-tein PRO-cess "+
+    "FIL-ter MEA-sure HAR-vest SAM-ple LI-quid MIX-ture PRO-duct BREW-er BREW-er-y BEV-er-age "+
+    "TEM-per-a-ture AL-co-hol CHEM-i-cal QUAL-i-ty CAR-bon-ate CAR-a-mel-ise OR-gan-ism VIN-e-gar "+
+    "NU-tri-ent CE-re-al EN-zyme LA-ger METH-od GLU-cose SED-i-ment AC-id CRYS-tal BUB-ble VIT-a-min "+
+    "MIN-er-al CAL-o-rie IN-dus-try CHOC-o-late YOG-hurt "+
+    "a-RO-ma con-TAIN-er re-FIN-er-y ma-TE-ri-al a-CID-i-ty ma-CHINE con-TROL des-SERT ho-TEL "+
+    "bac-TE-ri-a to-MA-to po-TA-to ba-NA-na so-LU-tion nu-TRI-tion fil-TRA-tion re-AC-tion "+
+    "con-VER-sion con-SUMP-tion or-GAN-ic me-TAL-lic fer-MENT-ed de-LI-cious in-GRE-di-ent "+
+    "im-POR-tant tech-NOL-o-gy bi-OL-o-gy me-TAB-o-lism pre-SER-va-tive a-CID-ic se-LEC-tion "+
+    "pro-DUC-tion e-QUIP-ment fer-MENT-er pro-CE-dure ex-PER-i-ment a-NAL-y-sis re-FRIG-er-a-tor "+
+    "e-VAP-o-rate hy-DROL-y-sis pro-VIDE al-LOW be-COME re-DUCE pre-PARE con-TAIN dis-SOLVE "+
+    "re-MOVE po-LICE ad-VICE a-MOUNT be-GIN de-CIDE for-GET ar-RIVE re-PEAT can-TEEN cui-SINE "+
+    "fer-men-TA-tion car-bo-NA-tion al-co-HOL-ic bi-o-LOG-i-cal a-ro-MAT-ic an-ae-RO-bic "+
+    "mat-u-RA-tion ger-mi-NA-tion dis-til-LA-tion in-for-MA-tion en-zy-MAT-ic sci-en-TIF-ic "+
+    "e-lec-TRIC-i-ty per-so-NAL-i-ty u-ni-VER-si-ty op-er-A-tion con-den-SA-tion ox-i-DA-tion "+
+    "e-co-NOM-i-cal math-e-MAT-ics en-gi-NEER guar-an-TEE vol-un-TEER un-der-STAND in-tro-DUCE "+
+    "pho-to-GRAPH-ic au-to-MAT-ic pro-bi-OT-ic sol-u-BIL-i-ty fun-da-MEN-tal con-cen-TRA-tion "+
+    "clar-i-fi-CA-tion con-tam-i-NA-tion pas-teur-i-SA-tion an-ti-bi-OT-ic mi-cro-bi-OL-o-gy "+
+    "bi-o-tech-NOL-o-gy ex-per-i-MEN-tal en-vi-ron-MEN-tal re-frig-er-A-tion ster-il-i-SA-tion "+
+    "i-den-ti-fi-CA-tion a-cid-i-fi-CA-tion ho-mo-gen-i-SA-tion"
+  ).split(" ");
+  var WORDS=SRC.map(function(s){
+    var syl=s.split("-"), idx=-1;
+    for(var i=0;i<syl.length;i++){ if(/[A-Z]/.test(syl[i])) idx=i; }
+    return {w:syl.join("").toLowerCase(), syl:syl.map(function(x){return x.toLowerCase();}), idx:idx};
+  });
+  var ORD=["1st","2nd","3rd","4th","5th","6th"];
+  function marked(o,i){ return o.syl.map(function(x,k){return k===i?"<span class='st'>"+x.toUpperCase()+"</span>":x;}).join(""); }
+  function plain(o,i){ return o.syl.map(function(x,k){return k===i?x.toUpperCase():x;}).join(""); }
+  /* Why the stress is where it is, only where an ending really decides it. */
+  function why(o){
+    var w=o.w, e=null;
+    if(/ical$/.test(w)) e="-ical: count back one from it";
+    else if(/(tion|sion)$/.test(w)) e="the ending -"+w.slice(-4)+": count back one";
+    else if(/ics?$/.test(w)) e="the ending -ic: count back one";
+    else if(/ity$/.test(w)) e="-ity: count back one from it";
+    else if(/ogy$/.test(w)) e="-ogy: count back one from it";
+    else if(/ial$/.test(w)) e="the ending -ial: count back one";
+    return plain(o,o.idx)+": stress on the "+ORD[o.idx]+" syllable"+(e?", "+e:"")+".";
+  }
+
+  function rnd(n){ return Math.floor(Math.random()*n); }
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=rnd(i+1);var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+
+  /* A deck: rules drawn at random, words drawn at random, each word shown either right
+     or with the capitals on another syllable (half and half). A wrong version never puts
+     the capitals on a one-letter first syllable: "Aroma" just looks like a capital letter. */
+  function makeDeck(nRules, nWords){
+    var d=[];
+    shuffle(RULES.slice()).slice(0,nRules).forEach(function(r){ d.push({kind:"rule", html:r[0], ans:r[1], why:r[2]}); });
+    var truths=shuffle([].concat(Array(Math.ceil(nWords/2)).fill(1), Array(Math.floor(nWords/2)).fill(0)));
+    shuffle(WORDS.slice()).slice(0,nWords).forEach(function(o,k){
+      var shown=o.idx;
+      if(!truths[k]){
+        var c=[]; for(var i=0;i<o.syl.length;i++){ if(i!==o.idx && !(i===0 && o.syl[0].length===1)) c.push(i); }
+        if(c.length) shown=c[rnd(c.length)];
+      }
+      d.push({kind:"word", o:o, shown:shown, ans:(shown===o.idx)?1:0});
+    });
+    return shuffle(d);
+  }
+
+  /* audio, as on the module pages: GB clips, then geii, then the browser voice */
+  var CLIPS=["https://colibrissimo.github.io/GB/pronunciation/word-stress/assets/audio/",
+             "https://colibrissimo.github.io/geii/pronunciation/word-stress/assets/audio/"];
+  var TTS=(function(){
+    var ok=('speechSynthesis' in window), voice=null;
+    function pick(){ if(!ok) return null; var vs=window.speechSynthesis.getVoices()||[];
+      return vs.filter(function(v){return /en[-_]GB/i.test(v.lang);})[0] || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || null; }
+    if(ok){ voice=pick(); window.speechSynthesis.onvoiceschanged=function(){voice=pick();}; }
+    function tts(t){ if(!ok) return; try{window.speechSynthesis.cancel();}catch(e){}
+      var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=0.75; if(voice) u.voice=voice; window.speechSynthesis.speak(u); }
+    var player=null, found={};
+    return {say:function(t){
+      var k=String(t).toLowerCase().replace(/['’]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      try{window.speechSynthesis.cancel();}catch(e){}
+      if(player){ try{player.pause();}catch(e){} }
+      var order=(found[k]!==undefined)?[CLIPS[found[k]]]:CLIPS;
+      (function attempt(i){
+        if(i>=order.length){ tts(t); return; }
+        var moved=false; function next(){ if(moved) return; moved=true; attempt(i+1); }
+        var a=new Audio(order[i]+encodeURIComponent(k)+".mp3"); player=a;
+        a.onerror=next; a.onplaying=function(){ moved=true; if(order===CLIPS) found[k]=i; };
+        var pr=a.play(); if(pr&&pr["catch"]) pr["catch"](next);
+      })(0);
+    }};
+  })();
+
+  var $=function(id){ return document.getElementById(id); };
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function fmt(ms){ var s=ms/1000, m=Math.floor(s/60); s=s-m*60; return m+":"+(s<10?"0":"")+s.toFixed(1); }
+  function show(id){ ["tf-setup","tf-play","tf-end"].forEach(function(x){ $(x).classList.toggle("hidden", x!==id); }); }
+
+  var mode=1, names=["Left","Right"], deck=[], qi=0, locked=true, armed=false, armT=null;
+  var run=0, segStart=0, pen=0, tick=null, best=null, wrongs=[], right=0;
+  var score=[0,0], shownAt=0, log=[];
+
+  function setMode(m){
+    mode=m;
+    $("tf-m1").classList.toggle("on",m===1); $("tf-m2").classList.toggle("on",m===2);
+    $("tf-names").classList.toggle("hidden",m!==2);
+    $("tf-how1").classList.toggle("hidden",m!==1); $("tf-how2").classList.toggle("hidden",m!==2);
+  }
+  $("tf-m1").addEventListener("click",function(){setMode(1);});
+  $("tf-m2").addEventListener("click",function(){setMode(2);});
+
+  function elapsed(){ return run + (segStart?Date.now()-segStart:0) + pen*1000; }
+  function drawBar(){
+    var h='<div class="chip"><span>Question</span><strong>'+Math.min(qi+1,deck.length)+' / '+deck.length+'</strong></div>';
+    if(mode===1){
+      h+='<div class="chip clock"><span>Time'+(pen?' (incl. +'+pen+' s)':'')+'</span><strong>'+fmt(elapsed())+'</strong></div>';
+      h+='<div class="chip"><span>Right</span><strong>'+right+'</strong></div>';
+    }else{
+      h+='<div class="chip sc s1"><span>'+esc(names[0])+'</span><strong>'+score[0]+'</strong></div>';
+      h+='<div class="chip sc s2"><span>'+esc(names[1])+'</span><strong>'+score[1]+'</strong></div>';
+    }
+    $("tf-bar").innerHTML=h;
+  }
+
+  function newGame(){
+    names=[($("tf-n1").value||"").trim()||"Left player", ($("tf-n2").value||"").trim()||"Right player"];
+    deck = mode===1 ? makeDeck(8,12) : makeDeck(8,8);
+    qi=0; run=0; pen=0; segStart=0; right=0; wrongs=[]; score=[0,0]; log=[];
+    $("tf-solo-ans").classList.toggle("hidden",mode!==1);
+    $("tf-duel-ans").classList.toggle("hidden",mode!==2);
+    $("tf-nm0").textContent=names[0]; $("tf-nm1").textContent=names[1];
+    show("tf-play");
+    clearInterval(tick); tick=setInterval(function(){ if(mode===1) drawBar(); },100);
+    ask();
+  }
+
+  function ask(){
+    var q=deck[qi];
+    $("tf-kind").textContent = q.kind==="rule" ? "Rule: true or false?" : "Is the stress in the right place?";
+    $("tf-q").innerHTML = q.kind==="rule" ? '<div class="stmt">'+q.html+'</div>' : '<div class="word">'+marked(q.o,q.shown)+'</div>';
+    $("tf-fb").innerHTML=""; $("tf-msg").textContent="";
+    $("tf-nextp").classList.add("hidden");
+    ["tf-true","tf-false"].forEach(function(id){ $(id).className=""; });
+    Array.prototype.forEach.call(document.querySelectorAll("#tf-duel-ans button"),function(b){ b.className=""; });
+    $("tf-side0").classList.remove("dim"); $("tf-side1").classList.remove("dim");
+    locked=false;
+    if(mode===1){ armed=true; segStart=Date.now(); $("tf-card").classList.remove("wait"); }
+    else{
+      /* keys wake up after a short read; pressing early does nothing */
+      armed=false; $("tf-card").classList.add("wait");
+      clearTimeout(armT);
+      armT=setTimeout(function(){ armed=true; shownAt=Date.now(); $("tf-card").classList.remove("wait"); }, q.kind==="rule"?1200:600);
+    }
+    drawBar();
+  }
+
+  function answer(p, a){
+    if(locked || !armed) return;      /* one answer per question, first one in wins */
+    locked=true;
+    var q=deck[qi], ok=(a===q.ans), html="";
+    if(mode===1){
+      run+=Date.now()-segStart; segStart=0;
+      if(ok) right++; else { pen+=5; wrongs.push({q:q, said:a}); }
+      $(a?"tf-true":"tf-false").className = ok?"pick-ok":"pick-no";
+      if(!ok) $(q.ans?"tf-true":"tf-false").className="is-right";
+    }else{
+      var secs=((Date.now()-shownAt)/1000).toFixed(1);
+      var gets = ok ? p : 1-p;
+      score[gets]++;
+      log.push({q:q, p:p, a:a, ok:ok});
+      $("tf-side"+(1-p)).classList.add("dim");
+      var btn=document.querySelector('#tf-duel-ans button[data-p="'+p+'"][data-a="'+a+'"]'); if(btn) btn.className = ok?"pick-ok":"pick-no";
+      html+='<div style="margin-bottom:4px;"><b>'+esc(names[p])+'</b> answered in '+secs+' s: '+(a?"TRUE":"FALSE")+'. '+
+            (ok? '+1 for '+esc(names[p])+'.' : 'Wrong: +1 for '+esc(names[1-p])+'.')+'</div>';
+    }
+    /* the item stays on screen; for a word, what they saw sits next to the right form */
+    var verdict = (q.ans?"TRUE":"FALSE");
+    html += '<div><b>'+(ok?"Right":"Not this time")+'.</b> It is '+verdict+'.</div>';
+    if(q.kind==="rule"){
+      html+='<div class="why">'+q.why+'</div>';
+    }else{
+      if(q.shown!==q.o.idx){
+        html+='<table class="saw"><tr><td class="lab">On screen</td><td><s>'+plain(q.o,q.shown)+'</s></td></tr>'+
+              '<tr><td class="lab">Correct</td><td><b style="color:var(--ok)">'+plain(q.o,q.o.idx)+'</b></td></tr></table>';
+      }else{
+        html+='<div class="saw"><b style="color:var(--ok)">'+plain(q.o,q.o.idx)+'</b> was right.</div>';
+      }
+      html+='<div class="why">'+why(q.o)+' <button class="listen" type="button" id="tf-say">&#128266; Listen</button></div>';
+    }
+    $("tf-fb").innerHTML='<div class="fb '+(ok?"ok":"no")+'">'+html+'</div>';
+    if(q.kind==="word") $("tf-say").addEventListener("click",function(){ TTS.say(q.o.w); });
+    $("tf-nextp").classList.remove("hidden");
+    drawBar();
+  }
+
+  function next(){
+    if(!locked) return;
+    qi++;
+    if(qi<deck.length){ ask(); return; }
+    finish();
+  }
+
+  function finish(){
+    clearInterval(tick); clearTimeout(armT);
+    var body="";
+    if(mode===1){
+      var tot=elapsed(), isBest=(best===null||tot<best); if(isBest) best=tot;
+      $("tf-result").innerHTML=fmt(tot)+(isBest?' &nbsp;<span style="font-size:15px;color:var(--ok);">your best this session</span>':'');
+      body='<p class="center">'+right+' right out of '+deck.length+(pen?' &middot; +'+pen+' s for wrong answers':'')+'</p>'+
+           '<p class="center" style="color:var(--muted);">Your best this session: '+fmt(best)+'</p>';
+      if(wrongs.length){
+        body+='<table class="res"><tr><th>Question</th><th>You said</th><th>The answer</th></tr>';
+        wrongs.forEach(function(x){
+          var q=x.q, qtxt = q.kind==="rule" ? q.html : plain(q.o,q.shown);
+          var fix = q.kind==="rule" ? (q.ans?"TRUE. ":"FALSE. ")+q.why : (q.ans?"TRUE: ":"FALSE: ")+plain(q.o,q.o.idx);
+          body+='<tr><td>'+qtxt+'</td><td><s>'+(x.said?"TRUE":"FALSE")+'</s></td><td>'+fix+'</td></tr>';
+        });
+        body+='</table>';
+      }
+    }else{
+      $("tf-result").innerHTML = score[0]===score[1] ? "A draw: "+score[0]+" each!" :
+        esc(names[score[0]>score[1]?0:1])+" wins, "+Math.max(score[0],score[1])+" to "+Math.min(score[0],score[1])+".";
+      var miss=log.filter(function(x){return !x.ok;});
+      if(miss.length){
+        body+='<table class="res"><tr><th>Question</th><th>Who</th><th>The answer</th></tr>';
+        miss.forEach(function(x){
+          var q=x.q, qtxt = q.kind==="rule" ? q.html : plain(q.o,q.shown);
+          var fix = q.kind==="rule" ? (q.ans?"TRUE. ":"FALSE. ")+q.why : (q.ans?"TRUE: ":"FALSE: ")+plain(q.o,q.o.idx);
+          body+='<tr><td>'+qtxt+'</td><td>'+esc(names[x.p])+'</td><td>'+fix+'</td></tr>';
+        });
+        body+='</table>';
+      }else body='<p class="center">Nobody gave a wrong answer.</p>';
+    }
+    $("tf-end-body").innerHTML=body;
+    show("tf-end");
+  }
+
+  $("tf-true").addEventListener("click",function(){ if(mode===1) answer(0,1); });
+  $("tf-false").addEventListener("click",function(){ if(mode===1) answer(0,0); });
+  $("tf-duel-ans").addEventListener("click",function(e){
+    var b=e.target.closest?e.target.closest("button"):null;
+    if(b && mode===2) answer(parseInt(b.getAttribute("data-p"),10), parseInt(b.getAttribute("data-a"),10));
+  });
+  document.addEventListener("keydown",function(e){
+    if($("tf-play").classList.contains("hidden")) return;
+    if(e.target && e.target.tagName==="INPUT") return;
+    var k=(e.key||"").toLowerCase();
+    if(k==="enter"){ e.preventDefault(); next(); return; }
+    if(mode===1){ if(k==="t") answer(0,1); else if(k==="f") answer(0,0); }
+    else{
+      if(k==="s") answer(0,1); else if(k==="d") answer(0,0);
+      else if(k==="k") answer(1,1); else if(k==="l") answer(1,0);
+    }
+  });
+  $("tf-start").addEventListener("click",newGame);
+  $("tf-next").addEventListener("click",next);
+  $("tf-again").addEventListener("click",newGame);
+  $("tf-menu").addEventListener("click",function(){ clearInterval(tick); show("tf-setup"); });
+})();
+</script>
+</body>
+</html>
