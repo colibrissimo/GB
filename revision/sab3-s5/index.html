@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAB3 Exam Revision</title>
+<style>
+:root{
+  --vocab: oklch(0.6039 0.1022 194.79);
+  --vocab-d: oklch(0.45 0.08 194.79);
+  --gram: oklch(0.64 0.13 45);
+  --gram-d: oklch(0.48 0.11 45);
+  --stage-a: oklch(0.8949 0.0493 91.77);
+  --stage-b: oklch(0.9524 0.017 76.11);
+  --face-a: oklch(0.3 0.02 20);
+  --face-b: oklch(0.21 0.015 15);
+  --pill: oklch(0.26 0.02 20 / .88);
+  --pill-ink: oklch(0.86 0.02 25);
+  --ink: oklch(0.27 0.02 30);
+  --muted: oklch(0.45 0.02 40);
+  --card: oklch(1 0 0 / .7);
+  --line: oklch(0.5 0.05 25 / .35);
+  --r: min(170px, 33vw);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --stage-a: oklch(0.27 0.02 60);
+    --stage-b: oklch(0.2 0.015 60);
+    --ink: oklch(0.92 0.02 80);
+    --muted: oklch(0.75 0.02 80);
+    --card: oklch(0.3 0.02 60 / .7);
+    --line: oklch(0.6 0.04 60 / .35);
+    --vocab-d: oklch(0.78 0.09 194.79);
+    --gram-d: oklch(0.8 0.11 50);
+  }
+}
+:root[data-theme="dark"]{
+  --stage-a: oklch(0.27 0.02 60);
+  --stage-b: oklch(0.2 0.015 60);
+  --ink: oklch(0.92 0.02 80);
+  --muted: oklch(0.75 0.02 80);
+  --card: oklch(0.3 0.02 60 / .7);
+  --line: oklch(0.6 0.04 60 / .35);
+  --vocab-d: oklch(0.78 0.09 194.79);
+  --gram-d: oklch(0.8 0.11 50);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at 50% 30%,var(--stage-a),var(--stage-b) 70%) fixed;
+  background-color:var(--stage-b);
+  color:var(--ink);
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  display:grid;place-items:center;
+  padding:28px 16px 40px;
+}
+.rev{width:100%;max-width:560px;display:grid;justify-items:center;gap:22px}
+.rev h1{font-size:22px;letter-spacing:.01em;text-align:center}
+.rev .sub{font-size:14.5px;color:var(--muted);text-align:center;margin-top:4px;max-width:42ch}
+
+.key{display:flex;gap:18px;justify-content:center;font-size:13px;font-weight:600;flex-wrap:wrap}
+.key span{display:inline-flex;align-items:center;gap:7px}
+.key span::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--c)}
+
+/* the wheel */
+.machine{
+  position:relative;
+  width:calc(var(--r) * 2);height:calc(var(--r) * 2);
+  margin:30px 0 22px;
+  display:grid;place-items:center;
+}
+.pointer{
+  position:absolute;left:50%;top:calc(-1 * var(--r) * .17);translate:-50% 0;
+  border:9px solid transparent;border-top:13px solid var(--cur,var(--vocab));
+  filter:drop-shadow(0 2px 5px oklch(0 0 0 / .3));z-index:3;
+  transition:border-top-color .3s;
+}
+.wheel{
+  position:absolute;inset:0;list-style:none;border-radius:50%;
+  border:1px solid var(--line);
+  rotate:var(--rot,0deg);
+  transition:rotate .7s cubic-bezier(.3,1,.35,1);
+}
+/* the two halves of the ring, vocabulary and grammar */
+.wheel::before{
+  content:"";position:absolute;inset:-6px;border-radius:50%;
+  background:conic-gradient(from -22.5deg,
+    oklch(0.6039 0.1022 194.79 / .25) 0deg 180deg,
+    oklch(0.64 0.13 45 / .25) 180deg 360deg);
+  -webkit-mask:radial-gradient(circle,transparent calc(var(--r) - 4px),#000 calc(var(--r) - 3px));
+          mask:radial-gradient(circle,transparent calc(var(--r) - 4px),#000 calc(var(--r) - 3px));
+}
+.wheel li{
+  position:absolute;left:50%;top:50%;width:0;height:0;
+  --a:calc((360deg / var(--n)) * var(--i) - 90deg);
+  translate:calc(cos(var(--a)) * var(--r)) calc(sin(var(--a)) * var(--r));
+}
+.stop{
+  position:absolute;translate:-50% -50%;
+  border:1px solid var(--line);border-radius:999px;
+  padding:9px 15px;
+  background:var(--pill);color:var(--pill-ink);
+  font:600 13px/1 'Segoe UI',system-ui,-apple-system,sans-serif;letter-spacing:.02em;
+  cursor:pointer;white-space:nowrap;
+  border-left:4px solid var(--c);
+  rotate:calc(var(--rot,0deg) * -1);
+  transition:rotate .7s cubic-bezier(.3,1,.35,1),background .25s,color .25s,scale .25s;
+}
+.stop:hover{color:#fff}
+.stop:focus-visible{outline:3px solid var(--c);outline-offset:3px}
+.stop.is-active{
+  background:var(--c);border-color:var(--c);color:oklch(0.18 0.03 25);
+  scale:1.12;box-shadow:0 0 22px -4px var(--c);
+}
+.vocab{--c:var(--vocab)}
+.gram{--c:var(--gram)}
+
+.face{
+  position:relative;z-index:2;
+  width:calc(var(--r) * 1.12);height:calc(var(--r) * 1.12);border-radius:50%;
+  display:grid;place-content:center;justify-items:center;gap:4px;text-align:center;
+  background:radial-gradient(circle at 38% 30%,var(--face-a),var(--face-b));
+  border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 oklch(1 0 0 / .1),0 20px 50px -20px oklch(0 0 0 / .8);
+}
+.face em{font-style:normal;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--cur,var(--vocab));font-weight:700}
+.face strong{font-size:clamp(17px,5vw,24px);color:oklch(0.93 0.02 80);letter-spacing:-.01em;padding:0 10px}
+.steer{display:flex;gap:10px;margin-top:8px}
+.steer button{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid oklch(0.5 0.05 25 / .5);background:oklch(0.28 0.02 20);
+  color:oklch(0.9 0.02 80);font-size:15px;cursor:pointer;transition:background .2s;
+}
+.steer button:hover{background:var(--cur,var(--vocab));color:oklch(0.18 0.03 25)}
+.steer button:focus-visible{outline:3px solid var(--cur,var(--vocab));outline-offset:2px}
+
+/* what the chosen stop is, and the way in */
+.card{
+  width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;
+  border-top:4px solid var(--cur,var(--vocab));
+  padding:16px 18px;display:grid;gap:12px;
+  backdrop-filter:blur(4px);
+}
+.card p{font-size:15.5px;line-height:1.5}
+.open{
+  justify-self:start;display:inline-flex;align-items:center;gap:8px;
+  background:var(--cur-d,var(--vocab-d));color:#fff;text-decoration:none;
+  font-weight:700;font-size:15px;padding:10px 18px;border-radius:999px;
+}
+.open:focus-visible{outline:3px solid var(--cur,var(--vocab));outline-offset:3px}
+.open[aria-disabled="true"]{opacity:.45;pointer-events:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .open{color:oklch(0.18 0.03 25)} }
+:root[data-theme="dark"] .open{color:oklch(0.18 0.03 25)}
+
+.live{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+
+@media (prefers-reduced-motion: reduce){ *{transition-duration:.01s !important} }
+@media (max-width:420px){ .stop{padding:8px 11px;font-size:12px} .face em{letter-spacing:.1em;font-size:9px} }
+</style>
+</head>
+<body>
+<main class="rev">
+
+  <header>
+    <h1>SAB3 English exam: revise here</h1>
+    <p class="sub">Turn the wheel, pick a resource, open it. Every link opens in a new tab.</p>
+  </header>
+
+  <div class="key" aria-hidden="true">
+    <span style="--c:var(--vocab)">Vocabulary</span>
+    <span style="--c:var(--gram)">Present perfect</span>
+  </div>
+
+  <nav class="machine" style="--n:8" aria-label="Revision resources">
+    <div class="pointer" aria-hidden="true"></div>
+    <ul class="wheel">
+      <li style="--i:0"><button type="button" class="stop vocab is-active" aria-pressed="true">Vocab list</button></li>
+      <li style="--i:1"><button type="button" class="stop vocab" aria-pressed="false">Quizlet</button></li>
+      <li style="--i:2"><button type="button" class="stop vocab" aria-pressed="false">Blooket</button></li>
+      <li style="--i:3"><button type="button" class="stop vocab" aria-pressed="false">Gimkit</button></li>
+      <li style="--i:4"><button type="button" class="stop gram" aria-pressed="false">Lesson</button></li>
+      <li style="--i:5"><button type="button" class="stop gram" aria-pressed="false">BBC video</button></li>
+      <li style="--i:6"><button type="button" class="stop gram" aria-pressed="false">Wordwall</button></li>
+      <li style="--i:7"><button type="button" class="stop gram" aria-pressed="false">Blooket</button></li>
+    </ul>
+    <div class="face">
+      <em class="group">Vocabulary</em>
+      <strong class="current">Vocab list</strong>
+      <div class="steer">
+        <button type="button" class="prev" aria-label="Previous resource">&larr;</button>
+        <button type="button" class="next" aria-label="Next resource">&rarr;</button>
+      </div>
+    </div>
+    <p class="live" aria-live="polite"></p>
+  </nav>
+
+  <section class="card" aria-live="polite">
+    <p class="desc"></p>
+    <a class="open" target="_blank" rel="noopener">Open <span aria-hidden="true">&#8599;</span></a>
+  </section>
+
+</main>
+
+<script>
+(() => {
+  // One entry per stop on the wheel, in the same order.
+  // Leave url empty and the Open button stays greyed out.
+  const RES = [
+    { group: 'Vocabulary', name: 'Vocab list',
+      url: 'https://moodle.univ-lille.fr/mod/resource/view.php?id=2011408',
+      desc: 'The S5 Essential Vocabulary list on Moodle. This list is the answer key: learn the exact English word it gives.' },
+    { group: 'Vocabulary', name: 'Quizlet',
+      url: 'https://quizlet.com/fr/1091006427/sab3-s5-essential-vocab-flash-cards/',
+      desc: 'Flashcards for the list. Flip them, then use Learn or Test to check yourself.' },
+    { group: 'Vocabulary', name: 'Blooket',
+      url: 'https://play.blooket.com/play?hwId=6ac9c5f185f36fb341e0cb9e',
+      desc: 'A Blooket game on the vocabulary list. Open until 31 October.' },
+    { group: 'Vocabulary', name: 'Gimkit',
+      url: 'https://www.gimkit.com/join/6ac8cd360fc05e4080b244c5',
+      desc: 'A Gimkit assignment on the vocabulary list. Choose the SAB3 class, then sign in.' },
+    { group: 'Present perfect', name: 'Lesson',
+      url: 'https://moodle.univ-lille.fr/course/section.php?id=482159',
+      desc: 'Your present perfect lesson on Moodle. Start here if the rules are not clear yet.' },
+    { group: 'Present perfect', name: 'BBC video',
+      url: 'https://www.bbc.com/learningenglish/features/tenses_with_georgie/ep-240209',
+      desc: 'Georgie from BBC Learning English explains the present perfect in a short video. There is a free worksheet on the page.' },
+    { group: 'Present perfect', name: 'Wordwall',
+      url: 'https://wordwall.net/resource/54338939?wwmethod=link',
+      desc: 'Put the words back in order: present perfect or past simple?' },
+    { group: 'Present perfect', name: 'Blooket',
+      url: 'https://play.blooket.com/play?hwId=6ac9f4be20b6d3720164cc48',
+      desc: 'A Blooket game on the present perfect. Open until 31 October.' },
+  ];
+
+  const root = document.documentElement;
+  const machine = document.querySelector('.machine');
+  const wheel = machine.querySelector('.wheel');
+  const stops = [...machine.querySelectorAll('.stop')];
+  const group = machine.querySelector('.group');
+  const current = machine.querySelector('.current');
+  const live = machine.querySelector('.live');
+  const desc = document.querySelector('.desc');
+  const open = document.querySelector('.open');
+  const n = stops.length, step = 360 / n;
+  let rot = 0, active = 0;
+
+  stops.forEach((s, k) => s.setAttribute('aria-label', RES[k].name + ', ' + RES[k].group));
+
+  const goTo = (idx) => {
+    idx = ((idx % n) + n) % n;
+    let delta = (-idx * step - rot) % 360;
+    delta = ((delta + 540) % 360) - 180;   // always the short way round
+    rot += delta;
+    wheel.style.setProperty('--rot', rot + 'deg');
+    stops.forEach((s, k) => {
+      s.style.rotate = (-rot) + 'deg';
+      s.classList.toggle('is-active', k === idx);
+      s.setAttribute('aria-pressed', String(k === idx));
+    });
+    active = idx;
+    const r = RES[idx], v = r.group === 'Vocabulary';
+    root.style.setProperty('--cur', v ? 'var(--vocab)' : 'var(--gram)');
+    root.style.setProperty('--cur-d', v ? 'var(--vocab-d)' : 'var(--gram-d)');
+    group.textContent = r.group;
+    current.textContent = r.name;
+    desc.textContent = r.desc;
+    if (r.url) { open.href = r.url; open.removeAttribute('aria-disabled'); }
+    else { open.removeAttribute('href'); open.setAttribute('aria-disabled', 'true'); }
+    open.firstChild.textContent = 'Open ' + r.name + ' ';
+    live.textContent = r.name + ', ' + r.group + ', selected';
+  };
+
+  stops.forEach((s, k) => s.addEventListener('click', () => goTo(k)));
+  machine.querySelector('.prev').addEventListener('click', () => goTo(active - 1));
+  machine.querySelector('.next').addEventListener('click', () => goTo(active + 1));
+  machine.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { goTo(active + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { goTo(active - 1); e.preventDefault(); }
+  });
+  goTo(0);
+})();
+</script>
+</body>
+</html>

@@ -10,6 +10,7 @@ Files here are self-contained: one HTML file, CSS and JavaScript inline, no exte
 |---|---|
 | `index.html` | The front door. Timelines, pronunciation, activities. |
 | `pronunciation/index.html` | The pronunciation index, split by year and ordered by the date each sound is taught. |
+| `revision/sab3-s5/` | SAB3 S5 exam revision hub: a wheel adapted from a CodePen (ccm-11), vocabulary resources on one half, present perfect on the other. Links live in the `RES` array at the bottom of the file; an empty `url` greys the Open button out. All links open in a new tab, so it can sit in a Moodle URL resource set to Embed. |
 | `activities/brewing-scene/` | Beer Brewing Process — an interactive scene. Click an area of the brewery to get the term, its pronunciation, and where it sits in the process. Ships with `brewery.png`. |
 | `activities/biotechnology/` | Introduction to Biotechnology — seven tabs covering traditional and modern biotechnology, the ten colours, food applications, vocabulary and a mini quiz. Built by merging two earlier standalone files. Serves SAB2 S3. |
 | `activities/food-idioms/` | The food idioms session in three pieces for Moodle: `discussion.html`, `meanings.html`, `matching.html`, `whiteboard-race.html`, the picture presenter for Sarah's marker race (pictures embedded, 1.2 MB), and `night-shift.html`, the two-crew ticket board on the food phrasal verbs and idioms (same engine as GEII's Night Shift; Moodle fragment in Educ games). SAB2 S3 session 3. |
