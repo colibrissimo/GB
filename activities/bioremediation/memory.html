@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bioremediation Memory</title>
+<style>
+  :root{
+    --teal:#0f7c8a; --teal-dk:#0a5560; --orange:#e8743b; --ink:#1c2b2e;
+    --paper:#fffdf8; --band:#f3efe6; --muted:#5a6b6e; --green:#2f8a4e;
+    --green-lt:#e3f3e8; --fr:#fdf1e8; --red:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--ink);
+       background:var(--band);margin:0;padding:16px;}
+  [hidden]{display:none !important;}
+
+  /* ---------- start + end screens ---------- */
+  .panel{max-width:620px;margin:8px auto 0;}
+  h1{color:var(--teal-dk);font-size:26px;margin:0 0 4px;text-align:center;}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 18px;text-align:center;}
+  .rules{background:var(--paper);border:2px solid var(--teal);border-radius:14px;
+         padding:16px 18px;line-height:1.5;font-size:15.5px;}
+  .rules p{margin:0 0 10px;}
+  .rules p:last-child{margin:0;}
+  .rules b{color:var(--teal-dk);}
+  .pick{margin-top:16px;}
+  .pick h2{font-size:15px;color:var(--muted);margin:0 0 8px;text-transform:uppercase;letter-spacing:.5px;}
+  .choices{display:flex;gap:10px;margin-bottom:14px;}
+  .choice{flex:1;font:inherit;background:var(--paper);color:var(--teal-dk);
+          border:2px solid var(--teal);border-radius:12px;padding:12px 10px;cursor:pointer;text-align:center;}
+  .choice b{display:block;font-size:17px;}
+  .choice span{display:block;font-size:13px;color:var(--muted);margin-top:3px;}
+  .choice[aria-pressed="true"]{background:var(--teal);color:#fff;}
+  .choice[aria-pressed="true"] span{color:#d7eef1;}
+  .choice:disabled{opacity:.55;cursor:not-allowed;border-style:dashed;}
+  .unlocked{color:var(--orange);font-weight:700;font-size:17px;margin-top:10px;}
+  .choice:focus-visible{outline:3px solid var(--orange);outline-offset:2px;}
+  button.act{font:inherit;font-size:17px;font-weight:700;padding:14px 18px;
+             border-radius:12px;border:none;cursor:pointer;}
+  button.act:focus-visible{outline:3px solid var(--teal-dk);outline-offset:2px;}
+  .go{background:var(--orange);color:#fff;width:100%;}
+  .ghost{background:var(--paper);color:var(--teal-dk);border:2px solid var(--teal) !important;}
+
+  /* ---------- game bar ---------- */
+  .bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 auto 10px;max-width:1800px;}
+  .bar .title{font-weight:700;color:var(--teal-dk);font-size:18px;}
+  .bar .stat{font-size:15px;color:var(--muted);font-weight:600;}
+  .bar .stat b{color:var(--ink);}
+  .bar .msg{flex:1;min-width:200px;text-align:center;font-weight:600;font-size:15px;min-height:1.4em;}
+  .msg.bad{color:var(--red);}
+  .msg.good{color:var(--green);}
+  .bar button{font:inherit;font-size:14px;font-weight:600;padding:7px 12px;border-radius:10px;
+              background:var(--paper);color:var(--teal-dk);border:2px solid var(--teal);cursor:pointer;}
+
+  /* ---------- board ---------- */
+  .board{display:grid;gap:10px;justify-content:center;margin:0 auto;}
+  .card{position:relative;border-radius:12px;border:3px solid var(--teal);background:var(--teal);
+        color:#fff;overflow:hidden;cursor:pointer;padding:8px 8px 6px;font:inherit;
+        display:flex;align-items:center;justify-content:center;text-align:center;
+        user-select:none;-webkit-user-select:none;}
+  .card::before{content:"";position:absolute;top:0;left:0;width:100%;height:6px;background:var(--orange);}
+  .card:hover:not(.open):not(.matched){background:var(--teal-dk);}
+  .card:focus-visible{outline:4px solid var(--orange);outline-offset:2px;}
+  .card.open{background:var(--paper);color:var(--ink);cursor:default;}
+  .card.open.fr{background:var(--fr);}
+  .card.open::before,.card.matched::before{display:none;}
+  .card.miss{border-color:var(--red);}
+  .card.matched,.card.open.fr.matched{background:var(--green-lt);border-color:var(--green);color:var(--teal-dk);cursor:default;}
+  .card .badge{position:absolute;top:4px;left:7px;width:20px;height:20px;border-radius:50%;
+               background:var(--red);color:#fff;font-size:12px;font-weight:700;line-height:20px;}
+  .board.choosing .card:not(.open):not(.matched){outline:3px dashed var(--orange);outline-offset:-7px;}
+  .card.moving{z-index:2;transition:transform .55s ease-in-out;}
+  .twistnote{background:var(--fr);border:2px solid var(--orange);border-radius:12px;padding:12px 14px;
+             font-size:15px;line-height:1.5;margin:-4px 0 14px;}
+  .twistnote small{color:var(--muted);}
+  .card .txt{font-weight:600;line-height:1.2;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;}
+  .card .lang{position:absolute;top:4px;right:7px;font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--muted);}
+  .card.fr .lang{color:var(--orange);}
+  .card.matched .lang{color:var(--green);}
+
+  /* ---------- end screen ---------- */
+  .done{background:var(--paper);border:2px solid var(--teal);border-radius:14px;padding:22px;text-align:center;}
+  .done .big{font-size:24px;font-weight:700;color:var(--teal-dk);margin-bottom:6px;}
+  .done .best{color:var(--muted);font-size:14px;margin-top:6px;}
+  table.review{width:100%;border-collapse:collapse;margin-top:16px;background:var(--paper);
+               border:2px solid var(--teal);border-radius:14px;overflow:hidden;font-size:15px;}
+  table.review th{background:var(--teal);color:#fff;text-align:left;padding:8px 12px;}
+  table.review td{padding:6px 12px;border-top:1px solid var(--band);}
+  table.review td:first-child{color:var(--orange);font-weight:600;}
+  .buttons{display:flex;gap:12px;margin-top:16px;}
+  .buttons .act{flex:1;}
+  .foot{font-size:11px;color:#8a9699;margin-top:22px;text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- Start screen -->
+<section id="startScreen" class="panel">
+  <h1>Bioremediation Memory</h1>
+  <p class="sub">Cleaning up pollution with living things. Find each English word and its French partner.</p>
+  <div class="rules">
+    <p>All the cards start face down. Turn over <b>two cards</b>.</p>
+    <p>If one is the <b>English</b> word and the other is its <b>French</b> translation, it's a pair: the cards stay open. If not, look at them carefully, then click to turn them back.</p>
+    <p>Remember where everything is, and find all the pairs in as few moves as you can.</p>
+  </div>
+
+  <div class="pick">
+    <h2>Game</h2>
+    <div class="choices" id="modeChoices">
+      <button class="choice" data-mode="classic" aria-pressed="true"><b>Classic</b><span>The cards stay where they are</span></button>
+      <button class="choice" data-mode="twist" aria-pressed="false"><b>Twist</b><span>Wrong pairs swap places!</span></button>
+      <button class="choice" data-mode="bonus" aria-pressed="false" disabled><b>Bonus 🔒</b><span>Finish a Twist game to unlock</span></button>
+    </div>
+    <p class="twistnote" id="note-twist" hidden><b>Twist:</b> when your two cards are not a pair, they turn back over and <b>swap places</b>: each card moves to where the other one was. Your memory has to move with them!<br><small>Van Chung invented this twist at the age of 12. Computer scientist Ken Perlin turned it into a game.</small></p>
+    <p class="twistnote" id="note-bonus" hidden><b>Bonus:</b> when your two cards are not a pair, they get the numbers <b>1</b> and <b>2</b>. Then <b>you choose</b> a face-down card, and the three cards move round: 1 goes to the place of 2, 2 goes to the place of your card, and your card goes to the place of 1. Plan your moves!<br><small>Ken Perlin's own version of Van Chung's twist.</small></p>
+    <h2>Word set</h2>
+    <div class="choices" id="setChoices"></div>
+    <button class="act go" id="startBtn">Start</button>
+  </div>
+  <p class="foot">BUT2 SAB · S3 · Bioremediation</p>
+</section>
+
+<!-- Game screen -->
+<section id="gameScreen" hidden>
+  <div class="bar" id="bar">
+    <span class="title" id="gameTitle"></span>
+    <span class="stat">Pairs <b id="pairs">0</b> / <b id="total">0</b></span>
+    <span class="stat">Moves <b id="moves">0</b></span>
+    <span class="stat">Time <b id="time">0:00</b></span>
+    <span class="msg" id="msg" aria-live="polite"></span>
+    <button id="quitBtn">New game</button>
+  </div>
+  <div class="board" id="board"></div>
+</section>
+
+<!-- End screen -->
+<section id="endScreen" class="panel" hidden>
+  <div class="done">
+    <div class="big">All pairs found!</div>
+    <div id="result"></div>
+    <div class="best" id="best"></div>
+    <div class="unlocked" id="unlocked" hidden>Bonus level unlocked! Try it from "Change game".</div>
+  </div>
+  <table class="review">
+    <thead><tr><th>French</th><th>English</th></tr></thead>
+    <tbody id="review"></tbody>
+  </table>
+  <div class="buttons">
+    <button class="act go" id="againBtn">Play again</button>
+    <button class="act ghost" id="menuBtn">Change game</button>
+  </div>
+</section>
+
+<script>
+(function(){
+  // [French, English]. Sets follow the order of the vocabulary sheet. Four entries differ from the
+  // sheet on purpose: "to break down" (the sheet has "to breakdown", the noun), "dégât" (accent),
+  // "absorption" for uptake (a noun, the sheet has the verb "absorber"), and "to" on the verbs.
+  var WORDS = [
+    ["produits chimiques","chemicals"],
+    ["dégât","damage"],
+    ["creuser","to dig"],
+    ["non réglementé","unregulated"],
+    ["déceler","to detect"],
+    ["échelle temporelle","timescale"],
+    ["bon sens","gumption"],
+    ["guérir","to heal"],
+    ["substance polluante","pollutant"],
+    ["absorption (par une plante)","uptake"],
+    ["microbien","microbial"],
+    ["libérer","to release"],
+    ["décomposer","to break down"],
+    ["difficile / problématique","troublesome"],
+    ["déversement","spillage"],
+    ["métaux lourds","heavy metals"],
+    ["émission industrielle","industrial emission"],
+    ["plomb","lead"],
+    ["dangereux","hazardous"],
+    ["élimination des déchets","waste disposal"],
+    ["nutriment","nutrient"],
+    ["résultat annexe","byproduct"],
+    ["eau de ruissellement","stormwater runoff"],
+    ["épuration par lit bactérien","biotrickling"],
+    ["espèces","species"],
+    ["copeaux de bois dur","hardwood chips"],
+    ["souche (de bactérie)","strain"],
+    ["améliorer","to enhance"],
+    ["niveau de contamination","level of contamination"],
+    ["approche communautaire","grassroots approach"]
+  ];
+
+  // Classic and Twist: two halves. Bonus: the three blocks of the vocabulary sheet.
+  var SETS = {
+    A: {name:"Set A", words:WORDS.slice(0,15)},  B: {name:"Set B", words:WORDS.slice(15)},
+    1: {name:"Bonus 1", words:WORDS.slice(0,10)}, 2: {name:"Bonus 2", words:WORDS.slice(10,20)},
+    3: {name:"Bonus 3", words:WORDS.slice(20)}
+  };
+  var SETS_FOR = { classic:["A","B"], twist:["A","B"], bonus:["1","2","3"] };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var choice = { set:"A", mode:"classic" };
+  var best = {};            // this session only: shared machines
+  var bonusLevel = 0;       // highest Bonus unlocked: a Twist game opens 1, each Bonus opens the next; resets on reload, same reason
+  var g = null;             // current game state
+  var timerId = null;
+
+  function shuffle(a){
+    for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+    return a;
+  }
+  function fmt(s){ return Math.floor(s/60)+":"+("0"+(s%60)).slice(-2); }
+
+  function press(box, btn){
+    box.querySelectorAll(".choice").forEach(function(x){ x.setAttribute("aria-pressed", x===btn ? "true" : "false"); });
+  }
+  function renderSets(){
+    var box = $("setChoices"), keys = SETS_FOR[choice.mode];
+    var locked = function(k){ return choice.mode==="bonus" && Number(k) > bonusLevel; };
+    if (keys.indexOf(choice.set) === -1 || locked(choice.set))
+      choice.set = choice.mode==="bonus" ? String(Math.min(bonusLevel,3)) : keys[0];
+    box.innerHTML = "";
+    keys.forEach(function(k){
+      var b = document.createElement("button");
+      b.className = "choice";
+      b.innerHTML = "<b></b><span></span>";
+      b.querySelector("b").textContent = SETS[k].name + (locked(k) ? " 🔒" : "");
+      b.querySelector("span").textContent = locked(k) ? "Finish Bonus "+(Number(k)-1)+" to unlock"
+                                                      : SETS[k].words.length+" words";
+      b.disabled = locked(k);
+      b.setAttribute("aria-pressed", k===choice.set ? "true" : "false");
+      b.addEventListener("click", function(){ choice.set = k; press(box, b); });
+      box.appendChild(b);
+    });
+    $("note-twist").hidden = choice.mode!=="twist";
+    $("note-bonus").hidden = choice.mode!=="bonus";
+  }
+  $("modeChoices").querySelectorAll(".choice").forEach(function(b){
+    b.addEventListener("click", function(){ choice.mode = b.dataset.mode; press($("modeChoices"), b); renderSets(); });
+  });
+  renderSets();
+
+  function unlockBonus(){
+    var b = document.querySelector('[data-mode="bonus"]');
+    b.disabled = false;
+    b.querySelector("b").textContent = "Bonus";
+    b.querySelector("span").textContent = "You decide where they go";
+  }
+
+  function show(id){
+    if (id==="startScreen") renderSets();   // pick up anything unlocked since
+    ["startScreen","gameScreen","endScreen"].forEach(function(s){ $(s).hidden = (s!==id); });
+  }
+
+  // ---------- game ----------
+  function newGame(){
+    var words = SETS[choice.set].words;
+    var deck = [];
+    words.forEach(function(w,t){ deck.push({t:t,lang:"fr"}); deck.push({t:t,lang:"en"}); });
+    g = { words:words, deck:shuffle(deck), open:[], pending:false, busy:false, mode:choice.mode,
+          matched:0, total:words.length, moves:0, secs:0, started:false, over:false };
+    clearInterval(timerId); timerId = null;
+    $("gameTitle").textContent = g.mode==="bonus" ? SETS[choice.set].name
+                               : SETS[choice.set].name+" · "+(g.mode==="twist"?"Twist":"Classic");
+    $("board").classList.remove("choosing");
+    $("pairs").textContent = "0"; $("total").textContent = g.total;
+    $("moves").textContent = "0"; $("time").textContent = "0:00";
+    setMsg("", "");
+
+    var board = $("board"); board.innerHTML = "";
+    g.deck.forEach(function(card, i){
+      var el = document.createElement("button");
+      el.className = "card";
+      el.id = "c-"+i;                       // opaque id: the answer lives only in JS
+      el.setAttribute("aria-label","Card "+(i+1)+", face down");
+      el.addEventListener("click", function(){ clickCard(i); });
+      card.el = el;
+      board.appendChild(el);
+    });
+    show("gameScreen");
+    layout();
+  }
+
+  function face(card){
+    var lang = card.lang==="fr" ? "FR" : "EN";
+    var text = g.words[card.t][card.lang==="fr" ? 0 : 1];
+    card.el.innerHTML = '<span class="lang">'+lang+'</span><span class="txt" lang="'+card.lang+'"></span>';
+    card.el.querySelector(".txt").textContent = text;
+    card.el.classList.add("open", card.lang);
+    card.el.setAttribute("aria-label", lang+": "+text);
+  }
+  function hide(card){
+    card.el.innerHTML = "";
+    card.el.className = "card";
+    card.el.setAttribute("aria-label","Card face down");
+  }
+
+  function setMsg(text, kind){ var m=$("msg"); m.textContent=text; m.className="msg "+kind; }
+
+  // Twist (Van Chung's variation, as in Ken Perlin's applet): a missed pair swaps
+  // places once it is face down. Bonus (Perlin's own variation): the student picks a
+  // third card and the three rotate. Slides are shown so the rule is visible, faces hidden.
+  // moves: [{card, to:slot}], a permutation of the slots involved.
+  function slide(moves, then){
+    var slot = function(k){ return $("c-"+k); };
+    var plan = moves.map(function(m){
+      var from = g.deck.indexOf(m.card);
+      return {card:m.card, to:m.to, el:slot(from), r1:slot(from).getBoundingClientRect(), r2:slot(m.to).getBoundingClientRect()};
+    });
+    g.busy = true;
+    plan.forEach(function(p){ p.el.classList.add("moving"); });
+    void $("board").offsetWidth;            // let the face-down state paint first
+    plan.forEach(function(p){
+      p.el.style.transform = "translate("+(p.r2.left-p.r1.left)+"px,"+(p.r2.top-p.r1.top)+"px)";
+    });
+    var G = g;                              // the player may start a new game mid-slide
+    setTimeout(function(){
+      plan.forEach(function(p){ p.el.classList.remove("moving"); p.el.style.transform = ""; });
+      if (G !== g) return;
+      plan.forEach(function(p){ g.deck[p.to] = p.card; p.card.el = slot(p.to); });
+      g.busy = false;
+      then();
+    }, 600);
+  }
+
+  function clickCard(i){
+    if (g.over || g.busy) return;
+    // A missed pair stays open until the next click, so the student can study it.
+    if (g.pending){
+      var a = g.open[0], b = g.open[1];
+      var c = g.deck[i];
+      var wasDown = !c.done && c!==a && c!==b;
+      if (g.mode==="bonus"){
+        if (!wasDown) return;               // they must choose a face-down card
+        var ia = g.deck.indexOf(a), ib = g.deck.indexOf(b);
+        hide(a); hide(b);
+        g.open = []; g.pending = false; setMsg("","");
+        $("board").classList.remove("choosing");
+        slide([{card:c, to:ia}, {card:a, to:ib}, {card:b, to:i}], function(){});
+        return;
+      }
+      hide(a); hide(b);
+      g.open = []; g.pending = false; setMsg("","");
+      if (g.mode==="twist"){
+        var ia2 = g.deck.indexOf(a), ib2 = g.deck.indexOf(b);
+        slide([{card:a, to:ib2}, {card:b, to:ia2}], function(){ if (wasDown) clickCard(i); });
+        return;
+      }
+    }
+    var card = g.deck[i];
+    if (card.done || g.open.indexOf(card) !== -1) return;
+    if (!g.started){ g.started = true; timerId = setInterval(tick, 1000); }
+
+    face(card);
+    g.open.push(card);
+    if (g.open.length < 2) return;
+
+    g.moves++; $("moves").textContent = g.moves;
+    var a = g.open[0], b = g.open[1];
+    if (a.t===b.t && a.lang!==b.lang){
+      [a,b].forEach(function(c){ c.done = true; c.el.classList.add("matched"); });
+      g.open = [];
+      g.matched++; $("pairs").textContent = g.matched;
+      setMsg("Pair! "+g.words[a.t][1]+" = "+g.words[a.t][0], "good");
+      if (g.matched===g.total) finish();
+    } else {
+      a.el.classList.add("miss"); b.el.classList.add("miss");
+      g.pending = true;
+      var next = g.mode==="twist" ? " Remember them: they will swap places. Click to continue."
+               : g.mode==="bonus" ? " Now choose a face-down card. 1 goes to 2, 2 goes to your card, your card goes to 1."
+               : " Remember them! Click to continue.";
+      if (g.mode==="bonus"){
+        [a,b].forEach(function(c,k){
+          var n = document.createElement("span"); n.className = "badge"; n.textContent = k+1; c.el.appendChild(n);
+        });
+        $("board").classList.add("choosing");
+      }
+      if (a.lang===b.lang){
+        setMsg((a.lang==="en" ? "Two English cards" : "Two French cards")+": a pair is always English + French."+next, "bad");
+      } else {
+        setMsg("Not a pair."+next, "bad");
+      }
+    }
+  }
+
+  function tick(){ g.secs++; $("time").textContent = fmt(g.secs); }
+
+  function finish(){
+    g.over = true; clearInterval(timerId); timerId = null;
+    var key = choice.set+choice.mode;
+    var prev = best[key];
+    var isBest = !prev || g.moves < prev.moves || (g.moves===prev.moves && g.secs < prev.secs);
+    if (isBest) best[key] = {moves:g.moves, secs:g.secs};
+    var unlockMsg = "";
+    if (g.mode==="twist" && bonusLevel===0){
+      bonusLevel = 1; unlockBonus();
+      unlockMsg = 'Bonus level unlocked! Try it from "Change game".';
+    } else if (g.mode==="bonus" && Number(choice.set)===bonusLevel){
+      if (bonusLevel < 3){ bonusLevel++; unlockMsg = "Bonus "+bonusLevel+" unlocked!"; }
+      else { bonusLevel = 4; unlockMsg = "You finished all three Bonus levels. Well done!"; }
+    }
+    setTimeout(function(){
+      $("result").textContent = g.total+" pairs in "+g.moves+" moves and "+fmt(g.secs)+".";
+      $("best").textContent = isBest && prev ? "New best this session!"
+        : prev ? "Your best this session: "+best[key].moves+" moves, "+fmt(best[key].secs)+"." : "";
+      $("unlocked").textContent = unlockMsg;
+      $("unlocked").hidden = !unlockMsg;
+      var tb = $("review"); tb.innerHTML = "";
+      g.words.forEach(function(w){
+        var tr = document.createElement("tr");
+        var fr = document.createElement("td"); fr.textContent = w[0]; fr.lang = "fr";
+        var en = document.createElement("td"); en.textContent = w[1];
+        tr.appendChild(fr); tr.appendChild(en); tb.appendChild(tr);
+      });
+      show("endScreen");
+      window.scrollTo(0,0);
+    }, 1200);
+  }
+
+  // ---------- fit the grid to the screen ----------
+  function layout(){
+    if (!g || $("gameScreen").hidden) return;
+    var n = g.deck.length, gap = 10, ratio = 4/3;
+    var W = window.innerWidth - 32;
+    var H = window.innerHeight - $("bar").offsetHeight - 42;
+    var bestW = 0, bestCols = 1;
+    for (var cols=2; cols<=n; cols++){
+      var rows = Math.ceil(n/cols);
+      var cw = (W - gap*(cols-1))/cols;
+      var ch = (H - gap*(rows-1))/rows;
+      var w = Math.min(cw, ch*ratio);
+      if (w > bestW){ bestW = w; bestCols = cols; }
+    }
+    var minW = 104;                         // below this, scroll rather than shrink
+    if (bestW < minW){
+      bestCols = Math.max(2, Math.floor((W+gap)/(minW+gap)));
+      bestW = (W - gap*(bestCols-1))/bestCols;
+    }
+    bestW = Math.min(bestW, 240);
+    var board = $("board");
+    board.style.gridTemplateColumns = "repeat("+bestCols+", "+bestW+"px)";
+    board.style.gridAutoRows = (bestW/ratio)+"px";
+    board.style.fontSize = Math.max(12, Math.min(20, bestW*0.095))+"px";
+  }
+  window.addEventListener("resize", layout);
+
+  $("startBtn").addEventListener("click", newGame);
+  $("againBtn").addEventListener("click", newGame);
+  $("quitBtn").addEventListener("click", function(){ clearInterval(timerId); show("startScreen"); });
+  $("menuBtn").addEventListener("click", function(){ show("startScreen"); });
+})();
+</script>
+</body>
+</html>

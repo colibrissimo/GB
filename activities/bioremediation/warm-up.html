@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bioremediation warm-up</title>
+<style>
+:root{
+  --gt-cream:#faf6ef;--gt-ink:#2b2b2b;--gt-muted:#6d7078;--gt-teal:#2f7d4f;--gt-teal-d:#1f5c39;
+  --gt-orange:#e08a3c;--gt-line:#e3dccd;--gt-line-s:#cdc4ad;--gt-card:#ffffff;
+  --ok-bg:#ecf6f0;--ok-fg:#2e7d52;--no-bg:#fceceb;--no-fg:#b23b3b;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --gt-cream:#1a1b17;--gt-ink:#ece7db;--gt-muted:#a49d8a;--gt-teal:#5eb87e;--gt-teal-d:#8ad4a2;
+    --gt-orange:#e8a361;--gt-line:#33392c;--gt-line-s:#454c39;--gt-card:#22261c;
+    --ok-bg:#1c2a22;--ok-fg:#5fbe88;--no-bg:#301f1d;--no-fg:#e8746a;
+  }
+}
+:root[data-theme="dark"]{
+  --gt-cream:#1a1b17;--gt-ink:#ece7db;--gt-muted:#a49d8a;--gt-teal:#5eb87e;--gt-teal-d:#8ad4a2;
+  --gt-orange:#e8a361;--gt-line:#33392c;--gt-line-s:#454c39;--gt-card:#22261c;
+  --ok-bg:#1c2a22;--ok-fg:#5fbe88;--no-bg:#301f1d;--no-fg:#e8746a;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--gt-cream);color:var(--gt-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.55;font-size:18px;padding:26px 16px 60px}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-size:28px;margin:0 0 4px;color:var(--gt-teal-d)}
+.sub{color:var(--gt-muted);margin:0 0 18px;font-size:16px}
+.card{background:var(--gt-card);border:1px solid var(--gt-line-s);border-left:5px solid var(--gt-orange);
+  border-radius:10px;padding:18px 20px;margin-bottom:16px}
+.prog{display:flex;justify-content:space-between;color:var(--gt-muted);font-size:15px;margin-bottom:6px}
+.bar{height:7px;background:var(--gt-line);border-radius:6px;overflow:hidden;margin-bottom:16px}
+.bar i{display:block;height:100%;background:var(--gt-orange);width:0;transition:width .25s}
+.ctx{font-size:15px;color:var(--gt-muted);margin:0 0 6px;font-weight:600;letter-spacing:.3px}
+.q{font-size:21px;font-weight:600;margin:0 0 16px;line-height:1.4}
+.opts{display:grid;gap:10px}
+.opt{font:inherit;font-size:17px;text-align:left;background:var(--gt-cream);color:var(--gt-ink);
+  border:2px solid var(--gt-line-s);border-radius:10px;padding:12px 14px;cursor:pointer;position:relative}
+.opt:hover:not(:disabled){border-color:var(--gt-orange)}
+.opt:focus-visible{outline:3px solid var(--gt-orange);outline-offset:2px}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--ok-bg);border-color:var(--ok-fg)}
+.opt.wrong{background:var(--no-bg);border-color:var(--no-fg)}
+.opt.dim{opacity:.55}
+.tag{display:block;font-size:12.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:2px}
+.right .tag{color:var(--ok-fg)} .wrong .tag{color:var(--no-fg)}
+.why{margin-top:16px;padding:12px 14px;border-radius:8px;background:var(--gt-cream);border:1px solid var(--gt-line);font-size:16.5px}
+.why .verdict{font-weight:700;margin-bottom:4px}
+.why .verdict.ok{color:var(--ok-fg)} .why .verdict.no{color:var(--no-fg)}
+.why b{color:var(--gt-teal-d)}
+.act{font:inherit;font-size:17px;font-weight:700;border:none;border-radius:10px;padding:12px 20px;cursor:pointer;
+  background:var(--gt-orange);color:#fff;margin-top:16px}
+.act:focus-visible{outline:3px solid var(--gt-teal-d);outline-offset:2px}
+.ghost{background:transparent;color:var(--gt-teal-d);border:2px solid var(--gt-teal)}
+.end h2{color:var(--gt-teal-d);margin:0 0 6px;font-size:24px}
+.review{list-style:none;margin:14px 0 0;padding:0}
+.review li{border-top:1px solid var(--gt-line);padding:10px 0;font-size:16px}
+.review .rq{font-weight:600}
+.review .ra{color:var(--ok-fg)}
+.review .rx{color:var(--no-fg);text-decoration:line-through}
+.foot{font-size:12px;color:var(--gt-muted);margin-top:22px;text-align:center}
+@media (max-width:520px){ body{font-size:17px} .q{font-size:19px} h1{font-size:24px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section id="start">
+    <h1>Bioremediation: guess first</h1>
+    <p class="sub">Eight questions about cleaning up pollution with living things. You are not expected to know the answers yet. Guess, then read why. Everything here comes back later in the lesson.</p>
+    <div class="card">
+      <p style="margin:0">Pick one answer. You will see your answer and the right one side by side, with a short explanation. Read it before you click <b>Next</b>.</p>
+    </div>
+    <button class="act" id="go">Start</button>
+  </section>
+
+  <section id="play" hidden>
+    <div class="prog"><span id="count"></span><span id="score"></span></div>
+    <div class="bar"><i id="fill"></i></div>
+    <div class="card">
+      <p class="ctx" id="ctx"></p>
+      <p class="q" id="q"></p>
+      <div class="opts" id="opts"></div>
+      <div class="why" id="why" hidden><div class="verdict" id="verdict"></div><div id="expl"></div></div>
+      <button class="act" id="next" hidden>Next</button>
+    </div>
+  </section>
+
+  <section id="end" class="end" hidden>
+    <div class="card">
+      <h2 id="final"></h2>
+      <p style="margin:0" id="finalnote"></p>
+      <ul class="review" id="review"></ul>
+    </div>
+    <button class="act" id="again">Play again</button>
+  </section>
+  <p class="foot">BUT2 SAB · S3 · Bioremediation warm-up</p>
+</div>
+
+<script>
+(function(){
+  /* Solo warm-up, so the feedback shows the student's own answer beside the right one
+     (classroom-game-hardening 6b). The first option of each item is the right one;
+     options are shuffled on screen. */
+  var ITEMS = [
+    { ctx:"The word",
+      q:"Remediation has the same root as the French word remède. So bioremediation means…",
+      o:["cleaning up pollution with living things",
+         "measuring pollution with living things",
+         "making medicines from plants",
+         "protecting animals from pollution"],
+      e:"A <b>remedy</b> is a cure, and <b>remediation</b> is repairing damage. <b>Bio-</b> means it is done by living things: bacteria, fungi, plants, even worms."},
+    { ctx:"Alaska, 1989",
+      q:"The tanker Exxon Valdez spills about 40 million litres of crude oil. On some beaches, workers then spray fertiliser on the oily rocks. Why?",
+      o:["To feed the bacteria already there, so they eat the oil faster",
+         "To help grass grow over the oil and hide it",
+         "To make the oil sink deeper into the sand",
+         "To kill the bacteria that make the oil toxic"],
+      e:"Oil-eating bacteria live on most beaches. What slows them down is a lack of <b>nutrients</b> (nitrogen, phosphorus). Feed them and they <b>break down</b> the oil faster. It was one of the first big bioremediation operations."},
+    { ctx:"Mushrooms",
+      q:"Oyster mushrooms are used to clean soil polluted with diesel. What do they do to the oil?",
+      o:["They break it down into simpler, less harmful substances",
+         "They store it in their caps until they are picked",
+         "They push it down, below the roots of other plants",
+         "They cover it, so the rain cannot wash it away"],
+      e:"Fungi digest their food outside their bodies: they <b>release</b> enzymes into the soil, and the enzymes cut big oil molecules into small ones. This is called mycoremediation."},
+    { ctx:"Heavy metals",
+      q:"Can any living thing destroy lead?",
+      o:["No. Living things can only move it, trap it or change its form",
+         "Yes, some bacteria eat it",
+         "Yes, but only plants can",
+         "Yes, if the soil is heated first"],
+      e:"<b>Lead</b> is an element, and nothing alive can destroy an element. Plants can take it up from the soil (<b>uptake</b>), but then the plants become <b>hazardous waste</b> themselves and have to be harvested and disposed of."},
+    { ctx:"Chernobyl, 1996",
+      q:"Ten years after the disaster, scientists put sunflowers on floating rafts on a radioactive pond near the plant. What were the sunflowers for?",
+      o:["Their roots pulled radioactive metals out of the water",
+         "They changed colour to show where the radiation was",
+         "Their seeds fed the birds, so the birds stayed away from the water",
+         "They shaded the pond to stop the water evaporating"],
+      e:"Roots hanging in water are very good at catching metals. But it does not always work: after Fukushima in 2011, Japan tried sunflowers in contaminated <b>soil</b>, and they took up very little."},
+    { ctx:"Japan, 2016",
+      q:"Outside a bottle-recycling plant, researchers find a new bacterium. What can it do?",
+      o:["Digest PET, the plastic water bottles are made of",
+         "Turn broken glass back into sand",
+         "Make new bottles out of sugar",
+         "Detect lead in tap water"],
+      e:"It is called <i>Ideonella sakaiensis</i>. It is slow: weeks for a thin piece of plastic. Labs are now trying to build faster <b>strains</b>, and to <b>enhance</b> the enzymes it uses."},
+    { ctx:"Farms in Iowa",
+      q:"At the edge of their fields, farmers bury long trenches full of hardwood chips. Why?",
+      o:["Bacteria living on the chips remove fertiliser from the water draining off the fields",
+         "The chips soak up rain, so the fields do not flood",
+         "The chips stop worms from getting into the fields",
+         "The chips are dug up and burned for heat in winter"],
+      e:"Water from the fields carries nitrate (fertiliser) into rivers. In the trench, bacteria feed on the <b>hardwood chips</b> and turn the nitrate into nitrogen gas, which is harmless. The same idea is used to clean <b>stormwater runoff</b> in towns."},
+    { ctx:"Cost and time",
+      q:"Compared with digging up polluted soil and taking it by lorry to a landfill, bioremediation is usually…",
+      o:["cheaper, but slower",
+         "faster, but more expensive",
+         "faster and cheaper",
+         "slower and more expensive"],
+      e:"The <b>timescale</b> is months or years, not weeks. But there are no lorries and no landfill, so it costs less and creates less new pollution. It only works with the right organism, the right temperature and enough oxygen."}
+  ];
+
+  var $ = function(id){ return document.getElementById(id); };
+  var order, i, right, log;
+
+  function shuffle(a){ for (var k=a.length-1;k>0;k--){ var j=Math.floor(Math.random()*(k+1)); var t=a[k]; a[k]=a[j]; a[j]=t; } return a; }
+  function show(id){ ["start","play","end"].forEach(function(s){ $(s).hidden = (s!==id); }); window.scrollTo(0,0); }
+
+  /* Questions stay in story order (the word first, cost last); only the options move. */
+  function begin(){ order = ITEMS.map(function(_,k){return k;}); i=0; right=0; log=[]; show("play"); render(); }
+
+  function render(){
+    var it = ITEMS[order[i]];
+    $("count").textContent = "Question "+(i+1)+" of "+ITEMS.length;
+    $("score").textContent = right+" right so far";
+    $("fill").style.width = Math.round(i/ITEMS.length*100)+"%";
+    $("ctx").textContent = it.ctx;
+    $("q").textContent = it.q;
+    $("why").hidden = true; $("next").hidden = true;
+    var box = $("opts"); box.innerHTML = "";
+    shuffle(it.o.map(function(_,k){return k;})).forEach(function(k){
+      var b = document.createElement("button");
+      b.className = "opt"; b.dataset.k = k;
+      var t = document.createElement("span"); t.textContent = it.o[k];
+      b.appendChild(t);
+      b.addEventListener("click", function(){ pick(k); });
+      box.appendChild(b);
+    });
+  }
+
+  function pick(k){
+    var it = ITEMS[order[i]], ok = (k===0);
+    if (ok) right++;
+    log.push({q:it.q, chose:it.o[k], answer:it.o[0], ok:ok});
+    Array.prototype.forEach.call($("opts").children, function(b){
+      var bk = Number(b.dataset.k);
+      b.disabled = true;
+      if (bk===0){
+        b.classList.add("right");
+        b.insertAdjacentHTML("afterbegin", '<span class="tag">'+(ok ? "Your answer: right" : "Right answer")+'</span>');
+      } else if (bk===k){
+        b.classList.add("wrong");
+        b.insertAdjacentHTML("afterbegin", '<span class="tag">Your answer</span>');
+      } else b.classList.add("dim");
+    });
+    var v = $("verdict");
+    v.textContent = ok ? "Good guess." : "Not this time.";
+    v.className = "verdict "+(ok ? "ok" : "no");
+    $("expl").innerHTML = it.e;
+    $("why").hidden = false;
+    $("score").textContent = right+" right so far";
+    $("next").textContent = (i===ITEMS.length-1) ? "See the summary" : "Next";
+    $("next").hidden = false;
+    $("next").focus();
+  }
+
+  function next(){
+    i++;
+    if (i<ITEMS.length){ render(); return; }
+    $("final").textContent = right+" out of "+ITEMS.length+" guessed right";
+    $("finalnote").textContent = right>=6 ? "You knew more about this than you thought." :
+      "That is normal for a warm-up: the lesson is about to fill the gaps.";
+    var ul = $("review"); ul.innerHTML = "";
+    log.forEach(function(r){
+      var li = document.createElement("li");
+      var q = document.createElement("div"); q.className="rq"; q.textContent = r.q;
+      li.appendChild(q);
+      if (!r.ok){ var x=document.createElement("div"); x.className="rx"; x.textContent="You: "+r.chose; li.appendChild(x); }
+      var a = document.createElement("div"); a.className="ra"; a.textContent=(r.ok?"You: ":"Answer: ")+r.answer; li.appendChild(a);
+      ul.appendChild(li);
+    });
+    show("end");
+  }
+
+  $("go").addEventListener("click", begin);
+  $("next").addEventListener("click", next);
+  $("again").addEventListener("click", begin);
+})();
+</script>
+</body>
+</html>
