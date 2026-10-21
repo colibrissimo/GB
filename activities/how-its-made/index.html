@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How It's Made</title>
+<!--
+  How it's made: vocabulary for the SAB2 S3 product presentations (hand cream, sweets,
+  ice cream, and cheese from Year 1). Built 21 Oct 2026 for TP 1 (23 Oct).
+  One tab per product: word cards with stress and a speaker, the process in order,
+  describing the result, then two solo drills. Drills show the student's own answer beside
+  the right one (classroom-game-hardening 6b). The first option of each item is the right
+  one; options are shuffled on screen.
+  Audio: assets/audio/<key>.mp3 if present (key = the term, lowercase, non-alphanumerics
+  to one hyphen), else the browser's British voice.
+  Hand cream process and the sample data come from a lab manual chapter Sarah found
+  ("Preparation of a hand cream", Experiment 39); the student answers in that report were
+  not used.
+-->
+<style>
+:root{
+  --gt-cream:#faf6ef;--gt-ink:#2b2b2b;--gt-muted:#6d7078;--gt-teal:#2f7d4f;--gt-teal-d:#1f5c39;
+  --gt-orange:#e08a3c;--gt-line:#e3dccd;--gt-line-s:#cdc4ad;--gt-card:#ffffff;
+  --ok-bg:#ecf6f0;--ok-fg:#2e7d52;--no-bg:#fceceb;--no-fg:#b23b3b;
+  --trap-bg:#fdf6e3;--trap-fg:#8a6408;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --gt-cream:#1a1b17;--gt-ink:#ece7db;--gt-muted:#a49d8a;--gt-teal:#5eb87e;--gt-teal-d:#8ad4a2;
+    --gt-orange:#e8a361;--gt-line:#33392c;--gt-line-s:#454c39;--gt-card:#22261c;
+    --ok-bg:#1c2a22;--ok-fg:#5fbe88;--no-bg:#301f1d;--no-fg:#e8746a;
+    --trap-bg:#2e2a1c;--trap-fg:#dcb24f;
+  }
+}
+:root[data-theme="dark"]{
+  --gt-cream:#1a1b17;--gt-ink:#ece7db;--gt-muted:#a49d8a;--gt-teal:#5eb87e;--gt-teal-d:#8ad4a2;
+  --gt-orange:#e8a361;--gt-line:#33392c;--gt-line-s:#454c39;--gt-card:#22261c;
+  --ok-bg:#1c2a22;--ok-fg:#5fbe88;--no-bg:#301f1d;--no-fg:#e8746a;
+  --trap-bg:#2e2a1c;--trap-fg:#dcb24f;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--gt-cream);color:var(--gt-ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.55;font-size:18px;padding:26px 16px 60px}
+.wrap{max-width:980px;margin:0 auto}
+h1{font-size:28px;margin:0 0 4px;color:var(--gt-teal-d);line-height:1.25}
+.sub{color:var(--gt-muted);margin:0 0 18px;font-size:16px;max-width:68ch}
+h2{font-size:22px;color:var(--gt-teal-d);margin:30px 0 4px}
+h2 small{font-size:14px;color:var(--gt-muted);font-weight:400;margin-left:6px}
+.lead{margin:0 0 12px;font-size:16.5px;color:var(--gt-muted);max-width:70ch}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px;padding:0;list-style:none}
+.tab{font:inherit;font-size:16px;font-weight:700;padding:9px 16px;border-radius:999px;cursor:pointer;
+  border:2px solid var(--gt-line-s);background:var(--gt-card);color:var(--gt-ink)}
+.tab:hover{border-color:var(--gt-orange)}
+.tab[aria-selected="true"]{background:var(--gt-teal);border-color:var(--gt-teal);color:#fff}
+.tab:focus-visible,.btn:focus-visible,.say:focus-visible,.opt:focus-visible,.step:focus-visible{outline:3px solid var(--gt-orange);outline-offset:2px}
+.tab .y1{font-weight:400;font-size:12.5px;opacity:.85;margin-left:4px}
+
+.card{background:var(--gt-card);border:1px solid var(--gt-line-s);border-left:5px solid var(--gt-orange);
+  border-radius:10px;padding:14px 16px;margin:12px 0}
+.intro p{margin:0 0 8px}.intro p:last-child{margin:0}
+
+.words{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin:8px 0}
+.w{background:var(--gt-card);border:1px solid var(--gt-line-s);border-radius:10px;padding:10px 12px;
+  display:grid;grid-template-columns:1fr auto;gap:0 8px;align-items:start}
+.w .t{font-weight:700;font-size:18px;line-height:1.3}
+.w .st{font-size:14.5px;color:var(--gt-teal-d);letter-spacing:.4px;font-variant-numeric:tabular-nums}
+.w .fr{font-size:14.5px;color:var(--gt-muted)}
+.w .d{grid-column:1/-1;font-size:15.5px;margin-top:4px}
+.w .trap{grid-column:1/-1;margin-top:6px;font-size:14.5px;background:var(--trap-bg);color:var(--gt-ink);
+  border-left:4px solid var(--trap-fg);border-radius:6px;padding:5px 8px}
+.w .trap b{color:var(--trap-fg)}
+.say{font:inherit;border:2px solid var(--gt-line-s);background:var(--gt-cream);color:var(--gt-ink);
+  border-radius:999px;width:38px;height:38px;cursor:pointer;display:grid;place-items:center;padding:0}
+.say:hover{border-color:var(--gt-orange)}
+.say svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.say.on{border-color:var(--gt-teal);color:var(--gt-teal)}
+
+ol.proc{margin:8px 0;padding:0;list-style:none;counter-reset:s}
+ol.proc li{counter-increment:s;background:var(--gt-card);border:1px solid var(--gt-line-s);border-radius:10px;
+  padding:10px 12px 10px 52px;margin:0 0 8px;position:relative;font-size:16.5px}
+ol.proc li:before{content:counter(s);position:absolute;left:12px;top:9px;width:28px;height:28px;border-radius:50%;
+  background:var(--gt-teal);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px}
+ol.proc .pv{display:block;font-size:14.5px;color:var(--gt-muted);margin-top:2px}
+ol.proc .pv b{color:var(--gt-teal-d);font-weight:600}
+
+.frames{margin:8px 0;padding:0;list-style:none}
+.frames li{background:var(--gt-card);border:1px solid var(--gt-line-s);border-radius:10px;padding:9px 12px;margin:0 0 8px;font-size:16.5px}
+.frames li .k{display:block;font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gt-muted)}
+.frames em{font-style:normal;background:var(--trap-bg);padding:0 4px;border-radius:4px}
+
+table.data{border-collapse:collapse;width:100%;font-size:15.5px;margin:8px 0;background:var(--gt-card)}
+table.data th,table.data td{border:1px solid var(--gt-line-s);padding:6px 8px;text-align:left;vertical-align:top}
+table.data th{background:var(--gt-cream);color:var(--gt-teal-d)}
+.scroll{overflow-x:auto}
+
+/* drills */
+.drills{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.btn{font:inherit;font-size:16px;font-weight:700;padding:10px 18px;border-radius:10px;cursor:pointer;
+  border:2px solid var(--gt-teal);background:var(--gt-teal);color:#fff}
+.btn.ghost{background:var(--gt-card);color:var(--gt-teal-d)}
+.btn:disabled{opacity:.45;cursor:default}
+.drill{margin:10px 0}
+.prog{display:flex;justify-content:space-between;color:var(--gt-muted);font-size:15px;margin-bottom:6px}
+.q{font-size:19px;font-weight:600;margin:0 0 12px;line-height:1.4}
+.opts{display:grid;gap:8px}
+.opt{font:inherit;font-size:16.5px;text-align:left;background:var(--gt-cream);color:var(--gt-ink);
+  border:2px solid var(--gt-line-s);border-radius:10px;padding:10px 12px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--gt-orange)}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--ok-bg);border-color:var(--ok-fg)}
+.opt.wrong{background:var(--no-bg);border-color:var(--no-fg)}
+.opt .tag,.slot .tag{display:block;font-size:12.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.right .tag{color:var(--ok-fg)}.wrong .tag{color:var(--no-fg)}
+.why{margin-top:12px;padding:10px 12px;border-radius:8px;background:var(--gt-cream);border:1px solid var(--gt-line);font-size:16px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+.pool{display:grid;gap:8px;margin:8px 0}
+.step{font:inherit;font-size:16px;text-align:left;background:var(--gt-cream);color:var(--gt-ink);
+  border:2px dashed var(--gt-line-s);border-radius:10px;padding:9px 12px;cursor:pointer}
+.step:hover{border-color:var(--gt-orange);border-style:solid}
+.mine{margin:8px 0;padding:0;list-style:none}
+.slot{border:2px solid var(--gt-line-s);border-radius:10px;padding:8px 12px;margin:0 0 8px;background:var(--gt-card);font-size:16px}
+.slot .n{font-weight:700;color:var(--gt-teal-d);margin-right:6px}
+.slot.right{background:var(--ok-bg);border-color:var(--ok-fg)}
+.slot.wrong{background:var(--no-bg);border-color:var(--no-fg)}
+.slot .should{display:block;margin-top:4px;font-size:15px}
+.slot .should b{color:var(--ok-fg)}
+.lbl{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gt-muted);margin:10px 0 2px}
+.score{font-size:20px;font-weight:700;color:var(--gt-teal-d)}
+
+.foot{font-size:12px;color:var(--gt-muted);margin-top:28px;text-align:center}
+[hidden]{display:none!important}
+@media (max-width:520px){body{font-size:17px}h1{font-size:24px}.q{font-size:18px}.tab{font-size:15px;padding:8px 12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>How it's made</h1>
+  <p class="sub">The words you need to present your product in English. Pick your product. Press the speaker to hear a word. The capitals show the stressed syllable: say that one louder and longer.</p>
+
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <main id="view"></main>
+
+  <p class="foot">BUT2 SAB · S3 · Presentation vocabulary</p>
+</div>
+
+<script>
+(function(){
+var SPK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
+
+/* w(term, stress, french, what it is or does, trap note) */
+function w(t,s,f,d,trap){return {t:t,s:s,f:f,d:d,trap:trap};}
+
+var SHARED = [
+  w("emulsion","e·MUL·sion","une émulsion","A mix of two liquids that do not normally mix, like oil and water. Creams and ice cream are both emulsions."),
+  w("emulsifier","e·MUL·si·fi·er","un émulsifiant","One end loves water, the other end loves oil, so it holds the two together."),
+  w("hydrophilic","hy·dro·PHIL·ic","hydrophile","Water-loving. Hydrophobic (hy·dro·PHO·bic) means water-hating."),
+  w("the water phase","","la phase aqueuse","Everything that dissolves in water. The other half is the oil phase (la phase grasse)."),
+  w("to separate","SEP·a·rate","se séparer, déphaser","What an emulsion does when it fails: the oil goes to the top, the water to the bottom."),
+  w("stabiliser","STA·bi·li·ser","un stabilisant","Keeps the texture the same over time."),
+  w("ingredient","in·GRE·di·ent","un ingrédient","Stress on the second syllable, not the last."),
+  w("texture","TEX·ture","la texture","The last syllable is short: TEKS-cher, not tex-TURE."),
+  w("smooth","SMOOTH","lisse, onctueux","No lumps, no grains. The TH buzzes."),
+  w("viscous","VIS·cous","visqueux","Thick and slow to flow, like honey."),
+  w("preservative","pre·SER·va·tive","un conservateur","Stops bacteria and mould from growing.","<b>False friend.</b> Un préservatif is a condom. A preservative goes in food and creams."),
+  w("shelf life","SHELF life","la durée de conservation","How long the product stays good to sell and use."),
+  w("pH","pee AITCH","le pH","Say the letters in English: P, H. pH 5.5 is \"pH five point five\".","<b>Trap:</b> not \"pé ache\". English H is AITCH."),
+  w("batch","BATCH","un lot","One quantity made at one time: \"We made three batches.\"")
+];
+
+var TABS = [
+ { id:"hand-cream", name:"Hand cream",
+   intro:"<p>A hand cream is an <b>emulsion</b>: water and oils held together by an <b>emulsifier</b>. In the lab you heat two beakers, one with the water phase and one with the oil phase, then pour one into the other and stir.</p><p>In the recipe below the emulsifier is made in the beaker: <b>stearic acid</b> (an acid) and <b>triethanolamine</b> (a base) react and form a salt that is part water-loving, part oil-loving.</p>",
+   groups:[
+    {h:"Ingredients", words:[
+      w("water","WA·ter","l'eau","Gives moisture. The water phase."),
+      w("stearic acid","ste·AR·ic AC·id","l'acide stéarique","A fatty acid. With triethanolamine it makes the emulsifier, and it thickens the cream."),
+      w("triethanolamine","tri·eth·a·NOL·a·mine","la triéthanolamine","A base. It reacts with stearic acid to make the emulsifier and it raises the pH. You can say TEA (T, E, A)."),
+      w("lanolin","LAN·o·lin","la lanoline","A yellow wax from sheep's wool. It holds water and helps the skin absorb the cream."),
+      w("mineral oil","MIN·er·al OIL","l'huile minérale, la paraffine liquide","Makes the cream spread easily."),
+      w("propylene glycol","PRO·py·lene GLY·col","le propylène glycol","A humectant. It gives texture and keeps the skin moist."),
+      w("methyl stearate","METH·yl STEA·rate","le stéarate de méthyle","An ester. It improves the texture."),
+      w("wax","WAX","la cire","Lanolin is a wax: an ester of a long fatty acid and a long alcohol.")
+    ]},
+    {h:"What ingredients do", words:[
+      w("a humectant","hu·MEC·tant","un humectant","Pulls water towards the skin and holds it there."),
+      w("an emollient","e·MOL·li·ent","un émollient","Softens the skin."),
+      w("to moisturise","MOIS·tur·ise","hydrater","\"It moisturises the skin.\" The noun is moisturiser, and a moisturising cream.","<b>Careful.</b> Hydrate exists, but for skin and creams the everyday word is moisturise."),
+      w("to absorb","ab·SORB","absorber","\"The cream absorbs quickly\" or \"the skin absorbs it\"."),
+      w("fragrance","FRA·grance","le parfum (ajouté)","Added smell. FRAY-grance."),
+      w("to spread","SPREAD","s'étaler","Spread, spread, spread: the past is the same. \"It spreads easily.\"")
+    ]},
+    {h:"Equipment", words:[
+      w("beaker","BEA·ker","un bécher","The long /iː/ sound, like in \"sheep\"."),
+      w("water bath","WA·ter bath","un bain-marie","A bigger beaker of hot water that heats the small one gently."),
+      w("Bunsen burner","BUN·sen BUR·ner","un bec Bunsen","Or a hot plate (une plaque chauffante)."),
+      w("crucible tongs","CRU·ci·ble TONGS","une pince à creuset","To hold the hot beaker."),
+      w("stirring rod","STIR·ring rod","un agitateur en verre","\"Stir with a glass stirring rod.\""),
+      w("graduated cylinder","GRAD·u·at·ed CY·lin·der","une éprouvette graduée","For measuring millilitres."),
+      w("pH paper","pee AITCH pa·per","le papier pH","Dip it, then compare the colour with the chart.")
+    ]}
+   ],
+   process:[
+    ["Weigh the solids and measure the liquids.","The ingredients <b>are weighed</b> and the liquids <b>are measured</b>."],
+    ["Put the water phase in one beaker and the oil phase in another.","The two phases <b>are put</b> in separate beakers."],
+    ["Heat both beakers in a water bath until the oil phase has melted.","Both beakers <b>are heated</b> in a water bath."],
+    ["Pour the melted oil phase slowly into the water phase.","The oil phase <b>is poured</b> slowly into the water phase."],
+    ["Stir for about five minutes, until you have a smooth, uniform paste.","The mixture <b>is stirred</b> until it is smooth."],
+    ["Let it cool, then test the pH, smoothness and appearance.","The cream <b>is left</b> to cool and <b>is tested</b>."]
+   ],
+   describe:[
+     w("homogeneous","ho·mo·GE·ne·ous","homogène","The same all through. Or simpler: uniform (U·ni·form)."),
+     w("greasy","GREA·sy","gras","Leaves an oily film on your hands."),
+     w("sticky","STICK·y","collant","Your fingers stick together."),
+     w("lumpy","LUMP·y","grumeleux","Small hard bits in it. Grainy (GRAIN·y) means fine grains, like sand."),
+     w("runny","RUN·ny","liquide, coulant","Too liquid. The opposite is thick, or firm."),
+     w("acidic / neutral / basic","a·CID·ic, NEU·tral, BA·sic","acide, neutre, basique","Skin is slightly acidic, around pH 5.5."),
+     w("off-white","off-WHITE","blanc cassé","Not pure white. Also: creamy white.")
+   ],
+   frames:[
+     ["Result","Our cream is <em>smooth and homogeneous</em>, but slightly <em>greasy</em>."],
+     ["Measure","We tested the pH with pH paper. It was <em>seven</em>, so the cream is <em>neutral</em>."],
+     ["Cause","Without <em>triethanolamine</em>, there was no emulsifier, so the cream was <em>lumpy</em>."]
+   ],
+   extra:'<h2>The lab data <small>four recipes, four results</small></h2><p class="lead">Four samples made in the lab. Each recipe leaves something out. Read the results and work out what each missing ingredient does.</p><div class="scroll"><table class="data"><thead><tr><th></th><th>Sample 1</th><th>Sample 2</th><th>Sample 3</th><th>Sample 4</th></tr></thead><tbody><tr><th>Left out</th><td>nothing</td><td>mineral oil</td><td>propylene glycol and methyl stearate</td><td>triethanolamine</td></tr><tr><th>pH</th><td>8</td><td>7</td><td>7</td><td>5</td></tr><tr><th>Smoothness</th><td>smooth</td><td>smooth</td><td>smooth</td><td>not smooth</td></tr><tr><th>Consistency</th><td>liquid</td><td>thick</td><td>thicker</td><td>solid</td></tr><tr><th>Colour</th><td>white</td><td>cream</td><td>cream</td><td>white</td></tr></tbody></table></div>',
+   quiz:[
+     {q:"Which ingredient makes the cream spread easily?",o:["mineral oil","water","triethanolamine","stearic acid"],e:"<b>Mineral oil</b> gives spreadability. Look at Sample 2: without it, the cream came out thick."},
+     {q:"Which ingredient comes from sheep's wool?",o:["lanolin","stearic acid","propylene glycol","mineral oil"],e:"<b>Lanolin</b> is a wax from sheep's wool. It can absorb a quarter of its own weight in water."},
+     {q:"Sample 4 was acidic (pH 5), lumpy and solid. What was left out?",o:["triethanolamine","mineral oil","propylene glycol","lanolin"],e:"<b>Triethanolamine</b> is the base. Without it, the stearic acid stays an acid (low pH) and no emulsifier forms, so the water and oils do not mix into a smooth cream."},
+     {q:"Stearic acid and triethanolamine react together. What do they make?",o:["the emulsifier","the fragrance","the preservative","the water phase"],e:"Their salt (TEA stearate) has a water-loving end and an oil-loving end: it is <b>the emulsifier</b>."},
+     {q:"After a week, the water is at the bottom of the jar and the oil is on top. What happened?",o:["The emulsion separated.","The cream evaporated.","The cream fermented.","The pH became neutral."],e:"The emulsion was not stable, so it <b>separated</b>. Usually there was not enough emulsifier, or the oil phase was poured in too fast."},
+     {q:"What does a humectant do?",o:["It pulls water towards the skin and holds it.","It makes the cream smell nice.","It kills bacteria in the jar.","It makes the cream white."],e:"A <b>humectant</b> holds water. Propylene glycol and glycerol are humectants."}
+   ]
+ },
+
+ { id:"sweets", name:"Sweets",
+   intro:"<p>Two kinds of sweets, two ways of making them. <b>Jelly sweets</b> (gummy bears) are a hot sugar syrup set with gelatine in moulds. <b>Sugar-coated chocolates</b> (like Smarties) are chocolate centres covered in a hard sugar shell, layer by layer, in a turning pan.</p><p>Your job is to change a recipe. The \"Change it\" section in <b>Presenting</b> has the sentences for that.</p>",
+   groups:[
+    {h:"The trade", words:[
+      w("sweets","SWEETS","des bonbons","British English. Americans say candy."),
+      w("confectionery","con·FEC·tion·er·y","la confiserie","The industry and the products. A confectioner makes them."),
+      w("sugar","SU·gar","le sucre","Starts with SH: SHUG-ar.","<b>Trap:</b> like sure, the S sounds SH."),
+      w("sucrose","SU·crose","le saccharose","Table sugar, in chemistry.")
+    ]},
+    {h:"Jelly sweets", words:[
+      w("gelatine","GEL·a·tine","la gélatine","A gelling agent made from animal collagen (pig or cow). It gives the chew.","<b>Trap:</b> soft G, like in jam: JEL-a-teen. Spelt gelatin in American English."),
+      w("pectin","PEC·tin","la pectine","A gelling agent from fruit. The vegetarian choice."),
+      w("gelling agent","GEL·ling A·gent","un gélifiant","Turns a liquid into a gel."),
+      w("glucose syrup","GLU·cose SY·rup","le sirop de glucose","Keeps the sugar from crystallising, so the sweet stays soft."),
+      w("citric acid","CIT·ric AC·id","l'acide citrique","Gives a sour taste."),
+      w("food colouring","FOOD COL·our·ing","un colorant alimentaire","British spelling: colour. American: color."),
+      w("flavouring","FLA·vour·ing","un arôme","Natural or artificial. To flavour something."),
+      w("starch","STARCH","l'amidon","Trays of corn starch are pressed to make the moulds."),
+      w("mould","MOULD","un moule","The shape the syrup is poured into.","<b>Two meanings.</b> A mould is also the green fuzz on old bread (une moisissure).")
+    ]},
+    {h:"Coated chocolates", words:[
+      w("centre","CEN·tre","le cœur","The chocolate inside."),
+      w("coating","COAT·ing","l'enrobage","The outside layer. To coat: enrober."),
+      w("shell","SHELL","la coque","The hard sugar coating."),
+      w("panning","PAN·ning","la dragéification","Building a coating in a turning pan. Hard panning makes a crunchy sugar shell."),
+      w("rotating pan","ro·TAT·ing PAN","une turbine","A big turning drum."),
+      w("layer","LAY·er","une couche","\"Thirty thin layers of sugar syrup.\""),
+      w("glazing agent","GLAZ·ing A·gent","un agent d'enrobage","Wax that makes the sweets shine and stops them sticking. Carnauba wax or beeswax."),
+      w("to polish","POL·ish","lustrer","Make shiny.")
+    ]}
+   ],
+   process:[
+    ["Dissolve the sugar and glucose syrup in water and cook the syrup.","The sugar <b>is dissolved</b> and the syrup <b>is cooked</b>."],
+    ["Add the gelatine, the citric acid, the colouring and the flavouring.","The gelatine and the acid <b>are added</b>."],
+    ["Deposit the hot liquid into moulds made of starch.","The liquid <b>is deposited</b> into starch moulds."],
+    ["Leave the sweets to set and dry for one or two days.","The sweets <b>are left</b> to set."],
+    ["Take them out of the moulds and remove the starch.","They <b>are demoulded</b> and the starch <b>is removed</b>."],
+    ["Coat them in a little wax or oil so they do not stick together.","They <b>are coated</b> in wax."]
+   ],
+   process2:{title:"Coated chocolates: panning", steps:[
+    ["Make the chocolate centres.","The centres <b>are made</b>."],
+    ["Put the centres in a rotating pan.","The centres <b>are put</b> in a rotating pan."],
+    ["Add a little sugar syrup and dry it with warm air.","A thin layer of syrup <b>is added</b> and <b>dried</b>."],
+    ["Repeat many times to build up a hard shell.","This <b>is repeated</b> until the shell is thick."],
+    ["Add colour in the last layers.","Colour <b>is added</b> at the end."],
+    ["Polish the sweets with wax so they shine.","The sweets <b>are polished</b>."]
+   ]},
+   describe:[
+     w("chewy","CHEW·y","moelleux, élastique","You need to chew it. Gummy bears are chewy."),
+     w("crunchy","CRUNCH·y","croquant","Makes a noise when you bite. The sugar shell is crunchy."),
+     w("sour","SOUR","acide (goût)","For taste, say sour, not acid."),
+     w("sticky","STICK·y","collant","Sticks to your teeth or to the bag."),
+     w("shiny","SHIN·y","brillant","Opposite: dull (terne)."),
+     w("bright","BRIGHT","vif (couleur)","Bright red, bright yellow."),
+     w("vegetarian","veg·e·TAR·i·an","végétarien","No gelatine: use pectin. Halal and kosher sweets need another source of gelatine, or pectin.")
+   ],
+   frames:[
+     ["Problem","Gelatine comes from pigs, so the sweets are not <em>vegetarian</em>."],
+     ["Change","We replaced the gelatine <em>with pectin</em>."],
+     ["Result","The new sweets are <em>less chewy</em> and slightly <em>softer</em>."]
+   ],
+   quiz:[
+     {q:"Which gelling agent comes from fruit?",o:["pectin","gelatine","starch","glucose syrup"],e:"<b>Pectin</b> comes from fruit (apples, citrus peel). Gelatine comes from animal collagen."},
+     {q:"Why do jelly sweets contain glucose syrup as well as sugar?",o:["It stops the sugar from crystallising, so the sweet stays soft.","It gives the sour taste.","It makes the sweets shine.","It replaces the gelatine."],e:"<b>Glucose syrup</b> gets in the way of sugar crystals. Without it, the sweets turn hard and grainy."},
+     {q:"What gives a jelly sweet its sour taste?",o:["citric acid","pectin","starch","wax"],e:"<b>Citric acid</b>. For taste, say sour."},
+     {q:"What is panning?",o:["Building a coating in layers in a turning pan","Cooking sugar in a frying pan","Pouring syrup into moulds","Cutting chocolate into pieces"],e:"<b>Panning</b>: the centres turn in a <b>rotating pan</b> while thin layers of syrup are added and dried."},
+     {q:"Why are gummy bears coated in a little wax or oil?",o:["So they do not stick together","So they taste sweeter","So the gelatine sets","So they keep their colour"],e:"Without the coating they <b>stick</b> to each other and to the bag."},
+     {q:"How do you say the G in gelatine?",o:["Like the G in jam: JEL-a-teen","Like the G in go: GEL-a-teen","Like the French G: zhé-la-tine","It is silent: EL-a-teen"],e:"Soft G, like <b>J</b>: JEL-a-teen."}
+   ]
+ },
+
+ { id:"ice-cream", name:"Ice cream",
+   intro:"<p>Ice cream is three things at once: an <b>emulsion</b> (fat in water), a <b>foam</b> (air bubbles) and a frozen solid (<b>ice crystals</b>). Small crystals and lots of tiny air bubbles make it smooth and creamy. Big crystals make it icy.</p>",
+   groups:[
+    {h:"Ingredients", words:[
+      w("whole milk","WHOLE MILK","le lait entier","The W in whole is silent: HOLE."),
+      w("cream","CREAM","la crème","Gives the fat."),
+      w("skimmed milk powder","SKIMMED milk POW·der","le lait écrémé en poudre","Adds milk solids without adding water."),
+      w("egg yolk","EGG YOLK","le jaune d'œuf","A natural emulsifier.","<b>Trap:</b> the L is silent: YOKE."),
+      w("lecithin","LE·ci·thin","la lécithine","The emulsifier in egg yolk. The TH is quiet, like in think."),
+      w("guar gum","GUAR GUM","la gomme de guar","A stabiliser. Guar rhymes with car."),
+      w("locust bean gum","LO·cust BEAN gum","la gomme de caroube","A stabiliser from carob seeds."),
+      w("sorbet","SOR·bet","le sorbet","No milk, no cream. British English says SOR-bay.")
+    ]},
+    {h:"Science words", words:[
+      w("ice crystals","ICE CRYS·tals","les cristaux de glace","Small ones: smooth. Big ones: icy."),
+      w("fat globules","FAT GLOB·ules","les globules gras","Tiny drops of fat that hold the air bubbles."),
+      w("air bubbles","AIR BUB·bles","les bulles d'air","They make ice cream light."),
+      w("overrun","O·ver·run","le foisonnement","How much air is whipped in. 100% overrun means the volume has doubled."),
+      w("foam","FOAM","une mousse","Gas bubbles held in a liquid or solid.")
+    ]},
+    {h:"Process verbs", words:[
+      w("to blend","BLEND","mélanger","Mix the ingredients together."),
+      w("to pasteurise","PAS·teur·ise","pasteuriser","Heat to kill harmful bacteria. PAS-cher-ise."),
+      w("to homogenise","ho·MO·ge·nise","homogénéiser","Break the fat into tiny droplets so it does not separate."),
+      w("to age","AGE","faire maturer","Leave the mix cold for some hours. The noun is ageing."),
+      w("to churn","CHURN","turbiner","Freeze and stir at the same time. The CH is the CH in chips."),
+      w("to harden","HARD·en","durcir","Finish freezing at a very low temperature."),
+      w("ice-cream maker","ICE-cream ma·ker","une sorbetière","In a factory: a continuous freezer.")
+    ]}
+   ],
+   process:[
+    ["Blend the milk, cream, sugar, milk powder and stabilisers.","The ingredients <b>are blended</b>."],
+    ["Pasteurise the mix to kill harmful bacteria.","The mix <b>is pasteurised</b>."],
+    ["Homogenise it to break the fat into tiny droplets.","It <b>is homogenised</b>."],
+    ["Age the mix in the fridge, at about 4 °C, for at least four hours.","The mix <b>is aged</b> at 4 °C."],
+    ["Freeze it while churning, so that air is whipped in.","It <b>is frozen</b> and <b>churned</b> at the same time."],
+    ["Harden it in a freezer at −25 °C or below.","The ice cream <b>is hardened</b>."]
+   ],
+   describe:[
+     w("creamy","CREAM·y","onctueux","Smooth and rich."),
+     w("icy","I·cy","plein de cristaux","You can feel the ice crystals on your tongue."),
+     w("grainy","GRAIN·y","sableux","Feels like fine sand. Often lactose crystals."),
+     w("light / dense","LIGHT, DENSE","léger, dense","More air: lighter. Less air: denser."),
+     w("to melt","MELT","fondre","\"It melts slowly.\" Melting resistance: la tenue à la fonte."),
+     w("scoopable","SCOOP·a·ble","facile à servir à la boule","Soft enough to scoop straight from the freezer.")
+   ],
+   frames:[
+     ["Problem","Our first batch was <em>icy</em> because the ice crystals were too big."],
+     ["Change","We added <em>a stabiliser</em> and churned it <em>faster</em>."],
+     ["Result","The second batch was <em>creamier</em> and melted <em>more slowly</em>."]
+   ],
+   quiz:[
+     {q:"An ice cream has 100% overrun. What does that mean?",o:["Its volume has doubled with air.","It is 100% milk.","It has melted completely.","It contains no sugar."],e:"<b>Overrun</b> is the air whipped in. 100% means the same volume of air as mix: twice the volume."},
+     {q:"Your ice cream feels icy. What is the most likely cause?",o:["The ice crystals are too big.","There is too much air.","There is too much egg yolk.","It was pasteurised."],e:"<b>Big ice crystals</b> make it icy. Stabilisers and fast freezing keep crystals small."},
+     {q:"Why do we homogenise the mix?",o:["To break the fat into tiny droplets","To kill bacteria","To add air","To freeze it faster"],e:"<b>Homogenising</b> breaks the fat into tiny droplets so it stays mixed. Pasteurising kills bacteria."},
+     {q:"Which ingredient is a natural emulsifier?",o:["egg yolk","guar gum","sugar","skimmed milk powder"],e:"<b>Egg yolk</b> contains lecithin, an emulsifier. Guar gum is a stabiliser."},
+     {q:"What does to churn mean?",o:["To freeze and stir at the same time","To heat to kill bacteria","To leave in the fridge for hours","To pour into tubs"],e:"<b>To churn</b>: stir while freezing. It adds air and keeps the crystals small."},
+     {q:"How do you say yolk?",o:["YOKE: the L is silent","YOLK, with a clear L","YOK, with a short O","YULK"],e:"Silent L, like in <b>walk</b> and <b>talk</b>: YOKE."}
+   ]
+ },
+
+ { id:"cheese", name:"Cheese", y1:true,
+   intro:"<p>You studied cheese in Year 1. The words are here if you choose it again. Cheese is milk made solid: bacteria make it acidic, an enzyme makes it set, then the solid part (the <b>curd</b>) is separated from the liquid (the <b>whey</b>).</p>",
+   groups:[
+    {h:"Ingredients", words:[
+      w("raw milk","RAW MILK","le lait cru","Milk that has not been pasteurised."),
+      w("starter culture","STAR·ter CUL·ture","les ferments lactiques","Lactic acid bacteria. They turn lactose into lactic acid."),
+      w("rennet","REN·net","la présure","An enzyme that makes milk set."),
+      w("salt / brine","SALT, BRINE","le sel, la saumure","Brine is salty water."),
+      w("mould","MOULD","la moisissure","Penicillium makes blue cheese and white rinds.","<b>Two meanings.</b> A mould is also the shape you press the cheese in (un moule).")
+    ]},
+    {h:"Process words", words:[
+      w("to coagulate","co·AG·u·late","coaguler","The milk sets into a soft gel. Also: to curdle (cailler)."),
+      w("curd","CURD","le caillé","The solid part."),
+      w("whey","WHEY","le lactosérum, le petit-lait","The liquid part.","<b>Trap:</b> sounds exactly like way."),
+      w("to drain","DRAIN","égoutter","Let the whey run out."),
+      w("to press","PRESS","presser","Push out more whey. Hard cheeses are pressed."),
+      w("to ripen","RI·pen","affiner","Also: to age, to mature. The noun is ripening (l'affinage)."),
+      w("rind","RIND","la croûte","The outside of the cheese. It rhymes with mind.")
+    ]}
+   ],
+   process:[
+    ["Warm the milk and add the starter culture.","The starter culture <b>is added</b> to warm milk."],
+    ["Add rennet so the milk coagulates.","Rennet <b>is added</b> and the milk <b>sets</b>."],
+    ["Cut the curd to release the whey.","The curd <b>is cut</b>."],
+    ["Drain off the whey.","The whey <b>is drained</b> off."],
+    ["Put the curd in moulds, press it, and salt it.","The curd <b>is moulded</b>, <b>pressed</b> and <b>salted</b>."],
+    ["Ripen the cheese in a cool, damp cellar.","The cheese <b>is ripened</b> for weeks or months."]
+   ],
+   describe:[
+     w("soft / hard","SOFT, HARD","à pâte molle, à pâte dure","Brie is soft. Comté is hard."),
+     w("crumbly","CRUM·bly","friable","Breaks into small pieces, like feta."),
+     w("strong / mild","STRONG, MILD","fort, doux","For taste. A strong smell: une odeur forte."),
+     w("creamy","CREAM·y","crémeux, onctueux","Smooth and rich.")
+   ],
+   frames:[
+     ["Process","After the milk has coagulated, the curd <em>is cut</em> and the whey <em>is drained off</em>."],
+     ["Time","The cheese is ripened <em>for three months</em> at <em>12 °C</em>."]
+   ],
+   quiz:[
+     {q:"What does rennet do?",o:["It makes the milk set.","It gives the blue colour.","It adds salt.","It kills bacteria."],e:"<b>Rennet</b> is an enzyme. It makes the milk coagulate into a gel."},
+     {q:"Which part is the liquid?",o:["the whey","the curd","the rind","the brine"],e:"The <b>whey</b> is liquid. The <b>curd</b> is solid."},
+     {q:"How do you say whey?",o:["Like way","Like why","Like whee","Like wet"],e:"<b>Whey</b> and <b>way</b> sound the same."},
+     {q:"What do the starter bacteria do?",o:["They turn lactose into lactic acid.","They make the milk sweeter.","They form the rind.","They remove the water."],e:"Lactic acid bacteria make the milk <b>acidic</b>. That helps it set and gives flavour."}
+   ]
+ },
+
+ { id:"presenting", name:"Presenting",
+   intro:"<p>Whatever your product, you will describe a process, say what you changed, and give numbers. These are the sentences for that.</p>",
+   sections:[
+    {h:"Steps in order", frames:[
+      ["Start","<em>First</em>, we weighed all the ingredients."],
+      ["Next","<em>Then</em> / <em>Next</em> / <em>After that</em>, we heated the oil phase."],
+      ["At the same time","<em>While</em> the oil phase was melting, we heated the water."],
+      ["When one step ends","<em>Once</em> the oil had melted, we poured it into the water."],
+      ["End","<em>Finally</em>, we tested the pH."]
+    ]},
+    {h:"The process, not the people", lead:"In a process description, the passive puts the product first: is or are, plus the past participle.", frames:[
+      ["Active","We heat the milk to 80 °C."],
+      ["Passive","The milk <em>is heated</em> to 80 °C."],
+      ["Passive, past","The ingredients <em>were weighed</em> and <em>mixed</em>."]
+    ]},
+    {h:"Change it", lead:"Your product must be different from the original. Say what you changed, why, and what happened.", frames:[
+      ["Replace","We replaced <em>the gelatine</em> with <em>pectin</em>. We used <em>honey</em> instead of <em>sugar</em>."],
+      ["Less or more","We reduced the sugar <em>by 30%</em>. We increased the amount of <em>oil</em>."],
+      ["Add or remove","We added <em>vanilla</em>. We left out <em>the fragrance</em>."],
+      ["Why","We did this <em>because</em> customers want less sugar. We did it <em>so that</em> vegetarians can eat it."],
+      ["Compare","The new version is <em>softer</em>, <em>less sweet</em> and <em>more stable</em> than the original."]
+    ]},
+    {h:"Say the numbers", lead:"Numbers lose marks more often than words. Practise them aloud.", frames:[
+      ["Decimals","0.5 mL: <em>nought point five</em> or <em>half a millilitre</em>. English uses a point, never a comma."],
+      ["Temperature","4 °C: <em>four degrees Celsius</em>. −25 °C: <em>minus twenty-five degrees</em>."],
+      ["Mass","5 g: <em>five grams</em>. 25 mL: <em>twenty-five millilitres</em>."],
+      ["Per cent","30%: <em>thirty per cent</em>."],
+      ["Time","5 min: <em>five minutes</em>. 48 h: <em>forty-eight hours</em>."]
+    ]},
+    {h:"Talk about your slides", frames:[
+      ["Show","<em>As you can see</em> on this slide, the second batch is creamier."],
+      ["Point","<em>This graph shows</em> the pH of our four samples."],
+      ["Move on","<em>Now let's look at</em> the results."]
+    ]}
+   ],
+   quiz:[
+     {q:"How do you say 0.5 mL?",o:["nought point five millilitres","zero comma five millilitres","zero virgule five millilitres","five millilitres"],e:"English uses a <b>point</b>: nought point five (or zero point five, or half a millilitre)."},
+     {q:"Choose the passive sentence.",o:["The mix is aged for four hours.","We age the mix for four hours.","Age the mix for four hours.","The mix ages us for four hours."],e:"<b>Is aged</b>: is + past participle. The product comes first."},
+     {q:"We used pectin ___ gelatine.",o:["instead of","replace","because","so that"],e:"<b>Instead of</b> + noun. Or: we replaced the gelatine with pectin."},
+     {q:"___ the oil had melted, we poured it into the water.",o:["Once","First","Finally","While"],e:"<b>Once</b> = as soon as one step is finished."},
+     {q:"How do you say −25 °C?",o:["minus twenty-five degrees Celsius","less twenty-five degrees","moins twenty-five degrees","twenty-five under degrees"],e:"<b>Minus</b> twenty-five degrees Celsius."},
+     {q:"The new cream is ___ than the original.",o:["less greasy","more greasy than less","less greasier","the less greasy"],e:"<b>Less</b> + adjective: less greasy, less sweet."}
+   ]
+ }
+];
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function key(t){return t.toLowerCase().replace(/'/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
+function spoken(t){return t.replace(/\bpH\b/g,"P H").replace(/\//g,", ");}
+
+var voice=null;
+function pickVoice(){
+  if(!("speechSynthesis" in window))return;
+  var vs=speechSynthesis.getVoices();
+  voice=vs.filter(function(v){return v.lang==="en-GB";})[0]||vs.filter(function(v){return /^en/.test(v.lang);})[0]||null;
+}
+if("speechSynthesis" in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+function tts(t,btn){
+  if(!("speechSynthesis" in window))return;
+  speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(spoken(t));u.lang="en-GB";if(voice)u.voice=voice;u.rate=.85;
+  u.onend=function(){btn.classList.remove("on");};
+  speechSynthesis.speak(u);
+}
+function play(t,btn){
+  btn.classList.add("on");
+  var a=new Audio("assets/audio/"+key(t)+".mp3");
+  a.onended=function(){btn.classList.remove("on");};
+  a.play().catch(function(){tts(t,btn);});
+}
+
+function card(x){
+  return '<div class="w"><div><div class="t">'+esc(x.t)+'</div>'+
+    (x.s?'<div class="st">'+esc(x.s)+'</div>':'')+
+    '<div class="fr">'+esc(x.f)+'</div></div>'+
+    '<button class="say" type="button" data-say="'+esc(x.t)+'" aria-label="Hear: '+esc(x.t)+'">'+SPK+'</button>'+
+    '<div class="d">'+esc(x.d)+'</div>'+
+    (x.trap?'<div class="trap">'+x.trap+'</div>':'')+'</div>';
+}
+function words(list){return '<div class="words">'+list.map(card).join("")+'</div>';}
+function proc(steps){return '<ol class="proc">'+steps.map(function(s){return '<li>'+esc(s[0])+'<span class="pv">'+s[1]+'</span></li>';}).join("")+'</ol>';}
+function frames(list){return '<ul class="frames">'+list.map(function(f){return '<li><span class="k">'+esc(f[0])+'</span>'+f[1]+'</li>';}).join("")+'</ul>';}
+
+/* ---------- render a tab ---------- */
+var view=document.getElementById("view"), tabsEl=document.getElementById("tabs");
+function render(id){
+  var T=TABS.filter(function(t){return t.id===id;})[0]||TABS[0];
+  [].forEach.call(tabsEl.children,function(b){b.setAttribute("aria-selected",b.dataset.id===T.id?"true":"false");});
+  var h='<div class="card intro">'+T.intro+'</div>';
+  if(T.sections){
+    T.sections.forEach(function(s){h+='<h2>'+esc(s.h)+'</h2>'+(s.lead?'<p class="lead">'+esc(s.lead)+'</p>':'')+frames(s.frames);});
+  } else {
+    T.groups.forEach(function(g){h+='<h2>'+esc(g.h)+'</h2>'+words(g.words);});
+    if(T.process)h+='<h2>How it\'s made <small>'+(T.process2?'jelly sweets':'step by step')+'</small></h2><p class="lead">The first line is what you do. The grey line is the same step in the passive, for your slides.</p>'+proc(T.process);
+    if(T.process2)h+='<h2>How it\'s made <small>'+esc(T.process2.title.split(": ")[1])+'</small></h2>'+proc(T.process2.steps);
+    if(T.describe.length)h+='<h2>Describe the result</h2>'+words(T.describe);
+    if(T.extra)h+=T.extra;
+    if(T.frames.length)h+='<h2>Say it in a sentence</h2>'+frames(T.frames);
+  }
+  h+='<h2>Check yourself</h2><p class="lead">On your own. You will see your answer beside the right one.</p><div class="drills">'+
+     (T.process?'<button class="btn" type="button" data-drill="order">Put the steps in order</button>':'')+
+     (T.process2?'<button class="btn" type="button" data-drill="order2">Order the panning steps</button>':'')+
+     '<button class="btn" type="button" data-drill="quiz">Quick questions ('+T.quiz.length+')</button></div><div class="drill card" id="drill" hidden></div>';
+  view.innerHTML=h;
+  view.querySelectorAll("[data-drill]").forEach(function(b){b.onclick=function(){
+    var d=b.dataset.drill;
+    if(d==="quiz")quiz(T.quiz);else orderDrill(d==="order"?T.process:T.process2.steps);
+  };});
+}
+
+view.addEventListener("click",function(e){var b=e.target.closest(".say");if(b)play(b.dataset.say,b);});
+
+/* ---------- drill: order the steps ---------- */
+function orderDrill(steps){
+  var box=document.getElementById("drill");box.hidden=false;
+  var pool=shuffle(steps.map(function(s,i){return i;}));
+  while(steps.length>1&&pool.every(function(v,i){return v===i;}))pool=shuffle(pool);
+  var mine=[];
+  function draw(){
+    var h='<p class="q">Click the steps in the right order.</p><div class="lbl">Your order</div><ol class="mine">'+
+      (mine.length?mine.map(function(i,n){return '<li class="slot"><span class="n">'+(n+1)+'.</span>'+esc(steps[i][0])+'</li>';}).join(""):'<li class="slot" style="color:var(--gt-muted)">Nothing yet.</li>')+'</ol>';
+    var left=pool.filter(function(i){return mine.indexOf(i)<0;});
+    if(left.length)h+='<div class="lbl">Steps left</div><div class="pool">'+left.map(function(i){return '<button class="step" type="button" data-i="'+i+'">'+esc(steps[i][0])+'</button>';}).join("")+'</div>';
+    h+='<div class="row"><button class="btn ghost" type="button" id="undo"'+(mine.length?'':' disabled')+'>Undo</button>'+
+       '<button class="btn" type="button" id="check"'+(left.length?' disabled':'')+'>Check</button></div>';
+    box.innerHTML=h;
+    box.querySelectorAll(".step").forEach(function(b){b.onclick=function(){mine.push(+b.dataset.i);draw();};});
+    box.querySelector("#undo").onclick=function(){mine.pop();draw();};
+    box.querySelector("#check").onclick=check;
+  }
+  function check(){
+    var ok=0;
+    var h='<div class="lbl">Your order</div><ol class="mine">'+mine.map(function(i,n){
+      var good=i===n;if(good)ok++;
+      return '<li class="slot '+(good?'right':'wrong')+'"><span class="tag">'+(good?'Right':'Your step '+(n+1))+'</span><span class="n">'+(n+1)+'.</span>'+esc(steps[i][0])+
+        (good?'':'<span class="should"><b>Step '+(n+1)+' is:</b> '+esc(steps[n][0])+'</span>')+'</li>';
+    }).join("")+'</ol><p class="score">'+ok+' / '+steps.length+' in the right place</p>'+
+    '<div class="row"><button class="btn" type="button" id="again">Try again</button></div>';
+    box.innerHTML=h;
+    box.querySelector("#again").onclick=function(){orderDrill(steps);};
+  }
+  draw();box.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+/* ---------- drill: quick questions ---------- */
+function quiz(items){
+  var box=document.getElementById("drill");box.hidden=false;
+  var order=shuffle(items),k=0,score=0,log=[];
+  function show(){
+    var it=order[k],opts=shuffle(it.o);
+    box.innerHTML='<div class="prog"><span>Question '+(k+1)+' of '+order.length+'</span><span>Score '+score+'</span></div>'+
+      '<p class="q">'+esc(it.q)+'</p><div class="opts">'+opts.map(function(o){return '<button class="opt" type="button">'+esc(o)+'</button>';}).join("")+'</div>'+
+      '<div class="why" hidden></div><div class="row"><button class="btn" type="button" id="next" hidden>'+(k+1<order.length?'Next':'See my score')+'</button></div>';
+    var bs=box.querySelectorAll(".opt");
+    bs.forEach(function(b,i){b.onclick=function(){
+      var pick=opts[i],right=it.o[0],good=pick===right;
+      if(good)score++;log.push({q:it.q,pick:pick,right:right});
+      bs.forEach(function(x,j){x.disabled=true;
+        if(opts[j]===right){x.classList.add("right");x.insertAdjacentHTML("afterbegin",'<span class="tag">'+(good?'Your answer · right':'Right answer')+'</span>');}
+        else if(j===i){x.classList.add("wrong");x.insertAdjacentHTML("afterbegin",'<span class="tag">Your answer</span>');}
+      });
+      var why=box.querySelector(".why");why.innerHTML=it.e;why.hidden=false;
+      var nx=box.querySelector("#next");nx.hidden=false;nx.focus();
+      nx.onclick=function(){k++;if(k<order.length)show();else end();};
+    };});
+  }
+  function end(){
+    box.innerHTML='<p class="score">'+score+' / '+order.length+'</p><ul class="frames">'+log.map(function(l){
+      return '<li><span class="k">'+esc(l.q)+'</span>'+(l.pick===l.right?'<span style="color:var(--ok-fg)">'+esc(l.right)+'</span>':
+        '<span style="color:var(--no-fg);text-decoration:line-through">'+esc(l.pick)+'</span><br><span style="color:var(--ok-fg)">'+esc(l.right)+'</span>')+'</li>';
+    }).join("")+'</ul><div class="row"><button class="btn" type="button" id="again">Again</button></div>';
+    box.querySelector("#again").onclick=function(){quiz(items);};
+  }
+  show();box.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+/* ---------- tabs ---------- */
+TABS.forEach(function(t){
+  var b=document.createElement("button");b.className="tab";b.type="button";b.setAttribute("role","tab");b.dataset.id=t.id;
+  b.innerHTML=esc(t.name)+(t.y1?'<span class="y1">Year 1</span>':'');
+  b.onclick=function(){history.replaceState(null,"","#"+t.id);render(t.id);};
+  tabsEl.appendChild(b);
+});
+/* The shared words go first in every product tab's flow, under their own tab. */
+TABS.splice(0,0,{id:"science",name:"The science",intro:"<p>These words work for all three products. A cream and an ice cream are both <b>emulsions</b>, and every product has a <b>texture</b>, a <b>pH</b> and a <b>shelf life</b>.</p>",
+  sections:null,groups:[{h:"Shared words",words:SHARED}],process:null,describe:[],frames:[],quiz:[
+   {q:"What does an emulsifier do?",o:["It holds oil and water together.","It makes the product sweeter.","It kills bacteria.","It freezes the water."],e:"One end of an <b>emulsifier</b> loves water, the other loves oil."},
+   {q:"A preservative is…",o:["un conservateur","un préservatif","un colorant","un émulsifiant"],e:"<b>Preservative</b> = un conservateur. Un préservatif is a condom."},
+   {q:"How do you say pH?",o:["pee AITCH","pé ache","fuh","pee ash"],e:"The English letters: <b>P, H</b> (pee aitch)."},
+   {q:"Your cream has oil on top and water underneath. It has…",o:["separated","emulsified","stabilised","dissolved"],e:"A failed emulsion <b>separates</b>."}
+  ]});
+var sb=document.createElement("button");sb.className="tab";sb.type="button";sb.setAttribute("role","tab");sb.dataset.id="science";sb.textContent="The science";
+sb.onclick=function(){history.replaceState(null,"","#science");render("science");};
+tabsEl.insertBefore(sb,tabsEl.firstChild);
+
+var start=(location.hash||"").slice(1);
+render(TABS.some(function(t){return t.id===start;})?start:"science");
+})();
+</script>
+</body>
+</html>
