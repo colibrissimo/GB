@@ -13,6 +13,9 @@
   Companion page: death-by-powerpoint.html (David JP Phillips). Step 5 there answers
   "Alley says the title is a sentence, Phillips says no sentences".
   Steps link directly with #1 ... #8. Arrow keys move, F is full screen.
+  ?sab3 (e.g. claim-slides.html?sab3#7) switches the label and step 7 back to the SAB3 crowdfunding
+  pitch rows from the original deck, and carries ?sab3 on to the Phillips page. Added 22 Oct 2026
+  when the pages went into the SAB3 course too.
   The topic/claim drill shows the student's answer beside the right one
   (classroom-game-hardening 6b); first answer counts; the key is in JS, not the DOM.
   Nothing is stored: the title list lives in memory and is lost on reload, on purpose
@@ -234,7 +237,7 @@ p{margin:0 0 12px;max-width:68ch}
 </head>
 <body>
 <div class="top">
-  <span class="kick">SAB2 · Presentations</span>
+  <span class="kick" id="kick">SAB2 · Presentations</span>
   <span class="count" id="count">1 / 8</span>
   <button class="ghost" id="fs" type="button" aria-label="Full screen">&#x26F6;<span class="fsl"> full screen</span></button>
 </div>
@@ -371,10 +374,10 @@ p{margin:0 0 12px;max-width:68ch}
 
 <!-- 7 -->
 <section class="step" data-name="your-product">
-  <h2 data-a>In your presentation, every title becomes a sentence someone can check</h2>
-  <p class="muted" data-a style="--d:.1s">An imaginary group presenting their hand cream. Click each empty box to turn the topic into a claim.</p>
+  <h2 data-a id="fH">In your presentation, every title becomes a sentence someone can check</h2>
+  <p class="muted" data-a style="--d:.1s" id="fIntro">An imaginary group presenting their hand cream. Click each empty box to turn the topic into a claim.</p>
   <div class="ftab" id="ftab"></div>
-  <p style="margin-top:12px;--d:.4s" class="small muted" data-a>The last two rows are results. A result is a claim too: "Our results" is a topic, "Less wax made the cream easier to spread" is something you can prove with your sample.</p>
+  <p style="margin-top:12px;--d:.4s" class="small muted" data-a id="fNote">The last two rows are results. A result is a claim too: "Our results" is a topic, "Less wax made the cream easier to spread" is something you can prove with your sample.</p>
   <button class="ghost" id="fAll" type="button" style="margin-top:6px">show them all</button>
 </section>
 
@@ -415,6 +418,7 @@ p{margin:0 0 12px;max-width:68ch}
 <script>
 (function(){
   var $=function(id){return document.getElementById(id)};
+  var SAB3=/[?&]sab3\b/i.test(location.search);   /* claim-slides.html?sab3 : the SAB3 pitch version */
   var steps=[].slice.call(document.querySelectorAll('.step'));
   var cur=-1, hooks={};
 
@@ -570,7 +574,19 @@ p{margin:0 0 12px;max-width:68ch}
   dStart();
 
   /* ---------- 7: topic to claim ---------- */
-  var ROWS=[
+  if(SAB3){
+    $('kick').textContent='SAB3 · Crowdfunding pitch';
+    $('fH').textContent='In your pitch, every title becomes a sentence an investor can check';
+    $('fIntro').textContent='An imaginary start-up that turns unsold bread into a drink. Click each empty box to turn the topic into a claim.';
+    $('fNote').innerHTML='"The ask" must say how much money you want and what backers get: the bracket is for your own figure. The last row is the feasibility part of the rubric: name the risk, then show the plan.';
+    [].forEach.call(document.querySelectorAll('a[href$=".html"]'),function(a){ a.href=a.getAttribute('href')+'?sab3'; });
+  }
+  var ROWS= SAB3 ? [
+    ['Problem','Supermarkets throw away bread that is still safe to eat'],
+    ['Our product','Our process turns that bread into a refreshing drink'],
+    ['The ask','We need €[ ___ ] to build our first production line'],
+    ['Risks','Our biggest risk is EU food approval, and we have a plan for it']
+  ] : [
     ['Introduction','Hand cream is oil and water that must not separate'],
     ['Ingredients','Each ingredient has one job: to moisturise, to thicken, to mix or to preserve'],
     ['Process','We heated the oil and the water separately, then mixed them at 70 °C'],

@@ -18,6 +18,7 @@
   Drills are solo: the student's answer stays beside the right one (classroom-game-hardening
   6b), first answer counts, keys in JS only. Dot test and crossword keep nothing after reload.
   Steps link directly with #1 ... #10. Arrow keys move, F is full screen.
+  ?sab3 changes only the label (and keeps ?sab3 on the link back to the Alley page).
 -->
 <style>
 :root{
@@ -274,7 +275,7 @@ blockquote{margin:0 0 14px;padding:10px 16px;border-left:5px solid var(--gt-oran
 </head>
 <body>
 <div class="top">
-  <span class="kick">SAB2 · Presentations</span>
+  <span class="kick" id="kick">SAB2 · Presentations</span>
   <span class="count" id="count">1 / 10</span>
   <button class="ghost" id="fs" type="button" aria-label="Full screen">&#x26F6;<span class="fsl"> full screen</span></button>
 </div>
@@ -550,6 +551,10 @@ blockquote{margin:0 0 14px;padding:10px 16px;border-left:5px solid var(--gt-oran
 <script>
 (function(){
   var $=function(id){return document.getElementById(id)};
+  if(/[?&]sab3\b/i.test(location.search)){   /* ?sab3: SAB3 label, and the link back keeps it */
+    $('kick').textContent='SAB3 · Crowdfunding pitch';
+    [].forEach.call(document.querySelectorAll('a[href$=".html"]'),function(a){ a.href=a.getAttribute('href')+'?sab3'; });
+  }
   var steps=[].slice.call(document.querySelectorAll('.step'));
   var cur=-1, hooks={}, leave={};
   var YT='Iwpi1Lm6dFo';
